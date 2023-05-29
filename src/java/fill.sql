@@ -14,10 +14,10 @@ insert into role values(2, 'system admin');
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password',2,1);
 
-insert into service values(1,'Massage', 'HELLOASDASD ASD');
-insert into service values(2,'Head scratch', 'HELLOASDASD ASD');
-insert into service values(3,'rock bath', 'HELLOASDASD ASD');
-insert into service values(4,'sauna', 'HELLOASDASD ASD');
+insert into service values(1,'Massage', 'Your head will be massaged');
+insert into service values(2,'Head scratch', 'Head scratching by the best scratcher');
+insert into service values(3,'rock bath', 'Bathe in rocks ! :D');
+insert into service values(4,'sauna', 'Sauna ');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-13', 2023, 'Saturday', 13, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-14', 2023, 'Sunday', 14, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-15', 2023, 'Monday', 15, 'May');
