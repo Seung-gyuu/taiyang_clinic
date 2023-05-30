@@ -73,4 +73,6 @@ public class AppointmentDB {
         em.close();
     }
 }
+    
+    //Still needs delete and insert !!!! Update maybe?  What can users update about appointments ...  ? type reminder, what else...
 }
