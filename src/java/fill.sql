@@ -3,6 +3,9 @@ delete from appointment;
 delete from availabletime;
 delete from day;
 delete from user;
+delete from medicalform;
+delete from consentform;
+delete from passwordtokens;
 delete from role;
 delete from service;
 

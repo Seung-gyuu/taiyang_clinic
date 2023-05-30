@@ -24,7 +24,38 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     CHECK (isactive IN (1, 2))
 );
 
--- consent and medical form
+CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userid` INT NOT NULL,
+  `token` VARCHAR(50) Unique NOT NULL,
+  `expiryDateTime` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_passwordtokens_user`
+    FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
+);
+
+
+CREATE TABLE IF NOT EXISTS `clinicdb`.`medicalform` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userid` INT NOT NULL,
+  `pdfFile` LONGBLOB NOT NULL,
+  `timeAdded` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_medical_form_user`
+    FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
+);
+
+CREATE TABLE IF NOT EXISTS `clinicdb`.`consentform` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userid` INT NOT NULL,
+  `pdfFile` LONGBLOB NOT NULL,
+  `timeAdded` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_consent_form_user`
+    FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
+);
+
+
 
 CREATE TABLE  IF NOT EXISTS `clinicdb`.`day` (
     `fulldate` DATE NOT NULL,

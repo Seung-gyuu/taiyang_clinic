@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import models.Role;
 import models.User;
 
@@ -41,28 +42,43 @@ public class UserDB {
 
     }
     
-    public List<User> getAllByFirstName() throws Exception {
+    public List<User> getAllByFirstName(String firstname) throws Exception {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    try {
+        TypedQuery<User> query = em.createNamedQuery("User.findByFirstname", User.class);
+        query.setParameter("firstname", firstname);
+        List<User> users = query.getResultList();
+        return users;
+    } finally {
+       em.close();
+    }
+}
+
+    public List<User> getAllByLastName(String lastname) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<User> users = em.createNamedQuery("User.findByFirstname", User.class).getResultList();
-            return users;
+            TypedQuery<User> query = em.createNamedQuery("User.findByFirstname", User.class);
+        query.setParameter("lastname", lastname);
+        List<User> users = query.getResultList();
+        return users;
         } finally {
            em.close();
         }
 
     }
-    
-    public List<User> getAllByLastName() throws Exception {
+    public User get(int userId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<User> users = em.createNamedQuery("User.findByLastname", User.class).getResultList();
-            return users;
-        } finally {
-           em.close();
+            User user = em.find(User.class, userId);
+            return user;
+            
+        } catch (Exception e) {
+            return null;
+        }finally {
+            em.close();
         }
-
     }
-    
+        
     public User getByEmail(String email) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

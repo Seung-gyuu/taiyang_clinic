@@ -17,7 +17,7 @@ public class ReminderDB {
     public List<Reminder> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Reminder> reminders = em.createNamedQuery("Sentreminders.findAll", Reminder.class).getResultList();
+            List<Reminder> reminders = em.createNamedQuery("Reminder.findAll", Reminder.class).getResultList();
             return reminders;
         } finally {
            em.close();

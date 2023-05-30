@@ -11,6 +11,9 @@
     <class>models.Service</class>
     <class>models.Sentreminders</class>
     <class>models.Role</class>
+    <class>models.Consentform</class>
+    <class>models.Medicalform</class>
+    <class>models.Passwordtokens</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

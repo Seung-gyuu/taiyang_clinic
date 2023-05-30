@@ -42,6 +42,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByIsactive", query = "SELECT u FROM User u WHERE u.isactive = :isactive")})
 public class User implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
+    private List<Medicalform> medicalformList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
+    private List<Passwordtokens> passwordtokensList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
+    private List<Consentform> consentformList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -205,6 +212,33 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "test.User[ userid=" + userid + " ]";
+    }
+
+    @XmlTransient
+    public List<Medicalform> getMedicalformList() {
+        return medicalformList;
+    }
+
+    public void setMedicalformList(List<Medicalform> medicalformList) {
+        this.medicalformList = medicalformList;
+    }
+
+    @XmlTransient
+    public List<Passwordtokens> getPasswordtokensList() {
+        return passwordtokensList;
+    }
+
+    public void setPasswordtokensList(List<Passwordtokens> passwordtokensList) {
+        this.passwordtokensList = passwordtokensList;
+    }
+
+    @XmlTransient
+    public List<Consentform> getConsentformList() {
+        return consentformList;
+    }
+
+    public void setConsentformList(List<Consentform> consentformList) {
+        this.consentformList = consentformList;
     }
     
 }
