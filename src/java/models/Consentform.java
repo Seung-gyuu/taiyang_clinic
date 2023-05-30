@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Consentform.findAll", query = "SELECT c FROM Consentform c")
+    , @NamedQuery(name = "Consentform.findByUserid", query = "SELECT c FROM Consentform c WHERE c.userid = :userid")
     , @NamedQuery(name = "Consentform.findById", query = "SELECT c FROM Consentform c WHERE c.id = :id")
     , @NamedQuery(name = "Consentform.findByTimeAdded", query = "SELECT c FROM Consentform c WHERE c.timeAdded = :timeAdded")})
 public class Consentform implements Serializable {
