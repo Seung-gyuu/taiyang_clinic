@@ -147,16 +147,18 @@ CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
 );
 
 --after deleting from the reminder table, insert it into the sent reminders table!
-DELIMITER //
-CREATE TRIGGER reminder_delete_trigger
-AFTER DELETE ON `clinicdb`.`reminder`
-FOR EACH ROW
-BEGIN
-    -- Insert into the sentReminders table
-    INSERT INTO `clinicdb`.`sentReminders` (reminderid, userid, appointmentid, typereminder, sentTime)
-    VALUES (OLD.reminderid, OLD.userid, OLD.appointmentid, OLD.typereminder, NOW());
-END//
-DELIMITER ;
+--this doesnt work because if they delete an appointment, it will delete a reminder and put it into sent reminders.  Instead
+--it needs to remove from reminder table and insert into sent reminder table on its own
+-- DELIMITER //
+-- CREATE TRIGGER reminder_delete_trigger
+-- AFTER DELETE ON `clinicdb`.`reminder`
+-- FOR EACH ROW
+-- BEGIN
+--     -- Insert into the sentReminders table
+--     INSERT INTO `clinicdb`.`sentReminders` (reminderid, userid, appointmentid, typereminder, sentTime)
+--     VALUES (OLD.reminderid, OLD.userid, OLD.appointmentid, OLD.typereminder, NOW());
+-- END//
+-- DELIMITER ;
 
 
 

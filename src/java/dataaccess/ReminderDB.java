@@ -7,7 +7,9 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import models.Reminder;
+import dataaccess.SentRemindersDB;
 
 /**
  *
@@ -23,5 +25,21 @@ public class ReminderDB {
            em.close();
         }
 
+    }
+    public void delete(Reminder r) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        SentRemindersDB srdb = new SentRemindersDB();
+        srdb.insert(r);
+        try{
+            trans.begin();
+            em.remove(em.merge(r));
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally{
+            em.close();
+        }
+        
     }
 }

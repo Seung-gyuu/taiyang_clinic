@@ -35,7 +35,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
     , @NamedQuery(name = "Appointment.findByAppointmentid", query = "SELECT a FROM Appointment a WHERE a.appointmentid = :appointmentid")
     , @NamedQuery(name = "Appointment.findByDescription", query = "SELECT a FROM Appointment a WHERE a.description = :description")
-    , @NamedQuery(name = "Appointment.findByIsupcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")
+    , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
+    , @NamedQuery(name = "Appointment.findByPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2")
+    , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid=:userid")
+    , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid=:userid")    
+    , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")    
     , @NamedQuery(name = "Appointment.findByTypereminder", query = "SELECT a FROM Appointment a WHERE a.typereminder = :typereminder")})
 public class Appointment implements Serializable {
 

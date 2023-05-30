@@ -7,6 +7,8 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import models.Reminder;
 import models.Sentreminders;
 
 /**
@@ -24,6 +26,25 @@ public class SentRemindersDB {
            em.close();
         }
 
+    }
+    public void insert(Reminder r) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        Sentreminders s = new Sentreminders();
+        s.setAppointmentid(r.getAppointmentid());
+        s.setSentTime(r.getSendTime());
+        s.setSentreminderid(r.getReminderid());
+        s.setTypereminder(r.getTypereminder());
+        s.setUserid(r.getUserid());
+        try {
+            trans.begin();
+            em.persist(s);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
     }
     
 }
