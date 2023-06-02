@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     `phone_number` CHAR(12) UNIQUE NOT NULL,
     CHECK (`phone_number` REGEXP '[0-9]{3}'),
     `password` VARCHAR(25) NOT NULL,
+    `salt` VARCHAR(70),
     `roleid` INT DEFAULT 1,
     CONSTRAINT `fk_user_role`
         FOREIGN KEY (`roleid`) REFERENCES `clinicdb`.`role` (`roleid`),

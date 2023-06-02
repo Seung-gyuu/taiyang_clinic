@@ -17,6 +17,16 @@ import models.Appointment;
  * @author 00cap
  */
 public class AppointmentDB {
+    
+    public List<Appointment> getAll() throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Appointment> appts = em.createNamedQuery("Appointment.findAll", Appointment.class).getResultList();
+            return appts;
+        } finally {
+           em.close();
+        }
+    }   
     public Appointment get(Integer appointmentId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
