@@ -7,8 +7,10 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Consentform;
+import models.Medicalform;
 
 /**
  *
@@ -35,6 +37,20 @@ public class ConsentformDB {
             
         } catch (Exception e) {
             return null;
+        }finally {
+            em.close();
+        }
+    }
+    
+    public void insert(Consentform cf) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.persist(cf);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
         }finally {
             em.close();
         }

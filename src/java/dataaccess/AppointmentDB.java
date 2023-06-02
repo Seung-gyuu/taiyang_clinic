@@ -5,8 +5,10 @@
  */
 package dataaccess;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Appointment;
 
@@ -73,6 +75,61 @@ public class AppointmentDB {
         em.close();
     }
 }
+    public List<Appointment> getPassedRange(int weeks) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+        LocalDate d = LocalDate.now();
+        LocalDate startDate = d.minusWeeks(weeks);
+        TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findPassedByRange", Appointment.class);
+        query.setParameter("startDate", startDate);
+        List<Appointment> appts = query.getResultList();
+        return appts;
+    } finally {
+        em.close();
+    }
+    }
     
-    //Still needs delete and insert !!!! Update maybe?  What can users update about appointments ...  ? type reminder, what else...
+     public List<Appointment> getUpcomingRange(int weeks) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+        LocalDate d = LocalDate.now();
+        LocalDate endDate = d.plusWeeks(weeks);
+        TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findUpcomingByRange", Appointment.class);
+        query.setParameter("endDate", endDate);
+        List<Appointment> appts = query.getResultList();
+        return appts;
+    } finally {
+        em.close();
+    }
+    }
+    //insert
+     public void insert(Appointment appt) throws Exception{
+         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+         EntityTransaction trans = em.getTransaction();
+          try {
+              trans.begin();
+              em.persist(appt);
+              trans.commit();
+          }catch(Exception ex){
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+     }
+     //delete
+     public void delete(Appointment appt) throws Exception{
+         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+         EntityTransaction trans = em.getTransaction();
+          try {
+              trans.begin();
+              em.remove(appt);
+              trans.commit();
+          }catch(Exception ex){
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+     }
+     //needs insert or no... ? 
+     
 }

@@ -7,8 +7,10 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Medicalform;
+import models.User;
 
 /**
  *
@@ -39,4 +41,21 @@ public class MedicalformDB {
             em.close();
         }
     }
+    
+    //insert
+    public void insert(Medicalform md) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.persist(md);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    
 }

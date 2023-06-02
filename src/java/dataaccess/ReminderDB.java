@@ -26,6 +26,35 @@ public class ReminderDB {
         }
 
     }
+    //get using reminder ID .  
+    public Reminder getById(int reminderId) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Reminder reminder = em.find(Reminder.class,reminderId);
+            return reminder;
+        } finally {
+           em.close();
+        }
+    }
+    
+    //update.   Arent reminders auto updated using the cascade thing when appointments updated?
+    public void update(Reminder r) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.merge(r);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    //this delete reminder is only called in the timer class to delete the reminder after it is sent.  This automatically
+    //adds into the sent reminders table.  IT WONT BE CALLED IN ANY OTHER CONTEXT!! 
+    //Deleting from the appointment table has a database trigger to automatically remove a reminder!
     public void delete(Reminder r) throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();

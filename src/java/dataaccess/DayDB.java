@@ -15,7 +15,7 @@ import javax.persistence.TypedQuery;
  * @author Hussein
  */
 public class DayDB {
-    //DAYS ARE GENERATED AUTOMATICALLY VIA SCRIPT AND JUST NEED INSERT!!!
+    //DAYS ARE GENERATED AUTOMATICALLY VIA SCRIPT AND JUST NEED INSERT (via mysql bench)!!!
     
     //GETS THE DAYS FROM THE CURRENT DAY AND UP TO 4 MONTHS FROM NOW
     public List<Day> get4Months() {

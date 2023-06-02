@@ -7,7 +7,9 @@ package dataaccess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import models.Availabletime;
+import models.Consentform;
 
 /**
  *
@@ -76,7 +78,39 @@ public class AvailabletimeDB {
         return time;
     } finally {
         em.close();
+        }
     }
-}
+    
+    //insert 
+    public void insert(Availabletime avt) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.persist(avt);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    public void delete(Availabletime avt) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.remove(em.merge(avt));
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    //maybe need methods to find booked/unbooked upcoming and passed by passed in weeks parameter? Probably need focus on
+    // other features first
 
 }

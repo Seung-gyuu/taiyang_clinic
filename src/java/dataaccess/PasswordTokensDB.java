@@ -67,4 +67,21 @@ public class PasswordTokensDB {
             em.close();
         }
     }
+    
+    //insert 
+    public void insert(Passwordtokens pwt) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.persist(pwt);
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    
 }
