@@ -99,8 +99,8 @@ public class UserService {
         String password = user.getPassword();
         if (email == null || email.isEmpty() || email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) 
             return false;
-        if(phone == null || phone.isEmpty() || phone.length()!=12 || !phone.matches("0-9{12}"))
-            return false;
+//        if(phone == null || phone.length()==0 || phone.length()!=12)
+//            return false;
         if (firstName == null || firstName.isEmpty() || firstName.length() > 20) 
             return false;
         if (lastName == null || lastName.isEmpty() || lastName.length() > 20) 

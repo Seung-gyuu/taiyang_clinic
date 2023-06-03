@@ -79,27 +79,47 @@ public class UserDB {
         }
     }
         
+//    public User getByEmail(String email) throws Exception {
+//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        try {
+//            User user = em.find(User.class, email);
+//            return user;
+//            
+//        } catch (Exception e) {
+//            return null;
+//        }finally {
+//            em.close();
+//        }
+//
+//    }
+    
     public User getByEmail(String email) throws Exception {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        try {
-            User user = em.find(User.class, email);
-            return user;
-            
-        } catch (Exception e) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    try {
+        TypedQuery<User> query = em.createNamedQuery("User.findByEmailAddress", User.class);
+        query.setParameter("emailAddress", email);
+        List<User> users = query.getResultList();
+        if (!users.isEmpty()) {
+            return users.get(0);
+        } else {
             return null;
-        }finally {
-            em.close();
         }
-
+    } finally {
+        em.close();
     }
+}
+    
     public User getByPhone(String phone) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        try {
-            User user = em.find(User.class, phone);
-            return user;
-            
-        } catch (Exception e) {
-            return null;
+        try{
+            TypedQuery<User> query = em.createNamedQuery("User.findByPhoneNumber", User.class);
+            query.setParameter("phoneNumber", phone);
+            List<User> users = query.getResultList();
+            if (!users.isEmpty()) {
+                return users.get(0);
+            } else {
+                return null;
+            }
         }finally {
             em.close();
         }

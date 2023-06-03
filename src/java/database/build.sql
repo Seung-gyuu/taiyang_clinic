@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     CHECK (`email_address` REGEXP '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'),
     `phone_number` CHAR(12) UNIQUE NOT NULL,
     CHECK (`phone_number` REGEXP '[0-9]{3}'),
-    `password` VARCHAR(25) NOT NULL,
+    -- password 100 because of the hash and salt!
+    `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(70),
     `roleid` INT DEFAULT 1,
     CONSTRAINT `fk_user_role`

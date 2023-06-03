@@ -34,9 +34,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
         //passed by range.  Needs test
-    , @NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate <=CURRENT_DATE and a.timeid.fulldate>=:startDate and a.isupcoming=2")    
+//    , @NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate <=CURRENT_DATE and a.timeid.fulldate>=:startDate and a.isupcoming=2")    
+    , @NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a JOIN a.timeid t WHERE FUNCTION('DATE', t.fulldate) <= CURRENT_DATE AND FUNCTION('DATE', t.fulldate) >= FUNCTION('DATE', :startDate) AND a.isupcoming = 2")
         //needs test
-    , @NamedQuery(name = "Appointment.findUpcomingByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate >=CURRENT_DATE and a.timeid.fulldate <=:endDate and a.isupcoming=1")    
+    //, @NamedQuery(name = "Appointment.findUpcomingByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate >=CURRENT_DATE and a.timeid.fulldate <=:endDate and a.isupcoming=1")    
+    , @NamedQuery(name = "Appointment.findUpcomingByRange", query = "SELECT a FROM Appointment a JOIN a.timeid t WHERE FUNCTION('DATE', t.fulldate) >= CURRENT_DATE AND FUNCTION('DATE', t.fulldate) <= FUNCTION('DATE', :endDate) AND a.isupcoming = 1")
     , @NamedQuery(name = "Appointment.findByAppointmentid", query = "SELECT a FROM Appointment a WHERE a.appointmentid = :appointmentid")
     , @NamedQuery(name = "Appointment.findByDescription", query = "SELECT a FROM Appointment a WHERE a.description = :description")
     , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
