@@ -36,6 +36,17 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
     FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
 );
 
+CREATE TABLE IF NOT EXISTS `clinicdb`.`validatetokens` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `userid` INT NOT NULL,
+  `validatetoken` VARCHAR(50) Unique NOT NULL,
+  `expiryDateTime` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_validatetokens_user`
+    FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
+);
+
+
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`medicalform` (
   `id` INT NOT NULL AUTO_INCREMENT,

@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByIsactive", query = "SELECT u FROM User u WHERE u.isactive = :isactive")})
 public class User implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
+    private List<Validatetokens> validatetokensList;
+
     @Column(name = "salt")
     private String salt;
 
@@ -250,6 +253,15 @@ public class User implements Serializable {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @XmlTransient
+    public List<Validatetokens> getValidatetokensList() {
+        return validatetokensList;
+    }
+
+    public void setValidatetokensList(List<Validatetokens> validatetokensList) {
+        this.validatetokensList = validatetokensList;
     }
     
 }

@@ -6,6 +6,7 @@ delete from user;
 delete from medicalform;
 delete from consentform;
 delete from passwordtokens;
+delete from validatetokens;
 delete from role;
 delete from service;
 

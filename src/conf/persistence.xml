@@ -14,6 +14,7 @@
     <class>models.Consentform</class>
     <class>models.Medicalform</class>
     <class>models.Passwordtokens</class>
+    <class>models.Validatetokens</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

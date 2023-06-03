@@ -9,19 +9,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import models.Passwordtokens;
+import models.Validatetokens;
 
 /**
  *
  * @author 00cap
  */
-public class PasswordTokensDB {
-    public Passwordtokens getByToken(String token) throws Exception {
+public class ValidateTokensDB {
+    public Validatetokens getByToken(String token) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            TypedQuery<Passwordtokens> query = em.createNamedQuery("Passwordtokens.findByToken", Passwordtokens.class);
-            query.setParameter("token", token);
-            List<Passwordtokens> results = query.getResultList();
+            TypedQuery<Validatetokens> query = em.createNamedQuery("Validatetokens.findByToken", Validatetokens.class);
+            query.setParameter("validatetoken", token);
+            List<Validatetokens> results = query.getResultList();
             if (!results.isEmpty()) {
                 return results.get(0);  // Assuming token is unique, return the first match
             } else {
@@ -31,10 +31,10 @@ public class PasswordTokensDB {
            em.close();
         }
     }
-    public Passwordtokens get(int tokenId) throws Exception {
+    public Validatetokens get(int tokenId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Passwordtokens passwordtoken = em.find(Passwordtokens.class, tokenId);
+            Validatetokens passwordtoken = em.find(Validatetokens.class, tokenId);
             return passwordtoken;
             
         } catch (Exception e) {
@@ -44,22 +44,22 @@ public class PasswordTokensDB {
         }
     }
     
-    public List<Passwordtokens> getExpired() throws Exception {
+    public List<Validatetokens> getExpired() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Passwordtokens> tokens = em.createNamedQuery("Passwordtokens.findExpired", Passwordtokens.class).getResultList();
+            List<Validatetokens> tokens = em.createNamedQuery("Validatetokens.findExpired", Validatetokens.class).getResultList();
             return tokens;
         } finally {
            em.close();
         }
     }
     
-    public void delete(Passwordtokens passwordtoken) throws Exception {
+    public void delete(Validatetokens validatetoken) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.remove(em.merge(passwordtoken));
+            em.remove(em.merge(validatetoken));
             trans.commit();
         }catch(Exception ex){
             trans.rollback();
@@ -69,12 +69,12 @@ public class PasswordTokensDB {
     }
     
     //insert 
-    public void insert(Passwordtokens pwt) throws Exception {
+    public void insert(Validatetokens vdt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             trans.begin();
-            em.persist(pwt);
+            em.persist(vdt);
             trans.commit();
         }catch(Exception ex){
             trans.rollback();
