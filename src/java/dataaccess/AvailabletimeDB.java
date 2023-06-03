@@ -5,11 +5,12 @@
  */
 package dataaccess;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import models.Availabletime;
-import models.Consentform;
 
 /**
  *
@@ -26,6 +27,7 @@ public class AvailabletimeDB {
     }
     }
     
+
     public List<Availabletime> findAllPassedBooked() throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
     try {

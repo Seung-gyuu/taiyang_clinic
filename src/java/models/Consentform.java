@@ -38,16 +38,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Consentform.findByTimeAdded", query = "SELECT c FROM Consentform c WHERE c.timeAdded = :timeAdded")})
 public class Consentform implements Serializable {
 
+    @Basic(optional = false)
+    @Lob
+    @Column(name = "pdfFile")
+    private byte[] pdfFile;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Lob
-    @Column(name = "pdfFile")
-    private byte[] pdfFile;
     @Basic(optional = false)
     @Column(name = "timeAdded")
     @Temporal(TemporalType.TIMESTAMP)
@@ -77,13 +78,6 @@ public class Consentform implements Serializable {
         this.id = id;
     }
 
-    public byte[] getPdfFile() {
-        return pdfFile;
-    }
-
-    public void setPdfFile(byte[] pdfFile) {
-        this.pdfFile = pdfFile;
-    }
 
     public Date getTimeAdded() {
         return timeAdded;
@@ -124,6 +118,14 @@ public class Consentform implements Serializable {
     @Override
     public String toString() {
         return "models.Consentform[ id=" + id + " ]";
+    }
+
+    public byte[] getPdfFile() {
+        return pdfFile;
+    }
+
+    public void setPdfFile(byte[] pdfFile) {
+        this.pdfFile = pdfFile;
     }
     
 }

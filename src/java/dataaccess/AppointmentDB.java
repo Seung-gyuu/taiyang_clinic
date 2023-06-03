@@ -38,6 +38,20 @@ public class AppointmentDB {
             em.close();
         }
     }
+    public Appointment getByTimeId(Integer timeId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findByTimeId", Appointment.class);
+            query.setParameter("timeid", timeId);
+            Appointment appt = query.getSingleResult();
+            return appt;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
     public List<Appointment> getUpcoming() throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -140,6 +154,6 @@ public class AppointmentDB {
             em.close();
         }
      }
-     //needs insert or no... ? 
+     //need update???? 
      
 }

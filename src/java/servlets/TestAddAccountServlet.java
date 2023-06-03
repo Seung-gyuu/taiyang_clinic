@@ -7,14 +7,18 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Availabletime;
 import models.Role;
 import models.User;
+import services.AvailableTimeService;
 import services.UserService;
 import utilities.HashAndSalt;
 
@@ -27,23 +31,17 @@ public class TestAddAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        UserService us = new UserService();
-        User u = new User();
-        u.setEmailAddress("bob@gmail.com");
-        u.setPhoneNumber("4036569595");
-        u.setFirstname("OBO");
-        u.setLastname("ASDASD");
-        u.setIsactive(1);
-        Role role = new Role();
-        role.setRoleid(1);
-        u.setRoleid(role);
-        u.setPassword("password");
+        AvailableTimeService as = new AvailableTimeService();
         System.out.print("BEFORE TRY CATCH");
         try {
-            System.out.print("HELLO I AM HERE NOW");
-            String s = us.insert(u);
-            System.out.print(s + " <--- S print");
-
+            List<Availabletime> times = as.findAllPassed();
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh a");
+            for (Availabletime t : times) {
+                String startTimeStr = timeFormat.format(t.getStartTime());
+                String endTimeStr = timeFormat.format(t.getEndTime());
+                System.out.println("Start time: " + startTimeStr + " End time: " + endTimeStr);
+            }
+            System.out.print("Out of block");
         } catch (Exception ex) {
             Logger.getLogger(TestAddAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
