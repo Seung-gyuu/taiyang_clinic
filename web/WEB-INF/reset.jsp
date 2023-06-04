@@ -13,14 +13,14 @@
     </head>
     <body>
         <h1>forgot my password</h1>
-<!--        //get email-->
+        <!--        //get email-->
         <h1>we need to verify your email </h1>
         <form method="post" action="reset">
             Email: <input type="text" value="" name="email" required><br>
             <input type="submit" value="send the email">
-<!--        //send reset link
-
-        //using the link
-        //set the password-->
+            <!--        //send reset link
+                    //using the link
+                    //set the password-->
+            <p>${res}</p>
     </body>
 </html>

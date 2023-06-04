@@ -5,8 +5,11 @@
  */
 package servlets;
 
+import com.sun.xml.internal.ws.addressing.W3CAddressingConstants;
+import dataaccess.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,7 +20,8 @@ import javax.servlet.http.HttpSession;
 import models.User;
 import services.AccountService;
 import javax.mail.*;
-
+import javax.naming.NamingException;
+import services.SendEmail;
 
 /**
  *
@@ -28,11 +32,9 @@ public class ForgotPassordServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-       
-        
-    }
+        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,37 +42,26 @@ public class ForgotPassordServlets extends HttpServlet {
         //get the email 
         String email = request.getParameter("email");
         HttpSession session = request.getSession();
-         AccountService as = new AccountService();
-          try {
-            User user = as.verify(email);
-            if (user != null) {  
-                request.setAttribute("res", "We send the link");
-                request.setAttribute("res", "Failed authentication");
-                // sending reset email
-			Random rand = new Random();
-			otpvalue = rand.nextInt(1255650);
+        AccountService as = new AccountService();
+        try {
+            if (as.verify(email) != null) {
+                String username = as.verify(email).getFirstname();
+                String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
 
-			String to = email;// change accordingly
-			// Get the session object
-			Properties props = new Properties();
-			props.put("mail.smtp.host", "smtp.gmail.com");
-			props.put("mail.smtp.socketFactory.port", "465");
-			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			props.put("mail.smtp.auth", "true");
-			props.put("mail.smtp.port", "465");
-			Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("your_email", "your_app_password");// Put your email
-																									// id and
-
-                getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-            }else{
-               
+                HashMap<String, String> tags = new HashMap<>();
+                tags.put("name", username);
+                // Generate the reset link
+//                String resetLink = generateResetLink(request, user);
+                SendEmail.sendMail(email, "Taiyang clinic- Reset password Email", templatePath, tags);
+                request.setAttribute("res", "We sent the reset link to your email! Check it ");
+            } else {
+                request.setAttribute("res", "We can't find your email ");
             }
-          } catch (Exception ex) {
+
+            getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+        } catch (Exception ex) {
             Logger.getLogger(ForgotPassordServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 
 }

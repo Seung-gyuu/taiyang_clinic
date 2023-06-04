@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.*;
+import org.apache.tomcat.util.descriptor.web.WebXml;
 
 public class AccountService {
     private UserDB userDB;
@@ -36,7 +37,7 @@ public class AccountService {
             User user = userDB.getByEmail(email);
 
             // Check if the user exists and the password matches
-            if (user != null) {
+            if (user != null) {                      
                 return user; // Login successful
             } else {
                 return null; // Invalid credentials
