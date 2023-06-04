@@ -50,8 +50,10 @@ public class ForgotPassordServlets extends HttpServlet {
 
                 HashMap<String, String> tags = new HashMap<>();
                 tags.put("name", username);
-                // Generate the reset link
+// Generate the reset link
 //                String resetLink = generateResetLink(request, user);
+                tags.put("action-url", username);
+                
                 SendEmail.sendMail(email, "Taiyang clinic- Reset password Email", templatePath, tags);
                 request.setAttribute("res", "We sent the reset link to your email! Check it ");
             } else {

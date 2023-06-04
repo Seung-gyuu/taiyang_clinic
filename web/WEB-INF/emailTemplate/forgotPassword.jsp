@@ -478,15 +478,6 @@
                         <p>For security, this request was received from a {{operating_system}} device using {{browser_name}}. If you did not request a password reset, please ignore this email or <a href="{{support_url}}">contact support</a> if you have questions.</p>
                         <p>Thanks,
                           <br>The [Product Name] team</p>
-                        <!-- Sub copy -->
-                        <table class="body-sub" role="presentation">
-                          <tr>
-                            <td>
-                              <p class="f-fallback sub">If you?re having trouble with the button above, copy and paste the URL below into your web browser.</p>
-                              <p class="f-fallback sub">{{action_url}}</p>
-                            </td>
-                          </tr>
-                        </table>
                       </div>
                     </td>
                   </tr>
@@ -499,7 +490,8 @@
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
-                        [Company Name, LLC]
+                        [Taiyang clinic, LLC]
+                        <!--//change the address-->
                         <br>1234 Street Rd.
                         <br>Suite 1234
                       </p>
