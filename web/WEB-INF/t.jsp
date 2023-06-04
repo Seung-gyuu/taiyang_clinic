@@ -13,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        //display clinic side
         <h1>Hello World!</h1>
       
     </body>
