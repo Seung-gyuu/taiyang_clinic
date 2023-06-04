@@ -64,8 +64,8 @@ public class Passwordtokens implements Serializable {
         this.id = id;
     }
 
-    public Passwordtokens(Integer id, String token, Date expiryDateTime) {
-        this.id = id;
+    public Passwordtokens(User userid, String token, Date expiryDateTime) {
+        this.userid = userid;
         this.token = token;
         this.expiryDateTime = expiryDateTime;
     }

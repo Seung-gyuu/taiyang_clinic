@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Passwordtokens;
+import models.User;
 
 /**
  *
@@ -69,12 +70,14 @@ public class PasswordTokensDB {
     }
     
     //insert 
-    public void insert(Passwordtokens pwt) throws Exception {
+    public void insert(Passwordtokens passwordtoken) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
+            User user = passwordtoken.getUserid();
+            user.getPasswordtokensList().add(passwordtoken);           
             trans.begin();
-            em.persist(pwt);
+            em.persist(passwordtoken);
             trans.commit();
         }catch(Exception ex){
             trans.rollback();

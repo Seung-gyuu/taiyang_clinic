@@ -5,10 +5,10 @@
  */
 package servlets;
 
-import com.sun.xml.internal.ws.addressing.W3CAddressingConstants;
 import dataaccess.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,9 +50,19 @@ public class ForgotPassordServlets extends HttpServlet {
             if (user != null) {
                 String username = as.verify(email).getFirstname();
                 String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
-                String baseURL = "http://localhost:8084/";
-                // Generate the reset link
-                String resetLink = baseURL + "reset?token=" + ps.createPasswordToken(user);
+
+                String scheme = request.getScheme(); // "http" or "https"
+                String serverName = request.getServerName(); // e.g., "example.com"
+                int serverPort = request.getServerPort(); // Port number
+                String contextPath = request.getContextPath(); // Application context path
+
+                String baseURL = scheme + "://" + serverName + ":" + serverPort + contextPath;
+                String token = ps.generateToken();
+                Date expiryDateTime = ps.calculateExpiryDateTime();
+
+                // Generate the reset link 
+                String resetLink = baseURL + "/reset?token=" + token;
+                String result = ps.insert(user, token,  expiryDateTime);
 
                 HashMap<String, String> tags = new HashMap<>();
                 tags.put("name", username);

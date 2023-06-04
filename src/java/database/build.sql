@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
 CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userid` INT NOT NULL,
-  `token` VARCHAR(50) Unique NOT NULL,
+  `token` VARCHAR(255) Unique NOT NULL,
   `expiryDateTime` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_passwordtokens_user`
