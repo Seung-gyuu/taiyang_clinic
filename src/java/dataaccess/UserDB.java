@@ -57,7 +57,7 @@ public class UserDB {
     public List<User> getAllByLastName(String lastname) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            TypedQuery<User> query = em.createNamedQuery("User.findByFirstname", User.class);
+            TypedQuery<User> query = em.createNamedQuery("User.findByLastname", User.class);
         query.setParameter("lastname", lastname);
         List<User> users = query.getResultList();
         return users;

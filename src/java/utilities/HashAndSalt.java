@@ -11,7 +11,6 @@ import java.util.Base64;
  * @author WL
  */
 public class HashAndSalt {
-
     public static String hashPassword(String password)
             throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");

@@ -10,4 +10,5 @@ public class DBUtil {
     public static EntityManagerFactory getEmFactory() {
         return emf;
     }
+
 }

@@ -17,7 +17,7 @@ import models.Appointment;
  * @author 00cap
  */
 public class AppointmentDB {
-    
+    //retrieves all appointments
     public List<Appointment> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -155,5 +155,8 @@ public class AppointmentDB {
         }
      }
      //need update???? 
-     
+ 
 }
+
+    
+
