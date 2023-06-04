@@ -21,6 +21,7 @@ import models.User;
 import services.AccountService;
 import javax.mail.*;
 import javax.naming.NamingException;
+import services.PasswordTokensService;
 import services.SendEmail;
 
 /**
@@ -43,17 +44,20 @@ public class ForgotPassordServlets extends HttpServlet {
         String email = request.getParameter("email");
         HttpSession session = request.getSession();
         AccountService as = new AccountService();
+        PasswordTokensService ps = new PasswordTokensService();
         try {
-            if (as.verify(email) != null) {
+            User user = as.verify(email);
+            if (user != null) {
                 String username = as.verify(email).getFirstname();
                 String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
+                String baseURL = "http://localhost:8084/";
+                // Generate the reset link
+                String resetLink = baseURL + "reset?token=" + ps.createPasswordToken(user);
 
                 HashMap<String, String> tags = new HashMap<>();
                 tags.put("name", username);
-// Generate the reset link
-//                String resetLink = generateResetLink(request, user);
-                tags.put("action-url", username);
-                
+                tags.put("action-url", resetLink);
+
                 SendEmail.sendMail(email, "Taiyang clinic- Reset password Email", templatePath, tags);
                 request.setAttribute("res", "We sent the reset link to your email! Check it ");
             } else {

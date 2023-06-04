@@ -18,6 +18,13 @@
         <form method="post" action="reset">
             Email: <input type="text" value="" name="email" required><br>
             <input type="submit" value="send the email">
+        </form>
+        
+           <h3>Change your password</h3>
+             <form method="post" action="resetPassword">
+            Password <input type="text" value="" name="password" required><br>
+            <input type="submit" value="change the password">
+        </form>
             <!--        //send reset link
                     //using the link
                     //set the password-->
