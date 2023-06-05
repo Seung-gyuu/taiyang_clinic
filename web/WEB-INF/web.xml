@@ -54,7 +54,8 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>main</welcome-file>
+        <welcome-file>login1
+        </welcome-file>
     </welcome-file-list>
     <env-entry>
         <env-entry-name>web-username</env-entry-name>
