@@ -87,13 +87,11 @@ public class PasswordTokensService {
         Date now = new Date();
         try {
             Passwordtokens resetToken = pwdDB.getByToken(token);
-            if (resetToken != null) {
+            if (token != null) {
                 Date expiryDate = resetToken.getExpiryDateTime();
                 if (expiryDate.after(now)) {
                     return true;
-                } else {
-                    pwdDB.delete(resetToken);
-                }
+                } 
             }
         } catch (Exception ex) {
             Logger.getLogger(PasswordTokensService.class.getName()).log(Level.SEVERE, null, ex);

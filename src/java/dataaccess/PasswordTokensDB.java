@@ -17,6 +17,7 @@ import models.User;
  * @author 00cap
  */
 public class PasswordTokensDB {
+
     public Passwordtokens getByToken(String token) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -29,32 +30,33 @@ public class PasswordTokensDB {
                 return null;  // Token not found
             }
         } finally {
-           em.close();
+            em.close();
         }
     }
+
     public Passwordtokens get(int tokenId) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Passwordtokens passwordtoken = em.find(Passwordtokens.class, tokenId);
             return passwordtoken;
-            
+
         } catch (Exception e) {
             return null;
-        }finally {
+        } finally {
             em.close();
         }
     }
-    
+
     public List<Passwordtokens> getExpired() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             List<Passwordtokens> tokens = em.createNamedQuery("Passwordtokens.findExpired", Passwordtokens.class).getResultList();
             return tokens;
         } finally {
-           em.close();
+            em.close();
         }
     }
-    
+//delete one?
     public void delete(Passwordtokens passwordtoken) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -62,29 +64,48 @@ public class PasswordTokensDB {
             trans.begin();
             em.remove(em.merge(passwordtoken));
             trans.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             trans.rollback();
-        }finally {
+        } finally {
             em.close();
         }
     }
-    
+//delete list
+    public void deleteExpired() throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            List<Passwordtokens> expiredTokens = getExpired();
+            // Delete expired token
+            for (Passwordtokens token : expiredTokens) {
+                em.remove(em.merge(token));
+            }
+
+            trans.commit();
+        } catch (Exception ex) {
+            trans.rollback();
+            throw ex;
+        } finally {
+            em.close();
+        }
+    }
+
     //insert 
     public void insert(Passwordtokens passwordtoken) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {
             User user = passwordtoken.getUserid();
-            user.getPasswordtokensList().add(passwordtoken);           
+            user.getPasswordtokensList().add(passwordtoken);
             trans.begin();
             em.persist(passwordtoken);
             trans.commit();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             trans.rollback();
-        }finally {
+        } finally {
             em.close();
         }
     }
-    
-    
+
 }

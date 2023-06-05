@@ -16,6 +16,10 @@
         <servlet-name>ForgotPassordServlets</servlet-name>
         <servlet-class>servlets.ForgotPassordServlets</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookServlets</servlet-name>
+        <servlet-class>servlets.BookServlets</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestAddAccountServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ForgotPassordServlets</servlet-name>
         <url-pattern>/reset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookServlets</servlet-name>
+        <url-pattern>/book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
