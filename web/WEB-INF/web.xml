@@ -24,6 +24,10 @@
         <servlet-name>main</servlet-name>
         <servlet-class>servlets.main</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookServlets</servlet-name>
+        <servlet-class>servlets.BookServlets</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestAddAccountServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>main</servlet-name>
         <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookServlets</servlet-name>
+        <url-pattern>/book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
