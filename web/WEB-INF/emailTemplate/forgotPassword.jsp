@@ -437,14 +437,14 @@
   <![endif]-->
   </head>
   <body>
-    <span class="preheader">Use this link to reset your password. The link is only valid for 24 hours.</span>
+    <span class="preheader">Use this link to reset your password. The link is only valid for 1 hours.</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <a href="https://example.com" class="f-fallback email-masthead_name">
+                <a href="http://localhost:8084/home" class="f-fallback email-masthead_name">
                 Taiyang Clinic
               </a>
               </td>
@@ -468,7 +468,7 @@
                               <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                 <tr>
                                   <td align="center">
-                                    <a href="{{action_url}}" class="f-fallback button button--green" target="_blank">Reset your password</a>
+                                    <a href="http://localhost:8084/{{action_url}}" class="f-fallback button button--green" target="_blank">Reset your password</a>
                                   </td>
                                 </tr>
                               </table>

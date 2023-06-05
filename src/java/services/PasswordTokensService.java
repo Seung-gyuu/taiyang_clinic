@@ -7,11 +7,11 @@ package services;
 
 import dataaccess.PasswordTokensDB;
 import dataaccess.UserDB;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jdk.nashorn.internal.runtime.ScriptingFunctions;
 import models.Passwordtokens;
 import models.User;
 import utilities.HashAndSalt;
@@ -28,36 +28,35 @@ public class PasswordTokensService {
         this.pdb = new PasswordTokensDB();
     }
 
-//    public Passwordtokens getByToken(String token) throws Exception {
-//        return pdb.getByToken(token);
-//    }
-//
-//    public Passwordtokens get(int tokenId) throws Exception {
-//        return pdb.get(tokenId);
-//    }
-//
-//    public List<Passwordtokens> getExpired() throws Exception {
-//        return pdb.getExpired();
-//    }
-//
-//    public String delete(Passwordtokens passwordToken) throws Exception {
-//        Date now = new Date();
-//        Date expiryDate = passwordToken.getExpiryDateTime();
-//        if (expiryDate.after(now)) {
-//            return "Token hasn't expired yet!";
-//        }
-//        pdb.delete(passwordToken);
-//        return "Token Deleted";
+    public Passwordtokens getByToken(String token) throws Exception {
+        return pdb.getByToken(token);
+    }
+
+    public Passwordtokens get(int tokenId) throws Exception {
+        return pdb.get(tokenId);
+    }
+
+    public List<Passwordtokens> getExpired() throws Exception {
+        return pdb.getExpired();
+    }
+
+//    public boolean deleteExpiredTokens() {
+//        // Delete the expired tokens from the database
+//        Date currentDate = new Date();
+//        return PasswordTokensDB.delete(currentDate); // Assuming you have a method to delete expired tokens from the database
 //    }
 //
     public String insert(User userid, String token, Date expiryDateTime) throws Exception {
         Passwordtokens passwordToken = new Passwordtokens(userid, token, expiryDateTime);
-        UserDB userdb = new UserDB();
-        String existingSalt = userdb.get(userid.getUserid()).getSalt();
-//        Passwordtokens token = pdb.getByToken(pwt.getToken()); 
-        if (existingSalt != null) {
-            return "Token exists already! That shouldnt be possible...";
-        }
+//        UserDB userdb = new UserDB();
+//check if the same user id has token in db
+//User user = userdb.get(userid.getUserid());
+
+//        Passwordtokens existingtoken = pdb.getByToken(token)passwordToken.getUserid();
+//can we create multiple tokens?
+//        if (existingtoken != null) {
+//            return "Token exists already! That shouldnt be possible...";
+//        }
         passwordToken.setUserid(userid);
         passwordToken.setToken(token);
         passwordToken.setExpiryDateTime(expiryDateTime);
@@ -68,20 +67,38 @@ public class PasswordTokensService {
 
     public String generateToken() throws Exception {
         //generate the token
-        //can create token - check
         String token = HashAndSalt.getSalt();
-        //            String hash = HashAndSalt.hashPassword(salt);
-//            String token = HashAndSalt.hashAndSaltPassword(hash, salt);
+        // String hash = HashAndSalt.hashPassword(salt);
+        //String token = HashAndSalt.hashAndSaltPassword(hash, salt);
         return token;
     }
 
     public Date calculateExpiryDateTime() {
         // Calculate the expiry date and time for the token
         // Set the expiration date 
-        // can create the right data - check
-        long expirationTimeMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 hours
+//        long expirationTimeMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 hours
+        long expirationTimeMillis = System.currentTimeMillis() + (1 * 60 * 60 * 1000);
         Date expirationDateTime = new Date(expirationTimeMillis);
         return expirationDateTime;
+    }
+
+    public boolean isTokenValid(String token) {
+        PasswordTokensDB pwdDB = new PasswordTokensDB();
+        Date now = new Date();
+        try {
+            Passwordtokens resetToken = pwdDB.getByToken(token);
+            if (resetToken != null) {
+                Date expiryDate = resetToken.getExpiryDateTime();
+                if (expiryDate.after(now)) {
+                    return true;
+                } else {
+                    pwdDB.delete(resetToken);
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PasswordTokensService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }

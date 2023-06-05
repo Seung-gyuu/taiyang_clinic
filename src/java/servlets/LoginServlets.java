@@ -38,7 +38,7 @@ public class LoginServlets extends HttpServlet {
             request.setAttribute("message", "signIn");
             getServletContext().getRequestDispatcher("/WEB-INF/signIn.jsp").forward(request, response);
         } else if (reset != null) {
-            request.setAttribute("message", "reset");
+            request.setAttribute("message", "forget");
             getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
         }else {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -77,8 +77,9 @@ public class LoginServlets extends HttpServlet {
                 session.setAttribute("firstName", user.getFirstname());
                 session.setAttribute("lastName", user.getLastname());
                 //login as user -> home , login as admin -> test jsp to manage 
-                if(status == 1){
-                response.sendRedirect("home");
+                if(status == 1){ 
+                getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+//                response.sendRedirect("home");
                 }else{
                     response.sendRedirect("test");
                 }
