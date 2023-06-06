@@ -26,10 +26,13 @@ public class HomeServlets extends HttpServlet {
          HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
         String loginStatus = request.getParameter("login");
+        String bookStatus = request.getParameter("book");
         
         //login status -> main
         if (loginStatus != null) {
             response.sendRedirect("login");
+        } else if (bookStatus != null) {
+            response.sendRedirect("book");
         } else {
             //visitor status -> home
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);

@@ -97,7 +97,7 @@
                                     <a href="" class="dropdown-item">Korean beauty</a>
                                 </div>
                             </div>
-                            <a href="" class="nav-item nav-link">Book</a>
+                            <a href="home?book" class="nav-item nav-link">Book</a>
                             <a href="" class="nav-item nav-link">Contact</a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                         <h5 class="d-inline-block text-white text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">THE HOME OF HEALTH</h5>
                         <h1 class="display-10 text-white mb-md-4">Visit our centre and we will show you how traditional Chinese Medicine can help you achieve health, balance, and the life you striving to live.</h1>
                         <div class="pt-2">
-                            <a href="" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2">Book an appointment</a>
+                            <a href="home?book" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2">Book an appointment</a>
                         </div>
                     </div>
                 </div>
