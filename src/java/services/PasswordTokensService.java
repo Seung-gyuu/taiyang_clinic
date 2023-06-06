@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdk.nashorn.internal.runtime.ScriptingFunctions;
 import models.Passwordtokens;
 import models.User;
 import utilities.HashAndSalt;
@@ -67,9 +66,10 @@ public class PasswordTokensService {
 
     public String generateToken() throws Exception {
         //generate the token
+        //is it right way to create token?
         String token = HashAndSalt.getSalt();
-        // String hash = HashAndSalt.hashPassword(salt);
-        //String token = HashAndSalt.hashAndSaltPassword(hash, salt);
+//         String hash = HashAndSalt.hashPassword(salt);
+//        String token = HashAndSalt.hashAndSaltPassword(hash, salt);
         return token;
     }
 

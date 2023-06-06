@@ -13,8 +13,8 @@
         <servlet-class>servlets.HomeServlets</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ForgotPassordServlets</servlet-name>
-        <servlet-class>servlets.ForgotPassordServlets</servlet-class>
+        <servlet-name>ForgotPasswordServlets</servlet-name>
+        <servlet-class>servlets.ForgotPasswordServlets</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BookServlets</servlet-name>
@@ -33,7 +33,7 @@
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ForgotPassordServlets</servlet-name>
+        <servlet-name>ForgotPasswordServlets</servlet-name>
         <url-pattern>/reset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -48,6 +48,10 @@
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
+    <listener>
+        <listener-class>utilities.CleanupScheduler</listener-class>
+    </listener>
+
     <env-entry>
         <env-entry-name>web-username</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>

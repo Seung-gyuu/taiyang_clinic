@@ -28,7 +28,7 @@
 
         <c:if test="${message eq 'invalid'}">
             <h3>Invalid link</h3>
-            <a href="invalid?reset">verify the email</a><a href="invalid?home">main page</a>
+            <a href="invalid?reset">verify the email</a> <a href="invalid?home">main page</a>
             </c:if>
 
         <p>${res}</p>

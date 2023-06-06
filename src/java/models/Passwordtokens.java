@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Passwordtokens.findByUserId", query = "SELECT p FROM Passwordtokens p WHERE p.userid = :userid")
     , @NamedQuery(name = "Passwordtokens.findByToken", query = "SELECT p FROM Passwordtokens p WHERE p.token = :token")
     , @NamedQuery(name = "Passwordtokens.findByTokenAndExpiry", query = "SELECT p FROM Passwordtokens p WHERE p.token = :token AND p.expiryDateTime > CURRENT_TIMESTAMP")
-    , @NamedQuery(name = "Passwordtokens.findExpired", query = "SELECT p FROM Passwordtokens p WHERE p.expiryDateTime > CURRENT_TIMESTAMP")
+    , @NamedQuery(name = "Passwordtokens.findExpired", query = "SELECT p FROM Passwordtokens p WHERE p.expiryDateTime < CURRENT_TIMESTAMP")
     , @NamedQuery(name = "Passwordtokens.findByExpiryDateTime", query = "SELECT p FROM Passwordtokens p WHERE p.expiryDateTime = :expiryDateTime")})
 public class Passwordtokens implements Serializable {
 

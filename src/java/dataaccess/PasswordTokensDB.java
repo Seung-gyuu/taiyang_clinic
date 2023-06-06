@@ -50,7 +50,8 @@ public class PasswordTokensDB {
     public List<Passwordtokens> getExpired() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Passwordtokens> tokens = em.createNamedQuery("Passwordtokens.findExpired", Passwordtokens.class).getResultList();
+            TypedQuery<Passwordtokens> query = em.createNamedQuery("Passwordtokens.findExpired", Passwordtokens.class);           
+            List<Passwordtokens> tokens = query.getResultList();
             return tokens;
         } finally {
             em.close();
@@ -81,7 +82,6 @@ public class PasswordTokensDB {
             for (Passwordtokens token : expiredTokens) {
                 em.remove(em.merge(token));
             }
-
             trans.commit();
         } catch (Exception ex) {
             trans.rollback();

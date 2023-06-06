@@ -28,7 +28,7 @@ import services.SendEmail;
  *
  * @author user
  */
-public class ForgotPassordServlets extends HttpServlet {
+public class ForgotPasswordServlets extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ public class ForgotPassordServlets extends HttpServlet {
         try {
             username = ps.getByToken(token).getUserid().getFirstname();
         } catch (Exception ex) {
-            Logger.getLogger(ForgotPassordServlets.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Check if the token is valid and not expired
         if (ps.isTokenValid(token)) {
@@ -95,7 +95,7 @@ public class ForgotPassordServlets extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
 
         } catch (Exception ex) {
-            Logger.getLogger(ForgotPassordServlets.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

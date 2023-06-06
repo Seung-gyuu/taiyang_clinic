@@ -79,7 +79,6 @@ public class LoginServlets extends HttpServlet {
                 //login as user -> home , login as admin -> test jsp to manage 
                 if(status == 1){ 
                 getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-//                response.sendRedirect("home");
                 }else{
                     response.sendRedirect("test");
                 }

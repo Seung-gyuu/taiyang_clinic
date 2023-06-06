@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.*;
-import org.apache.tomcat.util.descriptor.web.WebXml;
 
 public class AccountService {
     private UserDB userDB;
