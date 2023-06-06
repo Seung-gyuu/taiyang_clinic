@@ -29,6 +29,7 @@ public class LoginServlets extends HttpServlet {
         String logout = request.getParameter("logout");
         String signIn = request.getParameter("signIn");
         String reset = request.getParameter("reset");
+        String home = request.getParameter("home");
 
         HttpSession session = request.getSession();
         if (logout != null) {
@@ -40,6 +41,9 @@ public class LoginServlets extends HttpServlet {
         } else if (reset != null) {
             request.setAttribute("message", "forget");
             getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+        } else if (home != null) {
+//            request.setAttribute("message", "forget");
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }else {
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }

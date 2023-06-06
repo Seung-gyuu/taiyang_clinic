@@ -19,8 +19,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-
-public class SendEmail {
+/**
+ *
+ * @author user
+ */
+public class SendEmail{
 
     public static void sendMail(String to, String subject, String template, HashMap<String, String> tags) throws Exception {
         String body = "";

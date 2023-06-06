@@ -48,7 +48,7 @@ public class ForgotPasswordServlets extends HttpServlet {
         if (ps.isTokenValid(token)) {
             // Store the token in the session for further processing   
             session.setAttribute("resetToken", token);
-            session.setAttribute("firstname", username);
+            session.setAttribute("firstName", username);
             request.setAttribute("message", "reset");
             // Forward the request to the reset.jsp page
             getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);

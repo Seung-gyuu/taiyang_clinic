@@ -74,7 +74,7 @@
         <div class="container-fluid sticky-top bg-white shadow-sm">
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                    <a href ="main.jsp" class ="navbar-brand">
+                    <a href ="login?home" class ="navbar-brand">
                         <h1 class="m-0 text-uppercase text-primary"><i class ="fa fa-clinic-medical me-2"></i>
 
                             Tai Yang Clinic</h1>
@@ -84,7 +84,7 @@
                     </button>
                     <div class ="collapse navbar-collapse" id ="navbarCollapse">
                         <div class="navbar-nav text-right ms-auto py-0">
-                            <a href="" class="nav-item nav-link active">Home</a>
+                            <a href="login?home" class="nav-item nav-link active">Home</a>
                             <a href="" class="nav-item nav-link">About us</a>
                             <div class ="nav-item dropdown">
                                 <a href ="#" class ="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>

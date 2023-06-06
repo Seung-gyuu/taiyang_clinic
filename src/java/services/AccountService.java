@@ -36,9 +36,9 @@ public class AccountService {
             User user = userDB.getByEmail(email);
 
             // Check if the user exists and the password matches
-            if (user != null) {                      
-                return user; // Login successful
-            } else {
+            if (user != null && user.getIsactive() == 1) {                      
+                return user;// verify successful
+            }else {
                 return null; // Invalid credentials
             }
         } catch (Exception e) {

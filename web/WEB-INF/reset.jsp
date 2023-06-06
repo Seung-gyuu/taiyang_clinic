@@ -18,7 +18,7 @@
 
         <c:if test="${message eq 'reset'}">
             <h3>Change Your Password</h3>
-            <h4> Hello, ${firstname} </h4>
+            <h4> Hello, ${firstName} </h4>
             <form method="post" action="resetPassword">
                 Password: <input type="password" name="password" required><br>
                 Confirm Password: <input type="password" name="confirmPassword" required><br>

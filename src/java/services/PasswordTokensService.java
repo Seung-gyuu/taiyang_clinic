@@ -47,10 +47,6 @@ public class PasswordTokensService {
 //
     public String insert(User userid, String token, Date expiryDateTime) throws Exception {
         Passwordtokens passwordToken = new Passwordtokens(userid, token, expiryDateTime);
-//        UserDB userdb = new UserDB();
-//check if the same user id has token in db
-//User user = userdb.get(userid.getUserid());
-
 //        Passwordtokens existingtoken = pdb.getByToken(token)passwordToken.getUserid();
 //can we create multiple tokens?
 //        if (existingtoken != null) {
@@ -76,7 +72,7 @@ public class PasswordTokensService {
     public Date calculateExpiryDateTime() {
         // Calculate the expiry date and time for the token
         // Set the expiration date 
-//        long expirationTimeMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 hours
+//        long expirationTimeMillis = System.currentTimeMillis() + (24 * 60 * 60 * 1000); // 24 hours or 1 hour -- need to talk
         long expirationTimeMillis = System.currentTimeMillis() + (1 * 60 * 60 * 1000);
         Date expirationDateTime = new Date(expirationTimeMillis);
         return expirationDateTime;
