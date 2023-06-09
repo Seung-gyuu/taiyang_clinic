@@ -6,6 +6,7 @@
 package services;
 
 import dataaccess.DayDB;
+import java.util.Date;
 import java.util.List;
 import models.Day;
 
@@ -33,5 +34,8 @@ public class DayService {
     }
     public List<Day> getUpcomingByWeeks(int weeks) {
         return ddb.getUpcomingByWeeks(weeks);
+    }
+    public Day getByDate(Date d){
+        return ddb.getByDate(d);
     }
 }

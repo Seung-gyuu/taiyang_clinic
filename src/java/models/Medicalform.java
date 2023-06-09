@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Medicalform.findAll", query = "SELECT m FROM Medicalform m")
     , @NamedQuery(name = "Medicalform.findById", query = "SELECT m FROM Medicalform m WHERE m.id = :id")
-    , @NamedQuery(name = "Medicalform.findByUserid", query = "SELECT m FROM Medicalform m WHERE m.userid = :userid")
+    , @NamedQuery(name = "Medicalform.findByUserid", query = "SELECT m FROM Medicalform m WHERE m.userid.userid = :userid")
     , @NamedQuery(name = "Medicalform.findByTimeAdded", query = "SELECT m FROM Medicalform m WHERE m.timeAdded = :timeAdded")})
 public class Medicalform implements Serializable {
 

@@ -77,7 +77,7 @@ public class ForgotPasswordServlets extends HttpServlet {
                 String token = ps.generateToken();
                 Date expiryDateTime = ps.calculateExpiryDateTime();
 
-                // Generate the reset link 
+                // Generate the reset link -> move to the service
                 String resetLink = "reset?token=" + token;
 
                 ps.insert(user, token, expiryDateTime);

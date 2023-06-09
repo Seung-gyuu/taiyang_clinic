@@ -74,7 +74,7 @@
         <div class="container-fluid sticky-top bg-white shadow-sm">
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                    <a href ="login?home" class ="navbar-brand">
+                    <a href ="/home" class ="navbar-brand">
                         <h1 class="m-0 text-uppercase text-primary"><i class ="fa fa-clinic-medical me-2"></i>
 
                             Tai Yang Clinic</h1>
@@ -84,7 +84,7 @@
                     </button>
                     <div class ="collapse navbar-collapse" id ="navbarCollapse">
                         <div class="navbar-nav text-right ms-auto py-0">
-                            <a href="login?home" class="nav-item nav-link active">Home</a>
+                            <a href="/home" class="nav-item nav-link active">Home</a>
                             <a href="" class="nav-item nav-link">About us</a>
                             <div class ="nav-item dropdown">
                                 <a href ="#" class ="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
@@ -97,7 +97,7 @@
                                     <a href="" class="dropdown-item">Korean beauty</a>
                                 </div>
                             </div>
-                            <a href="" class="nav-item nav-link">Book</a>
+                            <a href="/book" class="nav-item nav-link">Book</a>
                             <a href="" class="nav-item nav-link">Contact</a>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                                 <img src ="src/img/signin-image1.jpg" alt ="signin image">
                             </figure>
                             <h4>Don't have an account?</h4>
-                            <a href ="login?signIn"> Create an account</a>
+                            <a href ="/signIn"> Create an account</a>
                         </div>
 
                         <div class ="signin-form">
@@ -143,14 +143,15 @@
                                                                     </label>
                                                                 </div>-->
                                 <div class ="form-group">
-                                    <a href="login?reset" > Forgot password? </a>
+                                    <a href="/reset" > Forgot password? </a>
                                 </div>
                                 <div class ="form-group form-button">
-                                    <input type ="submit" name ="signin" id="signin" 
+                                    <input type="hidden" name="action" value="login" />
+                                    <input type ="submit" name ="submit" id="signin" 
                                            class ="form-submit" value ="Login" />              
                                 </div>
                             </form>
-                            <p>${res}</p>
+                            <p>${message}</p>
                             </section>
                         </div>
 

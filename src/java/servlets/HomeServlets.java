@@ -6,12 +6,17 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Appointment;
+import models.User;
+import services.AppointmentService;
 
 /**
  *
@@ -19,32 +24,30 @@ import javax.servlet.http.HttpSession;
  */
 public class HomeServlets extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        String loginStatus = request.getParameter("login");
-        String bookStatus = request.getParameter("book");
-        
-        //login status -> main
-        if (loginStatus != null) {
-            response.sendRedirect("login");
-        } else if (bookStatus != null) {
-            response.sendRedirect("book");
-        } else {
-            //visitor status -> home
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+
+        User user = (User) session.getAttribute("loggedUser");
+        if (user != null) {
+            List<Appointment> upcomingAppointments;
+            AppointmentService as = new AppointmentService();
+            try {
+                upcomingAppointments = as.getUserUpcoming(user.getUserid());
+                session.setAttribute("upcomingAppointments", upcomingAppointments);
+            } catch (Exception ex) {
+                Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-       
+        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-    }
 
+    }
 
 }

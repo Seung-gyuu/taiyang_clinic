@@ -19,17 +19,19 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     -- password 100 because of the hash and salt!
     `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(70),
+    `isValid` INT Default 2 NOT NULL, --1 means they are valid , 2 means they are NOT valid
+    CHECK  (`isValid` IN (1,2)), 
     `roleid` INT DEFAULT 1,
     CONSTRAINT `fk_user_role`
         FOREIGN KEY (`roleid`) REFERENCES `clinicdb`.`role` (`roleid`),
-    isactive INT DEFAULT 1,
+    isactive INT DEFAULT 1 NOT NULL,
     CHECK (isactive IN (1, 2))
 );
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userid` INT NOT NULL,
-  `token` VARCHAR(255) Unique NOT NULL,
+  `token` VARCHAR(50) Unique NOT NULL,
   `expiryDateTime` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_passwordtokens_user`
@@ -88,9 +90,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     `fulldate` DATE NOT NULL,
     CONSTRAINT `fk_time_day`
         FOREIGN KEY (`fulldate`) REFERENCES `clinicdb`.`day` (`fulldate`),
-    `start_time` TIME NOT NULL,
+    `start_time` TIME  NOT NULL,
     CHECK (`start_time` >= '09:00:00' AND `start_time` <= '16:00:00'),
-    `end_time` TIME NOT NULL,
+    `end_time` TIME  NOT NULL,
     CHECK (`end_time` >= '10:00:00' AND `end_time` <= '17:00:00'),
     `isBooked` INT DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
     CHECK (`isBooked` IN (1, 2))
@@ -100,6 +102,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
 CREATE TABLE IF NOT EXISTS `clinicdb`.`service` (
     `serviceid` INT,
     PRIMARY KEY (`serviceid`),
+    `isAvailable` INT DEFAULT 1 not null, --default 1 means it IS available, 2 means it is NOT available
+    CHECK (`isAvailable` IN (1,2)),
     `serviceName` VARCHAR(30) NOT NULL,
     `serviceDescription` VARCHAR(250) NOT NULL
 );
@@ -220,4 +224,3 @@ BEGIN
     WHERE `timeid` = OLD.timeid;
 END//
 DELIMITER ;
-

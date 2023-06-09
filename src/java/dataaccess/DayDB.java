@@ -6,6 +6,7 @@
 package dataaccess;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import models.Day;
 import javax.persistence.EntityManager;
@@ -103,4 +104,14 @@ public class DayDB {
         em.close();
     }
 }
+   ///THIS NEEDS TO BE IMPLEMENTED FOR THE 
+   public Day getByDate(Date d){
+       EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    try {
+        Day day = em.find(Day.class, d);
+        return day;
+    } finally {
+        em.close();
+    }
+   }
 }

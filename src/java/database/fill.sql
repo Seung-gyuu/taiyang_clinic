@@ -18,10 +18,10 @@ insert into role values(2, 'system admin');
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password',2,1);
 
-insert into service values(1,'Massage', 'Your head will be massaged');
-insert into service values(2,'Head scratch', 'Head scratching by the best scratcher');
-insert into service values(3,'rock bath', 'Bathe in rocks ! :D');
-insert into service values(4,'sauna', 'Sauna ');
+insert into service values(1, 1,'Massage', 'Your head will be massaged');
+insert into service values(2, 1,'Head scratch', 'Head scratching by the best scratcher');
+insert into service values(3, 1,'rock bath', 'Bathe in rocks ! :D');
+insert into service values(4, 2, 'sauna', 'Sauna ');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-13', 2023, 'Saturday', 13, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-14', 2023, 'Sunday', 14, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-15', 2023, 'Monday', 15, 'May');
@@ -400,4 +400,4 @@ insert into service values(4,'sauna', 'Sauna ');
 
         insert into availabletime(fulldate,start_time,end_time) values(DATE '2023-05-28', '09:00:00','10:00:00');
         insert into availabletime(fulldate,start_time,end_time) values(DATE '2023-05-28', '10:00:00','11:00:00');
-        insert into appointment(userid,timeid,serviceid,description,typereminder) values (1,1,1,'My Tummy Hurting',1);
+        insert into appointment(userid,timeid,serviceid,description,isupcoming,typereminder) values (1,1,1,'My Tummy Hurting',1,1);

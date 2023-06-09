@@ -64,8 +64,6 @@ public class PasswordTokensService {
         //generate the token
         //is it right way to create token?
         String token = HashAndSalt.getSalt();
-//         String hash = HashAndSalt.hashPassword(salt);
-//        String token = HashAndSalt.hashAndSaltPassword(hash, salt);
         return token;
     }
 

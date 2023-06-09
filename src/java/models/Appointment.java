@@ -34,9 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Appointment.findAll", query = "SELECT a FROM Appointment a")
         //passed by range.  Needs test
-    //, @NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate.fulldate <=CURRENT_DATE and a.timeid.fulldate.fulldate:startDate and a.isupcoming=2")    
-       ,@NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.timeid.fulldate.fulldate <= :endDate")
-
+    , @NamedQuery(name = "Appointment.findPassedByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate.fulldate <=CURRENT_DATE and a.timeid.fulldate.fulldate<=:startDate and a.isupcoming=2")    
         //needs test
     , @NamedQuery(name = "Appointment.findUpcomingByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate.fulldate >=CURRENT_DATE and a.timeid.fulldate.fulldate <=:endDate and a.isupcoming=1")    
     , @NamedQuery(name = "Appointment.findByAppointmentid", query = "SELECT a FROM Appointment a WHERE a.appointmentid = :appointmentid")
@@ -44,8 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Appointment.findByDescription", query = "SELECT a FROM Appointment a WHERE a.description = :description")
     , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
     , @NamedQuery(name = "Appointment.findByPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2")
-    , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid=:userid")
-    , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid=:userid")    
+    , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid.userid=:userid")
+    , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid.userid=:userid")    
     , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")    
     , @NamedQuery(name = "Appointment.findByTypereminder", query = "SELECT a FROM Appointment a WHERE a.typereminder = :typereminder")})
 public class Appointment implements Serializable {
