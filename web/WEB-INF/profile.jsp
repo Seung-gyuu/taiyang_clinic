@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/profile.css">
         <link rel="stylesheet" type="text/css" href="css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <c:import url="./components/header.jsp" />
     </head>
     <body>

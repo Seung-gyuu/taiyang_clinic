@@ -21,7 +21,6 @@ import utilities.HashAndSalt;
 public class UserService {
 
     private UserDB udb;
-//    private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
     public UserService() {
         this.udb = new UserDB();
