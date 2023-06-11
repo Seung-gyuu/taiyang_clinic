@@ -21,7 +21,7 @@ import utilities.HashAndSalt;
 public class UserService {
 
     private UserDB udb;
-    private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+//    private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
     public UserService() {
         this.udb = new UserDB();
@@ -73,24 +73,40 @@ public class UserService {
     }
 
     public String update(User updateUser) throws Exception {
-        User existingUserByEmail = udb.getByEmail(updateUser.getEmailAddress());
-        User existingUserByPhone = udb.getByPhone(updateUser.getPhoneNumber());
+        try {
+            //check user obj using updated user in db
+            User user = udb.getByEmail(updateUser.getEmailAddress());
+            String message = isValidPassword(updateUser.getPassword());
+            if (!message.equals("success")) {
+                return message;
+            }
 
-        // Check if the new email is already taken by another user
-        if (existingUserByEmail != null && existingUserByEmail.getUserid() != updateUser.getUserid()) {
-            return "Email Already Taken!";
+//            if (updateUser.getEmailAddress().equals(existingUser.getEmailAddress())) {               
+//                if(existingUser != null && !existingUser.getUserid().equals(updateUser.getUserid())){
+//                    return "Email Already Taken!";
+//                } 
+//                existingUser.setEmailAddress(updateUser.getEmailAddress());
+//            }
+            if (!updateUser.getPhoneNumber().equals(user.getPhoneNumber())) {
+                User userWithPhoneNumber = udb.getByPhone(updateUser.getPhoneNumber());
+                if (userWithPhoneNumber != null && !userWithPhoneNumber.getUserid().equals(updateUser.getUserid())) {
+                    return "Phone number already taken!";
+                }
+                user.setPhoneNumber(updateUser.getPhoneNumber());
+            }
+
+            String salt = updateUser.getSalt();
+            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
+            updateUser.setSalt(hashedPassword);
+
+            user.setPassword(updateUser.getPassword()); // Always update the password
+            udb.update(user);
+
+            return "Update successful!";
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error occurred during update!";
         }
-
-        // Check if the new phone number is already taken by another user
-        if (existingUserByPhone != null && existingUserByPhone.getUserid() != updateUser.getUserid()) {
-            return "Phone Already Taken!";
-        }
-        String salt = updateUser.getSalt();
-        String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-        updateUser.setSalt(hashedPassword);
-
-        udb.update(updateUser);
-        return "Update successful!";
     }
 
     public String delete(User user) throws Exception {
@@ -155,19 +171,14 @@ public class UserService {
         if (!user.getPassword().equals(password)) {
             return "Invalid!";
         }
-//        String salt = user.getSalt();
-//        String checkPassword = HashAndSalt.hashAndSaltPassword(password, salt);
-//        if (!checkPassword.equals(user.getPassword())) {
-//            return "Invalid!";
-//        }
         if (user.getIsValid() == 2) {
             return "User has not validated account. Please validate!";
         }
 
         return "Login";
     }
-//for validate email
 
+//for validate email
     public String verify(User user) throws Exception {
         if (user == null) {
             return "We can't find your email!";
@@ -177,10 +188,10 @@ public class UserService {
             }
             if (user.getIsactive() == 2) {
                 return "User not active.  Please talk to an admin to activate!";
-            } 
+            }
             return "success";
         }
-  
+
     }
 
     public void updatePW(User user, String password) {

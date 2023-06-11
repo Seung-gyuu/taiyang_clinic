@@ -1,0 +1,99 @@
+.account_container {
+  display: flex;
+}
+
+.account_side {
+  flex: 1;
+  padding: 20px;
+}
+
+.account_main {
+  flex: 4;
+  padding: 20px 40px;
+}
+
+.history h2 {
+  /* margin-bottom: 20px; */
+  font-size: 18px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+   margin-top: 20px; 
+/*   border: 1px solid #212529;*/
+}
+
+thead {
+/*     border: 1px solid #212529;*/
+}
+
+tbody {
+}
+
+/*tr {
+}*/
+
+table thead tr th {
+   border: 1px solid lightgray;
+  padding: 10px;
+}
+
+table tbody tr td{
+   border: 1px solid lightgray;
+   padding: 10px;
+}
+
+.upcoming_head {
+    background: #c6deff;
+    /*color:#fff;*/
+}
+
+.cell_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell_buttons button {
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.cell_buttons button:hover {
+    background: #0D6EFD;
+    color: #fff;
+}
+
+/*.edit_btn {
+    background: #0D6EFD;
+    color: #fff;
+}
+
+.cancel_btn {
+    
+}*/
+
+.history_old {
+    margin-top: 40px;
+}
+
+.history_old_table {
+
+}
+
+.old_head {
+        background: #f5f5f5;
+    /*color:#fff;*/
+}
+
+.old_data {
+    
+}
+
+.last_cell {
+    width: 200px;
+}

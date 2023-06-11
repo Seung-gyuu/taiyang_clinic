@@ -1,0 +1,17 @@
+.account_container {
+  display: flex;
+}
+
+.account_side {
+  flex: 1;
+  padding: 20px;
+}
+
+.account_main {
+  flex: 4;
+  padding: 20px 40px;
+}
+
+.profile h2 {
+    
+}

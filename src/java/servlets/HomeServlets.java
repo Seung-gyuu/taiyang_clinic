@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +42,7 @@ public class HomeServlets extends HttpServlet {
 
         }
         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+       
     }
 
     @Override

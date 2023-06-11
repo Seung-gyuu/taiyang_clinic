@@ -18,7 +18,7 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="home/.css">
+        <link rel="stylesheet" type="text/css" href="css/home.css">
 
 
     </head>
@@ -44,17 +44,18 @@
 
                 <div class ="col-md-6 text-right text-lg-end">
                     <div class ="d-inline-flex align-items-center">
-                         <c:if test="${loggedUser eq null}">
+                        <c:if test="${loggedUser eq null}">
                             <a class ="text-decoration-none text-body px-3" href ="/login">
                                 <i class ="bi bi-person-fill"></i>
-                                Login <span class="text-body"> | </span>Register 
-                            </a>
+                                Login <span class="text-body"> </a> |  
+                            <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
+
                         </c:if>
                         <c:if test="${loggedUser ne null}">
                             <c:if test="${upcomingAppointments ne null}">
                                 You have ${upcomingAppointments.size()} upcoming appointments! <br>
                             </c:if>
-                            <a class ="text-decoration-none text-body px-3" href ="/account">
+                            <a class ="text-decoration-none text-body px-3" href ="/profile">
                                 Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
                             </a>
                         </c:if>
@@ -225,17 +226,17 @@
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right me-2"></i>Home</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
+                        <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
                         <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right me-2"></i>Home</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>

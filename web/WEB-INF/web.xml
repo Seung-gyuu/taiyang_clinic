@@ -32,6 +32,14 @@
         <servlet-name>ResetPasswordServlet</servlet-name>
         <servlet-class>servlets.ResetPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileServlets</servlet-name>
+        <servlet-class>servlets.ProfileServlets</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HistoryServlets</servlet-name>
+        <servlet-class>servlets.HistoryServlets</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestAddAccountServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>ResetPasswordServlet</servlet-name>
         <url-pattern>/reset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileServlets</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryServlets</servlet-name>
+        <url-pattern>/history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
