@@ -20,6 +20,18 @@
         <servlet-name>BookServlets</servlet-name>
         <servlet-class>servlets.BookServlets</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendValidation</servlet-name>
+        <servlet-class>servlets.SendValidation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlets.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <servlet-class>servlets.ResetPasswordServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestAddAccountServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -34,11 +46,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordServlets</servlet-name>
-        <url-pattern>/reset</url-pattern>
+        <url-pattern>/forgotpassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookServlets</servlet-name>
         <url-pattern>/book</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendValidation</servlet-name>
+        <url-pattern>/sendvalidation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <url-pattern>/reset</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -51,7 +75,6 @@
     <listener>
         <listener-class>utilities.CleanupScheduler</listener-class>
     </listener>
-
     <env-entry>
         <env-entry-name>web-username</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>

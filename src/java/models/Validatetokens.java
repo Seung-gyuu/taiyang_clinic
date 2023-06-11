@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Validatetokens.findByToken", query = "SELECT v FROM Validatetokens v WHERE v.validatetoken = :validatetoken")
     , @NamedQuery(name = "Validatetokens.findByTokenAndExpiry", query = "SELECT v FROM Validatetokens v WHERE v.validatetoken = :validatetoken AND v.expiryDateTime > CURRENT_TIMESTAMP")
     , @NamedQuery(name = "Validatetokens.findByValidatetoken", query = "SELECT v FROM Validatetokens v WHERE v.validatetoken = :validatetoken")
-    , @NamedQuery(name = "Validatetokens.findExpired", query = "SELECT v FROM Validatetokens v WHERE v.expiryDateTime > CURRENT_TIMESTAMP")    
+    , @NamedQuery(name = "Validatetokens.findExpired", query = "SELECT v FROM Validatetokens v WHERE v.expiryDateTime < CURRENT_TIMESTAMP")    
     , @NamedQuery(name = "Validatetokens.findByExpiryDateTime", query = "SELECT v FROM Validatetokens v WHERE v.expiryDateTime = :expiryDateTime")})
 public class Validatetokens implements Serializable {
 

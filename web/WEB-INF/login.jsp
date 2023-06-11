@@ -25,8 +25,8 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/login.css">
-
 
     </head>
     <body>
@@ -143,7 +143,7 @@
                                                                     </label>
                                                                 </div>-->
                                 <div class ="form-group">
-                                    <a href="/reset" > Forgot password? </a>
+                                    <a href="/forgotpassword" > Forgot password? </a>
                                 </div>
                                 <div class ="form-group form-button">
                                     <input type="hidden" name="action" value="login" />
@@ -213,7 +213,16 @@
 
 
                         <script src="js/main.js"></script>
-
+                         <script src="js/showMessage.js"></script>
+        <script>
+            $(document).ready(function () {
+            <% if (session.getAttribute("passwordReset") != null && (boolean) session.getAttribute("passwordReset")) { %>
+                // Call the showMessage function to display the pop-up message
+                showMessage("Password successfully changed.");
+            <% session.removeAttribute("passwordReset"); %> // Remove the flag from the session
+            <% }%>
+            });
+        </script>
 
                         </body>
                         </html>

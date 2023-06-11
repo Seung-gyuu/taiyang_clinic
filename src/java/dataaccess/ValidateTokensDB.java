@@ -68,6 +68,26 @@ public class ValidateTokensDB {
         }
     }
     
+    //delete list
+    public void deleteExpired() throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            List<Validatetokens> expiredTokens = getExpired();
+            // Delete expired token
+            for (Validatetokens token : expiredTokens) {
+                em.remove(em.merge(token));
+            }
+            trans.commit();
+        } catch (Exception ex) {
+            trans.rollback();
+            throw ex;
+        } finally {
+            em.close();
+        }
+    }
+    
     //insert 
     public void insert(Validatetokens vdt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

@@ -57,7 +57,7 @@ public class LoginServlets extends HttpServlet {
                     } else {
                         response.sendRedirect("test");
                     }
-                } if(message.equals("User has not validated account.  Please validate!")){
+                } if(message.equals("User has not validated account. Please validate!")){
                     request.setAttribute("message", message);
                     getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
                 }

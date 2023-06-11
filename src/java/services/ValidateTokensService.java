@@ -8,9 +8,14 @@ package services;
 import dataaccess.ValidateTokensDB;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import javax.mail.MessagingException;
+import models.User;
 import models.Validatetokens;
+import utilities.GenerateToken;
+import utilities.SendValidationEmail;
 
 /**
  *
@@ -39,6 +44,52 @@ public class ValidateTokensService {
         vdb.delete(validatetoken);
         return "Token Deleted";
     }
+    public String validate(String token)throws Exception{
+        if(token.length()!=50){
+            return "No token found";
+        }
+        Validatetokens vt= this.getByToken(token);
+        if(vt==null)
+            return "No token found";
+        if(vt.getUserid().getIsValid()==1)
+            return "User already validated!";
+        if(vt.getUserid().getIsactive()==2)
+            return "User is inactive!";
+        LocalDateTime now = LocalDateTime.now();
+        Date today = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+        if(vt.getExpiryDateTime().before(today)){
+            System.out.println("Expiry Date: "+vt.getExpiryDateTime());
+            System.out.println("Right now Date: "+today);
+            
+            return "Token Expired! Please send a new one!";
+        }
+        UserService us = new UserService();
+        vt.getUserid().setIsValid(1);
+        us.update(vt.getUserid());
+        return "User Validated!";
+        
+    }
+    public String sendToken(User user) throws Exception{
+        Validatetokens token = new Validatetokens();
+        String tokenInsert = GenerateToken.generateToken();
+        LocalDateTime expiryTime = LocalDateTime.now().plusDays(1);
+        Date expiryDate = Date.from(expiryTime.atZone(ZoneId.systemDefault()).toInstant());
+        token.setUserid(user);
+        token.setValidatetoken(tokenInsert);
+        token.setExpiryDateTime(expiryDate);
+        String recipientEmail = user.getEmailAddress();
+        this.insert(token);
+        String validationLink = "localhost:8084/validate?token="+tokenInsert;
+        try {
+            SendValidationEmail.sendValidationEmail(recipientEmail, validationLink);
+            System.out.println("Validation email sent successfully!");
+            return "Email sent!";
+        } catch (MessagingException e) {
+            System.out.println("Failed to send validation email: " + e.getMessage());
+            return "Failed to send validation email!";
+        }
+    }
+    
     public String insert(Validatetokens vdt) throws Exception {
         Validatetokens token = vdb.getByToken(vdt.getValidatetoken());
         if(token!=null){

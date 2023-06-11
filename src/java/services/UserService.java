@@ -7,6 +7,10 @@ package services;
 
 import dataaccess.UserDB;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import models.User;
 import utilities.HashAndSalt;
 
@@ -17,6 +21,7 @@ import utilities.HashAndSalt;
 public class UserService {
 
     private UserDB udb;
+    private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
     public UserService() {
         this.udb = new UserDB();
@@ -82,7 +87,8 @@ public class UserService {
         }
         String salt = updateUser.getSalt();
         String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-        updateUser.setPassword(hashedPassword);
+        updateUser.setSalt(hashedPassword);
+
         udb.update(updateUser);
         return "Update successful!";
     }
@@ -113,10 +119,28 @@ public class UserService {
         if (lastName == null || lastName.isEmpty() || lastName.length() > 20) {
             return false;
         }
-        if (password == null || password.isEmpty() || password.length() > 70) {
+        if (!isValidPassword(password).equals("success")) {
             return false;
         }
         return true;
+    }
+
+    public String isValidPassword(String password) {
+        String message = "";
+        if (password.length() > 15 || password.length() < 8) {
+            return "Password must be less than 20 and more than 8 characters in length.";
+
+        }
+        String lowerCaseChars = "(.*[a-z].*)";
+        if (!password.matches(lowerCaseChars)) {
+            return "Password must have at least one lowercase character ";
+
+        }
+        String numbers = "(.*[0-9].*)";
+        if (!password.matches(numbers)) {
+            return "Password must have at least one number";
+        }
+        return "success";
     }
 
     public String login(String email, String password) throws Exception {
@@ -128,7 +152,7 @@ public class UserService {
         if (user.getIsactive() == 2) {
             return "This account has been deactivated";
         }
-        if(!user.getPassword().equals(password)){
+        if (!user.getPassword().equals(password)) {
             return "Invalid!";
         }
 //        String salt = user.getSalt();
@@ -142,14 +166,34 @@ public class UserService {
 
         return "Login";
     }
+//for validate email
 
     public String verify(User user) throws Exception {
-        if (user.getIsValid() == 2) {
-            return "Please Validate Account";
+        if (user == null) {
+            return "We can't find your email!";
+        } else {
+            if (user.getIsValid() == 2) {
+                return "Please Validate Account";
+            }
+            if (user.getIsactive() == 2) {
+                return "User not active.  Please talk to an admin to activate!";
+            } 
+            return "success";
         }
-        if (user.getIsactive() == 2) {
-            return "User not active.  Please talk to an admin to activate!";
-        }
-        return "";
+  
     }
+
+    public void updatePW(User user, String password) {
+        try {
+            user.setPassword(password);
+            String salt = user.getSalt();
+            String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
+            user.setSalt(hashedPassword);
+
+            udb.update(user);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

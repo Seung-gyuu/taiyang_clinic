@@ -18,11 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.User;
-import services.AccountService;
 import javax.mail.*;
 import javax.naming.NamingException;
 import services.PasswordTokensService;
 import services.SendEmail;
+import services.UserService;
 
 /**
  *
@@ -33,70 +33,37 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("/WEB-INF/forgotpassword.jsp").forward(request, response);
 
-        String token = request.getParameter("token");
-        PasswordTokensService ps = new PasswordTokensService();
-        HttpSession session = request.getSession();
-
-        String username = "";
-        try {
-            username = ps.getByToken(token).getUserid().getFirstname();
-        } catch (Exception ex) {
-            Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // Check if the token is valid and not expired
-        if (ps.isTokenValid(token)) {
-            // Store the token in the session for further processing   
-            session.setAttribute("resetToken", token);
-            session.setAttribute("firstName", username);
-            request.setAttribute("message", "reset");
-            // Forward the request to the reset.jsp page
-            getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-        } else {
-            // Token is invalid or expired, display an error message
-            request.setAttribute("res", "The reset link is invalid or expired.");
-            request.setAttribute("message", "invalid");
-            getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //get the email 
-        String email = request.getParameter("email");
         HttpSession session = request.getSession();
-        AccountService as = new AccountService();
-        PasswordTokensService ps = new PasswordTokensService();
-        try {
-            User user = as.verify(email);
-            if (user != null) {
-                String username = as.verify(email).getFirstname();
-                String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
+        String email = request.getParameter("email");
+        UserService us = new UserService();
+        PasswordTokensService pws = new PasswordTokensService();
+        String action = request.getParameter("action");
+        if (action.equals("forgot")) {
+            try {
+                String message = us.verify(us.getByEmail(email));
+                request.setAttribute("message", message);
+                if (message.equals("Please Validate Account")) {
+                    getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                } else if (message.equals("success")) {
+                    User user = us.getByEmail(email);
+                    session.setAttribute("loggedUser", user);
 
-                String token = ps.generateToken();
-                Date expiryDateTime = ps.calculateExpiryDateTime();
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
+                    pws.sendToken(user, templatePath);
+                    request.setAttribute("message", "We sent the reset link to your email! Check it ");
+                }
+                getServletContext().getRequestDispatcher("/WEB-INF/forgotpassword.jsp").forward(request, response);
 
-                // Generate the reset link -> move to the service
-                String resetLink = "reset?token=" + token;
-
-                ps.insert(user, token, expiryDateTime);
-
-                HashMap<String, String> tags = new HashMap<>();
-                tags.put("name", username);
-                tags.put("action_url", resetLink);
-
-                SendEmail.sendMail(email, "Taiyang clinic- Reset password Email", templatePath, tags);
-                request.setAttribute("res", "We sent the reset link to your email! Check it ");
-            } else {
-                request.setAttribute("res", "We can't find your email ");               
+            } catch (Exception ex) {
+                Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("message", "forget");
-            getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-
-        } catch (Exception ex) {
-            Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

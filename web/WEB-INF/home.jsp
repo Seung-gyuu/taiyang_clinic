@@ -44,13 +44,13 @@
 
                 <div class ="col-md-6 text-right text-lg-end">
                     <div class ="d-inline-flex align-items-center">
-                        <c:if test="${message ne 'main'}">
+                         <c:if test="${loggedUser eq null}">
                             <a class ="text-decoration-none text-body px-3" href ="/login">
                                 <i class ="bi bi-person-fill"></i>
                                 Login <span class="text-body"> | </span>Register 
                             </a>
                         </c:if>
-                        <c:if test="${message eq 'main'}">
+                        <c:if test="${loggedUser ne null}">
                             <c:if test="${upcomingAppointments ne null}">
                                 You have ${upcomingAppointments.size()} upcoming appointments! <br>
                             </c:if>
