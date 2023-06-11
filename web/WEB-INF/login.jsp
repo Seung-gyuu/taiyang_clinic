@@ -115,7 +115,7 @@
                                 <img src ="src/img/signin-image1.jpg" alt ="signin image">
                             </figure>
                             <h4>Don't have an account?</h4>
-                            <a href ="/signIn"> Create an account</a>
+                            <a href ="/register"> Create an account</a>
                         </div>
 
                         <div class ="signin-form">
