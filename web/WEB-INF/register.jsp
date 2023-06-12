@@ -27,7 +27,6 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/registration.css">
 
-   <c:import url="./components/header.jsp" />
     </head>
     <body>
     <!-- Topbar Start -->
