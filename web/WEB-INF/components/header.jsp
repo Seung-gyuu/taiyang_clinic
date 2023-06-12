@@ -45,16 +45,12 @@
 
                 <div class ="col-md-6 text-right text-lg-end">
                     <div class ="d-inline-flex align-items-center">
-                        <!--                            <a class ="text-decoration-none text-body px-3" href ="">
-                                                        <i class ="bi bi-person-fill"></i>
-                                                        Login<span class="text-body"> | </span>Register 
-                                                    </a>-->
-
                         <c:if test="${loggedUser eq null}">
                             <a class ="text-decoration-none text-body px-3" href ="/login">
                                 <i class ="bi bi-person-fill"></i>
-                                Login <span class="text-body"> | </span>Register 
-                            </a>
+                                Login <span class="text-body"> </a> |  
+                            <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
+
                         </c:if>
                         <c:if test="${loggedUser ne null}">
                             <c:if test="${upcomingAppointments ne null}">
@@ -107,6 +103,12 @@
                             </div>
                         </div>
                         <a href="/book" class="nav-item nav-link">Book</a>
+                        <c:if test="${loggedUser eq null}">
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                        </c:if>
+                        <c:if test="${loggedUser ne null}">
+                            <a href="/profile" class="nav-item nav-link">My Account</a> 
+                        </c:if>
                         <a href="" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
