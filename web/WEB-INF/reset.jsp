@@ -132,18 +132,18 @@
                                     <div class="card-header h3 text-white text-center" style="background-color: #094676">Forgot my password</div>
                                     <div class="card-body p-5">
                                         <p class="card-text py-2" style="font-size: 1.2rem;">
-                                            Change my password.
+                                            Change your password.
                                         </p>
                                         <h4> Hello, ${user.getFirstname()} </h4>
 
                                         <form method="post" action="reset">
                                             <div class="form-group d-flex align-items-center mb-4">
                                                 <label class="mr-3">Password:</label>
-                                                <input type="text" class="form-control form-control-lg" style="width: 80%;" name="password" value ="" required/>
+                                                <input type="password" class="form-control form-control-lg" style="width: 100%;" name="password" value ="" required/>
                                             </div>
                                             <div class="form-group d-flex align-items-center mb-4">
                                                 <label class="mr-3">Confirm Password:</label>
-                                                <input type="text" class="form-control form-control-lg" style="width: 80%;" name="confirmPassword" value ="" required/>
+                                                <input type="password" class="form-control form-control-lg" style="width: 100%;" name="confirmPassword" value ="" required/>
                                             </div>
                                             <!--  Password : <input type="text" value="" name="password" required><br>
                                              <input type="submit" value="change the password">-->

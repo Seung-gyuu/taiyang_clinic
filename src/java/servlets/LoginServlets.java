@@ -55,7 +55,7 @@ public class LoginServlets extends HttpServlet {
 //                        response.sendRedirect("/home");
                         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                     } else {
-                        response.sendRedirect("test");
+                        response.sendRedirect("admin");
                     }
                 } if(message.equals("User has not validated account. Please validate!")){
                     request.setAttribute("message", message);

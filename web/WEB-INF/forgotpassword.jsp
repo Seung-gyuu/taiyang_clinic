@@ -20,7 +20,7 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/forgotpassword.css">
 
 
     </head>
@@ -118,8 +118,8 @@
     </div>
 
         <!--        //get email-->
-        <section class="min-vh-100" style="background-color: #ececec;">
-            <div class="container py-5 h-100 text-center">
+        <section class="min-vh-80" style="background-color: #ececec;">
+            <div class="container py-5 h-100 text-center pb-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="container h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -148,7 +148,7 @@
                                                 <!--        //send reset link
                                                  //using the link
                                                  //set the password-->
-                                                <div class ="" style="color:red;">
+                                                <div class ="" style="color:blue;">
                                                     <p>${message}</p>
                                                 </div>
                                             </form>
@@ -160,11 +160,10 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light py-5 " style="position:absolute;">
+    <div class="container-fluid bg-dark text-light py-5 " >
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
