@@ -12,16 +12,19 @@
     <p style ="background-image:url('src/img/main.png');">
 
 
+
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-        <!--        Libraries Stylesheet -->  
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link href="https://www.flaticon.com/kr/free-icons/" title="스마일 아이콘"></a>
 
 
-    </head>
+    <!--        Libraries Stylesheet -->  
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+</head>
 <body>
 
     <!-- Topbar Start -->
@@ -102,6 +105,12 @@
                             </div>
                         </div>
                         <a href="/book" class="nav-item nav-link">Book</a>
+                        <c:if test="${loggedUser eq null}">
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                        </c:if>
+                        <c:if test="${loggedUser ne null}">
+                            <a href="/profile" class="nav-item nav-link">My Account</a> 
+                        </c:if>
                         <a href="" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -125,7 +134,31 @@
         </div>
     </div>
 
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="img/" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
+                        <h1 class="display-4">Best Medical Care For Yourself and Your Family</h1>
+                    </div>
+                    <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
 
+                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
+
+                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
 
     <!-- Services Start -->
     <div class="container-fluid py-5">
@@ -211,7 +244,117 @@
         </div>
     </div>
     <!-- Services End -->
+    <!-- Testimonial Start -->
+    <section style="color: #000; background-color: #f3f2f2;">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-10 col-xl-8 text-center">
+                    <h3 class="fw-bold mb-4">Testimonials</h3>
+                    <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+                        Check out the hundreds of Google review and find out why many people choose our clinic.
+                    </p>
+                </div>
+            </div>
 
+            <div class="row text-center">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="card">
+                        <div class="card-body py-4 mt-2">
+                            <div class="d-flex justify-content-center mb-4">
+                                <img src="src/img/patient2.png"
+                                     class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </div>
+
+                            <h5 class="font-weight-bold">Patient1</h5>
+                            <ul class="list-unstyled d-flex justify-content-center">
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star-half-alt fa-sm text-info"></i>
+                                </li>
+                            </ul>
+                            <p class="mb-2">
+                                <i class="fas fa-quote-left pe-2"></i>Both my wife and I have been using Sunny's services for a couple of years now. Acupuncture has been the only thing that gives either of us any long term relief from on going back pain. In one session she is able to accomplish what would take weeks of physical therapy and medication. I highly recommend that anyone with back pain give her a call. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="card">
+                        <div class="card-body py-4 mt-2">
+                            <div class="d-flex justify-content-center mb-4">
+                                <img src="src/img/patient1.png"
+                                     class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </div>
+                            <h5 class="font-weight-bold">Patient2</h5>
+                            <ul class="list-unstyled d-flex justify-content-center">
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                            </ul>
+                            <p class="mb-2">
+                                <i class="fas fa-quote-left pe-2"></i>Both my wife and I have been using Sunny's services for a couple of years now. Acupuncture has been the only thing that gives either of us any long term relief from on going back pain. In one session she is able to accomplish what would take weeks of physical therapy and medication. I highly recommend that anyone with back pain give her a call. 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-0">
+                    <div class="card">
+                        <div class="card-body py-4 mt-2">
+                            <div class="d-flex justify-content-center mb-4">
+                                <img src="src/img/patient3.png"
+                                     class="rounded-circle shadow-1-strong" width="100" height="100" />
+                            </div>
+                            <h5 class="font-weight-bold">Patient3</h5>
+                            <ul class="list-unstyled d-flex justify-content-center">
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star fa-sm text-info"></i>
+                                </li>
+                                <li>
+                                    <i class="far fa-star fa-sm text-info"></i>
+                                </li>
+                            </ul>
+                            <p class="mb-2">
+                                <i class="fas fa-quote-left pe-2"></i>Both my wife and I have been using Sunny's services for a couple of years now. Acupuncture has been the only thing that gives either of us any long term relief from on going back pain. In one session she is able to accomplish what would take weeks of physical therapy and medication. I highly recommend that anyone with back pain give her a call. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial End -->
+    
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light mt-5 py-5">
         <div class="container py-5">
