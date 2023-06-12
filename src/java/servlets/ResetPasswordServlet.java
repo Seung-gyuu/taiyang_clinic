@@ -67,8 +67,7 @@ public class ResetPasswordServlet extends HttpServlet {
                     if (password.equals(confirm)) {
                         us.updatePW(user, password);
                         session.setAttribute("passwordReset", true);
-                        response.sendRedirect("login");
-                       // getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     } else {
                         request.setAttribute("message", "passwords do not match");
                        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);

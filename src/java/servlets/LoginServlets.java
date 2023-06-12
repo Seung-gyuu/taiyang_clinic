@@ -64,7 +64,8 @@ public class LoginServlets extends HttpServlet {
                 else{
                     request.setAttribute("message", message);
                     request.setAttribute("email", email);
-                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                    response.sendRedirect("login");
+//                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(LoginServlets.class.getName()).log(Level.SEVERE, null, ex);

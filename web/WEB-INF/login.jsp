@@ -30,96 +30,96 @@
 
     </head>
     <body>
-    <!-- Topbar Start -->
-    <div class ="container-fluid py-2 border-bottom d-none d-lg-block">
-        <div class ="container">
-            <div class ="row">
+        <!-- Topbar Start -->
+        <div class ="container-fluid py-2 border-bottom d-none d-lg-block">
+            <div class ="container">
+                <div class ="row">
 
-                <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
-                        <span class="text-body">|</span>
-                        <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>Sunny@example.com</a>       
-                        <span class="text-body">|</span>
-                        <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW, Calgary, AB</a>       
+                    <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
+                            <span class="text-body">|</span>
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>Sunny@example.com</a>       
+                            <span class="text-body">|</span>
+                            <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW, Calgary, AB</a>       
+                        </div>
                     </div>
-                </div>
 
 
 
 
-                <div class ="col-md-6 text-right text-lg-end">
-                    <div class ="d-inline-flex align-items-center">
-                        <c:if test="${loggedUser eq null}">
-                            <a class ="text-decoration-none text-body px-3" href ="/login">
-                                <i class ="bi bi-person-fill"></i>
-                                Login <span class="text-body"> </a> |  
-                            <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
+                    <div class ="col-md-6 text-right text-lg-end">
+                        <div class ="d-inline-flex align-items-center">
+                            <c:if test="${loggedUser eq null}">
+                                <a class ="text-decoration-none text-body px-3" href ="/login">
+                                    <i class ="bi bi-person-fill"></i>
+                                    Login <span class="text-body"> </a> |  
+                                <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
 
-                        </c:if>
-                        <c:if test="${loggedUser ne null}">
-                            <c:if test="${upcomingAppointments ne null}">
-                                You have ${upcomingAppointments.size()} upcoming appointments! <br>
                             </c:if>
-                            <a class ="text-decoration-none text-body px-3" href ="/profile">
-                                Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
-                            </a>
-                        </c:if>
-                        <a class ="text-body px-2" href ="">
-                            <i class ="fab fa-facebook-f"></i></a>
-                        <a class="text-body px-2" href="">
-                            <i class="fab fa-twitter"></i></a>
-                        <a class="text-body px-2" href="">
-                            <i class="fab fa-linkedin-in"></i></a>
-                        <a class="text-body px-2" href="">
-                            <i class="fab fa-instagram"></i></a>
+                            <c:if test="${loggedUser ne null}">
+                                <c:if test="${upcomingAppointments ne null}">
+                                    You have ${upcomingAppointments.size()} upcoming appointments! <br>
+                                </c:if>
+                                <a class ="text-decoration-none text-body px-3" href ="/profile">
+                                    Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
+                                </a>
+                            </c:if>
+                            <a class ="text-body px-2" href ="">
+                                <i class ="fab fa-facebook-f"></i></a>
+                            <a class="text-body px-2" href="">
+                                <i class="fab fa-twitter"></i></a>
+                            <a class="text-body px-2" href="">
+                                <i class="fab fa-linkedin-in"></i></a>
+                            <a class="text-body px-2" href="">
+                                <i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!--Navbar Start -->
-    <div class="container-fluid sticky-top bg-white shadow-sm">
-        <div class ="container">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
-                <a href ="/home" class ="navbar-brand">
-                    <h1 class="m-0 text-uppercase text-primary"><i class ="fa fa-clinic-medical me-2"></i>
+        <!--Navbar Start -->
+        <div class="container-fluid sticky-top bg-white shadow-sm">
+            <div class ="container">
+                <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+                    <a href ="/home" class ="navbar-brand">
+                        <h1 class="m-0 text-uppercase text-primary"><i class ="fa fa-clinic-medical me-2"></i>
 
-                        Tai Yang Clinic</h1>
-                </a>
-                <button class ="navbar-toggler" type ="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class ="collapse navbar-collapse" id ="navbarCollapse">
-                    <div class="navbar-nav text-right ms-auto py-0">
-                        <a href="/home" class="nav-item nav-link active">Home</a>
-                        <a href="" class="nav-item nav-link">About us</a>
-                        <div class ="nav-item dropdown">
-                            <a href ="#" class ="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="" class="dropdown-item">Accupuncture</a>
-                                <a href="" class="dropdown-item">Moxibustion</a>
-                                <a href="" class="dropdown-item">Massage/luiNa</a>
-                                <a href="" class="dropdown-item">Cupping</a>
-                                <a href="" class="dropdown-item">Herbal Medicine</a>
-                                <a href="" class="dropdown-item">Korean beauty</a>
+                            Tai Yang Clinic</h1>
+                    </a>
+                    <button class ="navbar-toggler" type ="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class ="collapse navbar-collapse" id ="navbarCollapse">
+                        <div class="navbar-nav text-right ms-auto py-0">
+                            <a href="/home" class="nav-item nav-link active">Home</a>
+                            <a href="" class="nav-item nav-link">About us</a>
+                            <div class ="nav-item dropdown">
+                                <a href ="#" class ="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="" class="dropdown-item">Accupuncture</a>
+                                    <a href="" class="dropdown-item">Moxibustion</a>
+                                    <a href="" class="dropdown-item">Massage/luiNa</a>
+                                    <a href="" class="dropdown-item">Cupping</a>
+                                    <a href="" class="dropdown-item">Herbal Medicine</a>
+                                    <a href="" class="dropdown-item">Korean beauty</a>
+                                </div>
                             </div>
+                            <a href="/book" class="nav-item nav-link">Book</a>
+                            <c:if test="${loggedUser eq null}">
+                                <a href="/login" class="nav-item nav-link">Login</a>
+                            </c:if>
+                            <c:if test="${loggedUser ne null}">
+                                <a href="/profile" class="nav-item nav-link">My Account</a> 
+                            </c:if>
+                            <a href="" class="nav-item nav-link">Contact</a>
                         </div>
-                        <a href="/book" class="nav-item nav-link">Book</a>
-                        <c:if test="${loggedUser eq null}">
-                            <a href="/login" class="nav-item nav-link">Login</a>
-                        </c:if>
-                        <c:if test="${loggedUser ne null}">
-                            <a href="/profile" class="nav-item nav-link">My Account</a> 
-                        </c:if>
-                        <a href="" class="nav-item nav-link">Contact</a>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
 
         <!--login form-->
         <section class="min-vh-100" style="background-color: #ececec;">
@@ -164,7 +164,7 @@
                                             <div class="form-check d-flex justify-content-end mb-4 ">
                                                 <label class="form-check-label"> <a href="/forgotpassword" > Forgot your password? </a></label>
                                             </div>
-
+                                            <p class="mb-3 pb-lg-2 text-center" style="color: #ff3333; font-size: larger;">${message}</p>
                                             <div class="pt-1 mb-4 text-center">
                                                 <!--<a href="main" class="btn btn-primary btn-lg btn-block" type="button" style="width:50%">Login</a>-->
                                                 <input type="hidden" name="action" value="login" />
@@ -178,7 +178,6 @@
                                             <p class="mb-5 pb-lg-2 text-center" style="color: #393f81;">Don't have an account? <a href="/register"
                                                                                                                                   style="color: #393f81;">Create new account</a></p>
                                         </form>
-                                        <p>${message}</p>
                                     </div>
                                 </div>
                             </div>

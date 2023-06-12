@@ -77,36 +77,45 @@ public class UserService {
 
     public String update(User updateUser) throws Exception {
         try {
-            //check user obj using updated user in db
-            User user = udb.getByEmail(updateUser.getEmailAddress());
+            int userid = udb.getByEmail(updateUser.getEmailAddress()).getUserid();
+            User existingUser = udb.get(userid); // Retrieve the existing user using the userid
+            if (existingUser == null) {
+                return "User does not exist!";
+            }
+
+            // Check if the password is valid
             String message = isValidPassword(updateUser.getPassword());
             if (!message.equals("success")) {
                 return message;
             }
-
 //            if (updateUser.getEmailAddress().equals(existingUser.getEmailAddress())) {               
 //                if(existingUser != null && !existingUser.getUserid().equals(updateUser.getUserid())){
 //                    return "Email Already Taken!";
 //                } 
 //                existingUser.setEmailAddress(updateUser.getEmailAddress());
 //            }
-            if (!updateUser.getPhoneNumber().equals(user.getPhoneNumber())) {
+
+            // Check if the phone number has changed and if it is already taken
+            if (!updateUser.getPhoneNumber().equals(existingUser.getPhoneNumber())) {
                 User userWithPhoneNumber = udb.getByPhone(updateUser.getPhoneNumber());
                 if (userWithPhoneNumber != null && !userWithPhoneNumber.getUserid().equals(updateUser.getUserid())) {
                     return "Phone number already taken!";
                 }
-                user.setPhoneNumber(updateUser.getPhoneNumber());
+                existingUser.setPhoneNumber(updateUser.getPhoneNumber());
+            }
+//            String salt = updateUser.getSalt();
+//            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
+//            user.setSalt(salt);
+//            user.setPassword(hashedPassword);
+            // Always update the password
+            existingUser.setPassword(updateUser.getPassword());
+
+            // Update the isValid status if needed
+            if (updateUser.getIsValid() != null) {
+                existingUser.setIsValid(1);
             }
 
-            String salt = updateUser.getSalt();
-//            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-            user.setSalt(salt);
-
-//            user.setPassword(hashedPassword);
-            user.setPassword(updateUser.getPassword()); // Always update the password
-            user.setIsValid(updateUser.getIsValid());
-            udb.update(user);
-
+            udb.update(existingUser);
             return "Update successful!";
         } catch (Exception ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);

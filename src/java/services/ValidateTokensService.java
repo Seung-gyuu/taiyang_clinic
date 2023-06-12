@@ -75,7 +75,7 @@ public class ValidateTokensService {
             return "Token Expired! Please send a new one!";
         }
         UserService us = new UserService();
-        vt.getUserid().setIsValid(1);
+//        vt.getUserid().setIsValid(1);
         us.update(vt.getUserid());
         return "User Validated!";
 
@@ -100,7 +100,7 @@ public class ValidateTokensService {
         tags.put("action_url", validationLink);
         try {
 //            SendValidationEmail.sendValidationEmail(recipientEmail, validationLink);
-            SendEmail.sendMail(user.getEmailAddress(), "Taiyang clinic- Account Validation Email", templatePath, tags);
+            SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
 
             System.out.println("Validation email sent successfully!");
             return "Email sent!";

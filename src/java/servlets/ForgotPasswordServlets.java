@@ -53,7 +53,7 @@ public class ForgotPasswordServlets extends HttpServlet {
                     getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
                 } else if (message.equals("success")) {
                     User user = us.getByEmail(email);
-                    session.setAttribute("loggedUser", user);
+//                    session.setAttribute("loggedUser", user);
 
                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
                     pws.sendToken(user, templatePath);

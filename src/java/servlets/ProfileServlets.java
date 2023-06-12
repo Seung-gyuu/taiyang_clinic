@@ -44,7 +44,7 @@ public class ProfileServlets extends HttpServlet {
             String email = request.getParameter("email"); 
                   
             String phone = request.getParameter("phone");
-            String password = request.getParameter("password");
+            String password = request.getParameter("password");           
             user.setEmailAddress(email);
             user.setFirstname(firstName);
             user.setLastname(lastName);
@@ -53,13 +53,15 @@ public class ProfileServlets extends HttpServlet {
             String message = "";
             try {
                 message = us.update(user);
+                
                 if (message.equals("Update successful!")) {                  
                     session.setAttribute("updatedInfo", true);
-                }
+                } 
+                request.setAttribute("message", message);
             } catch (Exception ex) {
                 Logger.getLogger(ProfileServlets.class.getName()).log(Level.SEVERE, null, ex);
             } 
-            request.setAttribute("message", message);
+           
             getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
         }
     }
