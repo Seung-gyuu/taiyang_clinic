@@ -36,7 +36,7 @@
                                     <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
 
                                     <c:if test="${resend ne null}">
-                                        <a href="/sendvalidation">Resend Token</a>
+                                        <a href="/sendvalidation" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>
                                     </c:if>
                                 </div>
                             </div>

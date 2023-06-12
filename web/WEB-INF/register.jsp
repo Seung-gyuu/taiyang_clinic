@@ -199,8 +199,8 @@
                                                     <input type="hidden" name="action" value="register" >
                                                     <input type="submit" name="submit" value="Register" class="btn btn-primary btn-lg btn-block gradient-custom-4" style="width: 50%; ">
                                                 </div>
-                                                ${message} <br>
-                                                ${validation} <br>
+                                                <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD; margin-top: 10px;">${message} <br></p>
+                                                <p class="mb-2 pb-lg-2 text-center" style="color: #ff3333;"> ${validation} <br></p>
 
                                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login"
                                                                                                                         class="fw-bold text-body"><u>Login here</u></a></p>
