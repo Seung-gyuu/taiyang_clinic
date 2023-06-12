@@ -26,7 +26,7 @@ public class LoginServlets extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
 
@@ -57,16 +57,18 @@ public class LoginServlets extends HttpServlet {
                     } else {
                         response.sendRedirect("admin");
                     }
-                } if(message.equals("User has not validated account. Please validate!")){
-                    request.setAttribute("message", message);
-                    getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
-                }
-                else{
+                    if (message.equals("User has not validated account. Please validate!")) {
+                        request.setAttribute("message", message);
+                        getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                    }
+
+                } else {
                     request.setAttribute("message", message);
                     request.setAttribute("email", email);
-                    response.sendRedirect("login");
-//                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+//                    response.sendRedirect("login");
+                    getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                 }
+
             } catch (Exception ex) {
                 Logger.getLogger(LoginServlets.class.getName()).log(Level.SEVERE, null, ex);
             }

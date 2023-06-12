@@ -160,24 +160,22 @@
                                                 <label class="form-label"><i class ="fa fa-lock"></i>Password</label>
                                             </div>
 
-
                                             <div class="form-check d-flex justify-content-end mb-4 ">
                                                 <label class="form-check-label"> <a href="/forgotpassword" > Forgot your password? </a></label>
                                             </div>
-                                            <p class="mb-3 pb-lg-2 text-center" style="color: #ff3333; font-size: larger;">${message}</p>
+                                                                                <p class="mb-3 pb-lg-2 text-center" style="color: #ff3333; font-size: larger;">${message}</p>
                                             <div class="pt-1 mb-4 text-center">
                                                 <!--<a href="main" class="btn btn-primary btn-lg btn-block" type="button" style="width:50%">Login</a>-->
                                                 <input type="hidden" name="action" value="login" />
                                                 <input type ="submit" name ="submit" id="signin" 
                                                        class="btn btn-primary btn-lg btn-block" style="width:50%" value ="Login" />  
                                             </div>
-
-
-
-
-                                            <p class="mb-5 pb-lg-2 text-center" style="color: #393f81;">Don't have an account? <a href="/register"
-                                                                                                                                  style="color: #393f81;">Create new account</a></p>
                                         </form>
+
+
+                                        <p class="mb-5 pb-lg-2 text-center" style="color: #393f81;">Don't have an account? <a href="/register"
+                                                                                                                              style="color: #393f81;">Create new account</a></p>
+
                                     </div>
                                 </div>
                             </div>
