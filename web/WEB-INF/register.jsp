@@ -156,7 +156,7 @@
                                                 </div>
 
                                                 <div class="form-outline mb-4">
-                                                    <input type="email" class="form-control form-control-lg" required="true"/>
+                                                    <input type="text" class="form-control form-control-lg" name="email"required="true"/>
                                                     <label class="form-label">Your Email</label>
                                                 </div>
 
@@ -174,8 +174,8 @@
                                                     <div class="col-md-6 mb-4 pb-2">
 
                                                         <div class="form-outline">
-                                                            <input type="text" id="phoneNumber" class="form-control form-control-lg" placeholder="000-000-0000" required="true" />
-                                                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="000-000-0000" required="true" />
+                                                            <label class="form-label" for="phone">Phone Number</label>
                                                         </div>
 
                                                     </div>
@@ -184,7 +184,7 @@
 
 
                                                 <div class="form-outline mb-4">
-                                                    <input type="password"  class="form-control form-control-lg" required="true" />
+                                                    <input type="password" name="password" class="form-control form-control-lg" required="true" />
                                                     <label class="form-label">Password</label>
                                                 </div>
 

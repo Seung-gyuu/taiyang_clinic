@@ -65,8 +65,12 @@ public class UserService {
 
         String salt = HashAndSalt.getSalt();
         String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-        user.setPassword(hashedPassword);
+//        user.setPassword(hashedPassword);
+
         user.setSalt(salt);
+        user.setIsValid(2);
+        user.setIsactive(1);
+        user.setPassword(user.getPassword());
         udb.insert(user);
         return "Account created!";
     }
@@ -95,10 +99,12 @@ public class UserService {
             }
 
             String salt = updateUser.getSalt();
-            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-            updateUser.setSalt(hashedPassword);
+//            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
+            user.setSalt(salt);
 
+//            user.setPassword(hashedPassword);
             user.setPassword(updateUser.getPassword()); // Always update the password
+            user.setIsValid(updateUser.getIsValid());
             udb.update(user);
 
             return "Update successful!";
@@ -123,15 +129,17 @@ public class UserService {
         String lastName = user.getLastname();
         String phone = user.getPhoneNumber();
         String password = user.getPassword();
-        if (email == null || email.isEmpty() || email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
+        if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
             return false;
         }
-//        if(phone == null || phone.length()==0 || phone.length()!=12)
+//        if (!phone.matches("^\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4}$") || phone.length() != 12) {
 //            return false;
-        if (firstName == null || firstName.isEmpty() || firstName.length() > 20) {
+//        }
+
+        if (firstName.length() > 20) {
             return false;
         }
-        if (lastName == null || lastName.isEmpty() || lastName.length() > 20) {
+        if (lastName.length() > 20) {
             return false;
         }
         if (!isValidPassword(password).equals("success")) {
@@ -141,7 +149,6 @@ public class UserService {
     }
 
     public String isValidPassword(String password) {
-        String message = "";
         if (password.length() > 15 || password.length() < 8) {
             return "Password must be less than 20 and more than 8 characters in length.";
 
@@ -161,12 +168,17 @@ public class UserService {
     public String login(String email, String password) throws Exception {
         // Retrieve the user by email
         User user = udb.getByEmail(email);
+        String salt = user.getSalt();
+        String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
         if (user == null) {
             return "Invalid!";
         }
         if (user.getIsactive() == 2) {
             return "This account has been deactivated";
         }
+//        if (!user.getPassword().equals(hashedPassword)) {
+//            return "Invalid!";
+//        }
         if (!user.getPassword().equals(password)) {
             return "Invalid!";
         }
@@ -198,7 +210,8 @@ public class UserService {
             user.setPassword(password);
             String salt = user.getSalt();
             String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-            user.setSalt(hashedPassword);
+//            user.setPassword(hashedPassword);
+            user.setSalt(salt);
 
             udb.update(user);
         } catch (Exception ex) {

@@ -40,6 +40,10 @@
         <servlet-name>HistoryServlets</servlet-name>
         <servlet-class>servlets.HistoryServlets</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Validate</servlet-name>
+        <servlet-class>servlets.Validate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestAddAccountServlet</servlet-name>
         <url-pattern>/test</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>HistoryServlets</servlet-name>
         <url-pattern>/history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Validate</servlet-name>
+        <url-pattern>/validate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

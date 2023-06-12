@@ -47,7 +47,7 @@
                         <h4 class="mb-5 text-black">Sorry, something went wrong!</h4>
                         <p class="w-sm-80 mx-auto mb-4 text-black">We can't find your token. You can go back to the homepage or send the token back to prove it.</p>
                         <div>
-                            <a href="main" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
+                            <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
                              <a href="" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>
                         </div>
                     </div>

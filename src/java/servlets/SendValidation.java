@@ -46,7 +46,9 @@ public class SendValidation extends HttpServlet {
                 User u = us.getByEmail(email);
                 if(u!=null){
                     ValidateTokensService vts = new ValidateTokensService();
-                    String message = vts.sendToken(u);
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    
+                    String message = vts.sendToken(u, templatePath);
                     request.setAttribute("message", message);
                     getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
                 }

@@ -17,6 +17,7 @@ insert into role values(2, 'system admin');
 
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password',2,1);
+INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('gyu', 'park', 'arnastasa7@gmail.com', '1549849848', 'password1', '1', '1', '1');
 
 insert into service values(1, 1,'Massage', 'Your head will be massaged');
 insert into service values(2, 1,'Head scratch', 'Head scratching by the best scratcher');

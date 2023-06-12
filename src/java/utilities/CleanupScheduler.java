@@ -16,7 +16,7 @@ public class CleanupScheduler implements ServletContextListener {
   
         timer = new Timer();
         // Run the task every hour (adjust the interval as needed)
-        long interval = 1 * 60 * 1000;
+        long interval = 24 * 60 * 1000;
         timer.schedule(new DeleteExpired(), 0, interval);
     }
 

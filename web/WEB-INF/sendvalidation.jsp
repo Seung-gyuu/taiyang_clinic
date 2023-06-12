@@ -44,11 +44,15 @@
                         <div class="col-md-9 col-lg-6 my-5">
                             <div class="text-center validate-page ">
                                 <h3 class="mb-3 text-secondary">Send Token</h3>
-                                <p class="w-sm-80 mx-auto mb-4 text-black">Please enter an email to receive the token.</p>
-                                <div class="form-outline mb-4 d-flex align-items-center">
-                                    <input type="email" class="form-control form-control-lg me-2"  placeholder="Enter your email" />
-                                    <a href="#" class="btn btn-secondary btn-lg">Send</a>
-                                </div>
+                                <form method="post" action="sendvalidation">
+                                    <p class="w-sm-80 mx-auto mb-4 text-black">Please enter an email to receive the token.</p>
+                                    <div class="form-outline mb-4 d-flex align-items-center">
+                                        <input type="text" name="email" class="form-control form-control-lg me-2"  placeholder="Enter your email" />
+                                        <input type="hidden" name="action" value="send verification">
+                                        <input type="submit" class="btn btn-secondary btn-lg" value="Send Validation">
+                                        
+                                    </div>
+                                </form>
                                 <p>${message}</p> 
                                 <div>
                                     <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>

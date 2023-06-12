@@ -63,8 +63,9 @@ public class RegisterServlet extends HttpServlet {
                 if(u.getIsValid()==2){
                     request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
                             + "Please allow some time for it to arrive or check your spam!");
+                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u);
+                    vts.sendToken(u,templatePath);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);

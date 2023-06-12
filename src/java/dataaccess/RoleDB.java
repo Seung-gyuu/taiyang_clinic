@@ -26,16 +26,17 @@ public class RoleDB {
 
     }
     
-    public Role get(Integer roleId) {
+    public Role get(int roleId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Role role = em.find(Role.class, roleId);
             return role;
-        } catch (Exception e) {
-            return null;
         } finally {
             em.close();
         }
+//        catch (Exception e) {
+//            return null;
+//        } 
     }
     
     
