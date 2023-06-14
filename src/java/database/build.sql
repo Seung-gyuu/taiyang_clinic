@@ -2,10 +2,14 @@ DROP SCHEMA IF EXISTS `clinicdb`;
 CREATE SCHEMA IF NOT EXISTS `clinicdb` DEFAULT CHARACTER SET latin1;
 USE `clinicdb`;
 
+ 
+
 CREATE TABLE IF NOT EXISTS `clinicdb`.`role` (
   `roleid` INT(11) NOT NULL,
   `role_name` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`roleid`));
+
+ 
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     `userid` INT not null AUTO_INCREMENT,
@@ -28,6 +32,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     CHECK (isactive IN (1, 2))
 );
 
+ 
+
 CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userid` INT NOT NULL,
@@ -37,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`passwordtokens` (
   CONSTRAINT `fk_passwordtokens_user`
     FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
 );
+
+ 
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`validatetokens` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -48,7 +56,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`validatetokens` (
     FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
 );
 
+ 
 
+ 
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`medicalform` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -60,6 +70,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`medicalform` (
     FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
 );
 
+ 
+
 CREATE TABLE IF NOT EXISTS `clinicdb`.`consentform` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userid` INT NOT NULL,
@@ -70,7 +82,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`consentform` (
     FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`)
 );
 
+ 
 
+ 
 
 CREATE TABLE  IF NOT EXISTS `clinicdb`.`day` (
     `fulldate` DATE NOT NULL,
@@ -84,6 +98,8 @@ CREATE TABLE  IF NOT EXISTS `clinicdb`.`day` (
     CHECK (`month_Name` IN ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'))
 );
 
+ 
+
 CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     `timeid` INT AUTO_INCREMENT,
     PRIMARY KEY (`timeid`),
@@ -95,8 +111,12 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     `end_time` TIME  NOT NULL,
     CHECK (`end_time` >= '10:00:00' AND `end_time` <= '17:00:00'),
     `isBooked` INT DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
-    CHECK (`isBooked` IN (1, 2))
+    CHECK (`isBooked` IN (1, 2)),
+    `isAvailable` INT DEFAULT 1,  --default is 1,  1 means it is available. 2 means it is  not available
+    CHECK (`isAvailable` IN (1, 2))
 );
+
+ 
 
 
 CREATE TABLE IF NOT EXISTS `clinicdb`.`service` (
@@ -107,6 +127,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`service` (
     `serviceName` VARCHAR(30) NOT NULL,
     `serviceDescription` VARCHAR(250) NOT NULL
 );
+
+ 
 
 CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     `appointmentid` INT AUTO_INCREMENT,
@@ -127,7 +149,11 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
         CONSTRAINT ck_appt_reminder_type CHECK (`typereminder` IN (1, 2, 3))
 );
 
+ 
+
 CREATE INDEX idx_appointment_typereminder ON `clinicdb`.`appointment` (`typereminder`);
+
+ 
 
 
 CREATE TABLE IF NOT EXISTS  `clinicdb`.`reminder` (
@@ -146,6 +172,8 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`reminder` (
     `sendTime` DATE NOT NULL --sendtime is 24 hours before the appointment.  Trigger below automatically adds a reminder
 );
 
+ 
+
 --sent reminders is the same table so that we can retain all the information, without it clogging the reminder table
 CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
     `sentreminderid` INT AUTO_INCREMENT,
@@ -163,6 +191,8 @@ CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
     `sentTime` DATE NOT NULL 
 );
 
+ 
+
 --after deleting from the reminder table, insert it into the sent reminders table!
 --this doesnt work because if they delete an appointment, it will delete a reminder and put it into sent reminders.  Instead
 --it needs to remove from reminder table and insert into sent reminder table on its own
@@ -177,7 +207,44 @@ CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
 -- END//
 -- DELIMITER ;
 
+ 
 
+ 
+
+DELIMITER //
+CREATE TRIGGER day_time_trigger
+AFTER INSERT ON `clinicdb`.`day`
+FOR EACH ROW
+BEGIN
+    IF new.dayname IN ('Monday','Tuesday','Wednesday','Thursday','Friday') THEN
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '09:00:00', '10:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '10:00:00', '11:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '11:00:00', '12:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '12:00:00', '13:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '13:00:00', '14:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '14:00:00', '15:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '15:00:00', '16:00:00');
+        INSERT INTO `clinicdb`.`availabletime`(fulldate, start_time, end_time)
+        VALUES (new.fulldate, '16:00:00', '17:00:00');
+    END IF;         
+
+ 
+
+END//
+DELIMITER ;
+
+ 
+
+ 
+
+ 
 
 
 -- TRIGGER TO AUTOMATICALLY ADD REMINDERS AFTER AN APPOINTMENT IS MADE
@@ -189,13 +256,15 @@ BEGIN
     -- Retrieve appointment time and date from the availabletime table
     SET @appointment_time = (SELECT start_time FROM `clinicdb`.`availabletime` WHERE timeid = NEW.timeid);
     SET @appointment_date = (SELECT fulldate FROM `clinicdb`.`availabletime` WHERE timeid = NEW.timeid);
-    
+
     -- Calculate sendTime as 1 day before the appointment start time
     SET @send_time = DATE_SUB(CONCAT(@appointment_date, ' ', @appointment_time), INTERVAL 1 DAY);
-    
+
     -- Insert into the reminder table
     INSERT INTO `clinicdb`.`reminder` (userid, appointmentid, typereminder, sendTime)
     VALUES (NEW.userid, NEW.appointmentid, NEW.typereminder, @send_time);
+
+ 
 
 -- Update the `isBooked` column in the `availabletime` table for the booked appointment time
     UPDATE `clinicdb`.`availabletime`
@@ -204,11 +273,17 @@ BEGIN
 END//
 DELIMITER ;
 
+ 
+
 DELIMITER //
+
+ 
 
 
 -- TRIGGER TO REMOVE REMINDER AND SET AVAILABLE TIME WHEN AN APPOINTMENT IS DELETED
 DELIMITER //
+
+ 
 
 CREATE TRIGGER appointment_delete_trigger
 BEFORE DELETE ON `clinicdb`.`appointment`
@@ -217,7 +292,7 @@ BEGIN
     -- Delete the corresponding reminder from the `reminder` table
     DELETE FROM `clinicdb`.`reminder`
     WHERE `appointmentid` = OLD.appointmentid;
-    
+
     -- Update the `isBooked` column in the `availabletime` table for the deleted appointment time
     UPDATE `clinicdb`.`availabletime`
     SET `isBooked` = 1

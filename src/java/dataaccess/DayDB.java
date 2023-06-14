@@ -1,23 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package dataaccess;
 
+ 
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 import java.util.List;
 import models.Day;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 /**
- *
- * @author Hussein
- */
+*
+* @author Hussein
+*/
 public class DayDB {
     //DAYS ARE GENERATED AUTOMATICALLY VIA SCRIPT AND JUST NEED INSERT (via mysql bench)!!!
-    
+
     //GETS THE DAYS FROM THE CURRENT DAY AND UP TO 4 MONTHS FROM NOW
     public List<Day> get4Months() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -25,9 +29,13 @@ public class DayDB {
         LocalDate currentDate = LocalDate.now();
         LocalDate endDate = currentDate.plusMonths(4);
 
+ 
+
         TypedQuery<Day> query = em.createNamedQuery("Day.find4Months", Day.class);
         query.setParameter("currentDate",  java.sql.Date.valueOf(currentDate));
         query.setParameter("endDate",  java.sql.Date.valueOf(endDate));
+
+ 
 
         List<Day> days = query.getResultList();
         return days;
@@ -42,10 +50,15 @@ public class DayDB {
     try {
         LocalDate currentDate = LocalDate.now();
         LocalDate endDate = currentDate.plusMonths(4);
+        LocalDate sunday = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+
+ 
 
         TypedQuery<Day> query = em.createNamedQuery("Day.findCurrentWeek4Months", Day.class);
-        query.setParameter("startDate", java.sql.Date.valueOf(currentDate));
+        query.setParameter("startDate", java.sql.Date.valueOf(sunday));
         query.setParameter("endDate", java.sql.Date.valueOf(endDate));
+
+ 
 
         List<Day> days = query.getResultList();
         return days;
@@ -60,9 +73,13 @@ public class DayDB {
         LocalDate currentDate = LocalDate.now();
         LocalDate startDate = currentDate.minusMonths(4);
 
+ 
+
         TypedQuery<Day> query = em.createNamedQuery("Day.findLast4Months", Day.class);
         query.setParameter("currentDate",  java.sql.Date.valueOf(currentDate));
         query.setParameter("startDate",  java.sql.Date.valueOf(startDate));
+
+ 
 
         List<Day> days = query.getResultList();
         return days;
@@ -77,9 +94,13 @@ public class DayDB {
         LocalDate currentDate = LocalDate.now();
         LocalDate startDate = currentDate.minusWeeks(weeks);
 
+ 
+
         TypedQuery<Day> query = em.createNamedQuery("Day.findPreviousByWeeks", Day.class);
         query.setParameter("currentDate",  java.sql.Date.valueOf(currentDate));
         query.setParameter("startDate",  java.sql.Date.valueOf(startDate));
+
+ 
 
         List<Day> days = query.getResultList();
         return days;
@@ -94,9 +115,13 @@ public class DayDB {
         LocalDate currentDate = LocalDate.now();
         LocalDate endDate = currentDate.plusWeeks(weeks);
 
+ 
+
         TypedQuery<Day> query = em.createNamedQuery("Day.findUpcomingByWeeks", Day.class);
         query.setParameter("currentDate",  java.sql.Date.valueOf(currentDate));
         query.setParameter("endDate",  java.sql.Date.valueOf(endDate));
+
+ 
 
         List<Day> days = query.getResultList();
         return days;
