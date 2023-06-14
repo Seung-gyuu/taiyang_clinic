@@ -25,8 +25,20 @@ public class LoginServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("loggedUser");
+        String logout = request.getParameter("logout");
+        if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        }
+        if (u == null) { // if a user is logged in they shouldnt be able to reach this page
+            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        } else {
+            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("/home");
+        }
+//        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
 
@@ -50,10 +62,10 @@ public class LoginServlets extends HttpServlet {
                     int role = u.getRoleid().getRoleid();
                     int status = rs.get(role).getRoleid();
                     session.setAttribute("loggedUser", u);
-                    //login as user -> home , login as admin -> test jsp to manage 
+                    //login as user -> home , login as admin -> admin jsp to manage 
                     if (status == 1) {
-//                        response.sendRedirect("/home");
-                        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+                        response.sendRedirect("/home");
+                        //  getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                     } else {
                         response.sendRedirect("admin");
                     }

@@ -1,17 +1,98 @@
 .account_container {
-  display: flex;
+    display: flex;
 }
 
 .account_side {
-  flex: 1;
-  padding: 20px;
+    flex: 1;
+    padding: 20px;
 }
 
 .account_main {
-  flex: 4;
-  padding: 20px 40px;
+    flex: 4;
+    padding: 20px 40px;
 }
 
-.profile h2 {
-    
+.profile_title h2 {
+    font-size: 18px;
+}
+
+.user_info {
+    margin: 40px auto; 
+    display: flex;
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+}
+
+[data-initials]:before {
+    background: #099bdd;
+    color: white;
+    opacity: 1; 
+    content: attr(data-initials); 
+    display: inline-block; 
+    font-weight: bold; 
+    border-radius: 50%; 
+    vertical-align: middle; 
+    margin-right: 0.5em; 
+    width: 200px; 
+    height: 200px; 
+    line-height: 200px; 
+    text-align: center; 
+    font-size: 68px;
+}
+
+.user_info_left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user_info_right{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+}
+
+.info_data {
+    /*display: flex;*/
+    /*align-items: center;*/
+    margin-bottom: 20px; 
+    /*justify-content: center;*/
+}
+
+.info_data_title {
+    /*margin-right: 10px;*/
+    font-size: 16px;
+    margin-bottom: 5px; 
+}
+
+.info_data_value {
+    font-size: 14px;
+}
+
+.info_data_edit {
+    display: flex;
+    align-items: center;
+}
+
+.info_data_edit button {
+    margin-left: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 3px 10px;
+
+}
+
+.info_data_edit button:hover {
+    background: #212529;
+    color: #fff;
+}
+
+.info_data_save input {
+    padding: 5px;
+    font-size: 14px;
 }

@@ -28,8 +28,14 @@ public class HomeServlets extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        User user = (User) session.getAttribute("loggedUser");
+       
+        User user = (User) session.getAttribute("loggedUser"); 
+        
+        String logout = request.getParameter("logout");
+         if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        } 
         if (user != null) {
             List<Appointment> upcomingAppointments;
             AppointmentService as = new AppointmentService();
@@ -42,13 +48,20 @@ public class HomeServlets extends HttpServlet {
 
         }
         getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-       
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        if (action.equals("logout")) {
+            //session.setAttribute("loggedUser", null);
+            session.invalidate();
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            //response.sendRedirect("home");
+        }
     }
 
 }

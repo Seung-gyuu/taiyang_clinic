@@ -59,8 +59,8 @@ public class UserService {
         if (us != null) {
             return "Phone Already Taken!";
         }
-        if (!validate(user)) {
-            return "Invalid user data!";
+        if (!validate(user).equals("Valid")) {
+            return validate(user);
         }
 
         String salt = HashAndSalt.getSalt();
@@ -132,29 +132,45 @@ public class UserService {
         return "User deleted successfully!";
     }
 
-    private boolean validate(User user) {
+    private String validate(User user) {
         String email = user.getEmailAddress();
         String firstName = user.getFirstname();
         String lastName = user.getLastname();
         String phone = user.getPhoneNumber();
         String password = user.getPassword();
+
         if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
-            return false;
+            return "Email is incorrect format";
         }
 //        if (!phone.matches("^\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4}$") || phone.length() != 12) {
 //            return false;
 //        }
 
         if (firstName.length() > 20) {
-            return false;
+            return "First Name is incorrect format";
         }
         if (lastName.length() > 20) {
-            return false;
+            return "Last Name is incorrect format";
         }
+        if (containsSpecialCharacters(firstName) || containsSpecialCharacters(lastName)) {
+            System.out.println("First Name contains special characters");
+            return "Only letters in first and last name!";
+        }
+        String message = isValidPassword(password);
         if (!isValidPassword(password).equals("success")) {
-            return false;
+            return message;
         }
-        return true;
+        return "Valid";
+    }
+
+    public static boolean containsSpecialCharacters(String name) {
+        // Regular expression to match special characters
+        String regex = "[^a-zA-Z]";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(name);
+
+        return matcher.find();
     }
 
     public String isValidPassword(String password) {

@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <c:import url="./components/header.jsp" />
+        <c:import url="./components/headers.jsp" />
     </head>
     <body>
         <!--Profile Start-->
@@ -36,10 +36,7 @@
                             Last name:<c:out value=" ${loggedUser.getLastname()}"/><input type="hidden" name="Lastname" value="${loggedUser.getLastname()}"><br>
                             Password: <input type="password" value="" name="password" required> <br> 
                             Phone: <input type="text" value="${loggedUser.getPhoneNumber()}" name="phone" placeholder="1234567890" required> <br> 
-                            <!--                            Activation: <select name="active">                                                                     
-                                                            <option default>Active</option> 
-                                                            <option>Inactive</option>                                              
-                                                        </select>-->
+
                             <br>
                             <input type="submit" value="Update">
                             <input type="hidden" name="action" value="update">

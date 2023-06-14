@@ -6,11 +6,13 @@
 package dataaccess;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Appointment;
+import models.Availabletime;
 
 /**
  *
@@ -112,6 +114,23 @@ public class AppointmentDB {
         em.close();
     }
     }
+    public List<Appointment> findByRange(Date start, Date end) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findInRange", Appointment.class);
+            query.setParameter("startdate", start);
+            query.setParameter("enddate", end);
+            List<Appointment> appts = query.getResultList();
+            return appts;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    
     
      public List<Appointment> getUpcomingRange(int weeks) throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -159,4 +178,3 @@ public class AppointmentDB {
 }
 
     
-

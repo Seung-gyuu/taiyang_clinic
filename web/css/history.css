@@ -1,32 +1,32 @@
 .account_container {
-  display: flex;
+    display: flex;
 }
 
 .account_side {
-  flex: 1;
-  padding: 20px;
+    flex: 1;
+    padding: 20px;
 }
 
 .account_main {
-  flex: 4;
-  padding: 20px 40px;
+    flex: 4;
+    padding: 20px 40px;
 }
 
-.history h2 {
-  /* margin-bottom: 20px; */
-  font-size: 18px;
+.history_title h2 {
+    /* margin-bottom: 20px; */
+    font-size: 18px;
 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 15px;
-   margin-top: 20px; 
-/*   border: 1px solid #212529;*/
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 20px; 
+    /*   border: 1px solid #212529;*/
 }
 
 thead {
-/*     border: 1px solid #212529;*/
+    /*     border: 1px solid #212529;*/
 }
 
 tbody {
@@ -36,13 +36,13 @@ tbody {
 }*/
 
 table thead tr th {
-   border: 1px solid lightgray;
-  padding: 10px;
+    border: 1px solid lightgray;
+    padding: 10px;
 }
 
 table tbody tr td{
-   border: 1px solid lightgray;
-   padding: 10px;
+    border: 1px solid lightgray;
+    padding: 10px;
 }
 
 .upcoming_head {
@@ -86,14 +86,51 @@ table tbody tr td{
 }
 
 .old_head {
-        background: #f5f5f5;
+    background: #f5f5f5;
     /*color:#fff;*/
 }
 
 .old_data {
-    
+
 }
 
 .last_cell {
     width: 200px;
+}
+
+.history_modal {
+    display: none; 
+    position: fixed;
+    z-index: 1021;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.history_modal-content {
+    width: 250px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.history_close:hover,
+.history_close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

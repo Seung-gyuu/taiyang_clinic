@@ -17,9 +17,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.*;
 import services.*;
 import utilities.*;
+
 /**
  *
  * @author Hussein
@@ -29,14 +31,26 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("loggedUser");
+        String logout = request.getParameter("logout");
+        if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        }
+        if (u == null) { // if no user logged in, they can go to this page
+            getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        } else { //if user logged in send them home
+            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("/home");
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        if(action.equals("register")){
+        if (action.equals("register")) {
             String firstname = request.getParameter("first name");
             String lastname = request.getParameter("last name");
             String email = request.getParameter("email");
@@ -48,30 +62,39 @@ public class RegisterServlet extends HttpServlet {
             u.setEmailAddress(email);
             u.setPhoneNumber(phone);
             u.setPassword(password);
-            RoleService rs=new RoleService();
+            RoleService rs = new RoleService();
             u.setRoleid(rs.get(1));
             UserService us = new UserService();
-            String message="";
+            String message = "";
             try {
-                 message= us.insert(u);
+                message = us.insert(u);
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("message", message);
+            if (!message.equals("Account created!")) {
+                request.setAttribute("firstname", firstname);
+                request.setAttribute("lastname", lastname);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("message", message);
+                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                return;
+            }
+
             try {
                 u = us.getByEmail(email);
-                if(u.getIsValid()==2){
+                if (u.getIsValid() == 2) {
                     request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
                             + "Please allow some time for it to arrive or check your spam!");
-                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u,templatePath);
+                    vts.sendToken(u, templatePath);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            
+
         }
     }
 

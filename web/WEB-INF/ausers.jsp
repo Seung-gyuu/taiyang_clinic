@@ -57,13 +57,13 @@
                 <h3 class="text-center mt-3 mb-4">Admin Menu</h3>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Users</a>
+                        <a class="nav-link text-dark" href="ausers">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Availability</a>
+                        <a class="nav-link text-dark" href="aavailability">Availability</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Add Consent or Medical Form</a>
+                        <a class="nav-link text-dark" href="adminform">Add Consent or Medical Form</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">View Forms</a>
@@ -105,12 +105,24 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
-                                <th>Password</th>
                                 <th>Phone Number</th>
                                 <th>#Edit</th>
-                                <th></th>
+                                <th>isActive</th>
                             </tr>
                         </thead>
+                        <c:forEach items="${users}" var="user">
+                            <tr>
+                                <td><c:out value="${user.firstName}"/></td>
+                                <td><c:out value="${user.lastName}"/></td>
+                                <td><c:out value="${user.email}"/></td>
+                                <td><c:out value="${user.phone}"/></td>
+                                <td><input type="hidden" name="action" value="edit">
+                                    <a href="users?action=edit&amp;email=${user.email}">Edit</a></td>
+                                <td><input type="hidden" name="action" value="delete">
+                                    <a href="users?action=delete&amp;email=${user.email}">Delete</a></td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div>
             </div>

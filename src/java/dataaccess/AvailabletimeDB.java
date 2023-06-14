@@ -6,6 +6,7 @@
 package dataaccess;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -27,7 +28,37 @@ public class AvailabletimeDB {
     }
     }
     
-
+    public List<Availabletime> findByDate(Date d) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Availabletime> query = em.createNamedQuery("Availabletime.findByDate", Availabletime.class);
+            query.setParameter("date", d);
+            List<Availabletime> times = query.getResultList();
+            return times;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    public List<Availabletime> findByRange(Date start, Date end) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Availabletime> query = em.createNamedQuery("Availabletime.findInRange", Availabletime.class);
+            query.setParameter("startdate", start);
+            query.setParameter("enddate", end);
+            List<Availabletime> times = query.getResultList();
+            return times;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    
+    
     public List<Availabletime> findAllPassedBooked() throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
     try {

@@ -48,6 +48,9 @@ public class AppointmentService {
     public List<Appointment> getUpcomingRange(int weeks) throws Exception{
         return adb.getUpcomingRange(weeks);
     }
+    public List<Appointment> findByRange(Date start, Date end) throws Exception{
+        return adb.findByRange(start, end);
+    }
     public String insert(Appointment appt) throws Exception{
         adb.insert(appt);
         return "Appointment Created!";

@@ -58,13 +58,13 @@
                 <h3 class="text-center mt-3 mb-4">Admin Menu</h3>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Users</a>
+                        <a class="nav-link text-dark" href="ausers">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Availability</a>
+                        <a class="nav-link text-dark" href="aavailability">Availability</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="#">Add Consent or Medical Form</a>
+                        <a class="nav-link text-dark" href="adminform">Add Consent or Medical Form</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">View Forms</a>
@@ -213,6 +213,7 @@
                     </div>
                 </div>
             </div>
+            
 
 
             <!-- Footer Start -->

@@ -402,3 +402,6 @@ insert into service values(4, 2, 'sauna', 'Sauna ');
         insert into availabletime(fulldate,start_time,end_time) values(DATE '2023-05-28', '09:00:00','10:00:00');
         insert into availabletime(fulldate,start_time,end_time) values(DATE '2023-05-28', '10:00:00','11:00:00');
         insert into appointment(userid,timeid,serviceid,description,isupcoming,typereminder) values (1,1,1,'My Tummy Hurting',1,1);
+
+
+-- we can add a timer class that runs every 24hrs and automatically adds a day!!

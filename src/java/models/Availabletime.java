@@ -47,11 +47,13 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Availabletime.findAllUpcomingUnbookedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate > CURRENT_DATE AND a.fulldate.fulldate <= :endDate AND a.isBooked = 1")    
     , @NamedQuery(name = "Availabletime.findAllUpcomingBooked", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate > CURRENT_DATE AND a.isBooked = 2")
     , @NamedQuery(name = "Availabletime.findAllPassedBookedInRange",query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.fulldate.fulldate >= :startDate AND a.isBooked = 2")
-    , @NamedQuery(name = "Availabletime.findAllUpcomingBookedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate > CURRENT_DATE AND a.fulldate.fulldate <= :endDate AND a.isBooked = 2")    
+    , @NamedQuery(name = "Availabletime.findAllUpcomingBookedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate > CURRENT_DATE AND a.fulldate.fulldate <= :endDate AND a.isBooked = 2")
+    , @NamedQuery(name = "Availabletime.findByDate", query = "SELECT a FROM Availabletime a where a.fulldate.fulldate = :date")    
     , @NamedQuery(name = "Availabletime.findAll", query = "SELECT a FROM Availabletime a")
     , @NamedQuery(name = "Availabletime.findByTimeid", query = "SELECT a FROM Availabletime a WHERE a.timeid = :timeid")
     , @NamedQuery(name = "Availabletime.findByStartTime", query = "SELECT a FROM Availabletime a WHERE a.startTime = :startTime")
     , @NamedQuery(name = "Availabletime.findByEndTime", query = "SELECT a FROM Availabletime a WHERE a.endTime = :endTime")
+    , @NamedQuery(name = "Availabletime.findInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate >=:startdate AND a.fulldate.fulldate<=:enddate")    
     , @NamedQuery(name = "Availabletime.findByIsBooked", query = "SELECT a FROM Availabletime a WHERE a.isBooked = :isBooked")})
 public class Availabletime implements Serializable {
 

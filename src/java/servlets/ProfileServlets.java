@@ -27,7 +27,18 @@ public class ProfileServlets extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedUser");
-        getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+                String logout = request.getParameter("logout");
+         if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        } 
+//              if (user == null) { // if a user is not logged in they shouldnt be able to reach this page
+//            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+//        }
+//        else{
+            getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+
+//        }
     }
 
     @Override

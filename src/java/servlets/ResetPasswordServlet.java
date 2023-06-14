@@ -31,6 +31,11 @@ public class ResetPasswordServlet extends HttpServlet {
         String token = request.getParameter("token");
         PasswordTokensService ps = new PasswordTokensService();
         HttpSession session = request.getSession();
+        String logout = request.getParameter("logout");
+        if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        }
 
         try {
             User user = ps.getByToken(token).getUserid();
@@ -70,14 +75,14 @@ public class ResetPasswordServlet extends HttpServlet {
                         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     } else {
                         request.setAttribute("message", "passwords do not match");
-                       getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-                   
+                        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+
                     }
-                }else{
-                       request.setAttribute("message", message);
-                       getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-                   
-                }            
+                } else {
+                    request.setAttribute("message", message);
+                    getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);

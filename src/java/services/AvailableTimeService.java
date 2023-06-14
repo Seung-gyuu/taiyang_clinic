@@ -46,6 +46,15 @@ public class AvailableTimeService {
     public Availabletime findByTimeId(int timeId) throws Exception {
         return avdb.findByTimeId(timeId);
     }
+    public List<Availabletime> findByDate(Date d) throws Exception{
+        return avdb.findByDate(d);
+    }
+    public List<Availabletime> findByRange(Date start, Date end) throws Exception{
+        return avdb.findByRange(start, end);
+    }
+
+    
+    
     //definitely needs a test!!!!
     public String insert(Availabletime avt) throws Exception {
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");

@@ -29,10 +29,16 @@ public class SendValidation extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedUser");
+                String logout = request.getParameter("logout");
+         if (logout != null) {
+            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        } 
         if(user==null)
             getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
         else
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("/home");
+//            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
     }
 
     @Override

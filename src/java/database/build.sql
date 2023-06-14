@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     CONSTRAINT `fk_appointment_service` 
         FOREIGN KEY (`serviceid`) REFERENCES `clinicdb`.`service` (`serviceid`),
     `description` VARCHAR(250),
-    `isupcoming` INT DEFAULT 1, --isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
+    `isupcoming` INT DEFAULT 1 not null, --isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
     CONSTRAINT `ck_appt_upcoming` CHECK (`isupcoming` IN (1, 2)),
     `typereminder` INT NOT NULL,
         CONSTRAINT ck_appt_reminder_type CHECK (`typereminder` IN (1, 2, 3))
