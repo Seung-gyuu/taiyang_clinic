@@ -46,7 +46,8 @@ public class ResetPasswordServlet extends HttpServlet {
                 session.setAttribute("user", user);
             } else {
                 // Token is invalid or expired, display an error message
-                request.setAttribute("message", "The reset link is invalid or expired.");
+//                request.setAttribute("message", "The reset link is invalid or expired.");
+                 getServletContext().getRequestDispatcher("/WEB-INF/noTokens.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);

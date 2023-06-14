@@ -138,27 +138,27 @@ public class UserService {
         String lastName = user.getLastname();
         String phone = user.getPhoneNumber();
         String password = user.getPassword();
-
-        if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
-            return "Email is incorrect format";
-        }
-//        if (!phone.matches("^\\d{3}[-\\s]?\\d{3}[-\\s]?\\d{4}$") || phone.length() != 12) {
-//            return false;
-//        }
-
+        String message =" ";
         if (firstName.length() > 20) {
-            return "First Name is incorrect format";
+             message += "First Name is incorrect format  <br>";
         }
         if (lastName.length() > 20) {
-            return "Last Name is incorrect format";
+             message +="Last Name is incorrect format";
         }
         if (containsSpecialCharacters(firstName) || containsSpecialCharacters(lastName)) {
             System.out.println("First Name contains special characters");
-            return "Only letters in first and last name!";
+             message +="Only letters in first and last name!  <br>";
         }
-        String message = isValidPassword(password);
+        if ( phone.length() > 12) {
+             message +="Phone number is incorrect format <br>";
+        }
+        if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
+             message += "Email is incorrect format  <br>";
+        }        
+
+        String msg = isValidPassword(password);
         if (!isValidPassword(password).equals("success")) {
-            return message;
+            return message += msg + " <br>";
         }
         return "Valid";
     }

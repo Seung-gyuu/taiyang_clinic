@@ -97,7 +97,7 @@
 
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light  py-5" style="position:absolute;" >
+<!--        <div class="container-fluid bg-dark text-light  py-5" style="position:absolute;" >
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 
         <script src="js/bootstrap.bundle.min.js"></script>
@@ -163,6 +163,9 @@
             <% }%>
             });
         </script>
+        <footer>
+            <jsp:include page="./components/footer.jsp" />
+        </footer>
 
     </body>
 </html>

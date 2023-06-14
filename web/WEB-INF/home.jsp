@@ -49,7 +49,7 @@
             <div class="row gx-5">
                 <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute w-100 h-100 rounded" src="img/" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100 rounded" src="src/img/aboutus1.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-7">
@@ -265,7 +265,7 @@
     <!-- Testimonial End -->
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 py-5">
+<!--    <div class="container-fluid bg-dark text-light mt-5 py-5">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
@@ -279,7 +279,7 @@
                     <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="AboutUs"><i class="fa fa-angle-right me-2"></i>About Us</a>
                         <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
                         <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
                         <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
@@ -317,7 +317,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 

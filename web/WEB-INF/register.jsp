@@ -26,7 +26,8 @@
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/registration.css">
-          <c:import url="./components/headers.jsp" />
+        <c:import url="./components/headers.jsp" />
+        <script src="js/registerJS.js"></script>
 
     </head>
     <body>
@@ -51,24 +52,30 @@
 
                                                         <div class="form-outline">
 
-                                                            <input type="text" id="first name" class="form-control form-control-lg" name="first name" required="true" />
-                                                            <label class="form-label" for="first name">First Name</label>
+                                                            <input  type="text" id="first-name" class="form-control form-control-lg" name="first name" required="true" value="${firstname}" onchange="validateFirstName()" />
+                                                            <label class="form-label" for="first-name">First Name</label>
+                                                            <br>
+                                                            <span id="first-name-span"></span>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-md-6 mb-4">
 
                                                         <div class="form-outline">
-                                                            <input type="text" id="last name" class="form-control form-control-lg" name="last name" required="true"/>
-                                                            <label class="form-label" for="last name">Last Name</label>
+                                                            <input type="text" id="last-name" class="form-control form-control-lg" name="last name" required="true" value="${lastname}" onchange="validateLastName()"/>
+                                                            <label class="form-label" for="last-name">Last Name</label>
+                                                            <br>
+                                                            <span id="last-name-span"></span>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div class="form-outline mb-4">
-                                                    <input type="text" class="form-control form-control-lg" name="email"required="true"/>
+                                                    <input id="email" type="text" class="form-control form-control-lg" name="email"required="true" value="${email}" onchange="validateEmail()"/>
                                                     <label class="form-label">Your Email</label>
+                                                    <br>
+                                                    <span id="email-span"></span>
                                                 </div>
 
                                                 <div class="row">
@@ -85,8 +92,10 @@
                                                     <div class="col-md-6 mb-4 pb-2">
 
                                                         <div class="form-outline">
-                                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="000-000-0000" required="true" />
+                                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="4031235678" required="true" value="${phone}" onchange="validatePhone()"/>
                                                             <label class="form-label" for="phone">Phone Number</label>
+                                                            <br>
+                                                            <span id="phone-span"></span>
                                                         </div>
 
                                                     </div>
@@ -95,8 +104,10 @@
 
 
                                                 <div class="form-outline mb-4">
-                                                    <input type="password" name="password" class="form-control form-control-lg" required="true" />
+                                                    <input type="password" id="password" name="password" class="form-control form-control-lg" required="true" onchange="validatePassword()" />
                                                     <label class="form-label">Password</label>
+                                                    <br>
+                                                    <span id="password-span"></span>
                                                 </div>
 
                                                 <!--                                                <div class="form-outline mb-4">
@@ -185,6 +196,8 @@
                     </div>
                 </div>
                 <script src="js/bootstrap.bundle.min.js"></script>
-
+                <footer>
+                    <jsp:include page="./components/footer.jsp" />
+                </footer>
                 </body>
                 </html>
