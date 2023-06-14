@@ -52,13 +52,11 @@ public class DayDB {
         LocalDate endDate = currentDate.plusMonths(4);
         LocalDate sunday = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
 
- 
 
         TypedQuery<Day> query = em.createNamedQuery("Day.findCurrentWeek4Months", Day.class);
         query.setParameter("startDate", java.sql.Date.valueOf(sunday));
         query.setParameter("endDate", java.sql.Date.valueOf(endDate));
 
- 
 
         List<Day> days = query.getResultList();
         return days;

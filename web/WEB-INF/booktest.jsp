@@ -36,7 +36,7 @@
 <br>
 <ul class="availableDayList">
 <c:forEach items="${day.getAvailabletimeList()}" var="time">
-<li> ${time.getStartTime()} ${time.getEndTime()}</li>
+<li> ${time.getTruncatedStartTime()} ${time.getTruncatedEndTime()}</li>
 </c:forEach>
 </ul>
 </div>

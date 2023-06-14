@@ -437,7 +437,7 @@
       <![endif]-->
     </head>
     <body>
-        <span class="preheader">Use this link to reset your password. The link is only valid for 1 hours.</span>
+        <span class="preheader">Use this link to verify your email. The link is only valid for 1 hours.</span>
         <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
                 <td align="center">
@@ -458,7 +458,7 @@
                                         <td class="content-cell">
                                             <div class="f-fallback">
                                                 <h1>Hi {{name}},</h1>
-                                                <p>You recently requested to verify your email for your Taiyang Clinic account. Use the button below to reset it. <strong>This verification email is only valid for the next 1 hour.</strong></p>
+                                                <p>Thank you for registering an account with Taiyang clinic. Use the button below to verify email. <strong>This verification email is only valid for the next 1 hour.</strong></p>
                                                 <!-- Action -->
                                                 <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                                                     <tr>

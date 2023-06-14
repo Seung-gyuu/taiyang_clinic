@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -139,6 +140,16 @@ public class Availabletime implements Serializable {
 
     public void setAppointmentList(List<Appointment> appointmentList) {
         this.appointmentList = appointmentList;
+    }
+    
+       public String getTruncatedStartTime() {
+        SimpleDateFormat outputFormat = new SimpleDateFormat("h:mm a");
+        return outputFormat.format(startTime);
+    }
+
+    public String getTruncatedEndTime() {
+        SimpleDateFormat outputFormat = new SimpleDateFormat("h:mm a");
+        return outputFormat.format(endTime);
     }
 
     @Override
