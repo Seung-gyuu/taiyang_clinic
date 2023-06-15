@@ -50,7 +50,6 @@ public class ProfileServlets extends HttpServlet {
         UserService us = new UserService();
         String action = request.getParameter("action");
         if (action.equals("update")) {
-            int original = loggedUser.getUserid();
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
             String password = request.getParameter("password");
