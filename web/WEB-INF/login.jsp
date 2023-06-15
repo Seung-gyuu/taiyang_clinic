@@ -61,7 +61,7 @@
                                                                                     </div>-->
 
                                             <div class="form-outline mb-4">
-                                                <input type="email" name ="email" class="form-control form-control-lg" style="width:90%;"  />
+                                                <input type="email" name ="email" value="${email}" class="form-control form-control-lg" style="width:90%;"  />
                                                 <label class="form-label" ><i class ="fa fa-envelope"></i>Email</label>
                                             </div>
 

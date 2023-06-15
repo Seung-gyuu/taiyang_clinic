@@ -11,7 +11,7 @@
         <title>Tai Yang Clinic</title>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/admin.css">
 
         <!--google fonts -->
 
@@ -37,8 +37,8 @@
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
-                        <a href="#" class="dashboard"><i class="material-icons">dashboard</i>
-                            <span>Dashboard</span></a>
+                        <a href="admin" class="dashboard"><i class="material-icons">dashboard</i>
+                            <span>Todays</span></a>
                     </li>
 
 
@@ -55,19 +55,19 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="adminForm" data-toggle="collapse" aria-expanded="false" 
+                        <a href="aform" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">border_color</i><span>Add Form</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="" data-toggle="collapse" aria-expanded="false" 
+                        <a href="vform" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">extension</i><span>View Form</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="" data-toggle="collapse" aria-expanded="false" 
+                        <a href="viewappointment" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">apps</i><span>View Appointments</span></a>
                     </li>
@@ -111,20 +111,8 @@
 
                 <!--------main-content------------->
                 <div class="my-4"></div>
-                <div class="col-md-5 col-lg-3 mx-auto order-3 order-md-2">
-                    <div class="xp-searchbar">
-                        <form>
-                            <div class="input-group">
-                                <input type="search" class="form-control" 
-                                       placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn" type="submit" 
-                                            id="button-addon2">GO</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
+
 
                 <div class="main-content">
                     <div class="row">
@@ -134,85 +122,95 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-                                            <h2 class="ml-lg-2">Manage Users</h2>
-                                        </div>
-                                        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
-                                            <a href="" class="btn btn-success" >
-                                                <i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                                            <a href="" class="btn btn-danger" >
-                                                <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                                            <h2 class="ml-lg-2">Upcoming Booking</h2>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-hover">
+                                <h4 class="text-center mb-2" style="font-size: 1.2em;">June 14, 2023</h4>
+
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <span class="custom-checkbox">
-                                                    <input type="checkbox" id="selectAll">
-                                                    <label for="selectAll"></label>
-                                                </span>
-                                            </th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Actions</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Name</th>
+                                            <th>Service</th>
+                                            <th>Describe</th>
+                                            <th>Form</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>9:00 AM</td>
+                                            <td>10:00 AM</td>
+                                            <td>Euna Kim</td>
+                                            <td>herbal Medicine</td>
+                                            <td>Regular Checkup</td>
                                             <td>
-                                                <span class="custom-checkbox">
-                                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                    <label for="checkbox1"></label>
-                                                </span>
-                                            </td>
-                                            <td>Euna</td>
-                                            <td>Kim</td>
-                                            <td>rladmsdk2068@gmail.com</td>
-                                            <td>1234567890</td>
-                                            <td>
-                                                <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
                                             </td>
                                         </tr>
-
+                                        <tr>
+                                            <td>10:00 AM</td>
+                                            <td>11:00 AM</td>
+                                            <td>John Doe</td>
+                                            <td>Accupuncture</td>
+                                            <td>Regular Checkup</td>
+                                            <td>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:00 AM</td>
+                                            <td>12:00 PM</td>
+                                            <td>Jane Smith</td>
+                                            <td>Message/luiNa</td>
+                                            <td>Skin Allergy</td>
+                                            <td>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
+                                                <a href="" class="" data-toggle="modal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
+                                            </td>
+                                        </tr> 
                                     </tbody>
                                 </table>
-                                <div class="clearfix">
-                                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
-
-
-
-                        <!--start footer-->
-                        <div class="my-5"></div>
-                        <footer class="footer">
-                            <div class="container-fluid">
-                                <div class="footer-in">
-                                    <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
-                                </div>
-                            </div>
-                        </footer>
                     </div>
+
+
+
+
+
+
+
+
+
+                    <!--start footer-->
+                    <div class="my-5"></div>
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="footer-in">
+                                <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
+            </div>
 
 
 
-                <script src="js/bootstrap.min.js"></script>
-                </body>
-                </html>
+
+
+
+
+            <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

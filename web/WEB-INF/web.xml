@@ -56,6 +56,18 @@
         <servlet-name>AboutUs</servlet-name>
         <servlet-class>servlets.AboutUs</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Aform</servlet-name>
+        <servlet-class>servlets.Aform</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Vform</servlet-name>
+        <servlet-class>servlets.Vform</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAppointment</servlet-name>
+        <servlet-class>servlets.ViewAppointment</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlets</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>AboutUs</servlet-name>
         <url-pattern>/aboutus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Aform</servlet-name>
+        <url-pattern>/aform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Vform</servlet-name>
+        <url-pattern>/vform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAppointment</servlet-name>
+        <url-pattern>/viewappointment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

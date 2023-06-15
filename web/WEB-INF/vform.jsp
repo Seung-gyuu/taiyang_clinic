@@ -136,20 +136,13 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-                                            <h2 class="ml-lg-2">Add Forms</h2>
-                                        </div>
-                                        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
-                                            <a href="" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#consentFormModal" >
-                                                <i class="material-icons">&#xE147;</i> <span>Add Consent Form</span></a>
-                                            <a href="" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#medicalFormModal" >
-                                                <i class="material-icons">&#xE147;</i> <span>Add Medical Form</span></a>
+                                            <h2 class="ml-lg-2">View Forms</h2>
                                         </div>
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
@@ -159,7 +152,6 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-
                                             <td>Euna</td>
                                             <td>Kim</td>
                                             <td>rladmsdk2068@gmail.com</td>
@@ -189,48 +181,6 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="consentFormModal" tabindex="-1" aria-labelledby="consentFormModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="consentFormModalLabel">Add Consent Form</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="description">Consent Form:</label>
-                                        <input type="text" id="description" class="form-control" placeholder="Please upload the file here">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="uploadForm()">Upload</button>
-                                        <button type="button" class="btn btn-success" onclick="saveForm()">Save</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="medicalFormModal" tabindex="-1" aria-labelledby="medicalFormModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="medicalFormModalLabel">Add Medical Form</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="description">Medical Form:</label>
-                                        <input type="text" id="description" class="form-control" placeholder="Please upload the file here">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="uploadForm()">Upload</button>
-                                        <button type="button" class="btn btn-success" onclick="saveForm()">Save</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
                         <!--start footer-->
                         <div class="my-5"></div>
                         <footer class="footer">
@@ -244,39 +194,8 @@
                 </div>
             </div>
 
-            <script>
-                function uploadForm() {
-                    // Handle form upload logic here
-                    alert("Form uploaded successfully!");
-                    $('#consentFormModal').modal('hide'); // Close the modal
-                }
-
-                function saveForm() {
-                    // Handle form save logic here
-                    alert("Form saved successfully!");
-                    $('#consentFormModal').modal('hide'); // Close the modal
-                }
-            </script>
-
 
             <script src="js/bootstrap.bundle.min.js"></script>
 
     </body>
 </html>
-
-<!--                    <div id="formsSection" style="display: none;">
-                        <div id="consentFormSection">
-                            <h3>Consent Form:</h3>
-                            <textarea class="form-control" id="consentFormTextarea" rows="5" readonly></textarea>
-                        </div>
-
-                        <div id="medicalFormSection">
-                            <h3>Medical Form:</h3>
-                            <textarea class="form-control" id="medicalFormTextarea" rows="5" readonly></textarea>
-                        </div>
-
-                        <div class="mt-3 d-flex justify-content-between">
-                            <button class="btn btn-primary" id="uploadButton">Upload</button>
-                            <button class="btn btn-success" id="saveButton">Save</button>
-                        </div>
-                    </div>-->
