@@ -54,7 +54,7 @@ public class LoginServlets extends HttpServlet {
             //can do authentication
             UserService us = new UserService();
             RoleService rs = new RoleService();
-
+            request.setAttribute("email", email);
             try {
                 String message = us.login(email, password);
                 if (message.equals("Login")) {
@@ -67,15 +67,14 @@ public class LoginServlets extends HttpServlet {
                         response.sendRedirect("/home");
                         //  getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                     } else {
-                        response.sendRedirect("admin");
+                        response.sendRedirect("/admin");
                     }
                 } else {
                     if (message.equals("User has not validated account. Please validate!")) {
                         request.setAttribute("message", message);
                         getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
                     }else{
-                        request.setAttribute("message", message);
-                        request.setAttribute("email", email);
+                        request.setAttribute("message", message);                   
                        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     }
                  }

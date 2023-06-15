@@ -138,29 +138,29 @@ public class UserService {
         String lastName = user.getLastname();
         String phone = user.getPhoneNumber();
         String password = user.getPassword();
-        String message =" ";
-        if (firstName.length() > 20) {
-             message += "First Name is incorrect format  <br>";
+        String message = "Valid";
+        if (firstName.length() > 15) {
+            message += "First Name is incorrect format  <br>";
         }
-        if (lastName.length() > 20) {
-             message +="Last Name is incorrect format";
+        if (lastName.length() > 15) {
+            message += "Last Name is incorrect format <br>";
         }
         if (containsSpecialCharacters(firstName) || containsSpecialCharacters(lastName)) {
             System.out.println("First Name contains special characters");
-             message +="Only letters in first and last name!  <br>";
+            message += "Only letters in first and last name!  <br>";
         }
-        if ( phone.length() > 12) {
-             message +="Phone number is incorrect format <br>";
+        if (phone.length() > 10) {
+            message += "Phone number is incorrect format <br>";
         }
         if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
-             message += "Email is incorrect format  <br>";
-        }        
+            message += "Email is incorrect format  <br>";
+        }
 
         String msg = isValidPassword(password);
         if (!isValidPassword(password).equals("success")) {
             return message += msg + " <br>";
         }
-        return "Valid";
+        return message;
     }
 
     public static boolean containsSpecialCharacters(String name) {
@@ -193,25 +193,26 @@ public class UserService {
     public String login(String email, String password) throws Exception {
         // Retrieve the user by email
         User user = udb.getByEmail(email);
-        String salt = user.getSalt();
-        String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-        if (user == null) {
-            return "Invalid!";
-        }
-        if (user.getIsactive() == 2) {
-            return "This account has been deactivated";
-        }
+//        String salt = user.getSalt();
+//        String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
+        if (user != null) {
+            if (user.getIsactive() == 2) {
+                return "This account has been deactivated";
+            }
 //        if (!user.getPassword().equals(hashedPassword)) {
 //            return "Invalid!";
 //        }
-        if (!user.getPassword().equals(password)) {
-            return "Invalid!";
+            if (!user.getPassword().equals(password)) {
+                return "Your email or password was entered incorrectly!";
+            }
+            if (user.getIsValid() == 2) {
+                return "User has not validated account. Please validate!";
+            } 
+            return "Login";
+           
         }
-        if (user.getIsValid() == 2) {
-            return "User has not validated account. Please validate!";
-        }
-
-        return "Login";
+        return "Your email or password was entered incorrectly!";
+       
     }
 
 //for validate email

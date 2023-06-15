@@ -43,11 +43,11 @@
             <div class="row align-items-center justify-content-center min-vh-100">
                 <div class="col-md-9 col-lg-6 my-5">
                     <div class="text-center validate-page">
-                        <h3 class="mb-3 text-secondary">The reset link is invalid or expired...</h3>
-                        <h4 class="mb-5 text-black">Sorry, something went wrong!</h4>
-                        <!--<p class="w-sm-80 mx-auto mb-4 text-black">The reset link is invalid or expired...</p>-->
+                        <h3 class="mb-3 text-secondary">Sorry, something went wrong!</h3>
+                        <!--<h4 class="mb-5 text-black">Sorry, something went wrong!</h4>-->
+                        <p class="w-sm-80 mx-auto mb-4 text-black">${message}</p>
                         <div>
-                            <!--<a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>-->
+                            <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
                              <!--<a href="" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>-->
                         </div>
                     </div>

@@ -114,20 +114,32 @@ public class PasswordTokensService {
 //    }
     public String isTokenValid(String token) {
         PasswordTokensDB pwdDB = new PasswordTokensDB();
-        Date now = new Date();
+//        Date now = new Date();
+
         try {
             Passwordtokens resetToken = pwdDB.getByToken(token);
             if (resetToken != null) {
-                Date expiryDate = resetToken.getExpiryDateTime();
-                if (expiryDate.after(now)) {
-                    //token is valid
-                    return "reset";
+                if (resetToken.getUserid().getIsValid() == 2) {
+                    return "Your account is not validated";
                 }
+                if (resetToken.getUserid().getIsactive() == 2) {
+                    return "Your account is inactive";
+                }
+                LocalDateTime now = LocalDateTime.now();
+                Date today = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+                if (resetToken.getExpiryDateTime().before(today)) {
+//                    System.out.println("Expiry Date: " + resetToken.getExpiryDateTime());
+//                    System.out.println("Right now Date: " + today);
+
+                    return "The reset link is invalid or expired";
+                }
+                return "reset";
             }
+            
         } catch (Exception ex) {
             Logger.getLogger(PasswordTokensService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "invalid";
+        return "The reset link is invalid or expired";
     }
 
 }

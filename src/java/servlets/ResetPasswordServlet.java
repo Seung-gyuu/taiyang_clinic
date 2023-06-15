@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Passwordtokens;
 import models.User;
 import services.PasswordTokensService;
 import services.UserService;
@@ -27,33 +28,28 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String token = request.getParameter("token");
-        PasswordTokensService ps = new PasswordTokensService();
         HttpSession session = request.getSession();
         String logout = request.getParameter("logout");
+        String token = request.getParameter("token");
+        PasswordTokensService ps = new PasswordTokensService();
+
         if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }
-
+        String message = ps.isTokenValid(token);
         try {
-            User user = ps.getByToken(token).getUserid();
-// Check if the token is valid and not expired
-            String status = ps.isTokenValid(token);
-            session.setAttribute("status", status);
-            if (status.equals("reset")) {
-                session.setAttribute("user", user);
+            if (message.equals("reset")) {
+                session.setAttribute("user", ps.getByToken(token).getUserid());
+                getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
             } else {
-                // Token is invalid or expired, display an error message
-//                request.setAttribute("message", "The reset link is invalid or expired.");
-                 getServletContext().getRequestDispatcher("/WEB-INF/noTokens.jsp").forward(request, response);
+                // Handle the case where the token is expired or invalid
+                request.setAttribute("message", message);
+                getServletContext().getRequestDispatcher("/WEB-INF/noTokens.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
-
     }
 
     @Override
