@@ -67,7 +67,8 @@ public class ResetPasswordServlet extends HttpServlet {
                 String message = us.isValidPassword(password);
                 if (message.equals("success")) {
                     if (password.equals(confirm)) {
-                        us.updatePW(user, password);
+                        user.setPassword(password);
+                        us.update(user);
                         session.setAttribute("passwordReset", true);
                         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
                     } else {

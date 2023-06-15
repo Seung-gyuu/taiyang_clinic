@@ -9,7 +9,7 @@
         <link rel="stylesheet" type="text/css" href="css/profile.css">
         <link rel="stylesheet" type="text/css" href="css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <c:import url="./components/headers.jsp" />
     </head>
     <body>
@@ -30,13 +30,12 @@
                         update information
                         <h4>Username: ${loggedUser.getFirstname()} ${loggedUser.getLastname()}</h4> 
                         <form action="profile" method="post">
-                            <!--Email: <input type="text" value="${loggedUser.getEmailAddress()}" name="email" required>  <br>--> 
-                            Email: <c:out value="${loggedUser.getEmailAddress()}"/> <input type="hidden" name="email" value="${loggedUser.getEmailAddress()}"> <br>
+                            Email: <input type="text" value="${loggedUser.getEmailAddress()}" name="email" id="emailInput" required>  <br> 
+                            <!--Email: <c:out value="${loggedUser.getEmailAddress()}"/> <input type="hidden" name="email" value="${loggedUser.getEmailAddress()}"> <br>-->
                             First name: <c:out value="${loggedUser.getFirstname()}"/> <input type="hidden" name="Firstname" value="${loggedUser.getFirstname()}"> <br>
                             Last name:<c:out value=" ${loggedUser.getLastname()}"/><input type="hidden" name="Lastname" value="${loggedUser.getLastname()}"><br>
+                            Phone: <input type="text" id="phoneInput" value="${loggedUser.getPhoneNumber()}" name="phone" placeholder="1234567890" required> <br> 
                             Password: <input type="password" value="" name="password" required> <br> 
-                            Phone: <input type="text" value="${loggedUser.getPhoneNumber()}" name="phone" placeholder="1234567890" required> <br> 
-
                             <br>
                             <input type="submit" value="Update">
                             <input type="hidden" name="action" value="update">
@@ -59,6 +58,21 @@
             <% }%>
             });
         </script>
+
+
+        <!-- Display updated email and phone -->
+        <c:if test="${not empty updatedEmail}">
+            <script>
+                var emailField = document.getElementById("emailInput");
+                emailField.value = "${updatedEmail}";
+            </script>
+        </c:if>
+        <c:if test="${not empty updatedPhone}">
+            <script>
+                var phoneField = document.getElementById("phoneInput");
+                phoneField.value = "${updatedPhone}";
+            </script>
+        </c:if>
     </body>
 
     <footer>

@@ -75,7 +75,7 @@ public class ValidateTokensService {
             return "Token Expired! Please send a new one!";
         }
         UserService us = new UserService();
-//        vt.getUserid().setIsValid(1);
+        vt.getUserid().setIsValid(1);
         us.update(vt.getUserid());
         return "User Validated!";
 

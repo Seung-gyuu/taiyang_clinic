@@ -77,45 +77,28 @@ public class UserService {
 
     public String update(User updateUser) throws Exception {
         try {
-            int userid = udb.getByEmail(updateUser.getEmailAddress()).getUserid();
-            User existingUser = udb.get(userid); // Retrieve the existing user using the userid
-            if (existingUser == null) {
-                return "User does not exist!";
-            }
-
-            // Check if the password is valid
-            String message = isValidPassword(updateUser.getPassword());
-            if (!message.equals("success")) {
-                return message;
-            }
-//            if (updateUser.getEmailAddress().equals(existingUser.getEmailAddress())) {               
-//                if(existingUser != null && !existingUser.getUserid().equals(updateUser.getUserid())){
-//                    return "Email Already Taken!";
-//                } 
-//                existingUser.setEmailAddress(updateUser.getEmailAddress());
-//            }
-
-            // Check if the phone number has changed and if it is already taken
-            if (!updateUser.getPhoneNumber().equals(existingUser.getPhoneNumber())) {
-                User userWithPhoneNumber = udb.getByPhone(updateUser.getPhoneNumber());
-                if (userWithPhoneNumber != null && !userWithPhoneNumber.getUserid().equals(updateUser.getUserid())) {
-                    return "Phone number already taken!";
+//            User existingUser = udb.get(userid);
+            List<User> users = getAll();
+            for (User user : users) {
+                if (updateUser.getEmailAddress().equals(user.getEmailAddress()) && !user.getUserid().equals(updateUser.getUserid())) {
+                    return "Email Already Taken!";
                 }
-                existingUser.setPhoneNumber(updateUser.getPhoneNumber());
+                if (!updateUser.getEmailAddress().equals(user.getEmailAddress()) && user.getUserid().equals(updateUser.getUserid())) {
+                    updateUser.setIsValid(2); // Set the isValid status to 2 if the email address has changed
+                }
+                if (updateUser.getPhoneNumber().equals(user.getPhoneNumber()) && !user.getUserid().equals(updateUser.getUserid())) {
+                    return "Phone number Already Taken!";
+                }
+            }
+            String validatemsg = validate(updateUser);
+            if (!validatemsg.equals("Valid")) {
+                return validatemsg;
             }
 //            String salt = updateUser.getSalt();
 //            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-//            user.setSalt(salt);
-//            user.setPassword(hashedPassword);
-            // Always update the password
-            existingUser.setPassword(updateUser.getPassword());
-
-            // Update the isValid status if needed
-            if (updateUser.getIsValid() != null) {
-                existingUser.setIsValid(1);
-            }
-
-            udb.update(existingUser);
+//            updateUser.setSalt(salt);
+//            updateUser.setPassword(hashedPassword);            
+            udb.update(updateUser);
             return "Update successful!";
         } catch (Exception ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,7 +121,7 @@ public class UserService {
         String lastName = user.getLastname();
         String phone = user.getPhoneNumber();
         String password = user.getPassword();
-        String message = "Valid";
+        String message = "";
         if (firstName.length() > 15) {
             message += "First Name is incorrect format  <br>";
         }
@@ -149,7 +132,7 @@ public class UserService {
             System.out.println("First Name contains special characters");
             message += "Only letters in first and last name!  <br>";
         }
-        if (phone.length() > 10) {
+        if (phone.length() != 10 || !phone.matches("^\\d{10}$")) {
             message += "Phone number is incorrect format <br>";
         }
         if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
@@ -158,7 +141,10 @@ public class UserService {
 
         String msg = isValidPassword(password);
         if (!isValidPassword(password).equals("success")) {
-            return message += msg + " <br>";
+            message += msg + " <br>";
+        }
+        if (message.equals("")) {
+            message += "Valid";
         }
         return message;
     }
@@ -207,12 +193,12 @@ public class UserService {
             }
             if (user.getIsValid() == 2) {
                 return "User has not validated account. Please validate!";
-            } 
+            }
             return "Login";
-           
+
         }
         return "Your email or password was entered incorrectly!";
-       
+
     }
 
 //for validate email
@@ -229,20 +215,6 @@ public class UserService {
             return "success";
         }
 
-    }
-
-    public void updatePW(User user, String password) {
-        try {
-            user.setPassword(password);
-            String salt = user.getSalt();
-            String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-//            user.setPassword(hashedPassword);
-            user.setSalt(salt);
-
-            udb.update(user);
-        } catch (Exception ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
 }
