@@ -43,8 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
     , @NamedQuery(name = "Appointment.findInRange", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate >=:startdate AND a.timeid.fulldate.fulldate<=:enddate")        
     , @NamedQuery(name = "Appointment.findByPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2")
-    , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid.userid=:userid")
-    , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid.userid=:userid")    
+    , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid.userid=:userid AND a.status ='Confirmed'")
+    , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid.userid=:userid AND a.status ='Confirmed'")    
     , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")    
     , @NamedQuery(name = "Appointment.findByTypereminder", query = "SELECT a FROM Appointment a WHERE a.typereminder = :typereminder")})
 public class Appointment implements Serializable {
@@ -62,6 +62,8 @@ public class Appointment implements Serializable {
     @Basic(optional = false)
     @Column(name = "typereminder")
     private int typereminder;
+    @Column(name = "status")
+    private String status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appointmentid", fetch = FetchType.EAGER)
     private List<Reminder> reminderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "typereminder", fetch = FetchType.EAGER)
@@ -174,6 +176,14 @@ public class Appointment implements Serializable {
 
     public void setTimeid(Availabletime timeid) {
         this.timeid = timeid;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public User getUserid() {

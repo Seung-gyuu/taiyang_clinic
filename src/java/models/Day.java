@@ -6,6 +6,7 @@
 package models;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -151,7 +152,9 @@ public class Day implements Serializable {
 
     @Override
     public String toString() {
-        return "test.Day[ fulldate=" + fulldate + " ]";
+         SimpleDateFormat outputFormat = new SimpleDateFormat("EEE, MMM dd yyyy");
+        return outputFormat.format(fulldate);
+//        return "test.Day[ fulldate=" +  + " ]";
     }
     
 }

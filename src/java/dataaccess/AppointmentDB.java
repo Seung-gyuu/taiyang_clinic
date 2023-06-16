@@ -159,7 +159,7 @@ public class AppointmentDB {
             em.close();
         }
      }
-     //delete
+     //delete from admin side
      public void delete(Appointment appt) throws Exception{
          EntityManager em = DBUtil.getEmFactory().createEntityManager();
          EntityTransaction trans = em.getTransaction();
@@ -173,7 +173,21 @@ public class AppointmentDB {
             em.close();
         }
      }
-     //need update???? 
+     //update from user side( confirm -> cancel)    
+        public void update(Appointment appt) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            em.merge(appt);
+            trans.commit();
+        } catch (Exception ex) {
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
  
 }
 

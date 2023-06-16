@@ -98,7 +98,7 @@ table tbody tr td{
     width: 200px;
 }
 
-.history_modal {
+/*.history_modal {
     display: none; 
     position: fixed;
     z-index: 1021;
@@ -133,4 +133,4 @@ table tbody tr td{
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
+}*/

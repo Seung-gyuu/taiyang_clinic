@@ -146,7 +146,9 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     `isupcoming` INT DEFAULT 1 not null, --isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
     CONSTRAINT `ck_appt_upcoming` CHECK (`isupcoming` IN (1, 2)),
     `typereminder` INT NOT NULL,
-        CONSTRAINT ck_appt_reminder_type CHECK (`typereminder` IN (1, 2, 3))
+        CONSTRAINT ck_appt_reminder_type CHECK (`typereminder` IN (1, 2, 3)),
+    `status` VARCHAR(10) DEFAULT 'Confirmed' NOT NULL,
+        CONSTRAINT `ck_appt_status` CHECK (`status` IN ('Confirmed', 'Canceled'))
 );
 
  

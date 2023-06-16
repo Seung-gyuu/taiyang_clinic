@@ -151,6 +151,12 @@ public class Availabletime implements Serializable {
         SimpleDateFormat outputFormat = new SimpleDateFormat("h:mm a");
         return outputFormat.format(endTime);
     }
+    
+     public String getTruncatedDate() {
+        SimpleDateFormat outputFormat = new SimpleDateFormat("EEE, MMM dd yyyy");
+        return outputFormat.format(getFulldate());
+    }
+    
 
     @Override
     public int hashCode() {
