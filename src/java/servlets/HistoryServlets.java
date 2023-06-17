@@ -61,17 +61,31 @@ public class HistoryServlets extends HttpServlet {
             request.setAttribute("message", "error");
 
         }
+//           response.sendRedirect("/history");
+        getServletContext().getRequestDispatcher("/WEB-INF/history.jsp").forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        AppointmentService as = new AppointmentService();
+        ServiceService ss = new ServiceService();
+
         String action = request.getParameter("action");
         if (action != null && action.equals("delete")) {
-            String appointmentId= request.getParameter("appointmentid");
-            if (appointmentId != null) {
+            String appointmentId = request.getParameter("appointmentid");
+            if (appointmentId != null && !appointmentId.isEmpty()) {
                 try {
                     int id = Integer.parseInt(appointmentId);
                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentCancellation.jsp");
                     String message = as.delete(as.get(id), templatePath);
                     if (message.equals("Appointment Deleted!")) {
                         session.setAttribute("deleteAppt", true);
-                        response.sendRedirect("/history");
+                        List<Appointment> upcomingAppointments = as.getUserUpcoming(as.get(id).getUserid().getUserid());
+                        session.setAttribute("upcomingAppointments", upcomingAppointments);
+                         response.sendRedirect("/history");
                         return;
                     }
                 } catch (Exception ex) {
@@ -82,15 +96,9 @@ public class HistoryServlets extends HttpServlet {
                 // Handle invalid appointmentid parameter
                 request.setAttribute("message", "invalidid");
             }
+//            response.sendRedirect("/history");
+            getServletContext().getRequestDispatcher("/WEB-INF/history.jsp").forward(request, response);
         }
-//           response.sendRedirect("/history");
-        getServletContext().getRequestDispatcher("/WEB-INF/history.jsp").forward(request, response);
 
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
 }

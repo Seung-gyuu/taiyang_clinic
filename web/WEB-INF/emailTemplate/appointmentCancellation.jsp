@@ -119,15 +119,15 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:30px 10px 31px;font-family:'Montserrat',sans-serif;" align="left">
         
-<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<!--<table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="images/image-3.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 24%;max-width: 139.2px;" width="139.2" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="img/image-3.png" alt="Logo" title="Logo" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 24%;max-width: 139.2px;" width="139.2" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
-</table>
+</table>-->
 
       </td>
     </tr>
@@ -176,7 +176,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="images/image-4.png" alt="Hero Image" title="Hero Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 55%;max-width: 319px;" width="319" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="src/img/image-4.png" alt="Hero Image" title="Hero Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 55%;max-width: 319px;" width="319" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -250,8 +250,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Montserrat',sans-serif;" align="left">
         
   <div class="v-font-size" style="font-size: 14px; color: #27187e; line-height: 200%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;"><strong>Thursday, November 11</strong></span></p>
-<p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;"><strong>at 10.30 AM</strong></span></p>
+    <p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;"><strong> {{appointmentDate}} </strong></span></p>
+<p style="font-size: 14px; line-height: 200%;"><span style="font-size: 18px; line-height: 36px;"><strong>At {{startTime}} - {{endTime}} </strong></span></p>
   </div>
 
       </td>
@@ -265,13 +265,13 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 30px;font-family:'Montserrat',sans-serif;" align="left">
         
   <!--[if mso]><style>.v-button {background: transparent !important;}</style><![endif]-->
-<div align="center">
-  <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:49px; v-text-anchor:middle; width:224px;" arcsize="0%"  stroke="f" fillcolor="#ff8600"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Montserrat',sans-serif;"><![endif]-->  
+<!--<div align="center">
+  [if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://unlayer.com" style="height:49px; v-text-anchor:middle; width:224px;" arcsize="0%"  stroke="f" fillcolor="#ff8600"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Montserrat',sans-serif;"><![endif]  
     <a href="https://unlayer.com" target="_blank" class="v-button v-font-size" style="box-sizing: border-box;display: inline-block;font-family:'Montserrat',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff8600; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 14px;">
       <span style="display:block;padding:16px 50px;line-height:120%;"><strong><span style="font-size: 14px; line-height: 16.8px;">C L I C K&nbsp; &nbsp;H E R E</span></strong></span>
     </a>
-  <!--[if mso]></center></v:roundrect><![endif]-->
-</div>
+  [if mso]></center></v:roundrect><![endif]
+</div>-->
 
       </td>
     </tr>
@@ -283,23 +283,23 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 </div>
 <!--[if (mso)|(IE)]></td><![endif]-->
 <!--[if (mso)|(IE)]><td align="center" width="300" style="width: 300px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;" valign="top"><![endif]-->
-<div class="u-col u-col-50" style="max-width: 320px;min-width: 300px;display: table-cell;vertical-align: top;">
+<!--<div class="u-col u-col-50" style="max-width: 320px;min-width: 300px;display: table-cell;vertical-align: top;">
   <div style="height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
-  <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
+  [if (!mso)&(!IE)]><!<div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><![endif]
   
 <table style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 0px;font-family:'Montserrat',sans-serif;" align="left">
+      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px 0px;font-family:'Montserrat',sans-serif;" align="center">
         
   <h4 class="v-font-size" style="margin: 0px; color: #27187e; line-height: 140%; text-align: left; word-wrap: break-word; font-family: arial,helvetica,sans-serif; font-size: 18px; font-weight: 400;"><strong>Please Remember to bring:</strong></h4>
 
       </td>
     </tr>
   </tbody>
-</table>
+</table>-->
 
-<table style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<!--<table style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 30px;font-family:'Montserrat',sans-serif;" align="left">
@@ -315,7 +315,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       </td>
     </tr>
   </tbody>
-</table>
+</table>-->
 
   <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
   </div>
@@ -347,7 +347,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="images/image-1.png" alt="border" title="border" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="src/img/image-1.png" alt="border" title="border" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -379,22 +379,6 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <div style="height: 100%;width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;">
   <!--[if (!mso)&(!IE)]><!--><div style="box-sizing: border-box; height: 100%; padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;"><!--<![endif]-->
   
-<table style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
-  <tbody>
-    <tr>
-      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:19px 10px 10px;font-family:'Montserrat',sans-serif;" align="left">
-        
-  <div class="v-font-size" style="font-size: 14px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 16px; line-height: 22.4px;"><strong>Please be aware of our 24-hour cancellation policy.</strong></span></p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 16px; line-height: 22.4px;"><strong>Cancellation Policy:</strong></span></p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 16px; line-height: 22.4px;"><strong>If you need to cancel your appointment, you can cancel it at least 24 hours in advance.</strong></span></p>
-<p style="font-size: 14px; line-height: 140%;"> </p>
-  </div>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
 
   <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
   </div>
@@ -443,9 +427,6 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Montserrat',sans-serif;" align="left">
         
   <div class="v-font-size" style="font-size: 14px; color: #908f8f; line-height: 190%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 190%;">Want to change how you receive these emails?</p>
-<p style="font-size: 14px; line-height: 190%;">You can update your preferences or unsubscribe from this list.</p>
-<p style="font-size: 14px; line-height: 190%;"> </p>
 <p style="font-size: 14px; line-height: 190%;">© TAIYANG CLINIC. All Rights Reserved.</p>
   </div>
 
@@ -484,7 +465,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="images/image-2.png" alt="border" title="border" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="src/img/image-2.png" alt="border" title="border" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>

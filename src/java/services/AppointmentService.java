@@ -79,12 +79,16 @@ public class AppointmentService {
 
         if (apptLocalDate.isBefore(tmrw) || apptLocalDate.isEqual(tmrw)) {
             return "Cannot delete an appointment that is tomorrow! Please Check cancellation policy";
-        }
-        appt.setStatus("Canceled");
-        adb.update(appt);
-
+        }        
+        
         HashMap<String, String> tags = new HashMap<>();
         tags.put("name", appt.getUserid().getFirstname());
+        tags.put("appointmentDate", appt.getTimeid().getFulldate().toString());
+        tags.put("startTime", appt.getTimeid().getTruncatedStartTime());
+        tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
+        
+        appt.setStatus("Canceled");
+        adb.update(appt);
 
         SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Canceled", templatePath, tags);
 

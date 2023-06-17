@@ -59,7 +59,7 @@
                                                 <!--appointment date--> 
                                                 <td class="upcoming_data">
                                                     <c:out value="${upcoming.timeid.getFulldate()}"  />
-                                                   </td>
+                                                </td>
                                                 <td class="upcoming_data">
                                                     <c:out value="${upcoming.timeid.getTruncatedStartTime()}"  /> 
                                                     - <c:out value="${upcoming.timeid.getTruncatedEndTime()}"  />
@@ -68,17 +68,8 @@
                                                 <td class="upcoming_data"> 
                                                     <c:out value="${upcoming.serviceid.serviceName}"  />
                                                 </td>
-
-
                                                 <!--appointment ID--> 
-                                                <td class="upcoming_data appointment-id" hidden>${upcoming.appointmentid}</td>
-                                                <!--...-->
-
-
-                                                <!--<button class="edit_btn">Reschedule</button>-->
-                                                <!--                                                    <input type="hidden" name="action" value="delete">
-                                                                                                    <input type="hidden" name="appointmentid" value="${appointmentid}">-->
-
+                                                <td class="upcoming_data appointmentid" hidden>${upcoming.appointmentid}</td>
                                                 <td class="upcoming_data last_cell cell_buttons">
                                                     <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"> Cancel Appointment</button>
                                                 </td> 
@@ -99,8 +90,8 @@
                                     <tr>
                                         <th class="old_head">Date</th>
                                         <th class="old_head">Time</th>
-                                        <th class="old_head">Treatment</th>
-                                        <th class="old_head last_cell">Report</th>
+                                        <th class="old_head last_cell">Treatment</th>
+                                        <!--<th class="old_head last_cell">Report</th>-->
                                     </tr>
                                 </thead>   
                                 <tbody>    
@@ -114,19 +105,10 @@
                                                 - <c:out value="${past.timeid.getTruncatedEndTime()}"  />
                                             </td>       
                                             <!--service name-->
-                                            <td class="old_data"> 
+                                            <td class="old_data last_cell"> 
                                                 <c:out value="${past.serviceid.serviceName}"  />
                                             </td>
                                             <!--after report?-->
-                                            <td class="old_data last_cell cell_buttons">
-                                                <!--<button class="edit_btn">Reschedule</button>-->
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="appointmentid" value="${appointmentid}">
-                                                <a href="<c:url value='/history?action=delete&amp;'> 
-                                                       <c:param name='appointmentid' value='${past.appointmentid}'/> 
-                                                   </c:url>" class="cancel_btn" id="myBtn" > Cancel Appointment
-                                                </a>
-                                            </td> 
                                         </tr>     
                                     </c:forEach>
                                 </tbody>
@@ -147,33 +129,43 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to cancel this appointment?</p>
+                        <p>Are you sure you want to cancel this appointment? </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="/history" method="GET">
+                        <form action="/history" method="POST">
                             <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="appointmentid" id="appointmentidInput" value="${upcoming.appointmentid}">
-                            <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+                            <input type="hidden" name="appointmentid" id="appointmentidInput">
+                            <button type="submit" class="btn btn-primary cancel-btn">Cancel Appointment</button>       
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
 
+
         <script>
+
             $(document).ready(function () {
-                $(".cancel-btn").click(function () {
-                    var appointmentId = $(this).closest("tr").find(".appointment-id").text();
+                $(".upcoming_data.last_cell.cell_buttons button").click(function () {
+                    var appointmentId = $(this).closest("tr").find(".appointmentid").text();
+                    $("#appointmentIdSpan").text(appointmentId);
                     $("#appointmentidInput").val(appointmentId);
                     $("#myModal").modal("show");
                 });
             });
-
         </script>
-
-
-
+        <script src="js/showMessage.js"></script>
+        <script>
+            $(document).ready(function () {
+            <% if (session.getAttribute("deleteAppt") != null && (boolean) session.getAttribute("deleteAppt")) { %>
+                // Call the showMessage function to display the pop-up message
+                showMessage("Your Appointment successfully deleted.");
+            <% session.removeAttribute("deleteAppt"); %> // Remove the flag from the session
+            <% }%>
+            });
+        </script>
 
         <script src="js/bootstrap.bundle.min.js"></script>
         <footer>
