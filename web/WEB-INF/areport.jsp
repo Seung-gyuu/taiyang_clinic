@@ -11,7 +11,7 @@
         <title>Tai Yang Clinic</title>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/aform.css">
+        <link rel="stylesheet" href="css/custom.css">
         <!--        <script src="js/ausers.js"></script>-->
 
         <!--google fonts -->
@@ -22,6 +22,7 @@
 
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+
 
 
     </head>
@@ -127,7 +128,7 @@
                         </form>
                     </div>
                 </div>
-
+                <!--Use to take notes when there is something unusual or something-->
                 <div class="main-content">
                     <div class="row">
 
@@ -136,31 +137,48 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-                                            <h2 class="ml-lg-2">View Forms</h2>
+                                            <h2 class="ml-lg-2">Reports</h2>
+                                        </div>
+
+                                        <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
+                                            <a href="" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#newReportModal" >
+                                                <i class="material-icons">&#xE147;</i> <span>Add Reports</span></a>
                                         </div>
                                     </div>
                                 </div>
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
+                                            <th>
+                                                <span class="custom-checkbox">
+                                                    <input type="checkbox" id="selectAll">
+                                                    <label for="selectAll"></label>
+                                                </span>
+                                            </th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
-                                            <th>Forms</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td>
+                                                <span class="custom-checkbox">
+                                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                                                    <label for="checkbox1"></label>
+                                                </span>
+                                            </td>
                                             <td>Euna</td>
                                             <td>Kim</td>
                                             <td>rladmsdk2068@gmail.com</td>
                                             <td>1234567890</td>
                                             <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
+                                                <a href="" class="" data-bs-toggle="modal" data-bs-target="#newReportModal">
+                                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                <a href="" class="" data-bs-toggle="modal" data-bs-target="#editReportModal" >
+                                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xf1c9;</i></a>
                                             </td>
                                         </tr>
 
@@ -181,6 +199,51 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="newReportModal" tabindex="-1" aria-labelledby="addNewReportModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addNewReportModalLabel">Add New Report</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="description">Date:</label>
+                                        <input type="text" id="description" class="form-control">
+                                        <label for="description">Description:</label>
+                                        <input type="text" id="description" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="editReportModal" tabindex="-1" aria-labelledby="editReportModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editReportModalLabel">Edit Report Information</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                        <div class="modal-body">
+                                        <label for="description">Date:</label>
+                                        <input type="text" id="description" class="form-control">
+                                        <label for="description">Description:</label>
+                                        <input type="text" id="description" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success" onclick="editUsers()">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                         <!--start footer-->
                         <div class="my-5"></div>
                         <footer class="footer">
@@ -192,10 +255,21 @@
                         </footer>
                     </div>
                 </div>
-            </div>
 
+                <script>
+                    function saveUsers() {
+                        alert("Report saved successfully!");
+                        $('#newReportModal').modal('hide'); // Close the modal
+                    }
 
-            <script src="js/bootstrap.bundle.min.js"></script>
+                    function editUsers() {
+                        alert("User saved successfully!");
+                        $('#editReportModal').modal('hide'); // Close the modal
+                    }
 
-    </body>
-</html>
+                </script>
+
+                <script src="js/bootstrap.min.js"></script>
+
+                </body>
+                </html>

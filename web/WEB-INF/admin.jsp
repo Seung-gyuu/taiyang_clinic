@@ -73,7 +73,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="" data-toggle="collapse" aria-expanded="false" 
+                        <a href="areport" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">grid_on</i><span>Reports</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu6">
