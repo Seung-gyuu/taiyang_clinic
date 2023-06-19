@@ -11,13 +11,15 @@ import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Day;
-import services.DayService;
+import models.*;
+import services.*;
 
 /**
  *
@@ -34,7 +36,7 @@ public class BookServlets extends HttpServlet {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         } 
-                 DayService ds = new DayService();
+        DayService ds = new DayService();
         List<Day> days= ds.getCurrentWeek4Months();
         List<Day> unavailableDays;
         List<Day> availableDays;
@@ -47,7 +49,15 @@ public class BookServlets extends HttpServlet {
         availableDays=days.subList(currentDayNumber,days.size());
         request.setAttribute("unavailableDays", unavailableDays);
         request.setAttribute("availableDays", availableDays);
-
+        
+        ServiceService ss = new ServiceService();
+        try {
+            List<Service> services = ss.getAll();
+            request.setAttribute("services", services);
+        } catch (Exception ex) {
+            Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
  
 
         getServletContext().getRequestDispatcher("/WEB-INF/booktest.jsp").forward(request, response);

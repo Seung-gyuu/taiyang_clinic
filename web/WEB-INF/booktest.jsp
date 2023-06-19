@@ -70,6 +70,12 @@
             </c:forEach>
                 </div>
             </div>
+            <div class="services">
+                <c:forEach items="${services}" var="service">
+                    <input type="radio" name="serviceType" value="${service.getServiceid()}">${service.getServiceName()} 
+                    <br>
+                </c:forEach>
+            </div>
             
             
 <!--            <div class="book_main_section gloabal_main_section">
