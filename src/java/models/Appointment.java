@@ -49,6 +49,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Appointment.findByTypereminder", query = "SELECT a FROM Appointment a WHERE a.typereminder = :typereminder")})
 public class Appointment implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "isupcoming")
+    private int isupcoming;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,8 +61,6 @@ public class Appointment implements Serializable {
     private Integer appointmentid;
     @Column(name = "description")
     private String description;
-    @Column(name = "isupcoming")
-    private Integer isupcoming;
     @Basic(optional = false)
     @Column(name = "typereminder")
     private int typereminder;
@@ -110,13 +112,6 @@ public class Appointment implements Serializable {
         this.description = description;
     }
 
-    public Integer getIsupcoming() {
-        return isupcoming;
-    }
-
-    public void setIsupcoming(Integer isupcoming) {
-        this.isupcoming = isupcoming;
-    }
 
     public int getTypereminder() {
         return typereminder;
@@ -217,6 +212,14 @@ public class Appointment implements Serializable {
     @Override
     public String toString() {
         return "test.Appointment[ appointmentid=" + appointmentid + " ]";
+    }
+
+    public int getIsupcoming() {
+        return isupcoming;
+    }
+
+    public void setIsupcoming(int isupcoming) {
+        this.isupcoming = isupcoming;
     }
     
 }

@@ -28,6 +28,16 @@ public class AvailabletimeDB {
     }
     }
     
+    public List<Availabletime> findAllPassedToday() throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    try {
+        List<Availabletime> times = em.createNamedQuery("Availabletime.findAllPassedToday", Availabletime.class).getResultList();
+            return times;
+    } finally {
+        em.close();
+    }
+    }
+    
     public List<Availabletime> findByDate(Date d) throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -135,6 +145,20 @@ public class AvailabletimeDB {
         try {
             trans.begin();
             em.remove(em.merge(avt));
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally {
+            em.close();
+        }
+    }
+    
+    public void update(Availabletime t) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.merge(t);
             trans.commit();
         }catch(Exception ex){
             trans.rollback();

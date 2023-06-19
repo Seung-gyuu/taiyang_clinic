@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     CHECK (`start_time` >= '09:00:00' AND `start_time` <= '16:00:00'),
     `end_time` TIME  NOT NULL,
     CHECK (`end_time` >= '10:00:00' AND `end_time` <= '17:00:00'),
-    `isBooked` INT DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
+    `isBooked` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
     CHECK (`isBooked` IN (1, 2)),
-    `isAvailable` INT DEFAULT 1,  --default is 1,  1 means it is available. 2 means it is  not available
+    `isAvailable` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is available. 2 means it is  not available
     CHECK (`isAvailable` IN (1, 2))
 );
 

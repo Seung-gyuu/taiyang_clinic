@@ -28,6 +28,9 @@ public class AvailableTimeService {
     public List<Availabletime> findAllPassed() throws Exception{
         return avdb.findAllPassed();
     }
+    public List<Availabletime> findAllPassedToday() throws Exception{
+        return avdb.findAllPassedToday();
+    }
     public List<Availabletime> findAllPassedBooked() throws Exception{
         return avdb.findAllPassedBooked();
     }
@@ -51,6 +54,11 @@ public class AvailableTimeService {
     }
     public List<Availabletime> findByRange(Date start, Date end) throws Exception{
         return avdb.findByRange(start, end);
+    }
+    
+    public String update(Availabletime t) throws Exception{
+        avdb.update(t);
+        return "Time Updated";
     }
 
     

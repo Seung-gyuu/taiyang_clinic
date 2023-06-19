@@ -42,8 +42,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "User.findByIsactive", query = "SELECT u FROM User u WHERE u.isactive = :isactive")})
 public class User implements Serializable {
 
+    @Basic(optional = false)
     @Column(name = "isValid")
-    private Integer isValid;
+    private int isValid;
+    @Basic(optional = false)
+    @Column(name = "isactive")
+    private int isactive;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
     private List<Validatetokens> validatetokensList;
@@ -79,8 +83,6 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
-    @Column(name = "isactive")
-    private Integer isactive;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
     private List<Reminder> reminderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid", fetch = FetchType.EAGER)
@@ -155,13 +157,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getIsactive() {
-        return isactive;
-    }
-
-    public void setIsactive(Integer isactive) {
-        this.isactive = isactive;
-    }
 
     @XmlTransient
     public List<Reminder> getReminderList() {
@@ -267,12 +262,20 @@ public class User implements Serializable {
         this.validatetokensList = validatetokensList;
     }
 
-    public Integer getIsValid() {
+    public int getIsValid() {
         return isValid;
     }
 
-    public void setIsValid(Integer isValid) {
+    public void setIsValid(int isValid) {
         this.isValid = isValid;
+    }
+
+    public int getIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(int isactive) {
+        this.isactive = isactive;
     }
     
 }

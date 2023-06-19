@@ -34,6 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Service.findByServiceDescription", query = "SELECT s FROM Service s WHERE s.serviceDescription = :serviceDescription")})
 public class Service implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "isAvailable")
+    private int isAvailable;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -117,6 +121,14 @@ public class Service implements Serializable {
     @Override
     public String toString() {
         return "test.Service[ serviceid=" + serviceid + " ]";
+    }
+
+    public int getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(int isAvailable) {
+        this.isAvailable = isAvailable;
     }
     
 }

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Availabletime.findAllPassed", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < current_date")
+    , @NamedQuery(name = "Availabletime.findAllPassedToday", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate = current_date AND a.startTime < CURRENT_TIME")    
     , @NamedQuery(name = "Availabletime.findAllPassedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.fulldate.fulldate >= :startDate")
     , @NamedQuery(name = "Availabletime.findAllPassedBooked", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.isBooked = 2")
     , @NamedQuery(name = "Availabletime.findAllPassedBookedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.fulldate.fulldate >= :startDate AND a.isBooked = 2")    
@@ -57,6 +58,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Availabletime.findInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate >=:startdate AND a.fulldate.fulldate<=:enddate")    
     , @NamedQuery(name = "Availabletime.findByIsBooked", query = "SELECT a FROM Availabletime a WHERE a.isBooked = :isBooked")})
 public class Availabletime implements Serializable {
+
+    @Column(name = "isAvailable")
+    private Integer isAvailable;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -176,6 +180,14 @@ public class Availabletime implements Serializable {
     @Override
     public String toString() {
         return "test.Availabletime[ timeid=" + timeid + " ]";
+    }
+
+    public Integer getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(Integer isAvailable) {
+        this.isAvailable = isAvailable;
     }
     
 }

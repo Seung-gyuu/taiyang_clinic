@@ -1,6 +1,8 @@
 package utilities;
 
 import java.util.Timer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -18,6 +20,11 @@ public class CleanupScheduler implements ServletContextListener {
         // Run the task every hour (adjust the interval as needed)
         long interval = 24 * 60 * 1000;
         timer.schedule(new DeleteExpired(), 0, interval);
+        try {
+            timer.schedule(new UpdateTimes(), 0,interval);
+        } catch (Exception ex) {
+            Logger.getLogger(CleanupScheduler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
