@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -59,8 +60,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Availabletime.findByIsBooked", query = "SELECT a FROM Availabletime a WHERE a.isBooked = :isBooked")})
 public class Availabletime implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "isBooked")
+    private int isBooked;
+    @Basic(optional = false)
     @Column(name = "isAvailable")
-    private Integer isAvailable;
+    private int isAvailable;
+    @OneToOne(mappedBy = "timeid")
+    private Appointment appointment;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -76,8 +83,6 @@ public class Availabletime implements Serializable {
     @Column(name = "end_time")
     @Temporal(TemporalType.TIME)
     private Date endTime;
-    @Column(name = "isBooked")
-    private Integer isBooked;
     @JoinColumn(name = "fulldate", referencedColumnName = "fulldate")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Day fulldate;
@@ -121,13 +126,6 @@ public class Availabletime implements Serializable {
         this.endTime = endTime;
     }
 
-    public Integer getIsBooked() {
-        return isBooked;
-    }
-
-    public void setIsBooked(Integer isBooked) {
-        this.isBooked = isBooked;
-    }
 
     public Day getFulldate() {
         return fulldate;
@@ -182,12 +180,28 @@ public class Availabletime implements Serializable {
         return "test.Availabletime[ timeid=" + timeid + " ]";
     }
 
-    public Integer getIsAvailable() {
+    public int getIsBooked() {
+        return isBooked;
+    }
+
+    public void setIsBooked(int isBooked) {
+        this.isBooked = isBooked;
+    }
+
+    public int getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(Integer isAvailable) {
+    public void setIsAvailable(int isAvailable) {
         this.isAvailable = isAvailable;
+    }
+
+    public Appointment getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
     
 }
