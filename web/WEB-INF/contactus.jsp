@@ -21,41 +21,29 @@
 
     <!--        Libraries Stylesheet -->  
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/aboutus.css">
+    <link rel="stylesheet" type="text/css" href="css/contactus.css">
      <c:import url="./components/headers.jsp" />
 
 
 </head>
 <body>
-    <!--    About us-->
+    <!--   Contact Us-->
     <div class ="sections">
         <div class ="containers">
             <div class="title">
-                <h1>About Us</h1>
+                <h1>Contact Us</h1>
             </div>
-            <div class ="contents">
-                <div class ="article">
-                    <h3>
-                        Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
-
-                    </h3>
-                    <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
-
-                    </p>
-                </div>
+            <div class="phone">
+                <h3>PHone Number</h3>
+                <p>111-222-3333</p>
             </div>
-            <div class="image-sections">
-                <img src ="src/img/aboutus.png">
+            <div class="email">
+                <h3>Email Address</h3>
+                <p>exapmle@gmail.com</p>
             </div>
-            <div class ="social">
+            <div class="address">
+                <h3>Address</h3>
+                <p>1301 16 Ave NW, Calgary, AB T2M 0L4</p>
             </div>
         </div>
     </div>
@@ -126,7 +114,7 @@
 
 
 
-    <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+    <script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

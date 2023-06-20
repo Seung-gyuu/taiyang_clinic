@@ -95,16 +95,16 @@
                         <div class ="nav-item dropdown">
                             <a href ="#" class ="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                             <div class="dropdown-menu m-0">
-                                <a href="" class="dropdown-item">Accupuncture</a>
-                                <a href="" class="dropdown-item">Moxibustion</a>
-                                <a href="" class="dropdown-item">Massage/luiNa</a>
-                                <a href="" class="dropdown-item">Cupping</a>
-                                <a href="" class="dropdown-item">Herbal Medicine</a>
-                                <a href="" class="dropdown-item">Korean beauty</a>
+                                 <a href="/service1" class="dropdown-item">Accupuncture</a>
+                                <a href="/service2" class="dropdown-item">Moxibustion</a>
+                                <a href="/service3" class="dropdown-item">Massage/luiNa</a>
+                                <a href="/service4" class="dropdown-item">Cupping</a>
+                                <a href="/service5" class="dropdown-item">Herbal Medicine</a>
+                                <a href="/service6" class="dropdown-item">Korean beauty</a>
                             </div>
                         </div>
                         <a href="/book" class="nav-item nav-link">Book</a> 
-                        <a href="" class="nav-item nav-link">Contact</a>
+                        <a href="/contact" class="nav-item nav-link">Contact</a>
                         <c:if test="${loggedUser ne null}">
                             <a href="/profile" class="nav-item nav-link">My Account</a> 
                         </c:if>
@@ -120,5 +120,6 @@
             </nav>
         </div>
     </div>
+     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
