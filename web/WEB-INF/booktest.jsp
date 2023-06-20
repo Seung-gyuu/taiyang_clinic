@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="css/global.css">
         <link rel="stylesheet" type="text/css" href="css/booktest.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
+        <script src="js/bookingpage.js"></script>
 
         <c:import url="./components/headers.jsp" />
     </head>
@@ -21,8 +22,15 @@
 
         <!--Book Start-->
         <div class="gloabal_container">
-            <div class="gloabal_top_section">
+            <div class="global_top_section">
+                <div class="leftArrow">
+                    <button onclick="goLeft()">&leftarrow;</button>
+                </div>
                 <h1>BOOK AN APPOINTMENT</h1>
+                <div class="rightArrow">
+                    <button onclick="goRight()">&rightarrow;</button>
+                </div>
+                
             </div>
             
             
@@ -45,6 +53,7 @@
                         </div>
                 </div>
                 <div class="days">
+                    <div class="days-content">
                     <c:forEach items="${unavailableDays}" var="day">
                         <div class="unavailableDay">
                             <div class="table_header">${day.getDayname()} ${day.getMonthName()} ${day.getDaynumber()}</div>
@@ -76,6 +85,7 @@
                     <br>
                 </c:forEach>
             </div>
+        </div>
             
             
 <!--            <div class="book_main_section gloabal_main_section">
