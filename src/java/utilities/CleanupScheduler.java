@@ -22,6 +22,7 @@ public class CleanupScheduler implements ServletContextListener {
         timer.schedule(new DeleteExpired(), 0, interval);
         try {
             timer.schedule(new UpdateTimes(), 0,interval);
+            timer.schedule(new UpdateOldAppointments(),0, interval);
         } catch (Exception ex) {
             Logger.getLogger(CleanupScheduler.class.getName()).log(Level.SEVERE, null, ex);
         }

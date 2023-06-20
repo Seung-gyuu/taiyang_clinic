@@ -71,6 +71,12 @@ public class AppointmentService {
         adb.insert(appt);
         return "Appointment Created!";
     }
+    
+    public List<Appointment> getOutdated() throws Exception{
+        return adb.getOutdated();
+    }
+
+    
 
     public String delete(Appointment appt, String templatePath) throws Exception {
         LocalDate tmrw = LocalDate.now().plusDays(1);
@@ -93,6 +99,10 @@ public class AppointmentService {
         SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Canceled", templatePath, tags);
 
         return "Appointment Deleted!";
+    }
+    public String update(Appointment a) throws Exception{
+        adb.update(a);
+        return "Updated";
     }
 
 }

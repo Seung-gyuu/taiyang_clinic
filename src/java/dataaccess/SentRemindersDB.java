@@ -34,7 +34,6 @@ public class SentRemindersDB {
         s.setAppointmentid(r.getAppointmentid());
         s.setSentTime(r.getSendTime());
         s.setSentreminderid(r.getReminderid());
-        s.setTypereminder(r.getTypereminder());
         s.setUserid(r.getUserid());
         try {
             trans.begin();

@@ -111,9 +111,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     `end_time` TIME  NOT NULL,
     CHECK (`end_time` >= '10:00:00' AND `end_time` <= '17:00:00'),
     `isBooked` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
-    CHECK (`isBooked` IN (1, 2)),
+    CONSTRAINT `ck_time_booked` CHECK (`isBooked` IN (1, 2)),
     `isAvailable` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is available. 2 means it is  not available
-    CHECK (`isAvailable` IN (1, 2))
+    CONSTRAINT `ck_time_available` CHECK (`isAvailable` IN (1, 2))
 );
 
  
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     `userid` INT NOT NULL,
     CONSTRAINT `fk_appointment_user` 
         FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`),
-    `timeid` INT UNIQUE,
+    `timeid` INT,
     CONSTRAINT `fk_appointment_time`
         FOREIGN KEY (`timeid`) REFERENCES `clinicdb`.`availabletime` (`timeid`),
     `serviceid` INT NOT NULL,
@@ -145,15 +145,10 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     `description` VARCHAR(250),
     `isupcoming` INT DEFAULT 1 not null, --isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
     CONSTRAINT `ck_appt_upcoming` CHECK (`isupcoming` IN (1, 2)),
-    `typereminder` INT NOT NULL,
-        CONSTRAINT ck_appt_reminder_type CHECK (`typereminder` IN (1, 2, 3)),
     `status` VARCHAR(10) DEFAULT 'Confirmed' NOT NULL,
         CONSTRAINT `ck_appt_status` CHECK (`status` IN ('Confirmed', 'Canceled'))
 );
 
- 
-
-CREATE INDEX idx_appointment_typereminder ON `clinicdb`.`appointment` (`typereminder`);
 
  
 
@@ -167,10 +162,6 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`reminder` (
     `appointmentid` INT NOT NULL,
     CONSTRAINT fk_reminder_appt 
         FOREIGN KEY (`appointmentid`) REFERENCES `clinicdb`.`appointment` (`appointmentid`),
-    `typereminder` INT NOT NULL,
-    CONSTRAINT ck_reminder_type CHECK (`typereminder` IN (1, 2, 3)),
-    CONSTRAINT fk_reminder_type
-        FOREIGN KEY (typereminder) REFERENCES clinicdb.appointment (typereminder),
     `sendTime` DATE NOT NULL --sendtime is 24 hours before the appointment.  Trigger below automatically adds a reminder
 );
 
@@ -186,10 +177,6 @@ CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
     `appointmentid` INT NOT NULL,
     CONSTRAINT fk_sentreminder_appt 
         FOREIGN KEY (`appointmentid`) REFERENCES `clinicdb`.`appointment` (`appointmentid`),
-    `typereminder` INT NOT NULL,
-    CONSTRAINT ck_sentreminder_type CHECK (`typereminder` IN (1, 2, 3)),
-    CONSTRAINT fk_sentreminder_type
-        FOREIGN KEY (typereminder) REFERENCES clinicdb.appointment (typereminder),
     `sentTime` DATE NOT NULL 
 );
 
@@ -263,14 +250,15 @@ BEGIN
     SET @send_time = DATE_SUB(CONCAT(@appointment_date, ' ', @appointment_time), INTERVAL 1 DAY);
 
     -- Insert into the reminder table
-    INSERT INTO `clinicdb`.`reminder` (userid, appointmentid, typereminder, sendTime)
-    VALUES (NEW.userid, NEW.appointmentid, NEW.typereminder, @send_time);
+    INSERT INTO `clinicdb`.`reminder` (userid, appointmentid, sendTime)
+    VALUES (NEW.userid, NEW.appointmentid, @send_time);
 
  
 
 -- Update the `isBooked` column in the `availabletime` table for the booked appointment time
+    
     UPDATE `clinicdb`.`availabletime`
-    SET `isBooked` = 2
+    SET `isBooked` = 2 , `isAvailable` = 2
     WHERE `timeid` = NEW.timeid;
 END//
 DELIMITER ;
@@ -287,17 +275,22 @@ DELIMITER //
 
  
 
-CREATE TRIGGER appointment_delete_trigger
-BEFORE DELETE ON `clinicdb`.`appointment`
+CREATE TRIGGER appointment_update_trigger
+before UPDATE ON `clinicdb`.`appointment`
 FOR EACH ROW
 BEGIN
     -- Delete the corresponding reminder from the `reminder` table
     DELETE FROM `clinicdb`.`reminder`
-    WHERE `appointmentid` = OLD.appointmentid;
+    WHERE `appointmentid` = old.appointmentid;
+    
+    if new.status='Canceled' then
 
     -- Update the `isBooked` column in the `availabletime` table for the deleted appointment time
     UPDATE `clinicdb`.`availabletime`
-    SET `isBooked` = 1
-    WHERE `timeid` = OLD.timeid;
+    SET `isBooked` = 1 , `isAvailable`=1
+    WHERE `timeid` = old.timeid;
+    end if;
 END//
 DELIMITER ;
+
+

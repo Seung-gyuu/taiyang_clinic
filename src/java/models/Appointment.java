@@ -43,10 +43,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
     , @NamedQuery(name = "Appointment.findInRange", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate >=:startdate AND a.timeid.fulldate.fulldate<=:enddate")        
     , @NamedQuery(name = "Appointment.findByPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2")
+    , @NamedQuery(name = "Appointment.findOutdated", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate < CURRENT_DATE")    
     , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid.userid = :userid AND a.status ='Confirmed'")
     , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid.userid = :userid AND a.status ='Confirmed'")    
-    , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")    
-    , @NamedQuery(name = "Appointment.findByTypereminder", query = "SELECT a FROM Appointment a WHERE a.typereminder = :typereminder")})
+    , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")})
 public class Appointment implements Serializable {
 
     @Basic(optional = false)
@@ -61,19 +61,16 @@ public class Appointment implements Serializable {
     private Integer appointmentid;
     @Column(name = "description")
     private String description;
-    @Basic(optional = false)
-    @Column(name = "typereminder")
-    private int typereminder;
     @Column(name = "status")
     private String status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appointmentid", fetch = FetchType.EAGER)
     private List<Reminder> reminderList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typereminder", fetch = FetchType.EAGER)
-    private List<Reminder> reminderList1;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typereminder", fetch = FetchType.EAGER)
+//    private List<Reminder> reminderList1;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "appointmentid", fetch = FetchType.EAGER)
     private List<Sentreminders> sentremindersList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typereminder", fetch = FetchType.EAGER)
-    private List<Sentreminders> sentremindersList1;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "typereminder", fetch = FetchType.EAGER)
+//    private List<Sentreminders> sentremindersList1;
     @JoinColumn(name = "serviceid", referencedColumnName = "serviceid")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Service serviceid;
@@ -89,11 +86,6 @@ public class Appointment implements Serializable {
 
     public Appointment(Integer appointmentid) {
         this.appointmentid = appointmentid;
-    }
-
-    public Appointment(Integer appointmentid, int typereminder) {
-        this.appointmentid = appointmentid;
-        this.typereminder = typereminder;
     }
 
     public Integer getAppointmentid() {
@@ -113,14 +105,6 @@ public class Appointment implements Serializable {
     }
 
 
-    public int getTypereminder() {
-        return typereminder;
-    }
-
-    public void setTypereminder(int typereminder) {
-        this.typereminder = typereminder;
-    }
-
     @XmlTransient
     public List<Reminder> getReminderList() {
         return reminderList;
@@ -131,30 +115,12 @@ public class Appointment implements Serializable {
     }
 
     @XmlTransient
-    public List<Reminder> getReminderList1() {
-        return reminderList1;
-    }
-
-    public void setReminderList1(List<Reminder> reminderList1) {
-        this.reminderList1 = reminderList1;
-    }
-
-    @XmlTransient
     public List<Sentreminders> getSentremindersList() {
         return sentremindersList;
     }
 
     public void setSentremindersList(List<Sentreminders> sentremindersList) {
         this.sentremindersList = sentremindersList;
-    }
-
-    @XmlTransient
-    public List<Sentreminders> getSentremindersList1() {
-        return sentremindersList1;
-    }
-
-    public void setSentremindersList1(List<Sentreminders> sentremindersList1) {
-        this.sentremindersList1 = sentremindersList1;
     }
 
     public Service getServiceid() {

@@ -90,6 +90,22 @@ public class AppointmentDB {
         }
     }
     
+    public List<Appointment> getOutdated() throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Appointment> appts = em.createNamedQuery("Appointment.findOutdated", Appointment.class).getResultList();
+            return appts;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+    
+    
+    
     public List<Appointment> getUserPassed(int userId) throws Exception {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     try {

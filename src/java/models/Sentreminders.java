@@ -49,9 +49,6 @@ public class Sentreminders implements Serializable {
     @JoinColumn(name = "appointmentid", referencedColumnName = "appointmentid")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Appointment appointmentid;
-    @JoinColumn(name = "typereminder", referencedColumnName = "typereminder")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Appointment typereminder;
     @JoinColumn(name = "userid", referencedColumnName = "userid")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User userid;
@@ -90,14 +87,6 @@ public class Sentreminders implements Serializable {
 
     public void setAppointmentid(Appointment appointmentid) {
         this.appointmentid = appointmentid;
-    }
-
-    public Appointment getTypereminder() {
-        return typereminder;
-    }
-
-    public void setTypereminder(Appointment typereminder) {
-        this.typereminder = typereminder;
     }
 
     public User getUserid() {
