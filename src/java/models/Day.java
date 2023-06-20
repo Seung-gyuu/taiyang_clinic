@@ -23,6 +23,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import services.AvailableTimeService;
 
 /**
  *
@@ -122,7 +123,9 @@ public class Day implements Serializable {
     }
 
     @XmlTransient
-    public List<Availabletime> getAvailabletimeList() {
+    public List<Availabletime> getAvailabletimeList() throws Exception {
+        AvailableTimeService as = new AvailableTimeService();
+        this.availabletimeList=as.findByDate(this.fulldate);
         return availabletimeList;
     }
 

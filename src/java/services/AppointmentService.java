@@ -94,6 +94,10 @@ public class AppointmentService {
         tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
         
         appt.setStatus("Canceled");
+        AvailableTimeService avt = new AvailableTimeService();
+        appt.getTimeid().setIsAvailable(1);
+        appt.getTimeid().setIsBooked(1);
+        avt.update(appt.getTimeid());
         adb.update(appt);
 
         SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Canceled", templatePath, tags);

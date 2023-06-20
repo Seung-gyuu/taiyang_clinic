@@ -31,45 +31,50 @@ public class BookServlets extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-                String logout = request.getParameter("logout");
-         if (logout != null) {
+        String logout = request.getParameter("logout");
+        if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-        } 
+        }
+        AvailableTimeService as = new AvailableTimeService();
         DayService ds = new DayService();
-        List<Day> days= ds.getCurrentWeek4Months();
+        List<Day> days = ds.getCurrentWeek4Months();
         List<Day> unavailableDays;
         List<Day> availableDays;
-        LocalDate currentDate=LocalDate.now();
+        LocalDate currentDate = LocalDate.now();
         DayOfWeek currentDay = currentDate.getDayOfWeek();
         int currentDayNumber = currentDay.getValue();
-        if(currentDayNumber==7)
-            currentDayNumber=0;
-        unavailableDays=days.subList(0, currentDayNumber);
-        availableDays=days.subList(currentDayNumber,days.size());
-        request.setAttribute("unavailableDays", unavailableDays);
-        request.setAttribute("availableDays", availableDays);
-        
+        if (currentDayNumber == 7) {
+            currentDayNumber = 0;
+        }
+        unavailableDays = days.subList(0, currentDayNumber);
+        availableDays = days.subList(currentDayNumber, days.size());
         ServiceService ss = new ServiceService();
         try {
             List<Service> services = ss.getAll();
             request.setAttribute("services", services);
+//            for (Day d : unavailableDays) {
+//                List<Availabletime> newAvailableTimes = as.findByDate(d.getFulldate());
+//                d.setAvailabletimeList(newAvailableTimes);
+//            }
+//            for (Day d : availableDays) {
+//                List<Availabletime> newAvailableTimes = as.findByDate(d.getFulldate());
+//                d.setAvailabletimeList(newAvailableTimes);
+//            }
+            request.setAttribute("unavailableDays", unavailableDays);
+            request.setAttribute("availableDays", availableDays);
+
         } catch (Exception ex) {
             Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
- 
 
         getServletContext().getRequestDispatcher("/WEB-INF/booktest.jsp").forward(request, response);
     }
 //        getServletContext().getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
-    
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
 
 }
