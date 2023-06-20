@@ -100,15 +100,15 @@
 }
 
 .header_time {
-    /*height: 50px;*/
-    margin-top: 7px;
+    height: 100%;
+    background-color: white;
 }
 
 .table_time {
-    height: 50px;
-    padding: 0 15px;
+    height: 15px;
+    padding-top: 32px;
     font-size: 11px;
-    /*margin-top: 12px;*/
+    margin-top: 70%;
 }
 
 .book_table_date {
@@ -130,6 +130,7 @@
     display: flex;
     position: relative;
     transition: transform 0.6s ease;
+    background-color: #fbfbfb;
 }
 .days-content{
     width: 100%;
@@ -147,7 +148,14 @@
     overflow-x: scroll;
     white-space: nowrap;
 }
-
+.table_header{
+    padding-top: 25px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: white;
+}
 .days .availableDay {
     flex: 0 0 auto;
     flex-basis: calc(100% / 7);

@@ -49,21 +49,31 @@
                             <div class="table_time">4:00pm</div>
                             <div class="table_time">5:00pm</div>
                             <div class="table_time">6:00pm</div>
-                            <div class="table_time">7:00pm</div>
                         </div>
                 </div>
                 <div class="days">
                     <div class="days-content">
                     <c:forEach items="${unavailableDays}" var="day">
                         <div class="unavailableDay">
-                            <div class="table_header">${day.getDayname()} ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
                             <div class="unavailable_time_data">
                             </div>
                         </div>
                     </c:forEach>
                     <c:forEach items="${availableDays}" var="day">
-                        <div class="availableDay">
-                            <div class="table_header">${day.getDayname()} ${day.getMonthName()} ${day.getDaynumber()}</div>
+                        <c:choose>
+                        <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} "> <!-- THIS DOESNT WORK FOR SOME REASON-->
+                            <div class="unavailableDay">
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="unavailable_time_data"></div>
+                        </div>                
+                        </c:when>
+                        <c:otherwise>
+                            <div class="availableDay">
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
                             <div class="table_time_data">
                                 <div class="table_data"></div>
                                 <c:forEach items="${day.getAvailabletimeList()}" var="time">
@@ -73,15 +83,18 @@
                                     <c:if test="${time.getIsAvailable()==1}">
                                         <div class="table_data data_available" name="${time.getTruncatedStartTime()}" id="${time.getTimeid()}"  onClick='clicked2(this)'>${time.getTruncatedStartTime()} - ${time.getTruncatedEndTime()}</div>
                                     </c:if>
+                                    
                                 </c:forEach>
                             </div>     
                         </div>
+                        </c:otherwise>
+                        </c:choose>
             </c:forEach>
                 </div>
             </div>
             <div class="services">
-                <c:forEach items="${services}" var="service">
-                    <input type="radio" name="serviceType" value="${service.getServiceid()}">${service.getServiceName()} 
+                <c:forEach items="${services}" var="s">
+                    <input type="radio" name="serviceType" value="${s.getServiceid()}">${s.getServiceName()} 
                     <br>
                 </c:forEach>
             </div>
