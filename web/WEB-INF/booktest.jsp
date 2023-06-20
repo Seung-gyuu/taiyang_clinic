@@ -1,132 +1,259 @@
+<%-- 
+    Document   : book
+    Created on : 2023. 6. 5, 오전 12:53:35
+    Author     : third
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <link rel="stylesheet" type="text/css" href="css/booktest.css">
+        <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
+        <script src="js/bookingpage.js"></script>
 
-        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-    <p style ="background-image:url('src/img/main.png');">
+        <c:import url="./components/headers.jsp" />
+    </head>
+    <body>
 
-
-
-        <!-- Icon Font Stylesheet -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-        <link href="https://www.flaticon.com/kr/free-icons/" title="스마일 아이콘"></a>
-
-
-    <!--        Libraries Stylesheet -->  
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/aboutus.css">
-     <c:import url="./components/headers.jsp" />
-
-
-</head>
-<body>
-    <!--    About us-->
-    <div class ="sections">
-        <div class ="containers">
-            <div class="title">
-                <h1>About Us</h1>
+        <!--Book Start-->
+        <div class="gloabal_container">
+            <div class="global_top_section">
+                <div class="leftArrow">
+                    <button onclick="goLeft()">&leftarrow;</button>
+                </div>
+                <h1>BOOK AN APPOINTMENT</h1>
+                <div class="rightArrow">
+                    <button onclick="goRight()">&rightarrow;</button>
+                </div>
+                
             </div>
-            <div class ="contents">
-                <div class ="article">
-                    <h3>
-                        Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
-
-                    </h3>
-                    <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
-
-                    </p>
+            
+            
+            <div class="fullCalendar">
+                <div class="TimesLeft">
+                    <div class="book_table_time">
+                            <div class="table_header header_time"></div>
+                            <div class="table_time">8:00am</div>
+                            <div class="table_time">9:00am</div>
+                            <div class="table_time">10:00am</div>
+                            <div class="table_time">11:00am</div>
+                            <div class="table_time">12:00pm</div>
+                            <div class="table_time">1:00pm</div>
+                            <div class="table_time">2:00pm</div>
+                            <div class="table_time">3:00pm</div>
+                            <div class="table_time">4:00pm</div>
+                            <div class="table_time">5:00pm</div>
+                            <div class="table_time">6:00pm</div>
+                        </div>
+                </div>
+                <div class="days">
+                    <div class="days-content">
+                    <c:forEach items="${unavailableDays}" var="day">
+                        <div class="unavailableDay">
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="unavailable_time_data">
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <c:forEach items="${availableDays}" var="day">
+                        <c:choose>
+                        <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} "> <!-- THIS DOESNT WORK FOR SOME REASON-->
+                            <div class="unavailableDay">
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="unavailable_time_data"></div>
+                        </div>                
+                        </c:when>
+                        <c:otherwise>
+                            <div class="availableDay">
+                            <div class="table_header">${day.getDayname()} <br>
+                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="table_time_data">
+                                <div class="table_data"></div>
+                                <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                    <c:if test="${time.getIsAvailable()==2}">
+                                        <div class="table_data data_unavailable">Unavailable</div>
+                                    </c:if>    
+                                    <c:if test="${time.getIsAvailable()==1}">
+                                        <div class="table_data data_available" name="${time.getTruncatedStartTime()}" id="${time.getTimeid()}"  onClick='clicked2(this)'>${time.getTruncatedStartTime()} - ${time.getTruncatedEndTime()}</div>
+                                    </c:if>
+                                    
+                                </c:forEach>
+                            </div>     
+                        </div>
+                        </c:otherwise>
+                        </c:choose>
+            </c:forEach>
                 </div>
             </div>
-            <div class="image-sections">
-                <img src ="src/img/aboutus.png">
-            </div>
-            <div class ="social">
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 py-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
-                    <p class="mb-4">Please feel free to contact us if you need any information.</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>1310 16Ave NW, Calgary</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>Sunny@example.com</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 6789</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-light mb-2" href="/home"><i class="fa fa-angle-right me-2"></i>Home</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-
-                    <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+            <div class="services">
+                <c:forEach items="${services}" var="s">
+                    <input type="radio" name="serviceType" value="${s.getServiceid()}">${s.getServiceName()} 
+                    <br>
+                </c:forEach>
             </div>
         </div>
-    </div>
-    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">Tai Yang Clinic</a>. All Rights Reserved.</p>
+            
+            
+<!--            <div class="book_main_section gloabal_main_section">
+                <div class="book_main-left">
+                     Calendar 
+                    <div class="book_left_top">
+                        <button class="prev_week"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h2>Sun Jun 4 - Sat Jun 10</h2>
+                        <button class="next_week"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="book_left_time">
+                        <div class="book_table_time">
+                            <div class="table_header header_time"></div>
+                            <div class="table_time">8:00am</div>
+                            <div class="table_time">9:00am</div>
+                            <div class="table_time">10:00am</div>
+                            <div class="table_time">11:00am</div>
+                            <div class="table_time">12:00pm</div>
+                            <div class="table_time">1:00pm</div>
+                            <div class="table_time">2:00pm</div>
+                            <div class="table_time">3:00pm</div>
+                            <div class="table_time">4:00pm</div>
+                            <div class="table_time">5:00pm</div>
+                            <div class="table_time">6:00pm</div>
+                            <div class="table_time">7:00pm</div>
+                        </div>
+                        <div class="book_table_date">
+                            
+                            
+            <div class="daysContainer">
+            <c:forEach items="${unavailableDays}" var="day">
+                        <div class="day">
+                            <div class="table_header">${day.getDayname()} ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="unavailable_time_data">
+                            </div>
+                        </div>
+   
 
+            </c:forEach>
+            <c:forEach items="${availableDays}" var="day">
+                        <div class="day">
+                            <div class="table_header">${day.getDayname()} ${day.getMonthName()} ${day.getDaynumber()}</div>
+                            <div class="table_time_data">
+                                <div class="table_data"></div>
+                                <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                    <c:if test="${time.getIsAvailable()==2}">
+                                        <div class="table_data data_unavailable">Unavailable</div>
+                                    </c:if>
+                                    <c:if test="${time.getIsBooked()==2}">
+                                        <div class="table_data data_unavailable">Booked</div>
+                                    </c:if>
+                                    <c:if test="${time.getIsAvailable()==1}">
+                                        <div class="table_data data_available" name="${time.getTruncatedStartTime()}" id="${time.getTimeid()}"  onClick='clicked2(this)'>Available</div>
+                                    </c:if>
+                                    
+                                </c:forEach>
+                            </div>     
+                        </div>
+            </c:forEach>
+ 
+                    </div>
+                </div>
+                <div class="book_main_right">
+                    <div class="book_right_icon">
+                        <div class="able">Available</div>
+                        <div class="unable">unavailable</div>
+                    </div>
+                    <div class="book_right_selected">
+                        <div>Selected time:</div>
+                        <%--<c:if test=""></c:if>--%>
+                        <div>Mon Jone 5, 11:00am</div>
+                        <div id="selectedDateTime">-----</div>
+                    </div>
+                    <div class="book_right_btn">
+                        <button class="book_btn" id="bookBtn">Booking Now</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>-->
+        <!-- The Modal -->
+        <div id="bookModal" class="book_modal">
+            <div class="book_modal-content">
+                <span class="book_close">&times;</span>
+                <p>Are you sure you want to book this appointment?</p>
+            </div>
+        </div>
+
+        <script>
+
+            var divItems = document.getElementsByClassName("getTime");
+            var modal = document.getElementById("bookModal");
+
+            var btn = document.getElementById("bookBtn");
+
+            var span = document.getElementsByClassName("book_close")[0];
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            function clicked1(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 9:00am";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked2(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 10:00am";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked3(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 11:00am";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked4(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 12:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked5(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 1:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked6(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 2:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked7(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 3:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked8(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 4:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
+            function clicked9(item) {
+                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 5:00pm";
+//                item.style.backgroundColor = "#0d6efd";
+            }
 
 
+        </script>
 
-    <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+    </body>
 
-</body>
+    <footer>
+        <jsp:include page="./components/footer.jsp" />
+    </footer>
+
 </html>
