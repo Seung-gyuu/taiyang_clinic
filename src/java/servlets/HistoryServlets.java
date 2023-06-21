@@ -49,12 +49,12 @@ public class HistoryServlets extends HttpServlet {
             request.setAttribute("upcomings", upcomings);
             request.setAttribute("pasts", pasts);
             request.setAttribute("services", services);
-//            if (upcomings.isEmpty()) {
-//                request.setAttribute("message", "empty");
-//            }
-//            if (pasts.isEmpty()) {
-//                request.setAttribute("message", "empty");
-//            }
+            if (upcomings.isEmpty()) {
+                request.setAttribute("upcoming_message", "empty");
+            }
+            if (pasts.isEmpty()) {
+                request.setAttribute("past_message", "empty");
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(HistoryServlets.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,6 +87,11 @@ public class HistoryServlets extends HttpServlet {
                         session.setAttribute("upcomingAppointments", upcomingAppointments);
                          response.sendRedirect("/history");
                         return;
+                    }else{
+                          session.setAttribute("failCancelAppt", true);
+                          response.sendRedirect("/history");
+                          return;
+                           
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(HistoryServlets.class.getName()).log(Level.SEVERE, null, ex);

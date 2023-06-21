@@ -42,6 +42,10 @@ public class AppointmentService {
     public List<Appointment> getUpcoming() throws Exception {
         return adb.getUpcoming();
     }
+    
+        public List<Appointment> getTodayAppt() throws Exception {
+        return adb.getTodayAppt();
+    }
 
     public List<Appointment> getUserUpcoming(int userId) throws Exception {
         return adb.getUserUpcoming(userId);
@@ -84,7 +88,7 @@ public class AppointmentService {
         LocalDate apptLocalDate = appointmentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (apptLocalDate.isBefore(tmrw) || apptLocalDate.isEqual(tmrw)) {
-            return "Cannot delete an appointment that is tomorrow! Please Check cancellation policy";
+            return "Cannot delete an appointment";
         }        
         
         HashMap<String, String> tags = new HashMap<>();

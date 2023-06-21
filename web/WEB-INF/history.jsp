@@ -43,17 +43,22 @@
                         <div class="history_title history_upcoming">
                             <h2>Upcoming Appointments</h2>
 
-                            <c:if test="${message ne 'empty'}">                               
-                                <table class="history_upcoming_table">
-                                    <thead>
+                            <table class="history_upcoming_table">
+                                <thead>
+                                    <tr>
+                                        <th class="upcoming_head">Date</th>
+                                        <th class="upcoming_head">Time</th>
+                                        <th class="upcoming_head">Treatment</th>
+                                        <th class="upcoming_head last_cell"></th>
+                                    </tr>
+                                </thead>               
+                                <tbody>
+                                    <c:if test="${upcoming_message eq 'empty'}">
                                         <tr>
-                                            <th class="upcoming_head">Date</th>
-                                            <th class="upcoming_head">Time</th>
-                                            <th class="upcoming_head">Treatment</th>
-                                            <th class="upcoming_head last_cell"></th>
+                                            <td colspan="4" style="text-align: center">There's no upcoming appointment.</td>
                                         </tr>
-                                    </thead>               
-                                    <tbody>    
+                                    </c:if>
+                                    <c:if test="${upcoming_message ne 'empty'}">   
                                         <c:forEach items="${upcomings}" var="upcoming">                           
                                             <tr>     
                                                 <!--appointment date--> 
@@ -76,9 +81,9 @@
 
                                             </tr>     
                                         </c:forEach>
-                                    </tbody>
-                                </table> 
-                            </c:if>
+                                    </tbody> 
+                                </c:if>
+                            </table> 
                         </div>
                         <p>${message}</p>
 
@@ -94,24 +99,31 @@
                                         <!--<th class="old_head last_cell">Report</th>-->
                                     </tr>
                                 </thead>   
-                                <tbody>    
-                                    <c:forEach items="${pasts}" var="past">                           
-                                        <tr>     
-                                            <!--appointment date--> 
-                                            <td class="old_data">
-                                                <c:out value="${past.timeid.getFulldate()}"  /></td>
-                                            <td class="old_data">
-                                                <c:out value="${past.timeid.getTruncatedStartTime()}"  /> 
-                                                - <c:out value="${past.timeid.getTruncatedEndTime()}"  />
-                                            </td>       
-                                            <!--service name-->
-                                            <td class="old_data last_cell"> 
-                                                <c:out value="${past.serviceid.serviceName}"  />
-                                            </td>
-                                            <!--after report?-->
-                                        </tr>     
-                                    </c:forEach>
-                                </tbody>
+                                <tbody>
+                                    <c:if test="${past_message eq 'empty'}">
+                                        <tr>
+                                            <td colspan="3" style="text-align: center">There's no previous appointment.</td>
+                                        </tr>
+                                    </c:if>
+                                    <c:if test="${past_message ne 'empty'}">   
+                                        <c:forEach items="${pasts}" var="past">                           
+                                            <tr>     
+                                                <!--appointment date--> 
+                                                <td class="old_data">
+                                                    <c:out value="${past.timeid.getFulldate()}"  /></td>
+                                                <td class="old_data">
+                                                    <c:out value="${past.timeid.getTruncatedStartTime()}"  /> 
+                                                    - <c:out value="${past.timeid.getTruncatedEndTime()}"  />
+                                                </td>       
+                                                <!--service name-->
+                                                <td class="old_data last_cell"> 
+                                                    <c:out value="${past.serviceid.serviceName}"  />
+                                                </td>
+                                                <!--after report?-->
+                                            </tr>     
+                                        </c:forEach>
+                                    </tbody>
+                                </c:if>
                             </table>
                         </div>
                     </div>
@@ -163,6 +175,11 @@
                 // Call the showMessage function to display the pop-up message
                 showMessage("Your Appointment successfully deleted.");
             <% session.removeAttribute("deleteAppt"); %> // Remove the flag from the session
+            <% }%>
+            <% if (session.getAttribute("failCancelAppt") != null && (boolean) session.getAttribute("failCancelAppt")) { %>
+                // Call the showMessage function to display the pop-up message
+                showMessage("You cannot delete an appointment that is scheduled for tomorrow or within the next 24 hours. Please Check cancellation policy.");
+            <% session.removeAttribute("failCancelAppt"); %> // Remove the flag from the session
             <% }%>
             });
         </script>

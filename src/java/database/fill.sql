@@ -17,7 +17,7 @@ insert into role values(1,'default user');
 insert into role values(2, 'system admin');
 
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
-insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password',2,1);
+insert into user (firstname, lastname, email_address, phone_number, password, isvalid, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password', 1,2,1);
 INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('gyu', 'park', 'arnastasa7@gmail.com', '1549849848', 'password1', '1', '1', '1');
 INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', 'password1', '1', '1', '1');
 
@@ -404,10 +404,12 @@ insert into service values(4, 2, 'sauna', 'Sauna ');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-20', 2024, 'Monday', 20, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-21', 2024, 'Tuesday', 21, 'May');
 
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (1,1,1,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (4,1,1,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (4,301,2,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (4,305,2,'My Tummy Hurting',1);
+insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,1,1,'My Tummy Hurting',2);
+insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,218,1,'My Tummy Hurting',1);
+insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,220,3,'My Tummy Hurting',1);
+insert into appointment(userid,timeid,serviceid,isupcoming) values (4,224,2,1);
+insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,301,2,'My Tummy Hurting',1);
+insert into appointment(userid,timeid,serviceid,isupcoming) values (3,305,2,1);
 
 
 -- we can add a timer class that runs every 24hrs and automatically adds a day!!

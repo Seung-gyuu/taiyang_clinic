@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +22,15 @@
 
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
-
+        <!-- Retrieve today's date -->
+        <%
+            LocalDate today = LocalDate.now();
+            String formattedDate = today.getMonth() + " " + today.getDayOfMonth() + ", " + today.getYear();
+        %>
+        <script>
+            var formattedDate = '<%= formattedDate%>';
+            // Use the formattedDate variable in your JavaScript code
+        </script>
     </head>
     <body>
 
@@ -99,7 +108,7 @@
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
                                 <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="" class="btn btn-danger me-2">Logout</a>
+                                <a href="home?logout" class="btn btn-danger me-2">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -126,7 +135,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h4 class="text-center mb-2" style="font-size: 1.2em;">June 14, 2023</h4>
+                                <br>
+                                <!-- Display today's date -->
+                                <h4 class="text-center mb-2" style="font-size: 1.2em;">
+                                    <script>document.write(formattedDate);</script>
+                                </h4>
+                                <br>
 
                                 <table class="table">
                                     <thead>
@@ -138,60 +152,62 @@
                                             <th>Describe</th>
                                             <th>Form</th>
                                         </tr>
-                                    </thead>
+                                    </thead> 
                                     <tbody>
-                                        <tr>
-                                            <td>9:00 AM</td>
-                                            <td>10:00 AM</td>
-                                            <td>Euna Kim</td>
-                                            <td>herbal Medicine</td>
-                                            <td>Regular Checkup</td>
-                                            <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>10:00 AM</td>
-                                            <td>11:00 AM</td>
-                                            <td>John Doe</td>
-                                            <td>Accupuncture</td>
-                                            <td>Regular Checkup</td>
-                                            <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>11:00 AM</td>
-                                            <td>12:00 PM</td>
-                                            <td>Jane Smith</td>
-                                            <td>Message/luiNa</td>
-                                            <td>Skin Allergy</td>
-                                            <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
-                                            </td>
-                                        </tr> 
-                                    </tbody>
+                                        <c:if test="${message eq 'empty'}">
+                                            <tr>
+                                                <td colspan="6" style="text-align: center">There's no appointment today.</td>
+                                            </tr>
+                                        </c:if>
+
+                                        <c:if test="${message ne 'empty'}">  
+                                            <c:forEach items="${today_appts}" var="today_appt">                           
+                                                <tr>     
+                                                    <!--start time--> 
+                                                    <td>  
+                                                        <c:out value="${today_appt.timeid.getTruncatedStartTime()}"  /> 
+                                                    </td>
+                                                    <!--end time-->
+                                                    <td>
+                                                        <c:out value="${today_appt.timeid.getTruncatedEndTime()}"  />
+                                                    </td>  
+                                                    <!--username-->
+                                                    <td>
+                                                        <c:out value="${today_appt.userid.getFirstname()}"  />
+                                                        <c:out value="${today_appt.userid.getLastname()}"  />
+                                                    </td> 
+                                                    <!--service name-->
+                                                    <td> 
+                                                        <c:out value="${today_appt.serviceid.serviceName}"  />
+                                                    </td> 
+                                                    <td> 
+                                                        <!--desc-->
+                                                        <c:choose>
+                                                            <c:when test="${empty today_appt.description}">
+                                                                No description
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <c:out value="${today_appt.description}" />
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+
+                                                    <!--form-->
+                                                    <!--need to change after view form feature is finished-->
+                                                    <td>
+                                                        <a href="" class="" data-toggle="modal">
+                                                            <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
+                                                        <a href="" class="" data-toggle="modal">
+                                                            <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
+                                                    </td>
+                                                </tr>     
+                                            </c:forEach>
+                                        </tbody>
+                                    </c:if>     
                                 </table>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
 
                     <!--start footer-->
                     <div class="my-5"></div>
@@ -204,11 +220,6 @@
                     </footer>
                 </div>
             </div>
-
-
-
-
-
 
 
             <script src="js/bootstrap.min.js"></script>

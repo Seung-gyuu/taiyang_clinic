@@ -89,7 +89,7 @@
                         </div>
                         <h4 class="mb-3">Acupuncture</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service1">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -101,7 +101,7 @@
                         </div>
                         <h4 class="mb-3">Moxibustion</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service2">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -113,7 +113,7 @@
                         </div>
                         <h4 class="mb-3">Massage/luiNa</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service3">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -125,7 +125,7 @@
                         </div>
                         <h4 class="mb-3">Cupping</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service4">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -137,7 +137,7 @@
                         </div>
                         <h4 class="mb-3">Herbal Medicine</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service5">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
@@ -149,7 +149,7 @@
                         </div>
                         <h4 class="mb-3">Korean beauty</h4>
                         <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                        <a class="btn btn-lg btn-primary rounded-pill" href="">
+                        <a class="btn btn-lg btn-primary rounded-pill" href="/service6">
                             <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>

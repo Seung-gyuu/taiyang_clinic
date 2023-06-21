@@ -65,6 +65,20 @@ public class AppointmentDB {
             em.close();
         }
     }
+    
+        public List<Appointment> getTodayAppt() throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Appointment> appts = em.createNamedQuery("Appointment.findByTodayAppt", Appointment.class).getResultList();
+            return appts;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
     public List<Appointment> getUserUpcoming(int userId) throws Exception {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     try {
