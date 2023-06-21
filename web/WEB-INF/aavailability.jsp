@@ -165,6 +165,9 @@
                                 </table>
 
 
+
+
+
                                 <div id="timeSlots" style="display: none;">
                                     <div class="table-title">
                                         <div class="row">
@@ -231,7 +234,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!--start footer-->
                 <div class="my-5"></div>
                 <footer class="footer">
