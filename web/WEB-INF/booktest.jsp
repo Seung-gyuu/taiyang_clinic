@@ -19,7 +19,14 @@
         <c:import url="./components/headers.jsp" />
     </head>
     <body>
-        <input type="hidden" value="0" id="weekCounter" name="weekCounter">
+        <c:if test="${weekCounter eq null}">
+            <input type="hidden" value="0" id="weekCounter" name="weekCounter"> 
+        </c:if>
+        <c:if test="${weekCounter ne null}">
+            <input type="hidden" value="${weekCounter}" id="weekCounter" name="weekCounter"> 
+        </c:if>
+       <!-- will put this into a form so that when form submitted, it can reset the value
+                                                                            of this and then JS can put the calendar back to where it was. >
         <!--Book Start-->
         <div class="gloabal_container">
             <div class="global_top_section">

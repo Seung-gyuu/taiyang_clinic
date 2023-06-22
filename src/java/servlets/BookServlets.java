@@ -53,17 +53,10 @@ public class BookServlets extends HttpServlet {
         try {
             List<Service> services = ss.getAll();
             request.setAttribute("services", services);
-//            for (Day d : unavailableDays) {
-//                List<Availabletime> newAvailableTimes = as.findByDate(d.getFulldate());
-//                d.setAvailabletimeList(newAvailableTimes);
-//            }
-//            for (Day d : availableDays) {
-//                List<Availabletime> newAvailableTimes = as.findByDate(d.getFulldate());
-//                d.setAvailabletimeList(newAvailableTimes);
-//            }
             request.setAttribute("unavailableDays", unavailableDays);
             request.setAttribute("availableDays", availableDays);
-
+            //request.setAttribute("weekCounter", 3);               ///THIS SETS THE VALUE OF THE WEEK.  I TESTED, IT CORRECTLY MAKES IT TO WEEK 3 ON LOAD
+            //NOW IN DO POST JUST GETPARAMETER(WEEKCOUNTER) THEN SET ATTRIBUTE (WEEK COUNTER)
         } catch (Exception ex) {
             Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
