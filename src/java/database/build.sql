@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     `userid` INT NOT NULL,
     CONSTRAINT `fk_appointment_user` 
         FOREIGN KEY (`userid`) REFERENCES `clinicdb`.`user` (`userid`),
-    `timeid` INT,
+    `timeid` INT NOT NULL,
     CONSTRAINT `fk_appointment_time`
         FOREIGN KEY (`timeid`) REFERENCES `clinicdb`.`availabletime` (`timeid`),
     `serviceid` INT NOT NULL,

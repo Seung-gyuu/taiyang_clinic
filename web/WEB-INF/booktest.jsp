@@ -98,7 +98,7 @@
                         </c:choose>
             </c:forEach>
                 </div>
-            </div>
+                </div>
             <div class="services">
                 <c:forEach items="${services}" var="s">
                     <input type="radio" name="serviceType" value="${s.getServiceid()}">${s.getServiceName()} 
@@ -107,8 +107,9 @@
             </div>
         </div>
             
-            
-<!--            <div class="book_main_section gloabal_main_section">
+        <input type="hidden" id="dynamicHtml" value="<c:forEach items='${services}' var='s'><input type='radio' name='serviceType' value='${s.serviceid}' onClick='enableBook()'>${s.serviceName}</c:forEach>">  
+        ${message}
+        <!--            <div class="book_main_section gloabal_main_section">
                 <div class="book_main-left">
                      Calendar 
                     <div class="book_left_top">
@@ -196,7 +197,6 @@
         <div id="popupBox" class="popup-box">
             <!-- Content of the popup box will be dynamically updated -->
         </div>
-        
         
         <script>
 

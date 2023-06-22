@@ -73,6 +73,10 @@ public class AppointmentService {
 
     public String insert(Appointment appt) throws Exception {
         adb.insert(appt);
+        AvailableTimeService avt = new AvailableTimeService();
+        appt.getTimeid().setIsAvailable(2);
+        appt.getTimeid().setIsBooked(2);
+        avt.update(appt.getTimeid());
         return "Appointment Created!";
     }
     

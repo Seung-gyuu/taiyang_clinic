@@ -60,6 +60,19 @@ public class BookServlets extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        User user = (User) session.getAttribute("loggedUser");
+        if (user != null) {
+            List<Appointment> upcomingAppointments;
+            AppointmentService aps = new AppointmentService();
+            try {
+                upcomingAppointments = aps.getUserUpcoming(user.getUserid());
+                session.setAttribute("upcomingAppointments", upcomingAppointments);
+            } catch (Exception ex) {
+                Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
 
         getServletContext().getRequestDispatcher("/WEB-INF/booktest.jsp").forward(request, response);
     }
@@ -68,6 +81,34 @@ public class BookServlets extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("loggedUser");
+        if (action.equals("book")) {
+            AvailableTimeService as = new AvailableTimeService();
+            ServiceService ss = new ServiceService();
+            int timeId = Integer.parseInt(request.getParameter("timeId"));
+            String description = request.getParameter("description");
+            int serviceId = Integer.parseInt(request.getParameter("serviceType"));
+            try {
+                Availabletime time = as.findByTimeId(timeId);
+                Service service = ss.get(serviceId);
+                Appointment a = new Appointment();
+                AppointmentService apts = new AppointmentService();
+                a.setDescription(description);
+                a.setServiceid(service);
+                a.setUserid(u);
+                a.setTimeid(time);
+                a.setStatus("Confirmed");
+                a.setIsupcoming(1);
+                String message = apts.insert(a);
+                request.setAttribute("message", message);
+                response.sendRedirect("/book");
+                
+            } catch (Exception ex) {
+                Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 }
