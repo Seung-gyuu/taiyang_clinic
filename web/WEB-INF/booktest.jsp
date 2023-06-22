@@ -14,12 +14,12 @@
         <link rel="stylesheet" type="text/css" href="css/global.css">
         <link rel="stylesheet" type="text/css" href="css/booktest.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
-        <script src="js/bookingpage.js"></script>
+<!--        <script src="js/bookingpage.js"></script>-->
 
         <c:import url="./components/headers.jsp" />
     </head>
     <body>
-
+        <input type="hidden" value="0" id="weekCounter" name="weekCounter">
         <!--Book Start-->
         <div class="gloabal_container">
             <div class="global_top_section">
@@ -91,7 +91,6 @@
                         </c:choose>
             </c:forEach>
                 </div>
-                    <input type="hidden" value="0" id="weekCounter" name="weekCounter">
             </div>
             <div class="services">
                 <c:forEach items="${services}" var="s">
@@ -250,6 +249,7 @@
 
 
         </script>
+    <script src="js/bookingpage.js"></script>
 
     </body>
 
