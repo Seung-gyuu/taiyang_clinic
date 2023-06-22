@@ -88,7 +88,7 @@
                                         <div class="table_data data_unavailable">Unavailable</div>
                                     </c:if>    
                                     <c:if test="${time.getIsAvailable()==1}">
-                                        <div class="table_data data_available" name="${time.getTruncatedStartTime()}" id="${time.getTimeid()}"  onClick='clicked2(this)'>${time.getTruncatedStartTime()} - ${time.getTruncatedEndTime()}</div>
+                                        <div class="table_data data_available" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getTime(this.getAttribute('data-value'))">${time.getTruncatedStartTime()} - ${time.getTruncatedEndTime()}</div>
                                     </c:if>
                                     
                                 </c:forEach>
@@ -193,7 +193,11 @@
                 <p>Are you sure you want to book this appointment?</p>
             </div>
         </div>
-
+        <div id="popupBox" class="popup-box">
+            <!-- Content of the popup box will be dynamically updated -->
+        </div>
+        
+        
         <script>
 
             var divItems = document.getElementsByClassName("getTime");

@@ -6,6 +6,7 @@
     /*   padding-right: calc(1.5rem * 0.5);
           padding-left: calc(1.5rem * 0.5);*/
 }
+
 .fullCalendar{
     width: 100%;
     display: flex;
@@ -384,4 +385,9 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.popupBox{
+    display: none;
 }
