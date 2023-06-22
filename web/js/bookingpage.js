@@ -16,6 +16,10 @@ function resetCalendar() {
     var shiftAmount = document.querySelector(".days-content .availableDay").offsetWidth;
     week = weekCounter.value;
     daysContent.style.transform = "translateX(-" + (week * shiftAmount * 7) + "px)";
+    var message = document.getElementById("hiddenmessage").value;
+    if(message==="Appointment Created!"){
+        alert(message);
+    }
     //this function will take the weekcounter that is reset by the form and should 
     //put them back to where they were whenever they click a button for booking
 }

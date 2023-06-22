@@ -73,7 +73,8 @@ public class BookServlets extends HttpServlet {
             }
 
         }
-
+        String message = request.getParameter("message");
+        request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/WEB-INF/booktest.jsp").forward(request, response);
     }
 //        getServletContext().getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
@@ -103,7 +104,7 @@ public class BookServlets extends HttpServlet {
                 a.setIsupcoming(1);
                 String message = apts.insert(a);
                 request.setAttribute("message", message);
-                response.sendRedirect("/book");
+                response.sendRedirect("/book?message=Appointment Created!");
                 
             } catch (Exception ex) {
                 Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
