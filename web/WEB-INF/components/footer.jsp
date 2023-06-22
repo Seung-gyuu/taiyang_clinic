@@ -40,20 +40,20 @@
                         <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                            <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" href="/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
+                            <a class="text-light" href="/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                            <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" href="/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
+                            <a class="text-light" href="/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">

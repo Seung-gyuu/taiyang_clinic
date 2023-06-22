@@ -46,7 +46,7 @@
             <div class ="services_top_wrap">
                 <p>Services</p>
                 <h1>Massage/luiNa</h1>
-                <button>Book Now</button>
+                 <button onclick="window.location.href='/book'">Book Now</button>
             </div>
         </div>
         <div class="services_main_section">
@@ -123,7 +123,7 @@
             <div class="container">
                 <div class="text-center mx-auto mb-5" style="max-width: 500px;">
 
-                    <h2>Otehr Services<h2>
+                    <h2>Other Services<h2>
                             </div>
                             <div class="row g-5">
                                 <div class="col-lg-4 col-md-6">
