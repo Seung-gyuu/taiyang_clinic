@@ -3,6 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var fn = 0;
+var ln = 0;
+var e = 0;
+var p = 0;
+var ps = 0;
+
 function validateFirstName() {
     var firstNameInput = document.getElementById("first-name");
     var firstNameSpan = document.getElementById("first-name-span");
@@ -13,12 +19,18 @@ function validateFirstName() {
         firstNameSpan.style.fontSize = "12px";
         firstNameSpan.style.display = "block";
         firstNameSpan.style.textAlign = "center";
+        firstNameInput.style.border="solid red 1px";
+        fn=1;
+        fullform();
     } else {
         firstNameSpan.textContent = "";
         firstNameSpan.style.color = "";
         firstNameSpan.style.fontSize = "";
         firstNameSpan.style.display = "";
         firstNameSpan.style.textAlign = "";
+        firstNameInput.style.border="";
+        fn=0;
+        fullform();
     }
 }
 
@@ -32,13 +44,18 @@ function validateLastName() {
         lastNameSpan.style.fontSize = "12px";
         lastNameSpan.style.display = "block";
         lastNameSpan.style.textAlign = "center";
-
+        lastNameInput.style.border="solid red 1px";
+        ln=1;
+        fullform();
     } else {
         lastNameSpan.textContent = "";
         lastNameSpan.style.color = "";
         lastNameSpan.style.fontSize = "";
         lastNameSpan.style.display = "";
         lastNameSpan.style.textAlign = "";
+        lastNameInput.style.border="";
+        ln=0;
+        fullform();
 
     }
 }
@@ -46,12 +63,15 @@ function validateLastName() {
 function validateEmail() {
     var emailInput = document.getElementById("email");
     var emailSpan = document.getElementById("email-span");
-    if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+    if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/.test(emailInput.value)) {
         emailSpan.textContent = "Email must be in valid email format! (johndoe@gmail.com)";
         emailSpan.style.color = "red";
         emailSpan.style.fontSize = "12px";
         emailSpan.style.display = "block";
         emailSpan.style.textAlign = "center";
+        emailInput.style.border="solid red 1px";
+        e=1;
+        fullform();
 
     } else {
         emailSpan.textContent = "";
@@ -59,6 +79,9 @@ function validateEmail() {
         emailSpan.style.fontSize = "";
         emailSpan.style.display = "";
         emailSpan.style.textAlign = "";
+        emailInput.style.border="";
+        e=0;
+        fullform();
     }
 }
 
@@ -71,12 +94,18 @@ function validatePhone() {
         phoneSpan.style.fontSize = "12px";
         phoneSpan.style.display = "block";
         phoneSpan.style.textAlign = "center";
+        phoneInput.style.border="solid red 1px";
+        p=1;
+        fullform();
     } else {
         phoneSpan.textContent = "";
         phoneSpan.style.color = "";
         phoneSpan.style.fontSize = "";
         phoneSpan.style.display = "";
         phoneSpan.style.textAlign = "";
+        phoneInput.style.border="";
+        p=0;
+        fullform();
     }
 }
 
@@ -89,12 +118,32 @@ function validatePassword() {
         passSpan.style.fontSize = "12px";
         passSpan.style.display = "block";
         passSpan.style.textAlign = "center";
+        passInput.style.border="solid red 1px";
+        ps=1;
+        fullform();
     } else {
         passSpan.textContent = "";
         passSpan.style.color = "";
         passSpan.style.fontSize = "";
         passSpan.style.display = "";
         passSpan.style.textAlign = "";
-
+        passInput.style.border="";
+        ps=0;
+        fullform();
+    }
+}
+function fullform() {
+    var sum = fn + ln + e + p + ps;
+    var button = document.getElementById("submitbutton");
+    if (sum !== 0) {
+        button.style.border = "solid red 1px";
+        button.style.backgroundColor = "red";
+        button.disabled = true;
+        button.style.cursor = "default";
+    } else {
+        button.style.border = "";
+        button.style.backgroundColor = "#0d6efd";
+        button.disabled = false;
+        button.style.cursor = "pointer";
     }
 }

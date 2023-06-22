@@ -200,12 +200,12 @@
 
                                                 <div class="d-flex justify-content-center">
                                                     <input type="hidden" name="action" value="register" >
-                                                    <input type="submit" name="submit" value="Register" class="btn btn-primary btn-lg btn-block gradient-custom-4" style="width: 50%; ">
+                                                    <input type="submit" id="submitbutton" name="submit" value="Register" class="btn btn-primary btn-lg btn-block gradient-custom-4" style="width: 50%; ">
                                                 </div>
                                                 <p class="mb-1 pb-lg-2 text-center" style="color: #ff3333; margin-top: 10px;">${message} <br></p>
                                                 <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD;"> ${validation} <br></p>
 
-                                                <p class="text-center text-muted mb-0">Have already an account? <a href="/login"
+                                                <p class="text-center text-muted mb-0">Already have an account? <a href="/login"
                                                                                                                         class="fw-bold text-body"><u>Login here</u></a></p>
                                             </form>
 
