@@ -91,6 +91,7 @@
                         </c:choose>
             </c:forEach>
                 </div>
+                    <input type="hidden" value="0" id="weekCounter" name="weekCounter">
             </div>
             <div class="services">
                 <c:forEach items="${services}" var="s">
