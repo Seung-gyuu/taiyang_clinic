@@ -37,6 +37,36 @@ function goRight() {
 }
 
 
+function cancel(){
+    var popupBox = document.getElementById('popupBox');
+    popupBox.style.display='none';
+}
+
+function confirm() {
+  // Make an AJAX request to check if the user is logged in
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/check-login', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var isLoggedIn = xhr.responseText;
+
+      if (isLoggedIn === 'true') {
+        // User is logged in, display the form
+        showForm();
+      } else {
+        // User is not logged in, redirect to the login page
+        localStorage.setItem('loginMessage', 'Please login to book an appointment');
+        window.location.href = '/login';
+      }
+    }
+  };
+  xhr.send();
+}
+function showForm(){
+    var popupBox = document.getElementById('popupBox');
+    popupBox.innerHTML="i made it here nopw";
+}
+
 
 function getTime(timeId){
      fetch('/getTime?timeId=' + timeId)
