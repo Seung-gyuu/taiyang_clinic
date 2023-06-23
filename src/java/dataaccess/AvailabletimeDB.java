@@ -139,7 +139,7 @@ public class AvailabletimeDB {
         }
     }
     
-    public void delete(Availabletime avt) throws Exception {
+    public void unavailable(Availabletime avt) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         try {

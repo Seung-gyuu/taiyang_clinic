@@ -171,4 +171,16 @@ public class UserDB {
         }
     }
     
+        public void add(User user) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            em.persist(user);
+            trans.commit();
+        } finally {
+            em.close();
+        }
+    }
+    
 }

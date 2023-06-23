@@ -46,11 +46,11 @@
     </servlet>
     <servlet>
         <servlet-name>Admin2</servlet-name>
-        <servlet-class>servlets.Admin2</servlet-class>
+        <servlet-class>servlets.Ausers</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Admin3</servlet-name>
-        <servlet-class>servlets.Admin3</servlet-class>
+        <servlet-class>servlets.Aavailability</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AboutUs</servlet-name>

@@ -82,7 +82,7 @@ public class AvailableTimeService {
         return "Insertion successful";
     }
     
-    public String delete(Availabletime avt) throws Exception{
+    public String unavailable(Availabletime avt) throws Exception{
         if(avt.getIsBooked()==2)
             return "Time is booked! Cannot delete time!";
         AppointmentDB adb = new AppointmentDB();
@@ -90,7 +90,7 @@ public class AvailableTimeService {
         if(a!= null){
             return "Appointment made on that time! Cannot delete!";
         }
-        avdb.delete(avt);
+        avdb.unavailable(avt);
         return "Time deleted!";
     }
 }

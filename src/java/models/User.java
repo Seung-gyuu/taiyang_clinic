@@ -109,6 +109,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User(String firstName, String lastName, String email, String phone) {
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.emailAddress = email;
+        this.phoneNumber = phone;
+    }
+
     public Integer getUserid() {
         return userid;
     }

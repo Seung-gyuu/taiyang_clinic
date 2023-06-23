@@ -38,6 +38,8 @@ public class RoleDB {
 //            return null;
 //        } 
     }
-    
+        public Role getRoleid(int roleid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

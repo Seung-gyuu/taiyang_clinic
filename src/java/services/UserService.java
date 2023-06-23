@@ -5,12 +5,14 @@
  */
 package services;
 
+import dataaccess.RoleDB;
 import dataaccess.UserDB;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import models.Role;
 import models.User;
 import utilities.HashAndSalt;
 
@@ -217,4 +219,37 @@ public class UserService {
 
     }
 
+    public void updatePW(User user, String password) {
+        try {
+            user.setPassword(password);
+            String salt = user.getSalt();
+            String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
+//            user.setPassword(hashedPassword);
+            user.setSalt(salt);
+
+            udb.update(user);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void deActivate(int userId) {
+        try {
+            User user = udb.get(userId);
+            user.setIsactive(2);
+            udb.update(user);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void add(String firstName, String lastName, String email, String phone, String password, int userId, int roleid, int i) {
+        User user = new User(firstName, lastName, email, phone);
+        UserDB udb = new UserDB();
+        RoleDB rdb = new RoleDB();
+        Role role = rdb.getRoleid(roleid);
+        user.setRoleid(role);
+        udb.add(user);
+        
+        }
 }
