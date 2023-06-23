@@ -17,7 +17,7 @@ function resetCalendar() {
     week = weekCounter.value;
     daysContent.style.transform = "translateX(-" + (week * shiftAmount * 7) + "px)";
     var message = document.getElementById("hiddenmessage").value;
-    if(message==="Appointment Created!"){
+    if(message==="Appointment Created!" || message==="Cannot have more than 3 upcoming appointments at once!"){
         alert(message);
     }
     //this function will take the weekcounter that is reset by the form and should 

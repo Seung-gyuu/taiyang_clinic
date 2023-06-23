@@ -29,6 +29,9 @@ public class ReminderService {
         rdb.update(r);
         return "Reminder Updated";
     }
+    public List<Reminder> getPassed() throws Exception {
+        return rdb.getPassed();
+    }
     //this delete reminder is only called in the timer class to delete the reminder after it is sent.  This automatically
     //adds into the sent reminders table.  IT WONT BE CALLED IN ANY OTHER CONTEXT!! 
     //Deleting from the appointment table has a database trigger to automatically remove a reminder!

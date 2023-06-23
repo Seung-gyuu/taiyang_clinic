@@ -26,6 +26,18 @@ public class ReminderDB {
         }
 
     }
+    public List<Reminder> getPassed() throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Reminder> reminders = em.createNamedQuery("Reminder.findByPassed", Reminder.class).getResultList();
+            return reminders;
+        } finally {
+           em.close();
+        }
+
+    }
+    
+    
     //get using reminder ID .  
     public Reminder getById(int reminderId) throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

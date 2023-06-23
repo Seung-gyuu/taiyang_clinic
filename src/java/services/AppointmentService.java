@@ -72,11 +72,18 @@ public class AppointmentService {
     }
 
     public String insert(Appointment appt) throws Exception {
+        List<Appointment> appts = this.getUserUpcoming(appt.getUserid().getUserid());
+        if(appts.size()>3){
+            return "Cannot have more than 3 upcoming appointments at once!";
+        }
         adb.insert(appt);
         AvailableTimeService avt = new AvailableTimeService();
         appt.getTimeid().setIsAvailable(2);
         appt.getTimeid().setIsBooked(2);
         avt.update(appt.getTimeid());
+        /**
+         * Send confirmation email here
+         */
         return "Appointment Created!";
     }
     
