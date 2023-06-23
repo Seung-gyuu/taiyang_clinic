@@ -26,6 +26,7 @@ public class SendReminderEmail extends TimerTask{
             for(Reminder r : reminders){
                 //send email here
                 //rs.delete(r);   // rs.delete also inserts into sent reminder table.
+                System.out.print("Hello");
             }
         } catch (Exception ex) {
             Logger.getLogger(SendReminderEmail.class.getName()).log(Level.SEVERE, null, ex);

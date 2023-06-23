@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Reminder.findAll", query = "SELECT r FROM Reminder r")
     , @NamedQuery(name = "Reminder.findByReminderid", query = "SELECT r FROM Reminder r WHERE r.reminderid = :reminderid")
-    , @NamedQuery(name = "Reminder.findByPassed", query = "SELECT r FROM Reminder r WHERE CURRENT_DATETIME>=r.sendTime")    
+    , @NamedQuery(name = "Reminder.findByPassed", query = "SELECT r FROM Reminder r WHERE :currentTime>=r.sendTime")    
     , @NamedQuery(name = "Reminder.findBySendTime", query = "SELECT r FROM Reminder r WHERE r.sendTime = :sendTime")})
 public class Reminder implements Serializable {
 

@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import models.Reminder;
 import dataaccess.SentRemindersDB;
+import java.time.LocalDate;
+import javax.persistence.TypedQuery;
+import models.Appointment;
 
 /**
  *
@@ -29,7 +32,10 @@ public class ReminderDB {
     public List<Reminder> getPassed() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Reminder> reminders = em.createNamedQuery("Reminder.findByPassed", Reminder.class).getResultList();
+            TypedQuery<Reminder> query = em.createNamedQuery("Reminder.findByPassed", Reminder.class);
+            LocalDate now = LocalDate.now();
+            query.setParameter("currentTime", java.sql.Date.valueOf(now));
+            List<Reminder> reminders = query.getResultList();
             return reminders;
         } finally {
            em.close();
