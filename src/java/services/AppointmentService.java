@@ -73,7 +73,7 @@ public class AppointmentService {
 
     public String insert(Appointment appt) throws Exception {
         List<Appointment> appts = this.getUserUpcoming(appt.getUserid().getUserid());
-        if(appts.size()>3){
+        if(appts.size()>=3){
             return "Cannot have more than 3 upcoming appointments at once!";
         }
         adb.insert(appt);
