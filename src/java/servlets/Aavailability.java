@@ -40,18 +40,19 @@ public class Aavailability extends HttpServlet {
         int currentDayNUmber = currentDay.getValue();
         if (currentDayNUmber == 7) {
             currentDayNUmber = 0;
+        }    
             unavailableDays = days.subList(0, currentDayNUmber);
             availableDays = days.subList(currentDayNUmber, days.size());
             request.setAttribute("unavailableDays", unavailableDays);
             request.setAttribute("availableDays", availableDays);
-        }
+        
         getServletContext().getRequestDispatcher("/WEB-INF/aavailability.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException { //looks good, cant test because JSP not done
         try {
             String action = request.getParameter("action");
             String timeid = request.getParameter("timeid");

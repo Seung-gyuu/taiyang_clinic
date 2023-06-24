@@ -37,12 +37,15 @@ public class Ausers extends HttpServlet {
         //get the user from the database
         String action = request.getParameter("action");
         String email = request.getParameter("email");
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        //int userId = Integer.parseInt(request.getParameter("userId"));  //GET method should only get the user list.  Thats all!
+                                                                          // when the admin searches for a user, it should be a post method, or javascript to filter
+                                                                          // the user table
         UserService us = new UserService();
-        if (action.equals("search")) {
+        if (action!= null && action.equals("search")) {   //What if they just load the page?  It needs to have a default get method 
+                                                          // When admin loads page, doGet should just get userlist, rest is javascript or doPost method
             try {
                 User user = us.getByEmail(email);
-                request.setAttribute("userId", userId);
+                //request.setAttribute("userId", userId);
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
                 request.setAttribute("message", SEARCH_ERROR);
@@ -67,7 +70,8 @@ public class Ausers extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String password = "";
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        //int userId = Integer.parseInt(request.getParameter("userId"));  //user ID is auto generated.  Admin should NOT set it as it will
+                                                                            // error in the database
         int isactive = Integer.parseInt(request.getParameter("isactive"));
         UserService us = new UserService();
         RoleService rs = new RoleService();
@@ -77,9 +81,10 @@ public class Ausers extends HttpServlet {
         u.setEmailAddress(email);
         u.setPhoneNumber(phone);
         u.setPassword(password);
-        u.setUserid(userId);
-        u.setRoleid(roleId);
-        u.setIsactive(1);
+        //u.setUserid(userId);
+        //u.setRoleid(roleId); // in the admin page, get the role ID from a list, use a role service to get the role object
+                               // using the role ID number, then set the ID for that
+        u.setIsactive(1); //set it to the parameter you retrieved?
         switch (action) {
             case "edit":
                 try {
@@ -91,7 +96,8 @@ public class Ausers extends HttpServlet {
                 }   break;
             case "add":
                 try {
-                    us.insert(firstName, lastName, email, phone, password, userId, roleId, 1);
+                    //us.insert(firstName, lastName, email, phone, password, userId, roleId, 1); make sure that is how insert works.  RoleID should be role object
+                                                                                                // userID should not be set.  IsActive IsValid need revision
                     request.setAttribute("message", "User added successfully");
                 } catch (Exception e) {
                     Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
@@ -99,7 +105,7 @@ public class Ausers extends HttpServlet {
                 }   break;
             case "deActivate":
                 try {
-                    us.deActivate(userId);
+                    //us.deActivate(userId);
                     request.setAttribute("message", DEACT_SUCCESS);
                 } catch (Exception e) {
                     Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);

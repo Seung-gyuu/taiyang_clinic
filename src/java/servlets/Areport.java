@@ -28,16 +28,18 @@ public class Areport extends HttpServlet {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-        }
+        } //log out should be put in post, since get is best for just retrieval
         //get the user from the database
         String action = request.getParameter("action");
         String email = request.getParameter("email");
-        int userId = Integer.parseInt(request.getParameter("userId"));
+        //int userId = Integer.parseInt(request.getParameter("userId"));  //GET method should only get the user list. 
+                                                                          // when the admin searches for a user, it should be a post method, or javascript to filter
+                                                                          // the user table
         UserService us = new UserService();
-        if (action.equals("search")) {
+        if (action.equals("search")) { //move this to the post method
             try {
                 User user = us.getByEmail(email);
-                request.setAttribute("userId", userId);
+                //request.setAttribute("userId", userId);
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
                 request.setAttribute("message", SEARCH_ERROR);
