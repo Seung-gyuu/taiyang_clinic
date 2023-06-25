@@ -102,7 +102,8 @@ public class BookServlets extends HttpServlet {
                 a.setTimeid(time);
                 a.setStatus("Confirmed");
                 a.setIsupcoming(1);
-                String message = apts.insert(a);
+                String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
+                String message = apts.insert(a, templatePath);
                 response.sendRedirect("/book?message="+message);
                 
             } catch (Exception ex) {

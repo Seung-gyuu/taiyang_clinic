@@ -6,13 +6,18 @@
 package services;
 
 import dataaccess.AppointmentDB;
+import java.time.Instant;
 import java.util.List;
 import models.Appointment;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import javax.servlet.ServletContext;
+import models.Day;
 import models.User;
 
 /**
@@ -42,8 +47,8 @@ public class AppointmentService {
     public List<Appointment> getUpcoming() throws Exception {
         return adb.getUpcoming();
     }
-    
-        public List<Appointment> getTodayAppt() throws Exception {
+
+    public List<Appointment> getTodayAppt() throws Exception {
         return adb.getTodayAppt();
     }
 
@@ -71,9 +76,9 @@ public class AppointmentService {
         return adb.findByRange(start, end);
     }
 
-    public String insert(Appointment appt) throws Exception {
+    public String insert(Appointment appt, String templatePath) throws Exception {
         List<Appointment> appts = this.getUserUpcoming(appt.getUserid().getUserid());
-        if(appts.size()>=3){
+        if (appts.size() >= 3) {
             return "Cannot have more than 3 upcoming appointments at once!";
         }
         adb.insert(appt);
@@ -81,33 +86,48 @@ public class AppointmentService {
         appt.getTimeid().setIsAvailable(2);
         appt.getTimeid().setIsBooked(2);
         avt.update(appt.getTimeid());
-        /**
-         * Send confirmation email here
-         */
+
+        HashMap<String, String> tags = new HashMap<>();
+        tags.put("name", appt.getUserid().getFirstname());
+        tags.put("appointmentDate", appt.getTimeid().getFulldate().toString());
+        tags.put("startTime", appt.getTimeid().getTruncatedStartTime());
+        tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
+        tags.put("service", appt.getServiceid().getServiceName());
+
+        SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Confirmation", templatePath, tags);
+
         return "Appointment Created!";
     }
-    
-    public List<Appointment> getOutdated() throws Exception{
+
+    public List<Appointment> getOutdated() throws Exception {
         return adb.getOutdated();
     }
 
-    
-
     public String delete(Appointment appt, String templatePath) throws Exception {
+//LocalDateTime currentDateTime = LocalDateTime.now();
+//Date appointmentDate = appt.getTimeid().getFulldate().getFulldate();
+//LocalTime appointmentTime = appt.getTimeid().getFulldate().getFulldate().toLocalTime();
+//LocalDateTime appointmentDateTime = LocalDateTime.of(appointmentDate, appointmentTime);
+//LocalDateTime minimumCancellationDateTime = currentDateTime.plusHours(24);
+
+//if (appointmentDateTime.isBefore(minimumCancellationDateTime) || appointmentDateTime.isEqual(minimumCancellationDateTime)) {
+//    return "Cannot delete an appointment";
+//}
         LocalDate tmrw = LocalDate.now().plusDays(1);
         Date appointmentDate = appt.getTimeid().getFulldate().getFulldate();
         LocalDate apptLocalDate = appointmentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         if (apptLocalDate.isBefore(tmrw) || apptLocalDate.isEqual(tmrw)) {
             return "Cannot delete an appointment";
-        }        
-        
+        }
+
         HashMap<String, String> tags = new HashMap<>();
         tags.put("name", appt.getUserid().getFirstname());
         tags.put("appointmentDate", appt.getTimeid().getFulldate().toString());
         tags.put("startTime", appt.getTimeid().getTruncatedStartTime());
         tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
-        
+        tags.put("service", appt.getServiceid().getServiceName());
+
         appt.setStatus("Canceled");
         AvailableTimeService avt = new AvailableTimeService();
         appt.getTimeid().setIsAvailable(1);
@@ -115,11 +135,12 @@ public class AppointmentService {
         avt.update(appt.getTimeid());
         adb.update(appt);
 
-        SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Canceled", templatePath, tags);
+        SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Cancellation Confirmation", templatePath, tags);
 
         return "Appointment Deleted!";
     }
-    public String update(Appointment a) throws Exception{
+
+    public String update(Appointment a) throws Exception {
         adb.update(a);
         return "Updated";
     }
