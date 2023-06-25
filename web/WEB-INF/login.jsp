@@ -15,6 +15,12 @@
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet"> 
+
+
 
 
 
@@ -32,43 +38,39 @@
 
     </head>
     <body>
-        <!-- Topbar Start -->
-        <div class ="container-fluid py-2 border-bottom d-none d-lg-block">
-            <div class ="container">
-                <div class ="row">
 
+        <!-- Topbar Start -->
+        <div class="container-fluid py-2 border-bottom d-none d-lg-block mt-2">
+            <div class="container">
+                <div class="row">
                     <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                         <div class="d-inline-flex align-items-center">
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
                             <span class="text-body">|</span>
-                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>Sunny@example.com</a>       
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>sunnyacupuncturist@gmail.com </a>       
                             <span class="text-body">|</span>
-                            <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW, Calgary, AB</a>       
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-house-door me-2"></i>1310 16Ave NW</a>       
                         </div>
                     </div>
 
-
-
-
-                    <div class ="col-md-6 text-right text-lg-end">
-                        <div class ="d-inline-flex align-items-center">
+                    <div class="col-md-6 text-right text-lg-end">
+                        <div class="d-inline-flex align-items-center">
                             <c:if test="${loggedUser eq null}">
-                                <a class ="text-decoration-none text-body px-3" href ="/login">
-                                    <i class ="bi bi-person-fill"></i>
+                                <a class="text-decoration-none text-body px-3" href="/login">
+                                    <i class="bi bi-person-fill"></i>
                                     Login <span class="text-body"> </a> |  
-                                <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
-
+                                <a class="text-decoration-none text-body px-3" href="/register"></span>Register </a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
                                     You have ${upcomingAppointments.size()} upcoming appointments! <br>
                                 </c:if>
-                                <a class ="text-decoration-none text-body px-3" href ="/profile">
+                                <a class="text-decoration-none text-body px-3" href="/profile">
                                     Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
                                 </a>
                             </c:if>
-                            <a class ="text-body px-2" href ="">
-                                <i class ="fab fa-facebook-f"></i></a>
+                            <a class="text-body px-2" href="">
+                                <i class="fab fa-facebook-f"></i></a>
                             <a class="text-body px-2" href="">
                                 <i class="fab fa-twitter"></i></a>
                             <a class="text-body px-2" href="">
@@ -126,8 +128,9 @@
                 </nav>
             </div>
         </div>
+        
         <!--login form-->
-        <section class="min-vh-100" style="background-color: #ececec;">
+        <section class="min-vh-100" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-xl-10">
@@ -145,8 +148,8 @@
                                                 <h1 class="text-uppercase text-center mb-5">WELCOME BACK!</h1>
                                             </div>
 
-
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login to your account</h5>
+<!--style="letter-spacing: 1px;"-->
+                                            <h4 class="fw-normal mb-3 pb-3" >Login to your account</h4>
 
                                             <!--                                                                                 <div class ="form-group">
                                                                                         <label for ="password">
@@ -170,14 +173,14 @@
                                             <div class="form-check d-flex justify-content-end mb-4 ">
                                                 <label class="form-check-label"> <a href="/forgotpassword" > Forgot your password? </a></label>
                                             </div>
-                                                <p class="mb-3 pb-lg-2 text-center" id="loginMessage" style="color: #ff3333; font-size: larger;">${message}</p>
+                                            <p class="mb-3 pb-lg-2 text-center" id="loginMessage" style="color: #ff3333; font-size: larger;">${message}</p>
                                             <script>
                                                 var loginMessage = localStorage.getItem('loginMessage');
                                                 var messageElement = document.getElementById('loginMessage');
                                                 if (loginMessage) {
                                                     localStorage.removeItem('loginMessage');
                                                     messageElement.textContent = loginMessage;
-                                                } 
+                                                }
 
                                             </script>
                                             <div class="pt-1 mb-4 text-center">

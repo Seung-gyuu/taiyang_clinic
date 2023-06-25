@@ -52,7 +52,7 @@ public class Aavailability extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { //looks good, cant test because JSP not done
+            throws ServletException, IOException {
         try {
             String action = request.getParameter("action");
             String timeid = request.getParameter("timeid");

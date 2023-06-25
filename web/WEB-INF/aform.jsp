@@ -40,7 +40,7 @@
                 <ul class="list-unstyled components">
                     <li  class="active">
                         <a href="admin" class="dashboard"><i class="material-icons">dashboard</i>
-                            <span>Todays</span></a>
+                            <span>Today</span></a>
                     </li>
 
 
@@ -208,7 +208,8 @@
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                </div>
                         <div class="modal fade" id="medicalFormModal" tabindex="-1" aria-labelledby="medicalFormModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -228,6 +229,7 @@
                                 </div>
                             </div>
                         </div>
+                
 
 
 

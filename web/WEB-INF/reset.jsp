@@ -25,15 +25,23 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/login.css">
         <c:import url="./components/headers.jsp" />
+        
+            <style>
+            .card-header{
+                font-family: 'Belanosima', sans-serif;
+
+            }
+          
+        </style>
+
 
 
     </head>
     <body>
 
         <!--        //get email-->
-        <section class="min-vh-100" style="background-color: #ececec;">
+        <section class="min-vh-100" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 text-center">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="container h-100">

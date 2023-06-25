@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet"> 
 
 
 
@@ -18,17 +19,26 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
+
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/forgotpassword.css">
-             <c:import url="./components/headers.jsp" />   
+        <c:import url="./components/headers.jsp" />   
+
+        <style>
+            .card-header{
+                font-family: 'Belanosima', sans-serif;
+
+            }
+          
+        </style>
 
 
     </head>
+
     <body>
 
         <!--        //get email-->
-        <section class="min-vh-80" style="background-color: #ececec;">
+        <section class="min-vh-80" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 text-center pb-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="container h-100">
@@ -70,10 +80,10 @@
                     </div>
                 </div>
             </div>
-    </section>
-    <script src="js/bootstrap.bundle.min.js"></script>
+        </section>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <footer>
-        <jsp:include page="./components/footer.jsp" />
-    </footer>
-</body>
+            <jsp:include page="./components/footer.jsp" />
+        </footer>
+    </body>
 </html>

@@ -2,8 +2,12 @@
     margin:0px;
     padding:0px;
     box-sizing: border-box;
-/*    font-family: 'Poppins', sans-serif;*/
+  
 }
+/*.sections h1{
+   font-family: 'Montserrat', sans-serif;
+   
+}*/
 
 .sections{
     width: 100%;
@@ -24,6 +28,7 @@
     text-transform:uppercase;
     font-size: 45px;
     color: black;
+    
 }
 .containers .title h1::after{
     content:"";

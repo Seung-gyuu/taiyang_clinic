@@ -22,6 +22,9 @@
 
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>-->
+
         <!-- Retrieve today's date -->
         <%
             LocalDate today = LocalDate.now();
@@ -47,47 +50,47 @@
                 <ul class="list-unstyled components">
                     <li  class="active">
                         <a href="admin" class="dashboard"><i class="material-icons">dashboard</i>
-                            <span>Todays</span></a>
+                            <span>Today</span></a>
                     </li>
 
+                    
+                        <li class="dropdown">
+                            <a href="ausers" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">aspect_ratio</i>Users</a>
+                        </li>
 
-                    <li class="dropdown">
-                        <a href="ausers" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">aspect_ratio</i>Users</a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="aavailability" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">library_books</i><span>Availability</span></a>
+                        </li>
 
-                    <li class="dropdown">
-                        <a href="aavailability" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">library_books</i><span>Availability</span></a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="aform" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">border_color</i><span>Add Form</span></a>
+                        </li>
 
-                    <li class="dropdown">
-                        <a href="aform" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">border_color</i><span>Add Form</span></a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="vform" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">extension</i><span>View Form</span></a>
+                        </li>
 
-                    <li class="dropdown">
-                        <a href="vform" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">extension</i><span>View Form</span></a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="viewappointment" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">apps</i><span>View Appointments</span></a>
+                        </li>
 
-                    <li class="dropdown">
-                        <a href="viewappointment" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">apps</i><span>View Appointments</span></a>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="areport" data-toggle="collapse" aria-expanded="false" 
-                           class="dropdown-toggle">
-                            <i class="material-icons">grid_on</i><span>Reports</span></a>
-                        <ul class="collapse list-unstyled menu" id="pageSubmenu6">
-                    </li>
-                </ul>
+                        <li class="dropdown">
+                            <a href="areport" data-toggle="collapse" aria-expanded="false" 
+                               class="dropdown-toggle">
+                                <i class="material-icons">grid_on</i><span>Reports</span></a>
+                            <ul class="collapse list-unstyled menu" id="pageSubmenu6">
+                        </li>
+                    </ul>    
             </nav>
 
 
@@ -116,6 +119,8 @@
                         <h4 class="page-title">Dashboard</h4>               
                     </div>
                 </div>
+
+
 
 
                 <!--------main-content------------->
@@ -208,20 +213,41 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--start footer-->
-                    <div class="my-5"></div>
-                    <footer class="footer">
-                        <div class="container-fluid">
-                            <div class="footer-in">
-                                <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
+
+
+                <!--start footer-->
+                <div class="my-5"></div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="footer-in">
+                            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </footer>
             </div>
+        </div>
+
+        <script>
+
+            $(document).ready(function () {
+                if ($(window).width() < 768) {
+                    $('.dropdown-toggle').on('click', function (e) {
+                        e.preventDefault();
+                        $(this).next('.dropdown-menu').toggle();
+                    });
+                }
+            });
+        </script>
 
 
-            <script src="js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

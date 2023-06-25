@@ -27,7 +27,7 @@
 </head>
 <body>
     <!-- Topbar Start -->
-    <div class ="container-fluid py-2 border-bottom d-none d-lg-block">
+    <div class ="container-fluid py-1 border-bottom d-none d-lg-block">
         <div class ="container">
             <div class ="row">
 
@@ -35,11 +35,12 @@
                     <div class="d-inline-flex align-items-center">
                         <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
                         <span class="text-body">|</span>
-                        <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>Sunny@example.com</a>       
+                        <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>sunnyacupuncturist@gmail.com </a>       
                         <span class="text-body">|</span>
-                        <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW, Calgary, AB</a>       
+                        <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW</a>       
                     </div>
                 </div>
+                
 
 
 
@@ -74,6 +75,8 @@
             </div>
         </div>
     </div>
+    
+    
 
 
     <!--Navbar Start -->

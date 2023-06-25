@@ -15,6 +15,7 @@
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
 
 
 
@@ -25,49 +26,46 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/registration.css">
+        <link rel="stylesheet" href="css/register.css">
         <script src="js/registerJS.js"></script>
 
     </head>
     <body>
 
-        <!-- Topbar Start -->
-        <div class ="container-fluid py-2 border-bottom d-none d-lg-block">
-            <div class ="container">
-                <div class ="row">
 
+
+        <!-- Topbar Start -->
+        <div class="container-fluid py-2 border-bottom d-none d-lg-block mt-2">
+            <div class="container">
+                <div class="row">
                     <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                         <div class="d-inline-flex align-items-center">
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
                             <span class="text-body">|</span>
-                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>Sunny@example.com</a>       
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>sunnyacupuncturist@gmail.com </a>       
                             <span class="text-body">|</span>
-                            <a class ="text-decoration-none text-body px-2" href=""><i class ="bi bi-house-door me-2"></i>1310 16Ave NW, Calgary, AB</a>       
+                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-house-door me-2"></i>1310 16Ave NW</a>       
                         </div>
                     </div>
 
-
-
-
-                    <div class ="col-md-6 text-right text-lg-end">
-                        <div class ="d-inline-flex align-items-center">
+                    <div class="col-md-6 text-right text-lg-end">
+                        <div class="d-inline-flex align-items-center">
                             <c:if test="${loggedUser eq null}">
-                                <a class ="text-decoration-none text-body px-3" href ="/login">
-                                    <i class ="bi bi-person-fill"></i>
+                                <a class="text-decoration-none text-body px-3" href="/login">
+                                    <i class="bi bi-person-fill"></i>
                                     Login <span class="text-body"> </a> |  
-                                <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
-
+                                <a class="text-decoration-none text-body px-3" href="/register"></span>Register </a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
                                     You have ${upcomingAppointments.size()} upcoming appointments! <br>
                                 </c:if>
-                                <a class ="text-decoration-none text-body px-3" href ="/profile">
+                                <a class="text-decoration-none text-body px-3" href="/profile">
                                     Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
                                 </a>
                             </c:if>
-                            <a class ="text-body px-2" href ="">
-                                <i class ="fab fa-facebook-f"></i></a>
+                            <a class="text-body px-2" href="">
+                                <i class="fab fa-facebook-f"></i></a>
                             <a class="text-body px-2" href="">
                                 <i class="fab fa-twitter"></i></a>
                             <a class="text-body px-2" href="">
@@ -127,9 +125,9 @@
         </div>
 
         <div class="main">
-
+<!--#ececec;-->
             <!-- Create an account form -->
-            <section class="min-vh-100" style="background-color: #ececec;">
+            <section class="min-vh-100" style="background-color: #f6f6f6">
                 <div class="container py-5 h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="container h-100">
@@ -206,7 +204,7 @@
                                                 <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD;"> ${validation} <br></p>
 
                                                 <p class="text-center text-muted mb-0">Already have an account? <a href="/login"
-                                                                                                                        class="fw-bold text-body"><u>Login here</u></a></p>
+                                                                                                                   class="fw-bold text-body"><u>Login here</u></a></p>
                                             </form>
 
                                         </div>

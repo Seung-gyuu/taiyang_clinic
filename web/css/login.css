@@ -1,3 +1,16 @@
+/*.card-body h1{
+      font-family: 'Belanosima', sans-serif;
+      font-family: 'Caprasimo', cursive;
+}*/
+
+.card-body h1, h4{
+   font-family: 'Montserrat', sans-serif; 
+   
+}
+/*  h1 {
+    font-family: 'Roboto', sans-serif;
+  }*/
+
 /*divider:after,
 .divider:before {
 content: "";
@@ -11,10 +24,6 @@ signin-content {
     display: flex;
     display: -webkit-flex; }
 
-body{
-    font-family: 'Source Sans Pro', sans-serif;
-
-}
 
 input {
     outline: none;
@@ -231,3 +240,4 @@ label {
         text-align: center; } 
 }
   */
+  

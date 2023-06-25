@@ -39,7 +39,7 @@
                 <ul class="list-unstyled components">
                     <li  class="active">
                         <a href="admin" class="dashboard"><i class="material-icons">dashboard</i>
-                            <span>Todays</span></a>
+                            <span>Today</span></a>
                     </li>
 
 
