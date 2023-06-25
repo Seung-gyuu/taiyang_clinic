@@ -143,8 +143,8 @@
                                         <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
                                             <a href="" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#newUsersModal" >
                                                 <i class="material-icons">&#xE147;</i> <span>Add New Users</span></a>
-                                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUsersModal" >
-                                                <i class="material-icons">&#xE15C;</i> <span>Delete</span></a>
+                                            <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#inactiveUsersModal" >
+                                                <i class="material-icons">&#xE15C;</i> <span>Inactive</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -179,8 +179,8 @@
                                             <td>
                                                 <a href="" class="" data-bs-toggle="modal" data-bs-target="#editUsersModal">
                                                     <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                <a href="" class="" data-bs-toggle="modal" data-bs-target="#deleteUsersModal" >
-                                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                <a href="" class="" data-bs-toggle="modal" data-bs-target="#inactiveUsersModal" >
+                                                    <i class="material-icons" data-toggle="tooltip" title="Inactive">&#xE872;</i></a>
                                             </td>
                                         </tr>
 
@@ -325,21 +325,21 @@
                             </div>
                         </div>
 
-                        <div class="modal fade" id="deleteUsersModal" tabindex="-1" aria-labelledby="deleteUsersModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="inactiveUsersModal" tabindex="-1" aria-labelledby="inactiveUsersModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteUsersModalLabel">Add New Users</h5>
+                                        <h5 class="modal-title" id="inactiveUsersModalLabel">Inactive Users</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Are you sure you want to delete this user?</p>
+                                        <p>Are you sure you want to inactive this user?</p>
                                         <p class="text-warning"><small>This action cannot be undone.</small></p>
 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success" onclick="deleteUsers()">Delete</button>
+                                        <button type="button" class="btn btn-success" onclick="inactiveUsers()">Inactive</button>
                                     </div>
                                 </div>
                             </div>
@@ -389,8 +389,8 @@
                         alert("User saved successfully!");
                         $('#newUsersModal').modal('hide'); // Close the modal
                     }
-                    function deleteUsers() {
-                        $('#deleteUsersModal').modal('hide'); // Close the modal
+                    function inactiveUsers() {
+                        $('#inactiveUsersModal').modal('hide'); // Close the modal
                     }
                     function editUsers() {
                         alert("User saved successfully!");
