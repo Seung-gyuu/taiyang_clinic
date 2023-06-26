@@ -104,15 +104,6 @@ public class AppointmentService {
     }
 
     public String delete(Appointment appt, String templatePath) throws Exception {
-//LocalDateTime currentDateTime = LocalDateTime.now();
-//Date appointmentDate = appt.getTimeid().getFulldate().getFulldate();
-//LocalTime appointmentTime = appt.getTimeid().getFulldate().getFulldate().toLocalTime();
-//LocalDateTime appointmentDateTime = LocalDateTime.of(appointmentDate, appointmentTime);
-//LocalDateTime minimumCancellationDateTime = currentDateTime.plusHours(24);
-
-//if (appointmentDateTime.isBefore(minimumCancellationDateTime) || appointmentDateTime.isEqual(minimumCancellationDateTime)) {
-//    return "Cannot delete an appointment";
-//}
         LocalDate tmrw = LocalDate.now().plusDays(1);
         Date appointmentDate = appt.getTimeid().getFulldate().getFulldate();
         LocalDate apptLocalDate = appointmentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
