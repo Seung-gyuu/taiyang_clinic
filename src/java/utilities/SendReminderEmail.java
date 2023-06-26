@@ -41,7 +41,7 @@ public class SendReminderEmail extends TimerTask {
                 tags.put("endTime", r.getAppointmentid().getTimeid().getTruncatedEndTime());
                 tags.put("service", r.getAppointmentid().getServiceid().getServiceName());
                 SendEmail.sendMail(r.getUserid().getEmailAddress(), "Taiyang clinic- Upcoming Appointment Reminder", emailPath, tags);
-                //rs.delete(r);   // rs.delete also inserts into sent reminder table.               
+                rs.delete(r);   // rs.delete also inserts into sent reminder table.               
             }
         } catch (Exception ex) {
             Logger.getLogger(SendReminderEmail.class.getName()).log(Level.SEVERE, null, ex);
