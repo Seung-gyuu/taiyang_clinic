@@ -109,7 +109,7 @@
                         <a href="/book" class="nav-item nav-link">Book</a> 
                         <a href="/contact" class="nav-item nav-link">Contact</a>
                         <c:if test="${loggedUser ne null}">
-                            <a href="/profile" class="nav-item nav-link">My Account</a> 
+                            <a href="/history" class="nav-item nav-link">My Account</a> 
                         </c:if>
 
                         <c:if test="${loggedUser eq null}">
