@@ -17,7 +17,7 @@ function resetCalendar() {
     week = weekCounter.value;
     daysContent.style.transform = "translateX(-" + (week * shiftAmount * 7) + "px)";
     var message = document.getElementById("hiddenmessage").value;
-    if(message==="Appointment Created!" || message==="Cannot have more than 3 upcoming appointments at once!"){
+    if (message === "Appointment Created!" || message === "Cannot have more than 3 upcoming appointments at once!") {
         alert(message);
     }
     //this function will take the weekcounter that is reset by the form and should 
@@ -48,7 +48,9 @@ function goRight() {
 
 function cancel() {
     var popupBox = document.getElementById('popupBox');
+    var confirmBox = document.getElementById('confirmBox');
     popupBox.style.display = 'none';
+    confirmBox.style.display = 'none';
 }
 
 function confirm() {
@@ -61,6 +63,8 @@ function confirm() {
 
             if (isLoggedIn === 'true') {
                 // User is logged in, display the form
+                var popupBox = document.getElementById('popupBox');
+                popupBox.style.display = "none";
                 showForm();
             } else {
                 // User is not logged in, redirect to the login page
@@ -72,7 +76,7 @@ function confirm() {
     xhr.send();
 }
 function showForm() {
-    var popupBox = document.getElementById('popupBox');
+    var confirmBox = document.getElementById('confirmBox');
     var dynamicHtml = document.getElementById('dynamicHtml').value;
 
     // Update the content of the popup box with the retrieved day name and month name
@@ -89,18 +93,19 @@ function showForm() {
     output += "<input type='hidden' name='timeId' value='" + clickedTimeId + "'>";
     output += "<label for='description'>Description (optional)</label>";
     output += "<input type='textfield' name='description' id='description'>";
-    output += "<input type='button' onclick='cancel()' value='Cancel'>";
-    output += "<input type='submit' id='bookbutton' value='Book' disabled='true'>";
+    output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='Cancel' class='cancelBtn'>";
+    output += "<input type='submit' id='bookbutton' value='Book' disabled='true' class='confirmBtn'></div>";
     output += "<input type='hidden' name='action' value='book' >";
     output += "</form>";
-    popupBox.innerHTML = output;
-    popupBox.style.display = 'block';
+//    popupBox.innerHTML = output;
+    document.getElementById('confirmContent').innerHTML = output;
+    confirmBox.style.display = 'block';
 }
 
-function enableBook(){
+function enableBook() {
     var bookbutton = document.getElementById('bookbutton');
-    bookbutton.disabled=false;
-}   
+    bookbutton.disabled = false;
+}
 
 
 function getTime(timeId) {
@@ -117,11 +122,14 @@ function getTime(timeId) {
                 // Get the reference to your popup box element
                 var popupBox = document.getElementById('popupBox');
 
+//                var span = document.getElementsByClassName("book_close")[0];
+
                 // Update the content of the popup box with the retrieved day name and month name
-                var output = "Do you want to book for " + dayName + ", " + monthName + " " + dayNumber + " from " + startTime + " to " + endTime + "?";
-                output += "<br>" + '<button onclick="cancel()" value="Cancel">Cancel</button>' +
-                        '<button onclick="confirm()" value="confirm">Confirm</button>';
-                popupBox.innerHTML = output;
+                var output = "<div class='popupText'>Do you want to book for " + dayName + ", " + monthName + " " + dayNumber + " from " + startTime + " to " + endTime + "?</div>";
+                output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>" +
+                        "<button onclick='confirm()' value='confirm' class='confirmBtn'>Confirm</button></div>";
+//                popupBox.innerHTML = output;
+                document.getElementById('popupContent').innerHTML = output;
 
                 // Show the popup box
                 popupBox.style.display = 'block';
@@ -130,4 +138,17 @@ function getTime(timeId) {
                 // Handle any error that occurs during the request
                 console.error('Error:', error);
             });
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    var popupBox = document.getElementById('popupBox');
+    var confirmBox = document.getElementById('confirmBox');
+    if (event.target == popupBox) {
+        popupBox.style.display = "none";
+    }
+    if (event.target == confirmBox) {
+        confirmBox.style.display = "none";
+    }
+
 }
