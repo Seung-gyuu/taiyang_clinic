@@ -36,31 +36,38 @@
 
         <style>
             .starter, .starter2 {
-               font-family: 'Open Sans', sans-serif;
+                font-family: 'Open Sans', sans-serif;
 
             } 
 
             .header1{
-                 font-family: 'Cinzel', serif;
+                font-family: 'Cinzel', serif;
             }
-            
-             .starter{
+
+            .starter{
                 font-size: 13px;
             }
-            
+
             .starter2, .dropdown-item{
                 font-size: 14px;
             }
-            
-              .starter2 h1{
+
+            .starter2 h1{
                 font-size: 30px;
             }
+
+            /*            .header1 h2{
+                            font-weight: bold;
+                        }*/
+
+            .header1 h2{
+                text-align: center;
+            }
             
-/*            .header1 h2{
-                font-weight: bold;
-            }*/
-            
-            
+            form h5{
+                font-size: 15px;
+            }
+
         </style>
 
 
@@ -178,12 +185,12 @@
 
                                         <form action="login" method="post">
 
-                                            <div class="d-flex align-items-center mb-3 pb-1 header1">
-                                                <h2 class="text-uppercase text-center mb-3">WELCOME BACK!</h2>
+                                            <div class="header1">
+                                                <h2 class="text-uppercase mb-4 ">WELCOME BACK!</h2>
                                             </div>
 
                                             <!--style="letter-spacing: 1px;"-->
-                                            <h5 class="fw-normal mb-3 pb-3" >Login to your account</h5>
+                                            <h5 class="fw-normal mb-3 pb-3 text-center" >LOGIN TO YOUR ACCOUNT</h5>
 
                                             <!--                                                                                 <div class ="form-group">
                                                                                         <label for ="password">
@@ -193,13 +200,13 @@
                                                                                     </div>-->
 
                                             <div class="form-outline mb-4">
-                                                <input type="email" name ="email" value="${email}" class="form-control form-control-lg" style="width:90%;"  />
+                                                <input type="email" name ="email" value="${email}" class="form-control form-control-lg" style="width:100%;"  />
                                                 <label class="form-label" >Your Email</label>
                                                 <!--                                                <label class="form-label" ><i class ="fa fa-envelope"></i>Email</label>-->
                                             </div>
 
                                             <div class="form-outline mb-2">
-                                                <input type="password" name="password" class="form-control form-control-lg " style="width:90%;" />
+                                                <input type="password" name="password" class="form-control form-control-lg " style="width:100%;" />
                                                 <label class="form-label">Password</label>
                                                 <!--                                                <label class="form-label"><i class ="fa fa-lock"></i>Password</label>-->
                                             </div>
