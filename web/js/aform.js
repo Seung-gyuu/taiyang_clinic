@@ -75,3 +75,43 @@ function displayForms(user) {
         alert("Form saved successfully!");
     });
 }
+
+
+function formPopUp(userId) {
+    fetch('/getUserInfo?userId=' + userId)
+            .then(response => response.json())
+            .then(data => {
+                var firstName  = data.firstName;
+                var lastName  = data.lastName;
+                var email  = data.email;
+                var userId = data.userId;
+                // Get the reference to your popup box element
+                var popupBox = document.getElementById('popupBox');
+
+//                var span = document.getElementsByClassName("book_close")[0];
+
+                // Update the content of the popup box with the retrieved day name and month name
+                var output = "<div class='popupText'> Add Form for  " + firstName + ", " + lastName + " <br>" + email + "?</div>";
+                output+="<form method='post' action='aform'  enctype='multipart/form-data'>";
+                output+="<input type='hidden' name='action' value='addForm' >";
+                output+="<input type='hidden' name='userId' value='" +userId+"'>";
+                output+="<input type='radio' name='formType' value='medical'>Medical Form <br>";
+                output+="<input type='radio' name='formType' value='consent'> Consent Form";
+                output+="<input type='file' name='pdfFile' accept='application/pdf'>";
+                output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>";
+                output+="<input type='submit' value='Add Form'></form></div>";
+//                popupBox.innerHTML = output;
+                document.getElementById('popupContent').innerHTML = output;
+
+                // Show the popup box
+                popupBox.style.display = 'block';
+            })
+            .catch(error => {
+                // Handle any error that occurs during the request
+                console.error('Error:', error);
+            });
+}
+
+function cancel(){
+    document.getElementById('popupContent').innerHTML = "";
+}

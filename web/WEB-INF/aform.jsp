@@ -158,22 +158,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-
-                                            <td>Euna</td>
-                                            <td>Kim</td>
-                                            <td>rladmsdk2068@gmail.com</td>
-                                            <td>1234567890</td>
-                                            <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
-                                            </td>
-                                        </tr>
+                                        <c:forEach items="${userList}" var="user">
+                                            <tr><td>${user.getFirstname()}</td>
+                                                <td>${user.getLastname()}</td>
+                                                <td>${user.getEmailAddress()}</td>
+                                                <td>${user.getPhoneNumber()}</td>
+                                                <td><button name="addForm" onClick="formPopUp(${user.getUserid()})"> Add Form</button> <a href="vform?userId=${user.getUserid()}">View forms</a></td></tr>
+                                        </c:forEach>
 
                                     </tbody>
                                 </table>
+                                <div id="popupBox">
+                                    <div id="popupContent"></div>
+                                </div>
+                                ${message}
                                 <div class="clearfix">
                                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                                     <ul class="pagination">
@@ -246,23 +244,10 @@
                 </div>
             </div>
 
-            <script>
-                function uploadForm() {
-                    // Handle form upload logic here
-                    alert("Form uploaded successfully!");
-                    $('#consentFormModal').modal('hide'); // Close the modal
-                }
-
-                function saveForm() {
-                    // Handle form save logic here
-                    alert("Form saved successfully!");
-                    $('#consentFormModal').modal('hide'); // Close the modal
-                }
-            </script>
 
 
             <script src="js/bootstrap.bundle.min.js"></script>
-
+            <script src="js/aform.js"></script>
     </body>
 </html>
 

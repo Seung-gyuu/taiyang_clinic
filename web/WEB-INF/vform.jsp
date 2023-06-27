@@ -140,6 +140,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <c:if test="${userForm eq null}">
+                                    
+                                
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -151,21 +154,52 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <c:forEach items="${userList}" var="user">
+                                            <tr><td>${user.getFirstname()}</td>
+                                                <td>${user.getLastname()}</td>
+                                                <td>${user.getEmailAddress()}</td>
+                                                <td>${user.getPhoneNumber()}</td>
+                                                <td> <a href="/vform?userId=${user.getUserid()}">View Forms</a></td></tr>
+                                        </c:forEach>
+                                    </tbody>
+                                    
+                                </table>
+                                    </c:if>
+                                
+                                <c:if test="${userForm ne null}">
+                                    
+                                
+                                <table class="table table-striped table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>Euna</td>
-                                            <td>Kim</td>
-                                            <td>rladmsdk2068@gmail.com</td>
-                                            <td>1234567890</td>
-                                            <td>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                <a href="" class="" data-toggle="modal">
-                                                    <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
-                                            </td>
+                                            <th>${userForm.getFirstname()}</th>
+                                            <th>${userForm.getLastname()}</th>
+                                            <th>${userForm.getEmailAddress()}</th>
+                                            <th>Time Added</th>
                                         </tr>
-
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${medicalforms}" var="mdform">
+                                            <tr><td>${mdform.getUserid().getFirstname()}</td>
+                                                <td>${mdform.getUserid().getLastname()}</td>
+                                                <td>Medical Form</td>
+                                                <td>${mdform.getTimeAdded()}</td>
+                                                <td> <a href="/downloadForm?formId=${mdform.getId()}">Download</a></td></tr>
+                                        </c:forEach>
+                                            <c:forEach items="${consentforms}" var="csform">
+                                            <tr><td>${csform.getUserid().getFirstname()}</td>
+                                                <td>${csform.getUserid().getLastname()}</td>
+                                                <td>Consent Form</td>
+                                                <td>${csform.getTimeAdded()}</td>
+                                                <td> <a href="/downloadForm?formId=${csform.getId()}">Download</a></td></tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
+                                            <a href="/vform">Show all users</a>
+                                    </c:if>
+                                
+                                
+                                
                                 <div class="clearfix">
                                     <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                                     <ul class="pagination">
