@@ -80,11 +80,11 @@ function showForm() {
     var dynamicHtml = document.getElementById('dynamicHtml').value;
 
     // Update the content of the popup box with the retrieved day name and month name
-    var output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber;
-    output += "<br>" + clickedstartTime + " to " + clickedendTime;
-    output += "<br>";
+    var output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + clickedstartTime + " to " + clickedendTime;
+//    output += "<br>" + clickedstartTime + " to " + clickedendTime;
+//    output += "<br>";
     output += "<form method='post' action='/book''>";
-    output += "<h2>Service Type</h2>";
+    output += "<h2 class='confirmService'>Select Service Type</h2>";
 //    output += "<c:forEach items='${services}' var='s'>";
 //    output += "<input type='radio' name='serviceType' value='${s.getServiceid()}'>${s.getServiceName()";
 //    output += "</c:forEach>";

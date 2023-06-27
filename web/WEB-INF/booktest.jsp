@@ -356,10 +356,11 @@
             }
 
             .popup-content {
-                width: 400px;
+                width: 570px;
+                /*text-align: center;*/
                 background-color: #fefefe;
                 /*margin: auto;*/
-                padding: 20px;
+                padding: 30px;
                 border: 1px solid #888;
                 position: absolute;
                 float: left;
@@ -390,7 +391,8 @@
             .popupBtns {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                /*justify-content: flex-end;*/
+                justify-content: center;
             }
 
             .popupBtns button {
@@ -398,7 +400,7 @@
                 padding: 5px 0;
                 width: 70px;
                 border-radius: 10px;
-                margin-left: 15px;
+                margin-left: 20px;
             }
 
             .popupBtns input[type=button],
@@ -433,11 +435,20 @@
             #confirmBox form {
                 margin-top: 15px;
             }
+            
+            #confirmBox form input {
+/*                display: flex;
+                align-items: center;*/
+                /*flex-direction: column;*/
+            }
 
 
-            /*            .popupBox{
-                            display: none;
-                        }*/
+            .confirmService {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+            
         </style>
     </head>
     <body>
