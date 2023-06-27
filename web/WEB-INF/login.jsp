@@ -15,10 +15,11 @@
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Belanosima&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
 
 
 
@@ -33,44 +34,74 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/login.css">
 
+        <style>
+            .starter, .starter2 {
+               font-family: 'Open Sans', sans-serif;
 
+            } 
+
+            .header1{
+                 font-family: 'Cinzel', serif;
+            }
+            
+             .starter{
+                font-size: 13px;
+            }
+            
+            .starter2, .dropdown-item{
+                font-size: 14px;
+            }
+            
+              .starter2 h1{
+                font-size: 30px;
+            }
+            
+/*            .header1 h2{
+                font-weight: bold;
+            }*/
+            
+            
+        </style>
 
 
     </head>
     <body>
 
-        <!-- Topbar Start -->
-        <div class="container-fluid py-2 border-bottom d-none d-lg-block mt-2">
-            <div class="container">
-                <div class="row">
+        <div class ="container-fluid py-2 border-bottom d-none d-lg-block mt-2 starter">
+            <div class ="container">
+                <div class ="row">
+
                     <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                         <div class="d-inline-flex align-items-center">
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
                             <span class="text-body">|</span>
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>sunnyacupuncturist@gmail.com </a>       
-                            <span class="text-body">|</span>
-                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-house-door me-2"></i>1310 16Ave NW</a>       
                         </div>
                     </div>
 
-                    <div class="col-md-6 text-right text-lg-end">
-                        <div class="d-inline-flex align-items-center">
+
+
+
+
+                    <div class ="col-md-6 text-right text-lg-end">
+                        <div class ="d-inline-flex align-items-center">
                             <c:if test="${loggedUser eq null}">
-                                <a class="text-decoration-none text-body px-3" href="/login">
-                                    <i class="bi bi-person-fill"></i>
+                                <a class ="text-decoration-none text-body px-3" href ="/login">
+                                    <i class ="bi bi-person-fill"></i>
                                     Login <span class="text-body"> </a> |  
-                                <a class="text-decoration-none text-body px-3" href="/register"></span>Register </a>
+                                <a class ="text-decoration-none text-body px-3" href ="/register"></span>Register </a>
+
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
                                     You have ${upcomingAppointments.size()} upcoming appointments! <br>
                                 </c:if>
-                                <a class="text-decoration-none text-body px-3" href="/profile">
+                                <a class ="text-decoration-none text-body px-3" href ="/profile">
                                     Hello,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
                                 </a>
                             </c:if>
-                            <a class="text-body px-2" href="">
-                                <i class="fab fa-facebook-f"></i></a>
+                            <a class ="text-body px-2" href ="">
+                                <i class ="fab fa-facebook-f"></i></a>
                             <a class="text-body px-2" href="">
                                 <i class="fab fa-twitter"></i></a>
                             <a class="text-body px-2" href="">
@@ -85,7 +116,7 @@
 
 
         <!--Navbar Start -->
-        <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container-fluid sticky-top bg-white shadow-sm starter2">
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                     <a href ="/home" class ="navbar-brand">
@@ -114,7 +145,7 @@
                             <a href="/book" class="nav-item nav-link">Book</a> 
                             <a href="/contact" class="nav-item nav-link">Contact</a>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/profile" class="nav-item nav-link">My Account</a> 
+                                <a href="/history" class="nav-item nav-link">My Account</a> 
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
@@ -128,28 +159,31 @@
                 </nav>
             </div>
         </div>
-        
+
+
+
+
         <!--login form-->
-        <section class="min-vh-100" style="background-color: #f6f6f6;">
+        <section class="min-vh-100 starter" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 ">
                 <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col col-xl-10">
+                    <div class="col col-xl-9 ">
                         <div class="card" style="border-radius: 20px 70px;">
                             <div class="row g-0">
-                                <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                    <img src="src/img/beach.jpg" alt ="signin image" class="img-fluid" style="border-radius: 1rem 0 0 0;" />
+                                <div class="col-md-6 col-lg-5 d-none d-md-block ">
+                                    <img src="src/img/beach.jpg" alt ="signin image" class="img-fluid" style="border-radius: 1rem 0 0 0; height:550px" />
                                 </div>
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
                                         <form action="login" method="post">
 
-                                            <div class="d-flex align-items-center mb-3 pb-1">
-                                                <h1 class="text-uppercase text-center mb-5">WELCOME BACK!</h1>
+                                            <div class="d-flex align-items-center mb-3 pb-1 header1">
+                                                <h2 class="text-uppercase text-center mb-3">WELCOME BACK!</h2>
                                             </div>
 
-<!--style="letter-spacing: 1px;"-->
-                                            <h4 class="fw-normal mb-3 pb-3" >Login to your account</h4>
+                                            <!--style="letter-spacing: 1px;"-->
+                                            <h5 class="fw-normal mb-3 pb-3" >Login to your account</h5>
 
                                             <!--                                                                                 <div class ="form-group">
                                                                                         <label for ="password">
@@ -173,7 +207,7 @@
                                             <div class="form-check d-flex justify-content-end mb-4 ">
                                                 <label class="form-check-label"> <a href="/forgotpassword" > Forgot your password? </a></label>
                                             </div>
-                                            <p class="mb-3 pb-lg-2 text-center" id="loginMessage" style="color: #ff3333; font-size: larger;">${message}</p>
+                                            <p class="mb-3 pb-lg-2 text-center" id="loginMessage" style="color: #ff3333; font-size: medium;">${message}</p>
                                             <script>
                                                 var loginMessage = localStorage.getItem('loginMessage');
                                                 var messageElement = document.getElementById('loginMessage');
@@ -187,12 +221,12 @@
                                                 <!--<a href="main" class="btn btn-primary btn-lg btn-block" type="button" style="width:50%">Login</a>-->
                                                 <input type="hidden" name="action" value="login" />
                                                 <input type ="submit" name ="submit" id="signin" 
-                                                       class="btn btn-primary btn-lg btn-block" style="width:50%" value ="Login" />  
+                                                       class="btn btn-lg btn-block" style="width:50%; background-color: #0B486B; color:white;" value ="Login" />  
                                             </div>
                                         </form>
 
 
-                                        <p class="mb-5 pb-lg-2 text-center" style="color: #393f81;">Don't have an account? <a href="/register"
+                                        <p class="mb-5 pb-lg-2 text-center" style="color: #393f81;">Don't have an account? <a href="/register"  class="fw-bold"
                                                                                                                               style="color: #393f81;">Create new account</a></p>
 
                                     </div>
@@ -205,60 +239,6 @@
         </section>
 
 
-        <!-- Footer Start -->
-        <!--        <div class="container-fluid bg-dark text-light  py-5" style="position:absolute;" >
-                    <div class="container py-5">
-                        <div class="row g-5">
-                            <div class="col-lg-3 col-md-6">
-                                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
-                                <p class="mb-4">Please feel free to contact us if you need any information.</p>
-                                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>1310 16Ave NW, Calgary</p>
-                                <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>Sunny@example.com</p>
-                                <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 6789</p>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
-                                <div class="d-flex flex-column justify-content-start">
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
-                                <div class="d-flex flex-column justify-content-start">
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                                    <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                                    <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-        
-                                <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
-                                <div class="d-flex">
-                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
-                    <div class="container">
-                        <div class="row g-5">
-                            <div class="col-md-6 text-center text-md-start">
-                                <p class="mb-md-0">&copy; <a class="text-primary" href="#">Tai Yang Clinic</a>. All Rights Reserved.</p>
-        
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
 
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

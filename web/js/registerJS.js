@@ -142,7 +142,7 @@ function fullform() {
         button.style.cursor = "default";
     } else {
         button.style.border = "";
-        button.style.backgroundColor = "#0d6efd";
+        button.style.backgroundColor = "#0B486B";
         button.disabled = false;
         button.style.cursor = "pointer";
     }

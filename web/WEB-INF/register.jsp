@@ -15,7 +15,10 @@
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-                <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 
 
 
@@ -26,16 +29,37 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/register.css">
         <script src="js/registerJS.js"></script>
 
+
+
+        <style>
+            .starter, .starter2.main{
+                font-family: 'Open Sans', sans-serif;
+
+            }
+            
+            .starter{
+                font-size: 13px;
+            }
+            
+            .starter2, .dropdown-item{
+                font-size: 14px;
+            }
+            
+             .starter2 h1{
+                font-size: 30px;
+            }
+
+
+        </style>
     </head>
     <body>
 
 
 
         <!-- Topbar Start -->
-        <div class="container-fluid py-2 border-bottom d-none d-lg-block mt-2">
+        <div class="container-fluid py-2 border-bottom d-none d-lg-block mt-2 starter">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
@@ -43,8 +67,7 @@
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-telephone me-2"></i>+012 345 6789</a>
                             <span class="text-body">|</span>
                             <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-envelope me-2"></i>sunnyacupuncturist@gmail.com </a>       
-                            <span class="text-body">|</span>
-                            <a class="text-decoration-none text-body px-2" href=""><i class="bi bi-house-door me-2"></i>1310 16Ave NW</a>       
+
                         </div>
                     </div>
 
@@ -80,7 +103,7 @@
 
 
         <!--Navbar Start -->
-        <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="container-fluid sticky-top bg-white shadow-sm starter2">
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                     <a href ="/home" class ="navbar-brand">
@@ -125,7 +148,7 @@
         </div>
 
         <div class="main">
-<!--#ececec;-->
+            <!--#ececec;-->
             <!-- Create an account form -->
             <section class="min-vh-100" style="background-color: #f6f6f6">
                 <div class="container py-5 h-100">
@@ -190,21 +213,22 @@
 
                                                 <div class="form-outline mb-4">
                                                     <input type="password" id="password" name="password" class="form-control form-control-lg" required="true" onchange="validatePassword()" />
-                                                    <label class="form-label">Password</label>
+                                                    <label class="form-label" >Password</label>
                                                     <br>
                                                     <span id="password-span"></span>
                                                 </div>
 
 
-                                                <div class="d-flex justify-content-center">
+                                                <div class="d-flex justify-content-center" >
                                                     <input type="hidden" name="action" value="register" >
-                                                    <input type="submit" id="submitbutton" name="submit" value="Register" class="btn btn-primary btn-lg btn-block gradient-custom-4" style="width: 50%; ">
+                                                    <input type="submit" id="submitbutton" name="submit" value="Register" class="btn btn-lg btn-block gradient-custom-4" style="width: 50%; background-color: #0B486B; color:white; border-color:#0B486B">
                                                 </div>
                                                 <p class="mb-1 pb-lg-2 text-center" style="color: #ff3333; margin-top: 10px;">${message} <br></p>
                                                 <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD;"> ${validation} <br></p>
 
-                                                <p class="text-center text-muted mb-0">Already have an account? <a href="/login"
-                                                                                                                   class="fw-bold text-body"><u>Login here</u></a></p>
+                                                <p class="text-center mb-0" style="color: #393f81;" >Already have an account? <a href="/login" 
+                                                                                                                                            class="fw-bold" style="color: #393f81;"><u>Login here</u></a></p>
+
                                             </form>
 
                                         </div>

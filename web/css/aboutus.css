@@ -4,10 +4,11 @@
     box-sizing: border-box;
   
 }
-/*.sections h1{
-   font-family: 'Montserrat', sans-serif;
-   
-}*/
+ .sections h1{
+         font-family: 'Cinzel', serif;
+
+    }
+
 
 .sections{
     width: 100%;

@@ -10,11 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <title>Tai Yang Clinic</title>
-        
-         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-         <p style ="background-image:url('src/img/main.png');">
+        <title>Tai Yang Clinic</title>
+
+
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
 
 
         <!-- Icon Font Stylesheet -->
@@ -23,10 +25,17 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            body{
+                 font-family: 'Open Sans', sans-serif;
+                 font-size: 13px;
+            }
+        </style>
     </head>
     <body>
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light mt-5 py-5">
+        <div class="container-fluid bg-dark text-light py-5">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">

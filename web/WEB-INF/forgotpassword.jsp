@@ -9,8 +9,13 @@
         <title>Tai Yang Clinic</title>
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,500&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 
 
 
@@ -25,11 +30,12 @@
         <c:import url="./components/headers.jsp" />   
 
         <style>
-            .card-header{
-                font-family: 'Belanosima', sans-serif;
+            .body1{
+                font-family: 'Open Sans', sans-serif;
+
 
             }
-          
+
         </style>
 
 
@@ -38,7 +44,7 @@
     <body>
 
         <!--        //get email-->
-        <section class="min-vh-80" style="background-color: #f6f6f6;">
+        <section class="min-vh-80 body1" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 text-center pb-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="container h-100">
@@ -49,25 +55,26 @@
                                     <div class="card-body p-5">
 
                                         <p class="card-text py-2" style="font-size: 1.2rem;">
-                                            Enter your email address to verify your email.
+                                            Enter your email address to verify your email. 
                                         </p>
                                         <div class ="form-outline">
                                             <form method="post" action="forgotpassword">
-                                                <div class="form-group d-flex align-items-center mb-4">
-                                                    <label class="mr-3">Email:</label>
+                                                <div class="form-group d-flex align-items-center mb-5">
+                                                    <label class="mr-2">Email:</label>
                                                     <input type="text" class="form-control form-control-lg" style="width: 87%;" name="email" value="" required/>
                                                 </div>
+<!--                                                <div class="form-group d-flex align-items-center mb-1">
+                                                    <label class="mr-2 text-left">Email:</label>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <input type="password" class="form-control form-control-lg" style="width: 100%;" name="confirmPassword" value="" required/>
+                                                </div>-->
                                                 <div class="d-flex justify-content-center">
                                                     <input type="hidden" name="action" value="forgot" />
-                                                    <input type ="submit" value ="Send the email" class="btn btn-primary btn-sm btn-lg radient-custom-4" style="width: 60%; font-size:1.0rem;">
+                                                    <input type ="submit" value ="Send the email" class="btn btn-primary btn-sm btn-lg radient-custom-4" style="width: 50%; background-color: #0B486B; border-color:#0B486B; color: white; font-size:1.0rem;">
                                                 </div>
 
-                                                <!-- Email: <input type="text" value="" name="email" required><br>
-                                               <input type="submit" value="send the email">
-                                            </form>
-                                                <!--        //send reset link
-                                                 //using the link
-                                                 //set the password-->
+                                             
                                                 <div class ="" style="color:blue;">
                                                     <p>${message}</p>
                                                 </div>

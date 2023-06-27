@@ -1,10 +1,11 @@
-/*
-h1{
-   font-family: 'Source Sans Pro', sans-serif;
+/*.hero-header{
+    font-family: 'Playfair Display', serif;
+    background-image: url('../src/img/main_2.jpg');
+   
+    
+}
 
-}*/
-
-.servicesBg:before {
+.hero-header:before {
     content: '';
     position: absolute;
     top: 0;
@@ -20,10 +21,11 @@ h1{
     z-index: 2;
 }
 
-.servicesBg img {
+.hero-header img {
     height: 550px;
     width: 100vw;
     object-fit: cover;
-    /*margin-top: -100px;*/
+    margin-top: -100px;
     position: relative;     
 }
+*/

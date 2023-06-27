@@ -13,8 +13,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
 
-        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 
 
 
@@ -28,10 +32,13 @@
         <c:import url="./components/headers.jsp" />
         
             <style>
-            .card-header{
-                font-family: 'Belanosima', sans-serif;
-
+            .section1{
+            
+                font-family: 'Open Sans', sans-serif;
             }
+
+
+            
           
         </style>
 
@@ -41,13 +48,14 @@
     <body>
 
         <!--        //get email-->
-        <section class="min-vh-100" style="background-color: #f6f6f6;">
+        <section class="min-vh-100 section1" style="background-color: #f6f6f6;">
             <div class="container py-5 h-100 text-center">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="container h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">
                             <div class="col-12 col-md-7 col-lg-6 col-xl-5">
                                 <div class="card" style="border-radius: 13px;">
+                                    
                                     <div class="card-header h3 text-white text-center" style="background-color: #094676">Forgot my password</div>
                                     <div class="card-body p-5">
                                         <p class="card-text py-2" style="font-size: 1.2rem;">
@@ -57,20 +65,20 @@
 
                                         <form method="post" action="reset">
                                             <div class="form-group d-flex align-items-center mb-1">
-                                                <label class="mr-2 text-left" style="width: 26%;">Password:</label>
+                                                <label class="mr-2 text-left" >Password:</label>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <input type="password" class="form-control form-control-lg" style="width: 100%;" name="password" value="" required/>
                                             </div>
                                             <div class="form-group d-flex align-items-center mb-1">
-                                                <label class="mr-2 text-left" style="width: 33%;">Confirm Password:</label>
+                                                <label class="mr-2 text-left" >Confirm Password:</label>
                                             </div>
                                             <div class="form-group mb-4">
                                                 <input type="password" class="form-control form-control-lg" style="width: 100%;" name="confirmPassword" value="" required/>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <input type="hidden" name="action" value="reset" />
-                                                <input type ="submit" value ="Reset password" class="btn btn-primary btn-sm btn-lg radient-custom-4" style="width: 60%; font-size:1.0rem;">
+                                                <input type ="submit" value ="Reset password" class="btn btn-sm btn-lg radient-custom-4" style="width: 50%; background-color: #0B486B; color:white; font-size:1.0rem;">
                                             </div>
                                         </form>
                                         <p>${message}</p>
