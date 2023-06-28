@@ -639,6 +639,13 @@
             }
 
             /*-------footer design end------*/
+            #sidebar.show-nav, .body-overlay.show-nav{
+                transform:translatex(0%);
+                opacity:1;
+                display:block;
+                visibility:visible;
+                z-index:15;
+            }
 
 
             /*========main-content- navbardesign -end-----*/

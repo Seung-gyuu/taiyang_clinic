@@ -46,9 +46,54 @@
             }
 
 
-            h1,h2,h3,h4,h5,h6 {
+            /*==========================================================
+              material-icon font-style
+              ================================*/
+
+
+            @font-face {
+                font-family: 'Material Icons';
+                font-style: normal;
+                font-weight: 400;
+                src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+                src: local('Material Icons'),
+                    local('MaterialIcons-Regular'),
+                    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+                    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+                    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+            }
+
+
+
+            .material-icons {
+                font-family: 'Material Icons';
+                font-weight: normal;
+                font-style: normal;
+                font-size: 24px;  /* Preferred icon size */
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+
+                /* Support for all WebKit browsers. */
+                -webkit-font-smoothing: antialiased;
+                /* Support for Safari and Chrome. */
+                text-rendering: optimizeLegibility;
+
+                /* Support for Firefox. */
+                -moz-osx-font-smoothing: grayscale;
+
+                /* Support for IE. */
+                font-feature-settings: 'liga';
+            }
+
+
+            h1,h2,h3,h4,h5,h6,.h1 {
                 font-weight:400;
-                line-height;1.5em;
+
             }
 
             p{
@@ -260,13 +305,6 @@
                 position:relative;
             }
 
-            input[type="search"]{
-                background-color:#4a5263;
-                color:#fff;
-                padding-left:20px;
-                border:none;
-                border-radius:50px 0px 0px 50px;
-            }
 
             .input-group-append{
                 margin-left:-1px;
@@ -542,12 +580,6 @@
                 cursor:pointer;
             }
 
-            table.table td:last-child{
-                opacity:0.9;
-                font-size:22px;
-                margin:0px 5px;
-            }
-
             table.table td a{
                 font-weight:bold;
                 color:#566787;
@@ -560,6 +592,7 @@
             }
 
 
+
             table.table td  i{
                 font-size:19px;
             }
@@ -570,38 +603,7 @@
                 margin-right:10px;
             }
 
-            .pagination{
-                float:right;
-                margin:0 0 5px;
-            }
 
-            .pagination  li a{
-                border:none;
-                font-size:13px;
-                min-width:30px;
-                min-height:30px;
-                color:#999;
-                margin:0 2px;
-                line-height:30px;
-                border-radius:2px!important;
-                text-align:center;
-                padding:0 6px;
-            }
-
-            .pagination  li a:hover{
-                color:#666;
-            }
-
-
-            .pagination li.disabled i{
-                color:#ccc;
-
-            }
-
-            .pagination li i{
-                font-size:16px;
-                padding-top:6px;
-            }
 
             .hint-text{
                 float:left;
@@ -609,118 +611,9 @@
                 font-size:13px;
             }
 
-            .custom-checkbox{
-                position:relative;
-            }
-
-
-            .custom-checkbox input[type="checkbox"]{
-                opacity:0;
-                position:absolute;
-                margin:5px 0 0  3px;
-                z-index:9;
-            }
-
-
-            .custom-checkbox label:before{
-                width:18px;
-                height:18px;
-            }
-            .custom-checkbox label:before{
-                content:"";
-                margin-right:10px;
-                display:inline-block;
-                vertical-align:text-top;
-                background-color:#fff;
-                border:1px solid #bbb;
-                border-radius:2px;
-                box-sizing:border-box;
-                z-index:2;
-            }
-
-
-            .custom-checkbox input[type="checkbox"]:checked + label:after{
-                content:"";
-                position:absolute;
-                left:6px;
-                top:3px;
-                width:6px;
-                height:11px;
-                border:solid #000;
-                border-width:0 3px 3px 0;
-                transform:inherit;
-                z-index:3;
-                transform:rotatez(45deg);
-            }
-
-            .custom-checkbox input[type="checkbox"]:checked + label:before{
-                border-color:#03A9F4;
-                background:#03A9F4;
-            }
-
-
-            .custom-checkbox input[type="checkbox"]:checked + label:after{
-                border-color:#fff;
-            }
-
-
-            .custom-checkbox input[type="checkbox"]:disabled + label:before{
-                color:#b8b8b8;
-                cursor:auto;
-                box-shadow:none;
-                background:#ddd;
-            }
 
             /*--table design end----*/ 
 
-
-            /*-------modal-style start------*/
-            .modal .modal-dialog{
-                max-width:400px;
-            }
-            .modal .modal-header, .modal .modal-body,.modal .modal-footer{
-                padding:20px 30px;
-            }
-            .modal .modal-content{
-                border-radius:3px;
-            }
-
-            .modal .modal-footer{
-                background:#ecf0f1;
-                border-radius:0 0 3px 3px;
-            }
-
-            .modal .modal-title{
-                display:inline-block;
-            }
-
-            .modal .form-control{
-                border-radius:2px;
-                box-shadow:none;
-                border-color:#dddddd;
-            }
-
-            .modal textarea.form-control{
-                resize:vertical;
-            }
-
-            .modal .btn{
-                border-radius:2px;
-                min-width:100px;
-            }
-
-            .modal form label{
-                font-weight:normal;
-            }
-
-
-
-
-
-
-
-
-            /*-------modal-style end------*/
 
 
 
@@ -735,9 +628,6 @@
             }
 
             /*-------footer design end------*/
-
-
-
             #sidebar.show-nav, .body-overlay.show-nav{
                 transform:translatex(0%);
                 opacity:1;
@@ -745,8 +635,6 @@
                 visibility:visible;
                 z-index:15;
             }
-
-
 
 
             /*========main-content- navbardesign -end-----*/

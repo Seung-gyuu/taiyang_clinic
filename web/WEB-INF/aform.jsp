@@ -124,7 +124,7 @@
             /*==========================================================
               material-icon font-style
               ================================*/
-        
+
 
 
 
@@ -637,6 +637,39 @@
                 color:#2196F3;
             }
 
+            .pagination{
+                float:right;
+                margin:0 0 5px;
+            }
+
+            .pagination  li a{
+                border:none;
+                font-size:13px;
+                min-width:30px;
+                min-height:30px;
+                color:#999;
+                margin:0 2px;
+                line-height:30px;
+                border-radius:2px!important;
+                text-align:center;
+                padding:0 6px;
+            }
+
+            .pagination  li a:hover{
+                color:#666;
+            }
+
+
+            .pagination li.disabled i{
+                color:#ccc;
+
+            }
+
+            .pagination li i{
+                font-size:16px;
+                padding-top:6px;
+            }
+
 
 
             table.table td  i{
@@ -660,8 +693,7 @@
 
             /*--table design end----*/ 
 
-
-
+ 
 
             /*-------footer design start------*/
             footer{
@@ -675,6 +707,13 @@
 
             /*-------footer design end------*/
 
+            #sidebar.show-nav, .body-overlay.show-nav{
+                transform:translatex(0%);
+                opacity:1;
+                display:block;
+                visibility:visible;
+                z-index:15;
+            }
 
             /*========main-content- navbardesign -end-----*/
 
