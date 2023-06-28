@@ -31,7 +31,7 @@
                 padding: 5px 10px;
                 border-radius: 4px;
                 text-decoration: none;
-               
+
 
             }
 
@@ -39,9 +39,9 @@
                 background-color: #076e95;
             }
 
-          
 
-           
+
+
 
             body,html{
                 line-height:1.8;
@@ -669,6 +669,8 @@
                     transition:all 150ms linear;
                     background-color:rgba(0,0,0,0.5);
                 }
+
+
             }
 
         </style>
@@ -683,6 +685,7 @@
 
             <!-- Sidebar  -->
             <nav id="sidebar">
+
                 <div class="sidebar-header">
                     <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
@@ -750,7 +753,7 @@
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
                                 <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="" class="btn btn-danger me-2">Logout</a>
+                                <a href="home?logout" class="btn btn-danger me-2">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -786,7 +789,7 @@
                             <div class="table-wrapper">
                                 <div class="table-title">
                                     <div class="row">
-                                        <div class="col-sm-6 p-0 d-flex justify-content-end justify-content-lg-start align-items-center">
+                                        <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
                                             <h2 class="ml-lg-2">View Forms</h2>
                                             <!--                                            <div class="show">
                                                                                             <a href="/vform" class="show-all-users">Show all users</a>    
@@ -888,7 +891,23 @@
     </div>
 
 
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".xp-menubar").on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $('#content').toggleClass('active');
+            });
+
+            $(".xp-menubar,.body-overlay").on('click', function () {
+                $('#sidebar,.body-overlay').toggleClass('show-nav');
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>

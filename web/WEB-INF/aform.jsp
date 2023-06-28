@@ -36,12 +36,12 @@
                 transition: none; 
 
             }
-            
-/*            .borderless-button:hover {
-                background-color: #0B486B;
-                border-color: #0B486B;
-                padding: 3px 7px;
-            }*/
+
+            /*            .borderless-button:hover {
+                            background-color: #0B486B;
+                            border-color: #0B486B;
+                            padding: 3px 7px;
+                        }*/
             #popupBox {
                 width: 500px;
                 background-color: #f3f3f3;
@@ -124,6 +124,7 @@
             /*==========================================================
               material-icon font-style
               ================================*/
+        
 
 
 
@@ -786,7 +787,7 @@
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
                                 <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="" class="btn btn-danger me-2">Logout</a>
+                                <a href="home?logout" class="btn btn-danger me-2">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -882,129 +883,146 @@
 
         <script src="js/bootstrap.bundle.min.js"></script>
         <!--        <script src="js/aform.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        <script>
-                                                    var users = [
-                                                        {firstName: "John", lastName: "Doe", email: "john.doe@example.com", phoneNumber: "1234567890", consentForm: "", medicalForm: ""},
-                                                        {firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", phoneNumber: "9876543210", consentForm: "", medicalForm: ""}
-                                                    ];
+        <script type="text/javascript">
 
-                                                    var searchUserInput = document.getElementById("searchUserInput");
-                                                    var searchUserBtn = document.getElementById("searchUserBtn");
-                                                    var userTableBody = document.getElementById("userTableBody");
-                                                    var formsSection = document.getElementById("formsSection");
-                                                    var consentFormTextarea = document.getElementById("consentFormTextarea");
-                                                    var medicalFormTextarea = document.getElementById("medicalFormTextarea");
-                                                    var uploadButton = document.getElementById("uploadButton");
-                                                    var saveButton = document.getElementById("saveButton");
-
-                                                    searchUserBtn.addEventListener("click", function () {
-                                                        var searchTerm = searchUserInput.value.trim().toLowerCase();
-                                                        var matchedUsers = users.filter(function (user) {
-                                                            var fullName = user.firstName.toLowerCase() + " " + user.lastName.toLowerCase();
-                                                            return fullName.includes(searchTerm);
+                                                    $(document).ready(function () {
+                                                        $(".xp-menubar").on('click', function () {
+                                                            $('#sidebar').toggleClass('active');
+                                                            $('#content').toggleClass('active');
                                                         });
 
-                                                        displayUserTable(matchedUsers);
+                                                        $(".xp-menubar,.body-overlay").on('click', function () {
+                                                            $('#sidebar,.body-overlay').toggleClass('show-nav');
+                                                        });
+
                                                     });
 
-                                                    function displayUserTable(users) {
-                                                        userTableBody.innerHTML = "";
+        </script>
 
-                                                        users.forEach(function (user) {
-                                                            var row = document.createElement("tr");
+        <script>
+            var users = [
+                {firstName: "John", lastName: "Doe", email: "john.doe@example.com", phoneNumber: "1234567890", consentForm: "", medicalForm: ""},
+                {firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", phoneNumber: "9876543210", consentForm: "", medicalForm: ""}
+            ];
 
-                                                            var firstNameCell = document.createElement("td");
-                                                            firstNameCell.textContent = user.firstName;
-                                                            row.appendChild(firstNameCell);
+            var searchUserInput = document.getElementById("searchUserInput");
+            var searchUserBtn = document.getElementById("searchUserBtn");
+            var userTableBody = document.getElementById("userTableBody");
+            var formsSection = document.getElementById("formsSection");
+            var consentFormTextarea = document.getElementById("consentFormTextarea");
+            var medicalFormTextarea = document.getElementById("medicalFormTextarea");
+            var uploadButton = document.getElementById("uploadButton");
+            var saveButton = document.getElementById("saveButton");
 
-                                                            var lastNameCell = document.createElement("td");
-                                                            lastNameCell.textContent = user.lastName;
-                                                            row.appendChild(lastNameCell);
+            searchUserBtn.addEventListener("click", function () {
+                var searchTerm = searchUserInput.value.trim().toLowerCase();
+                var matchedUsers = users.filter(function (user) {
+                    var fullName = user.firstName.toLowerCase() + " " + user.lastName.toLowerCase();
+                    return fullName.includes(searchTerm);
+                });
 
-                                                            var emailCell = document.createElement("td");
-                                                            emailCell.textContent = user.email;
-                                                            row.appendChild(emailCell);
+                displayUserTable(matchedUsers);
+            });
 
-                                                            var phoneNumberCell = document.createElement("td");
-                                                            phoneNumberCell.textContent = user.phoneNumber;
-                                                            row.appendChild(phoneNumberCell);
+            function displayUserTable(users) {
+                userTableBody.innerHTML = "";
 
-                                                            var actionsCell = document.createElement("td");
-                                                            var viewButton = document.createElement("button");
-                                                            viewButton.className = "btn btn-primary";
-                                                            viewButton.textContent = "View";
-                                                            viewButton.addEventListener("click", function () {
-                                                                displayForms(user);
-                                                            });
-                                                            actionsCell.appendChild(viewButton);
+                users.forEach(function (user) {
+                    var row = document.createElement("tr");
 
-                                                            row.appendChild(actionsCell);
+                    var firstNameCell = document.createElement("td");
+                    firstNameCell.textContent = user.firstName;
+                    row.appendChild(firstNameCell);
 
-                                                            userTableBody.appendChild(row);
-                                                        });
-                                                    }
+                    var lastNameCell = document.createElement("td");
+                    lastNameCell.textContent = user.lastName;
+                    row.appendChild(lastNameCell);
 
-                                                    function displayForms(user) {
-                                                        consentFormTextarea.value = user.consentForm;
-                                                        medicalFormTextarea.value = user.medicalForm;
+                    var emailCell = document.createElement("td");
+                    emailCell.textContent = user.email;
+                    row.appendChild(emailCell);
 
-                                                        formsSection.style.display = "block";
+                    var phoneNumberCell = document.createElement("td");
+                    phoneNumberCell.textContent = user.phoneNumber;
+                    row.appendChild(phoneNumberCell);
 
-                                                        uploadButton.addEventListener("click", function () {
+                    var actionsCell = document.createElement("td");
+                    var viewButton = document.createElement("button");
+                    viewButton.className = "btn btn-primary";
+                    viewButton.textContent = "View";
+                    viewButton.addEventListener("click", function () {
+                        displayForms(user);
+                    });
+                    actionsCell.appendChild(viewButton);
 
-                                                            alert("File uploaded successfully!");
-                                                        });
+                    row.appendChild(actionsCell);
 
-                                                        saveButton.addEventListener("click", function () {
+                    userTableBody.appendChild(row);
+                });
+            }
 
-                                                            alert("Form saved successfully!");
-                                                        });
-                                                    }
+            function displayForms(user) {
+                consentFormTextarea.value = user.consentForm;
+                medicalFormTextarea.value = user.medicalForm;
 
+                formsSection.style.display = "block";
 
-                                                    function formPopUp(userId) {
-                                                        fetch('/getUserInfo?userId=' + userId)
-                                                                .then(response => response.json())
-                                                                .then(data => {
-                                                                    var firstName = data.firstName;
-                                                                    var lastName = data.lastName;
-                                                                    var email = data.email;
-                                                                    var userId = data.userId;
-                                                                    // Get the reference to your popup box element
-                                                                    var popupBox = document.getElementById('popupBox');
+                uploadButton.addEventListener("click", function () {
 
-                                                                    //                var span = document.getElementsByClassName("book_close")[0];
+                    alert("File uploaded successfully!");
+                });
 
-                                                                    // Update the content of the popup box with the retrieved day name and month name
-                                                                    var output = "<div class='popupText'> Add Form for  " + firstName + ", " + lastName + " <br>" + email + "?</div>";
-                                                                    output += "<form method='post' action='aform'  enctype='multipart/form-data'>";
-                                                                    output += "<input type='hidden' name='action' value='addForm' >";
-                                                                    output += "<input type='hidden' name='userId' value='" + userId + "'>";
-                                                                    output += "<input type='radio' name='formType' value='medical'> Medical Form <br>";
-                                                                    output += "<input type='radio' name='formType' value='consent'> Consent Form <br>";
-                                                                    output += "<br><input type='file' name='pdfFile' accept='application/pdf'>";
-                                                                    output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>";
-                                                                    output += "<input type='submit' value='Add Form'class='addFormBtn'></form></div>";
-                                                                    //                popupBox.innerHTML = output;
-                                                                    document.getElementById('popupContent').innerHTML = output;
+                saveButton.addEventListener("click", function () {
 
-                                                                    // Show the popup box
-                                                                    popupBox.style.display = 'block';
-                                                                })
-                                                                .catch(error => {
-                                                                    // Handle any error that occurs during the request
-                                                                    console.error('Error:', error);
-                                                                });
-                                                        popupBox.style.display = 'block';
-                                                    }
+                    alert("Form saved successfully!");
+                });
+            }
 
 
-                                                    function cancel() {
-                                                        var popupBox = document.getElementById('popupBox');
-                                                        popupBox.style.display = 'none';
-                                                        document.getElementById('popupContent').innerHTML = "";
-                                                    }
+            function formPopUp(userId) {
+                fetch('/getUserInfo?userId=' + userId)
+                        .then(response => response.json())
+                        .then(data => {
+                            var firstName = data.firstName;
+                            var lastName = data.lastName;
+                            var email = data.email;
+                            var userId = data.userId;
+                            // Get the reference to your popup box element
+                            var popupBox = document.getElementById('popupBox');
+
+                            //                var span = document.getElementsByClassName("book_close")[0];
+
+                            // Update the content of the popup box with the retrieved day name and month name
+                            var output = "<div class='popupText'> Add Form for  " + firstName + ", " + lastName + " <br>" + email + "?</div>";
+                            output += "<form method='post' action='aform'  enctype='multipart/form-data'>";
+                            output += "<input type='hidden' name='action' value='addForm' >";
+                            output += "<input type='hidden' name='userId' value='" + userId + "'>";
+                            output += "<input type='radio' name='formType' value='medical'> Medical Form <br>";
+                            output += "<input type='radio' name='formType' value='consent'> Consent Form <br>";
+                            output += "<br><input type='file' name='pdfFile' accept='application/pdf'>";
+                            output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>";
+                            output += "<input type='submit' value='Add Form'class='addFormBtn'></form></div>";
+                            //                popupBox.innerHTML = output;
+                            document.getElementById('popupContent').innerHTML = output;
+
+                            // Show the popup box
+                            popupBox.style.display = 'block';
+                        })
+                        .catch(error => {
+                            // Handle any error that occurs during the request
+                            console.error('Error:', error);
+                        });
+                popupBox.style.display = 'block';
+            }
+
+
+            function cancel() {
+                var popupBox = document.getElementById('popupBox');
+                popupBox.style.display = 'none';
+                document.getElementById('popupContent').innerHTML = "";
+            }
         </script>
     </body>
 </html>
