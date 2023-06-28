@@ -32,9 +32,16 @@
                 margin-right: 20px;
                 font-color: white;
                 color: white;
-                border-radius: 10px;
+                border-radius: 4px;
+                transition: none; 
 
             }
+            
+/*            .borderless-button:hover {
+                background-color: #0B486B;
+                border-color: #0B486B;
+                padding: 3px 7px;
+            }*/
             #popupBox {
                 width: 500px;
                 background-color: #f3f3f3;
@@ -119,44 +126,6 @@
               ================================*/
 
 
-            @font-face {
-                font-family: 'Material Icons';
-                font-style: normal;
-                font-weight: 400;
-                src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-                src: local('Material Icons'),
-                    local('MaterialIcons-Regular'),
-                    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-                    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-                    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-            }
-
-
-
-            .material-icons {
-                font-family: 'Material Icons';
-                font-weight: normal;
-                font-style: normal;
-                font-size: 24px;  /* Preferred icon size */
-                display: inline-block;
-                line-height: 1;
-                text-transform: none;
-                letter-spacing: normal;
-                word-wrap: normal;
-                white-space: nowrap;
-                direction: ltr;
-
-                /* Support for all WebKit browsers. */
-                -webkit-font-smoothing: antialiased;
-                /* Support for Safari and Chrome. */
-                text-rendering: optimizeLegibility;
-
-                /* Support for Firefox. */
-                -moz-osx-font-smoothing: grayscale;
-
-                /* Support for IE. */
-                font-feature-settings: 'liga';
-            }
 
 
             h1,h2,h3,h4,h5,h6,.h1 {
