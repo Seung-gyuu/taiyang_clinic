@@ -25,6 +25,42 @@
 
         <style>
 
+            
+            
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Adjust the transparency here */
+    z-index: 9999;
+    animation: 2s ease-in-out;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.pdf-container {
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff; /* Set the background color for the PDF container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow for styling */
+}
+
+.pdf-container #pdfViewer {
+    display: flex;
+    margin: auto;
+    overflow-x: scroll;
+}
+
+            
             .show-all-users {
                 color: #ececec;
                 background-color: #0B486B;
@@ -849,14 +885,16 @@
                                                     <td>${mdform.getUserid().getLastname()}</td>
                                                     <td>Medical Form</td>
                                                     <td>${mdform.getTimeAdded()}</td>
-                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}">Download</a></td></tr>
+                                                    <td><button onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button></td>
+                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td></tr>
                                                 </c:forEach>
                                                 <c:forEach items="${consentforms}" var="csform">
                                                 <tr><td>${csform.getUserid().getFirstname()}</td>
                                                     <td>${csform.getUserid().getLastname()}</td>
                                                     <td>Consent Form</td>
                                                     <td>${csform.getTimeAdded()}</td>
-                                                    <td> <a href="/downloadForm?formId=${csform.getId()}">Download</a></td></tr>
+                                                    <td><button onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button></td>
+                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td></tr>
                                                 </c:forEach>
                                         </tbody>
                                     </table>
@@ -884,6 +922,18 @@
                     </div>
                 </div>
 
+                <!-- The popup container -->
+<div id="pdfPopup" class="popup">
+    <div class="popup-content" id="popup-content">
+        <div class="pdf-container">
+            <div id="pdfViewer" class="pdfViewer"></div>
+        </div>
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+    </div>
+</div>
+
+
+
                 <!--start footer-->
                 <div class="my-5"></div>
                 <footer class="footer">
@@ -899,20 +949,22 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="js/vform.js"></script>
 
     <script type="text/javascript">
 
-        $(document).ready(function () {
-            $(".xp-menubar").on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $('#content').toggleClass('active');
-            });
+                            $(document).ready(function () {
+                                $(".xp-menubar").on('click', function () {
+                                    $('#sidebar').toggleClass('active');
+                                    $('#content').toggleClass('active');
+                                });
 
-            $(".xp-menubar,.body-overlay").on('click', function () {
-                $('#sidebar,.body-overlay').toggleClass('show-nav');
-            });
+                                $(".xp-menubar,.body-overlay").on('click', function () {
+                                    $('#sidebar,.body-overlay').toggleClass('show-nav');
+                                });
 
-        });
+                            });
 
     </script>
 

@@ -20,7 +20,7 @@ insert into user (firstname, lastname, email_address, phone_number, password, ro
 -- password = password1
 insert into user (firstname, lastname, email_address, phone_number, password, salt, isvalid, roleid, isactive) values('sunny', 'gym', 'lisalisa@gmail.com', '4031234560', '9643f56bfa8f4b5ecaba6080b99f3c6aad7b00f31421b4d87a50063184bda852', 'ib1LqMfjfBUB5W2GGAGg/R9kk/KgRfRKKe0Fzh8pjxA=', '1', '2', '1');
 INSERT INTO user (firstname, lastname, email_address, phone_number, password, salt, isvalid,  roleid, isactive) values('tai', 'yang', 'temptaiyang@gmail.com', '1234565644', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6', '/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=', '1', '1', '1');
-INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', 'password1', '1', '1', '1');
+--INSERT INTO user (firstname, lastname, email_address, phone_number, password,salt, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6','/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=' , '1', '1', '1');
 
 
 
@@ -409,7 +409,7 @@ insert into service values(4, 2, 'sauna', 'Sauna ');
 insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,1,1,'My Tummy Hurting',2);
 insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,218,1,'My Tummy Hurting',1);
 insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,220,3,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,isupcoming) values (4,224,2,1);
+--insert into appointment(userid,timeid,serviceid,isupcoming) values (4,224,2,1);
 insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,301,2,'My Tummy Hurting',1);
 insert into appointment(userid,timeid,serviceid,isupcoming) values (3,305,2,1);
 

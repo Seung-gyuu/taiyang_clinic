@@ -112,6 +112,14 @@
         <servlet-name>getUserInfo</servlet-name>
         <servlet-class>servlets.getUserInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadFormServlet</servlet-name>
+        <servlet-class>servlets.DownloadFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFormServlet</servlet-name>
+        <servlet-class>servlets.ViewFormServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlets</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>getUserInfo</servlet-name>
         <url-pattern>/getUserInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadFormServlet</servlet-name>
+        <url-pattern>/downloadForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFormServlet</servlet-name>
+        <url-pattern>/viewForm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
