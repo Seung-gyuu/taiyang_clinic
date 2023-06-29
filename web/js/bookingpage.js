@@ -80,7 +80,7 @@ function showForm() {
     var dynamicHtml = document.getElementById('dynamicHtml').value;
 
     // Update the content of the popup box with the retrieved day name and month name
-    var output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + clickedstartTime + " to " + clickedendTime;
+    var output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " to " + clickedendTime;
 //    output += "<br>" + clickedstartTime + " to " + clickedendTime;
 //    output += "<br>";
     output += "<form method='post' action='/book''>";
@@ -91,8 +91,8 @@ function showForm() {
     output += dynamicHtml;
     output += "<br>";
     output += "<input type='hidden' name='timeId' value='" + clickedTimeId + "'>";
-    output += "<label for='description'>Description (optional)</label>";
-    output += "<input type='textfield' name='description' id='description'>";
+    output += "<label for='description'>Description (optional) </label> ";
+    output += " <input type='textfield' name='description' id='description'>";
     output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='Cancel' class='cancelBtn'>";
     output += "<input type='submit' id='bookbutton' value='Book' disabled='true' class='confirmBtn'></div>";
     output += "<input type='hidden' name='action' value='book' >";
