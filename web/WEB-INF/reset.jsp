@@ -81,7 +81,17 @@
                                                 <input type ="submit" value ="Reset password" class="btn btn-sm btn-lg radient-custom-4" style="width: 50%; background-color: #0B486B; color:white; font-size:1.0rem;">
                                             </div>
                                         </form>
-                                        <p>${message}</p>
+                                        <br>
+                                        <p id="resetMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                            <script>
+                                                var resetMessage = localStorage.getItem('resetMessage');
+                                                var messageElement = document.getElementById('resetMessage');
+                                                if (resetMessage) {
+                                                    localStorage.removeItem('resetMessage');
+                                                    messageElement.textContent = resetMessage;
+                                                }
+
+                                            </script>
                                         <div class="d-flex justify-content-between mt-4">
                                             <a class ="" href="/login">Login</a>
                                             <a class ="" href="/register">Register</a>

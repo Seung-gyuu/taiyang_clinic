@@ -249,18 +249,20 @@
                                 </label>
 
                                 <div class="formBtns">
-                                    <a href="/home">
-                                        <input type="button" value="Cancel" class="accountCancelBtn">
-                                        <input type="hidden" name="action" value="cancel" >
-                                    </a> 
+                                     <input type="button" value="Cancel" class="accountCancelBtn" onclick="window.location.href='/home'">
                                     <div>                                        
                                         <input type="submit" value="Update" class="accountUpdateBtn">
                                         <input type="hidden" name="action" value="update">
-                                    </div>
+                                </div>
 
                                 </div>
                             </form>   
-                            <p>${message}</p>
+                                     <c:if test="${message ne 'Update successful!'}">
+                            <p id="profileMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                     </c:if>
+                            <c:if test="${message eq 'Update successful!'}">
+                            <p id="profileMessage" style="color:blue; font-size: 15px;">${message}</p>
+                                     </c:if>
                         </div>
                     </div>
                 </div>
@@ -270,10 +272,10 @@
         <script src="js/showMessage.js"></script>
         <script>
             $(document).ready(function () {
-            <% if (session.getAttribute("updatedInfo") != null && (boolean) session.getAttribute("updatedInfo")) { %>
+            <% if (request.getAttribute("updatedInfo") != null && (boolean) request.getAttribute("updatedInfo")) { %>
                 // Call the showMessage function to display the pop-up message
                 showMessage("Your information successfully updated.");
-            <% session.removeAttribute("updatedInfo"); %> // Remove the flag from the session
+            <% request.removeAttribute("updatedInfo"); %> // Remove the flag from the session
             <% }%>
             });
         </script>

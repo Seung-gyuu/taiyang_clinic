@@ -30,6 +30,11 @@ public class HomeServlets extends HttpServlet {
         HttpSession session = request.getSession();
 
         User user = (User) session.getAttribute("loggedUser");
+        boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
+        // Remove the attribute if coming from the validate.jsp page
+        if (fromValidation) {
+            session.removeAttribute("loggedUser");
+        }
         String logout = request.getParameter("logout");
         if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 

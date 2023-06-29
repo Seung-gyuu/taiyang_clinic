@@ -55,7 +55,7 @@
                                 </form>
                                 <p>${message}</p> 
                                 <div>
-                                    <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
+                                    <a href="/home?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
 
                                 </div>
                             </div>

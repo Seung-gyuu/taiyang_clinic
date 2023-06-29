@@ -74,7 +74,7 @@
                                                     <input type ="submit" value ="Send the email" class="btn btn-primary btn-sm btn-lg radient-custom-4" style="width: 50%; background-color: #0B486B; border-color:#0B486B; color: white; font-size:1.0rem;">
                                                 </div>
 
-                                             
+<br>
                                                 <div class ="" style="color:blue;">
                                                     <p>${message}</p>
                                                 </div>

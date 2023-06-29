@@ -53,10 +53,8 @@ public class ProfileServlets extends HttpServlet {
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
             String password = request.getParameter("password");
-            
+
             loggedUser.setEmailAddress(email);
-//            user.setFirstname(firstName);
-//            user.setLastname(lastName);
             loggedUser.setPhoneNumber(phone);
             loggedUser.setPassword(password);
             String message = "";
@@ -67,9 +65,10 @@ public class ProfileServlets extends HttpServlet {
                 if (message.equals("Update successful!")) {
                     session.setAttribute("updatedEmail", email);
                     session.setAttribute("updatedPhone", phone);
-                    session.setAttribute("updatedInfo", true);
+                    request.setAttribute("updatedInfo", true);
+
                     if (us.getByEmail(email).getIsValid() == 2) {
-                        session.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
+                        request.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
                         getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
                     }
                 }

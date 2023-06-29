@@ -67,12 +67,12 @@ public class UserService {
 
         String salt = HashAndSalt.getSalt();
         String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-//        user.setPassword(hashedPassword);
+        user.setPassword(hashedPassword);
 
         user.setSalt(salt);
         user.setIsValid(2);
         user.setIsactive(1);
-        user.setPassword(user.getPassword());
+//        user.setPassword(user.getPassword());
         udb.insert(user);
         return "Account created!";
     }
@@ -96,15 +96,25 @@ public class UserService {
             if (!validatemsg.equals("Valid")) {
                 return validatemsg;
             }
-//            String salt = updateUser.getSalt();
-//            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
-//            updateUser.setSalt(salt);
-//            updateUser.setPassword(hashedPassword);            
+            //
+            String salt = HashAndSalt.getSalt();
+            String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
+            updateUser.setSalt(salt);
+            updateUser.setPassword(hashedPassword);  
+//
             udb.update(updateUser);
             return "Update successful!";
         } catch (Exception ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
             return "Error occurred during update!";
+        }
+    }
+    //for validation
+       public void updateStatus(User updateUser) {
+        try {
+            udb.update(updateUser);
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -181,21 +191,27 @@ public class UserService {
     public String login(String email, String password) throws Exception {
         // Retrieve the user by email
         User user = udb.getByEmail(email);
-//        String salt = user.getSalt();
-//        String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
+        if(user == null){
+             return "Your email or password was entered incorrectly!";
+        }
+//        
+        String salt = user.getSalt();
+        String hashedPassword = HashAndSalt.hashAndSaltPassword(password, salt);
+//        
         if (user != null) {
             if (user.getIsactive() == 2) {
                 return "This account has been deactivated";
             }
-//        if (!user.getPassword().equals(hashedPassword)) {
-//            return "Invalid!";
-//        }
-            if (!user.getPassword().equals(password)) {
-                return "Your email or password was entered incorrectly!";
-            }
+        if (!user.getPassword().equals(hashedPassword)) {
+            return "Your email or password was entered incorrectly!";
+        }
+//            if (!user.getPassword().equals(password)) {
+//                return "Your email or password was entered incorrectly!";
+//            }
             if (user.getIsValid() == 2) {
                 return "User has not validated account. Please validate!";
             }
+            
             return "Login";
 
         }
@@ -219,20 +235,6 @@ public class UserService {
 
     }
 
-    public void updatePW(User user, String password) {
-        try {
-            user.setPassword(password);
-            String salt = user.getSalt();
-            String hashedPassword = HashAndSalt.hashAndSaltPassword(user.getPassword(), salt);
-//            user.setPassword(hashedPassword);
-            user.setSalt(salt);
-
-            udb.update(user);
-        } catch (Exception ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public void deActivate(int userId) {
         try {
             User user = udb.get(userId);
@@ -242,6 +244,7 @@ public class UserService {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     public void add(String firstName, String lastName, String email, String phone, String password, int userId, int roleid, int i) {
         User user = new User(firstName, lastName, email, phone);

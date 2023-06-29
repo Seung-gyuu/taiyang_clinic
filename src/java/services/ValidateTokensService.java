@@ -76,7 +76,7 @@ public class ValidateTokensService {
         }
         UserService us = new UserService();
         vt.getUserid().setIsValid(1);
-        us.update(vt.getUserid());
+        us.updateStatus(vt.getUserid());
         return "User Validated!";
 
     }
@@ -99,7 +99,6 @@ public class ValidateTokensService {
         tags.put("name", user.getFirstname());
         tags.put("action_url", validationLink);
         try {
-//            SendValidationEmail.sendValidationEmail(recipientEmail, validationLink);
             SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
 
             System.out.println("Validation email sent successfully!");

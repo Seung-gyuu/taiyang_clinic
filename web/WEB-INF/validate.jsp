@@ -32,8 +32,8 @@
                                 <h3 class="mb-3 text-secondary">Validate Page</h3>
                                 <p> ${message} </p>
                                 <div>
-                                    <a href="/login" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Go To Login</a>
-                                    <a href="/home" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
+                                    <a href="/login?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Go To Login</a>
+                                    <a href="/home?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
 
                                     <c:if test="${resend ne null}">
                                         <a href="/sendvalidation" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>

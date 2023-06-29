@@ -18,12 +18,6 @@ public class Validate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("loggedUser");
-        if (u != null) {
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-        }
-
         String token = request.getParameter("token");
         ValidateTokensService vts = new ValidateTokensService();
         try {
@@ -32,11 +26,10 @@ public class Validate extends HttpServlet {
             if (message.equals("No token found") || message.equals("Token Expired! Please send a new one!")) {
                 request.setAttribute("resend", "resend");
             }
-            getServletContext().getRequestDispatcher("/WEB-INF/validate.jsp").forward(request, response);
+         getServletContext().getRequestDispatcher("/WEB-INF/validate.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(Validate.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override

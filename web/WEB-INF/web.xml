@@ -238,11 +238,11 @@
     <env-entry>
         <env-entry-name>web-username</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>temptaiyang@gmail.com</env-entry-value>
+        <env-entry-value>sunnyacupuncturist@gmail.com</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>web-password</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>aedmrvwledbwsifz</env-entry-value>
+        <env-entry-value>cdhbavfilwoawjkz</env-entry-value>
     </env-entry>
 </web-app>
