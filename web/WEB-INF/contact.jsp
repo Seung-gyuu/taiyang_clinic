@@ -21,7 +21,7 @@
             <div class="contact_container">
                 <div class="gloabal_top_section contact_top_section">
                     <h1>Contact Us</h1>
-                    <p>Get intouch and let us know how we can help.</p>
+                    <p>Get in touch and let us know how we can help.</p>
                 </div>
                 <div class="contact_main_section">
                     <div class="contact_info">
