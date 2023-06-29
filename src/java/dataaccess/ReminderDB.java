@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import models.Reminder;
 import dataaccess.SentRemindersDB;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.TypedQuery;
 import models.Appointment;
 
@@ -33,8 +34,9 @@ public class ReminderDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             TypedQuery<Reminder> query = em.createNamedQuery("Reminder.findByPassed", Reminder.class);
-            LocalDate now = LocalDate.now();
-            query.setParameter("currentTime", java.sql.Date.valueOf(now));
+             LocalDateTime now = LocalDateTime.now();
+             query.setParameter("currentTime", java.sql.Timestamp.valueOf(now));
+//            query.setParameter("currentTime", java.sql.Date.valueOf(now));
             List<Reminder> reminders = query.getResultList();
             return reminders;
         } finally {
