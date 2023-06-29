@@ -17,9 +17,11 @@ insert into role values(1,'default user');
 insert into role values(2, 'system admin');
 
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
-insert into user (firstname, lastname, email_address, phone_number, password, isvalid, roleid, isactive) values('Lisa','peep','lisalisa@gmail.com','4031231234','password', 1,2,1);
-INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('gyu', 'park', 'arnastasa7@gmail.com', '1549849848', 'password1', '1', '1', '1');
+-- password = password1
+insert into user (firstname, lastname, email_address, phone_number, password, salt, isvalid, roleid, isactive) values('sunny', 'gym', 'lisalisa@gmail.com', '4031234560', '9643f56bfa8f4b5ecaba6080b99f3c6aad7b00f31421b4d87a50063184bda852', 'ib1LqMfjfBUB5W2GGAGg/R9kk/KgRfRKKe0Fzh8pjxA=', '1', '2', '1');
+INSERT INTO user (firstname, lastname, email_address, phone_number, password, salt, isvalid,  roleid, isactive) values('tai', 'yang', 'temptaiyang@gmail.com', '1234565644', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6', '/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=', '1', '1', '1');
 INSERT INTO user (firstname, lastname, email_address, phone_number, password, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', 'password1', '1', '1', '1');
+
 
 
 

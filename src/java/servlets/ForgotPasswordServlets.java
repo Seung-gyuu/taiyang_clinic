@@ -33,14 +33,9 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("loggedUser");
-        if (u == null) { //if a user is logged in they shouldnt be able to reach this page
+
             getServletContext().getRequestDispatcher("/WEB-INF/forgotpassword.jsp").forward(request, response);
-        } else {
-            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-            response.sendRedirect("/home");
-        }
+
     }
 
     @Override

@@ -63,7 +63,7 @@ function validateLastName() {
 function validateEmail() {
     var emailInput = document.getElementById("email");
     var emailSpan = document.getElementById("email-span");
-    if (!/^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+\.[a-zA-Z0-9.]$/.test(emailInput.value)) {
+    if (!/^[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailInput.value)) {
         emailSpan.textContent = "Email must be in valid email format! (johndoe@gmail.com)";
         emailSpan.style.color = "red";
         emailSpan.style.fontSize = "12px";
