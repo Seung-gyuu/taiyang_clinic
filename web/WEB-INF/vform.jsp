@@ -40,6 +40,25 @@
                 background-color: rgba(0, 0, 0, 0.8); /* Adjust the transparency here */
                 z-index: 9999;
             }
+            
+            .pageNumbers {
+                margin-top: 10px;
+                text-align: center;
+            }
+            .pageNumber {
+                display: inline-block;
+                margin: 5px;
+                padding: 8px 12px;
+                background-color: #eaeaea;
+                color: #333;
+                text-decoration: none;
+                border-radius: 4px;
+            }
+            .pageNumber:hover {
+                background-color: #ccc;
+            }
+            
+            
             .confirmPopup{
                 display: none;
             }
