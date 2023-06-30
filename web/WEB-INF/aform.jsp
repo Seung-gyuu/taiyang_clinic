@@ -120,7 +120,8 @@
 
 
             input[type="search"]{
-                background-color: #4a5263;
+                /*                background-color:#f9f9f5;*/
+                background-color:#4a5263;
                 color:#fff;
                 padding-left:20px;
                 border:none;
@@ -129,6 +130,7 @@
 
 
             .xp-searchbar .btn{
+                /*                background-color:#496f53;*/
                 background-color:#4a5263;
                 color:#fff;
                 font-weight:600;
@@ -139,7 +141,7 @@
 
 
 
-           
+
 
         </style>
     </head>

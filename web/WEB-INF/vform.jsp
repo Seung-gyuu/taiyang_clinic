@@ -120,6 +120,7 @@
                 cursor: pointer;
                 font-weight: light;
                 font-size:13px;
+                margin-right: 10px;
 
             }
 
@@ -318,6 +319,8 @@
                                                 <th>${userForm.getLastname()}</th>
                                                 <th>${userForm.getEmailAddress()}</th>
                                                 <th>Time Added</th>
+                                                <th>Download</th>
+                                                <th>Forms</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -326,9 +329,11 @@
                                                     <td>${mdform.getUserid().getLastname()}</td>
                                                     <td>Medical Form</td>
                                                     <td>${mdform.getTimeAdded()}</td>
-                                                    <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button></td>
-                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
-                                                    <td><button class="deleteButton" onclick="openDeleteConfirm(this.value, 'medical')" value="${mdform.getId()}">Delete</button></td>
+                                                      <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button>
+                                           
+<!--                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>-->
+                                                    <button class="deleteButton" onclick="openDeleteConfirm(this.value, 'medical')" value="${mdform.getId()}">Delete</button></td>
                                                 </tr>
 
                                             </c:forEach>
@@ -337,9 +342,10 @@
                                                     <td>${csform.getUserid().getLastname()}</td>
                                                     <td>Consent Form</td>
                                                     <td>${csform.getTimeAdded()}</td>
-                                                    <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button></td>
-                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
-                                                    <td><button class = "deleteButton" onclick="openDeleteConfirm(this.value, 'consent')" value="${csform.getId()}">Delete</button></td>
+                                                       <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button>
+<!--                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>-->
+                                                    <button class = "deleteButton" onclick="openDeleteConfirm(this.value, 'consent')" value="${csform.getId()}">Delete</button></td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
