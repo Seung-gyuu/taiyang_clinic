@@ -15,33 +15,33 @@
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
     </head>
     <body>
-   
+
         <div class="account_side_wrap">
 
-          <ul class="side_list_wrapper">
-            <a href="/history">
-                <li class="side_list side_first ${pageContext.request.requestURI eq '/WEB-INF/history.jsp' ? 'active' : ''}">
+            <ul class="side_list_wrapper">
+                <a href="/history">
+                    <li class="side_list side_first ${pageContext.request.requestURI eq '/WEB-INF/history.jsp' ? 'active' : ''}">
 
                         <i class="fa-regular fa-calendar-check"></i>
                         My Appointments
                         <!--${pageContext.request.requestURI}-->
                         <i class="fa-light fa-chevrons-right"></i>
-                </li>
-             </a>
-             <a href="/profile">
-                <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/profile.jsp' ? 'active' : ''}">
-                    <i class="fa-regular fa-user"></i>
-                    My Profile
-                </li>
-              </a>
-              <a href="/userforms">
-                <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/userforms.jsp' ? 'active' : ''}">
-<!--                    <i class="fa-regular fa-user"></i> Not sure how to make it a form icon :P-->
-                    View Forms
-                </li>
-              </a>    
-                    
-          </ul>
+                    </li>
+                </a>
+                <a href="/profile">
+                    <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/profile.jsp' ? 'active' : ''}">
+                        <i class="fa-regular fa-user"></i>
+                        My Profile
+                    </li>
+                </a>
+                <a href="/userforms">
+                    <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/userforms.jsp' ? 'active' : ''}">
+                        <i class="fa-regular 	far fa-file-alt"></i>
+                        View Forms
+                    </li>
+                </a>    
+
+            </ul>
         </div>
 
     </body>
