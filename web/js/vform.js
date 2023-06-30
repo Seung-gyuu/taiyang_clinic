@@ -107,7 +107,7 @@ function openDeleteConfirm(formID,formType){
     output+="<input type='hidden' value='"+formType+"' name='form'>";
     output+="<input type='hidden' value='deleteform' name='action'>";
     output+="<button type='button' onclick='closeConfirmBox()' class='cancelBtn'>Cancel</button>";
-    output+="<input type='submit' class ='confirmBtn' value='Confirm'>";
+    output+="<input type='submit' class='confirmBtn' value='Confirm'>";
     confirmContainer.innerHTML=output;
     document.getElementById('confirmPopup').style.display='block';
 }
