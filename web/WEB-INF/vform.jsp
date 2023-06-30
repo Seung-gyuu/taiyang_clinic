@@ -36,8 +36,9 @@
                 padding: 0 6px;
                 text-align:center;
                 border-radius: 2px;
+                transition: background-color 0.3s ease-in;
             }
-            
+
             .borderless-button, .delete-button, .view-button {
                 background-color: #0B486B;
                 border-color: #0B486B;
@@ -50,7 +51,7 @@
                 transition: none; 
 
             }
-            
+
 
             /*            .borderless-button:hover {
                             background-color: #0B486B;
@@ -76,7 +77,7 @@
                 justify-content: space-between;
 
             }
-            
+
             .cancelBtn {
                 background-color: #979797;
                 color: #fff;
@@ -125,8 +126,8 @@
 
 
             input[type="search"]{
-/*                background-color:#f9f9f5;*/
-         background-color: #f3f3f3;
+                /*                background-color:#f9f9f5;*/
+                background-color: #f3f3f3;
                 color:#fff;
                 padding-left:20px;
                 border:none;
@@ -289,20 +290,20 @@
                                         </thead>
                                         <tbody>
                                             <% int usersPerPage = 10; %>
-                                        <% List<User> userList = (List<User>) request.getAttribute("userList"); %>
-                                        <% int totalUsers = userList.size(); %>
-                                        <% int totalPages = (int) Math.ceil((double) totalUsers / usersPerPage); %>
-                                        <% int currentPage = 1; %>
-                                        <% String pageParam = request.getParameter("page"); %>
-                                        <% if (pageParam != null && !pageParam.isEmpty()) { %>
-                                        <% currentPage = Integer.parseInt(pageParam); %>
-                                        <% } %>
-                                        <% int startIndex = (currentPage - 1) * usersPerPage; %>
-                                        <% int endIndex = Math.min(startIndex + usersPerPage, totalUsers);%>
-                                        <% int loopIndex = 0; %>
-                                            
-                                            
-                                            
+                                            <% List<User> userList = (List<User>) request.getAttribute("userList"); %>
+                                            <% int totalUsers = userList.size(); %>
+                                            <% int totalPages = (int) Math.ceil((double) totalUsers / usersPerPage); %>
+                                            <% int currentPage = 1; %>
+                                            <% String pageParam = request.getParameter("page"); %>
+                                            <% if (pageParam != null && !pageParam.isEmpty()) { %>
+                                            <% currentPage = Integer.parseInt(pageParam); %>
+                                            <% } %>
+                                            <% int startIndex = (currentPage - 1) * usersPerPage; %>
+                                            <% int endIndex = Math.min(startIndex + usersPerPage, totalUsers);%>
+                                            <% int loopIndex = 0; %>
+
+
+
                                             <c:forEach items="${userList}" var="user">
                                                 <tr class="userRow <% if (loopIndex >= startIndex && loopIndex < endIndex) { %>active<% } %>">
                                                     <td>${user.getFirstname()}</td>
@@ -312,68 +313,80 @@
                                                     <td> <a href="/vform?userId=${user.getUserid()}">View Forms</a></td>
                                                 </tr>
                                                 <% loopIndex++; %>
-                                                </c:forEach>
+                                            </c:forEach>
                                         </tbody>
 
                                     </table>
-                                <div class="pageNumbers">
-                                    <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
-                                    <button onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
-                                    <% }%>
-                                </div>
-                                
-                                <script>
-                                    const userRows = document.querySelectorAll('.userRow');
-                                    const rowsPerPage = 10;
-                                    let currentPage = 1;
+                                    <div class="pageNumbers">
+                                        <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
+                                        <button id="page<%=pageNumber%>" onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
+                                        <% }%>
+                                    </div>
 
-                                    function showPage(pageNumber) {
-                                        document.getElementById('searchterm').value="";
-                                        const startIndex = (pageNumber - 1) * rowsPerPage;
-                                        const endIndex = startIndex + rowsPerPage;
+                                    <script>
+                                        const userRows = document.querySelectorAll('.userRow');
+                                        const rowsPerPage = 10;
+                                        let currentPage = 1;
 
-                                        userRows.forEach(function (row, index) {
-                                            if (index >= startIndex && index < endIndex) {
-                                                row.style.display = 'table-row';
-                                            } else {
-                                                row.style.display = 'none';
-                                            }
-                                        });
+                                        function showPage(pageNumber) {
+                                            document.getElementById('searchterm').value = "";
+                                            const startIndex = (pageNumber - 1) * rowsPerPage;
+                                            const endIndex = startIndex + rowsPerPage;
 
-                                        currentPage = pageNumber;
-                                    }
+                                            userRows.forEach(function (row, index) {
+                                                if (index >= startIndex && index < endIndex) {
+                                                    row.style.display = 'table-row';
+                                                } else {
+                                                    row.style.display = 'none';
+                                                }
+                                            });
 
-                                    function handleSearch(searchTerm) {
-                                        searchTerm = searchTerm.toLowerCase();
+                                            currentPage = pageNumber;
 
-                                        if (searchTerm === '') {
-                                            showPage(1); // Display the first page with all users
-                                            return; // Exit the function
+                                            // Reset styles for all buttons
+                                            const pageButtons = document.querySelectorAll('.pageNumbers button');
+                                            pageButtons.forEach(function (button) {
+                                                button.style.backgroundColor = '';
+                                                button.style.color = '';
+                                            });
+
+                                            // Apply styles to the clicked button
+                                            const clickedButton = document.getElementById('page' + pageNumber);
+                                            clickedButton.style.backgroundColor = 'blue';
+                                            clickedButton.style.color = 'white';
                                         }
 
-                                        userRows.forEach(function (row) {
-                                            const firstName = row.querySelector('td:first-child').textContent.toLowerCase();
-                                            if (firstName.includes(searchTerm)) {
-                                                row.style.display = 'table-row';
-                                            } else {
-                                                row.style.display = 'none';
-                                            }
-                                        });
+                                        function handleSearch(searchTerm) {
+                                            searchTerm = searchTerm.toLowerCase();
 
-                                        // Hide all rows on other pages
-                                        const currentPageRows = Array.from(document.querySelectorAll('.userRow.active'));
-                                        currentPageRows.forEach(function (row) {
-                                            if (!row.style.display) {
-                                                row.style.display = 'none';
+                                            if (searchTerm === '') {
+                                                showPage(1); // Display the first page with all users
+                                                return; // Exit the function
                                             }
-                                        });
-                                    }
 
-                                    // Show the first page on initial load
-                                    showPage(1);
-                                </script>
-                                
-                                
+                                            userRows.forEach(function (row) {
+                                                const firstName = row.querySelector('td:first-child').textContent.toLowerCase();
+                                                if (firstName.includes(searchTerm)) {
+                                                    row.style.display = 'table-row';
+                                                } else {
+                                                    row.style.display = 'none';
+                                                }
+                                            });
+
+                                            // Hide all rows on other pages
+                                            const currentPageRows = Array.from(document.querySelectorAll('.userRow.active'));
+                                            currentPageRows.forEach(function (row) {
+                                                if (!row.style.display) {
+                                                    row.style.display = 'none';
+                                                }
+                                            });
+                                        }
+
+                                        // Show the first page on initial load
+                                        showPage(1);
+                                    </script>
+
+
                                 </c:if>
 
                                 <c:if test="${userForm ne null}">
@@ -417,7 +430,7 @@
                                     </div>
                                 </c:if>
                                 <div id="javascriptmessage">
-                                    
+
                                 </div>
 
                             </div>
@@ -437,7 +450,7 @@
                 <!-- Confirmation when delete form-->
                 <div id="confirmPopup" class="confirmPopup">
                     <div class="popup-content" id="confirm-content">
-                        
+
                     </div>
                 </div>
 

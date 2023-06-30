@@ -33,6 +33,7 @@
                 padding: 0 6px;
                 text-align:center;
                 border-radius: 2px;
+                transition: background-color 0.3s ease-in;
             }
 
             .borderless-button {
@@ -306,7 +307,7 @@
 
                                 <div class="pageNumbers">
                                     <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
-                                    <button onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
+                                    <button id="page<%=pageNumber%>" onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
                                     <% }%>
                                 </div>
 
@@ -319,20 +320,32 @@
                                     let currentPage = 1;
 
                                     function showPage(pageNumber) {
-                                        document.getElementById('searchterm').value = "";
-                                        const startIndex = (pageNumber - 1) * rowsPerPage;
-                                        const endIndex = startIndex + rowsPerPage;
+                                            document.getElementById('searchterm').value = "";
+                                            const startIndex = (pageNumber - 1) * rowsPerPage;
+                                            const endIndex = startIndex + rowsPerPage;
 
-                                        userRows.forEach(function (row, index) {
-                                            if (index >= startIndex && index < endIndex) {
-                                                row.style.display = 'table-row';
-                                            } else {
-                                                row.style.display = 'none';
-                                            }
-                                        });
+                                            userRows.forEach(function (row, index) {
+                                                if (index >= startIndex && index < endIndex) {
+                                                    row.style.display = 'table-row';
+                                                } else {
+                                                    row.style.display = 'none';
+                                                }
+                                            });
 
-                                        currentPage = pageNumber;
-                                    }
+                                            currentPage = pageNumber;
+
+                                            // Reset styles for all buttons
+                                            const pageButtons = document.querySelectorAll('.pageNumbers button');
+                                            pageButtons.forEach(function (button) {
+                                                button.style.backgroundColor = '';
+                                                button.style.color = '';
+                                            });
+
+                                            // Apply styles to the clicked button
+                                            const clickedButton = document.getElementById('page' + pageNumber);
+                                            clickedButton.style.backgroundColor = 'blue';
+                                            clickedButton.style.color = 'white';
+                                        }
 
                                     function handleSearch(searchTerm) {
                                         searchTerm = searchTerm.toLowerCase();
