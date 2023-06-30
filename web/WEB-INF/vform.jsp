@@ -16,7 +16,7 @@
 
         <!--google fonts -->
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" h ref="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -56,6 +56,8 @@
                 font-weight: light;
                 transition: background-color 0.3s ease;
                 float: left;
+                font-size:13px;
+
 
             }
 
@@ -69,7 +71,7 @@
                 padding: 5px 10px;
                 border-radius: 4px;
                 cursor: pointer;
-
+                font-size:13px;
                 font-weight: light;
                 float: right;
 
@@ -90,6 +92,49 @@
                 border-radius: 3px;   
                 text-align:center;
                 color: white;
+
+            }
+
+            .show-all-users {
+                color: #ececec;
+                background-color: #0B486B;
+                padding: 5px 10px;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size:13px;
+
+
+            }
+
+            .show-all-users:hover {
+                background-color: #076e95;
+            }
+
+            .viewButton{
+                background-color: #0B486B;
+                color: #0B486B;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                font-size:13px;
+
+            }
+
+
+            .deleteButton {
+
+                background-color: #d8293d;
+                color: #0B486B;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                font-size:13px;
 
             }
 
@@ -311,16 +356,16 @@
 
 
                                 <div class="clearfix">
-                                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                                    </ul>
+                                    <div class="hint-text"></div>
+                                    <!--                                    <ul class="pagination">
+                                                                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                                                                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                                                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                                                            <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                                            <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                                                        </ul>-->
                                 </div>
                             </div>
                         </div>

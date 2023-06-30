@@ -99,7 +99,7 @@ function formPopUp(userId) {
                 output += "<input type='radio' name='formType' value='consent'> Consent Form <br>";
                 output += "<br><input type='file' name='pdfFile' accept='application/pdf'>";
                 output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>";
-                output += "<input type='submit' value='Add Form'></form></div>";
+                output += "<input type='submit' class='addFormBtn' value='Add Form'></form></div>";
                 //                popupBox.innerHTML = output;
                 document.getElementById('popupContent').innerHTML = output;
 
@@ -110,8 +110,8 @@ function formPopUp(userId) {
                 // Handle any error that occurs during the request
                 console.error('Error:', error);
             });
+             popupBox.style.display = 'block';
+            
+            
 }
 
-function cancel() {
-    document.getElementById('popupContent').innerHTML = "";
-}
