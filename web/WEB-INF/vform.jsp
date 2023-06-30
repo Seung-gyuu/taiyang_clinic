@@ -139,6 +139,16 @@
 
             }
 
+            input[type="search"]{
+                /*                background-color:#f9f9f5;*/
+                background-color: #f3f3f3;
+                color:#fff;
+                padding-left:20px;
+                border:none;
+                border-radius:50px 0px 0px 50px;
+            }
+
+
             .xp-searchbar .btn{
                 background-color:#4a5263;
                 color:#fff;
@@ -237,8 +247,8 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="home?logout" class="btn btn-danger me-2">Logout</a>
+                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -329,11 +339,11 @@
                                                     <td>${mdform.getUserid().getLastname()}</td>
                                                     <td>Medical Form</td>
                                                     <td>${mdform.getTimeAdded()}</td>
-                                                      <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
                                                     <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button>
-                                           
+
 <!--                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>-->
-                                                    <button class="deleteButton" onclick="openDeleteConfirm(this.value, 'medical')" value="${mdform.getId()}">Delete</button></td>
+                                                        <button class="deleteButton" onclick="openDeleteConfirm(this.value, 'medical')" value="${mdform.getId()}">Delete</button></td>
                                                 </tr>
 
                                             </c:forEach>
@@ -342,10 +352,10 @@
                                                     <td>${csform.getUserid().getLastname()}</td>
                                                     <td>Consent Form</td>
                                                     <td>${csform.getTimeAdded()}</td>
-                                                       <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
                                                     <td><button class="viewButton" onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button>
 <!--                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>-->
-                                                    <button class = "deleteButton" onclick="openDeleteConfirm(this.value, 'consent')" value="${csform.getId()}">Delete</button></td>
+                                                        <button class = "deleteButton" onclick="openDeleteConfirm(this.value, 'consent')" value="${csform.getId()}">Delete</button></td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>

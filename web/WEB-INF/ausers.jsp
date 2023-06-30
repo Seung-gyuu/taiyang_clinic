@@ -24,7 +24,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
 
- 
+
     </head>
     <body>
 
@@ -101,8 +101,8 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="" class="btn btn-danger me-2">Logout</a>
+                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -202,204 +202,204 @@
                         </div>
                     </div>
 
-                        <!--                         Edit Modal HTML 
-                                                <div id="addEmployeeModal" class="modal fade">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <form>
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Add Employee</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <!--                         Edit Modal HTML 
+                                            <div id="addEmployeeModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form>
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Add Employee</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label>Name</label>
+                                                                    <input type="text" class="form-control" required>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <div class="form-group">
-                                                                        <label>Name</label>
-                                                                        <input type="text" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Email</label>
-                                                                        <input type="email" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Address</label>
-                                                                        <textarea class="form-control" required></textarea>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Phone</label>
-                                                                        <input type="text" class="form-control" required>
-                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <label>Email</label>
+                                                                    <input type="email" class="form-control" required>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                    <input type="submit" class="btn btn-success" value="Add">
+                                                                <div class="form-group">
+                                                                    <label>Address</label>
+                                                                    <textarea class="form-control" required></textarea>
                                                                 </div>
-                                                            </form>
-                                                        </div>
+                                                                <div class="form-group">
+                                                                    <label>Phone</label>
+                                                                    <input type="text" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-success" value="Add">
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                                 Edit Modal HTML 
-                                                <div id="editEmployeeModal" class="modal fade">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <form>
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Edit Employee</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal" 
-                                                                            aria-hidden="true">&times;</button>
+                                            </div>
+                                             Edit Modal HTML 
+                                            <div id="editEmployeeModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form>
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Edit Employee</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" 
+                                                                        aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label>Name</label>
+                                                                    <input type="text" class="form-control" required>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <div class="form-group">
-                                                                        <label>Name</label>
-                                                                        <input type="text" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Email</label>
-                                                                        <input type="email" class="form-control" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Address</label>
-                                                                        <textarea class="form-control" required></textarea>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Phone</label>
-                                                                        <input type="text" class="form-control" required>
-                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <label>Email</label>
+                                                                    <input type="email" class="form-control" required>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                    <input type="submit" class="btn btn-info" value="Save">
+                                                                <div class="form-group">
+                                                                    <label>Address</label>
+                                                                    <textarea class="form-control" required></textarea>
                                                                 </div>
-                                                            </form>
-                                                        </div>
+                                                                <div class="form-group">
+                                                                    <label>Phone</label>
+                                                                    <input type="text" class="form-control" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-info" value="Save">
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                        
-                        
-                        
-                                                 Delete Modal HTML 
-                                                <div id="deleteEmployeeModal" class="modal fade">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <form>
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title">Delete Employee</h4>
-                                                                    <button type="button" class="close" data-dismiss="modal" 
-                                                                            aria-hidden="true">&times;</button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <p>Are you sure you want to delete these Records?</p>
-                                                                    <p class="text-warning"><small>This action cannot be undone.</small></p>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="showMessage()">
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                            </div>
+                    
+                    
+                    
+                                             Delete Modal HTML 
+                                            <div id="deleteEmployeeModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form>
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Delete Employee</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" 
+                                                                        aria-hidden="true">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to delete these Records?</p>
+                                                                <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                <input type="submit" class="btn btn-danger" value="Delete" onclick="showMessage()">
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>-->
+                                            </div>
+                                        </div>-->
 
-                        <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addNewUsersModalLabel">Add New Users</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="description">First Name:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Last Name:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Email:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Phone Number:</label>
-                                        <input type="text" id="description" class="form-control">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>
-                                    </div>
+                    <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addNewUsersModalLabel">Add New Users</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="description">First Name:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Last Name:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Email:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Phone Number:</label>
+                                    <input type="text" id="description" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="modal fade" id="inactiveUsersModal" tabindex="-1" aria-labelledby="inactiveUsersModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="inactiveUsersModalLabel">Inactive Users</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to inactive this user?</p>
-                                        <p class="text-warning"><small>This action cannot be undone.</small></p>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success" onclick="inactiveUsers()">Inactive</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editUsersModalLabel">Edit User Information</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="description">First Name:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Last Name:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Email:</label>
-                                        <input type="text" id="description" class="form-control">
-                                        <label for="description">Phone Number:</label>
-                                        <input type="text" id="description" class="form-control">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-success" onclick="editUsers()">Save</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!--start footer-->
-                        <div class="my-5"></div>
-                        <footer class="footer">
-                            <div class="container-fluid">
-                                <div class="footer-in">
-                                    <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
-                                </div>
-                            </div>
-                        </footer>
                     </div>
+
+                    <div class="modal fade" id="inactiveUsersModal" tabindex="-1" aria-labelledby="inactiveUsersModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="inactiveUsersModalLabel">Inactive Users</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to inactive this user?</p>
+                                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" onclick="inactiveUsers()">Inactive</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editUsersModalLabel">Edit User Information</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="description">First Name:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Last Name:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Email:</label>
+                                    <input type="text" id="description" class="form-control">
+                                    <label for="description">Phone Number:</label>
+                                    <input type="text" id="description" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success" onclick="editUsers()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--start footer-->
+                    <div class="my-5"></div>
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="footer-in">
+                                <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
+            </div>
 
-                <script>
-                    function saveUsers() {
-                        alert("User saved successfully!");
-                        $('#newUsersModal').modal('hide'); // Close the modal
-                    }
-                    function inactiveUsers() {
-                        $('#inactiveUsersModal').modal('hide'); // Close the modal
-                    }
-                    function editUsers() {
-                        alert("User saved successfully!");
-                        $('#editUsersModal').modal('hide'); // Close the modal
-                    }
+            <script>
+                function saveUsers() {
+                    alert("User saved successfully!");
+                    $('#newUsersModal').modal('hide'); // Close the modal
+                }
+                function inactiveUsers() {
+                    $('#inactiveUsersModal').modal('hide'); // Close the modal
+                }
+                function editUsers() {
+                    alert("User saved successfully!");
+                    $('#editUsersModal').modal('hide'); // Close the modal
+                }
 
-                </script>
+            </script>
 
-                <script src="js/bootstrap.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
 
-                </body>
-                </html>
+    </body>
+</html>

@@ -706,8 +706,8 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn me-2" style="color:#fff; border-color: #f9f9f5 ">Home</a>
-                                <a href="home?logout" class="btn  me-2" style="color:#fff; border-color: #f9f9f5">Logout</a>
+                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 
                     </div>
