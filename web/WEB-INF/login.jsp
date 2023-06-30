@@ -178,7 +178,7 @@
                         <div class="card" style="border-radius: 20px 70px;">
                             <div class="row g-0">
                                 <div class="col-md-6 col-lg-5 d-none d-md-block ">
-                                    <img src="src/img/beach.jpg" alt ="signin image" class="img-fluid" style="border-radius: 1rem 0 0 0; height:550px" />
+                                    <img src="src/img/beach.jpg" alt ="signin image" class="img-fluid" style="border-radius: 1rem 0 0 4rem; height:100%" />
                                 </div>
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">

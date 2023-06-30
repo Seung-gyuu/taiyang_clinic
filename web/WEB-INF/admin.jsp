@@ -12,7 +12,7 @@
         <title>Tai Yang Clinic</title>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!--        <link rel="stylesheet" href="css/admin.css">-->
+                <link rel="stylesheet" href="css/admin.css">
 
         <!--google fonts -->
 
@@ -22,9 +22,8 @@
 
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
-        <link rel="stylesheet" href="css/admin.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>-->
 
         <!-- Retrieve today's date -->
         <%
@@ -50,46 +49,6 @@
             /*==========================================================
               material-icon font-style
               ================================*/
-
-
-            @font-face {
-                font-family: 'Material Icons';
-                font-style: normal;
-                font-weight: 400;
-                src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-                src: local('Material Icons'),
-                    local('MaterialIcons-Regular'),
-                    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-                    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-                    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-            }
-
-
-
-            .material-icons {
-                font-family: 'Material Icons';
-                font-weight: normal;
-                font-style: normal;
-                font-size: 24px;  /* Preferred icon size */
-                display: inline-block;
-                line-height: 1;
-                text-transform: none;
-                letter-spacing: normal;
-                word-wrap: normal;
-                white-space: nowrap;
-                direction: ltr;
-
-                /* Support for all WebKit browsers. */
-                -webkit-font-smoothing: antialiased;
-                /* Support for Safari and Chrome. */
-                text-rendering: optimizeLegibility;
-
-                /* Support for Firefox. */
-                -moz-osx-font-smoothing: grayscale;
-
-                /* Support for IE. */
-                font-feature-settings: 'liga';
-            }
 
 
             h1,h2,h3,h4,h5,h6,.h1 {

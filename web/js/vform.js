@@ -101,13 +101,13 @@ function closePopup() {
 
 function openDeleteConfirm(formID,formType){
     var confirmContainer = document.getElementById('confirm-content');
-    var output="<h2>Are you sure you want to delete this form?</h2>";
+    var output="<div class='popupText'>Are you sure you want to delete this form?</div>";
     output+="<form method='post' action='vform'>";
     output+="<input type='hidden' value='"+formID+"' name='formId'>";
     output+="<input type='hidden' value='"+formType+"' name='form'>";
     output+="<input type='hidden' value='deleteform' name='action'>";
-    output+="<button type='button' onclick='closeConfirmBox()'>Cancel</button>";
-    output+="<input type='submit' value='Confirm'>";
+    output+="<button type='button' onclick='closeConfirmBox()' class='cancelBtn'>Cancel</button>";
+    output+="<input type='submit' class ='confirmBtn' value='Confirm'>";
     confirmContainer.innerHTML=output;
     document.getElementById('confirmPopup').style.display='block';
 }

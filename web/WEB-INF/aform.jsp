@@ -194,7 +194,7 @@
                                     let currentPage = 1;
 
                                     function showPage(pageNumber) {
-                                        document.getElementById('searchterm').value="";
+                                        document.getElementById('searchterm').value = "";
                                         const startIndex = (pageNumber - 1) * rowsPerPage;
                                         const endIndex = startIndex + rowsPerPage;
 
@@ -245,7 +245,9 @@
                                 <div id="popupBox" style="display: none;"> 
                                     <div id="popupContent"></div>
                                 </div>
-                                ${message}
+                                <div id ="message">
+                                    ${message}
+                                </div>
 
                             </div>
                         </div>
@@ -289,6 +291,12 @@
                                         });
 
                                     });
+
+                                    setTimeout(function () {
+                                        var messageElement = document.getElementById('message');
+                                        messageElement.style.display = 'none';
+                                    }, 3000);
+
 
         </script>
 
