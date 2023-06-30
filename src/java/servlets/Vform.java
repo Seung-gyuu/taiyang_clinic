@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import services.*;
 import models.*;
 /**
@@ -57,6 +58,50 @@ public class Vform extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        User loggedUser = (User)session.getAttribute("loggedUser");
+        int userToDeleteID;
+//        if(loggedUser.getRoleid().getRoleid()==1){
+//            request.setAttribute("message", "Only authorized users can access this page!");
+//            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+//        } 
+//uncomment eventually.  Left commented for testing and dont want to keep switching between admin and normal user account
+        if(action.equals("deleteform")){
+            String form = request.getParameter("form");
+            int formId = Integer.parseInt(request.getParameter("formId"));
+            if(form.equals("medical")){
+                MedicalFormService mfs = new MedicalFormService();
+                try {
+                    Medicalform mf = mfs.get(formId);
+                    userToDeleteID = mf.getUserid().getUserid();
+                    mfs.delete(mf);
+                    String message = mfs.delete(mf);
+                    request.setAttribute("message", message);
+                    //getServletContext().getRequestDispatcher("/WEB-INF/vform?userId="+userToDeleteID+".jsp").forward(request, response);
+                    response.sendRedirect("/vform?userId="+userToDeleteID+"&message=Form Deleted.");
+                } catch (Exception ex) {
+                    Logger.getLogger(Vform.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("message", "Error");
+                    getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+                }
+            }
+            else if(form.equals("consent")){
+                ConsentFormService cfs = new ConsentFormService();
+                try {
+                    Consentform cf = cfs.get(formId);
+                    userToDeleteID = cf.getUserid().getUserid();
+                    String message = cfs.delete(cf);
+                    request.setAttribute("message", message);
+                    //getServletContext().getRequestDispatcher("/WEB-INF/vform?userId="+userToDeleteID+".jsp").forward(request, response);
+                    response.sendRedirect("/vform?userId="+userToDeleteID+"&message=Form Deleted.");
+                } catch (Exception ex) {
+                    Logger.getLogger(Vform.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("message", "Error");
+                    getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+                }
+            }
+        }
     }
 
 

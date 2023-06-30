@@ -57,5 +57,21 @@ public class MedicalformDB {
         }
     }
     
+    public void delete(Medicalform md) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try{
+            trans.begin();
+            em.remove(em.merge(md));
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally{
+            em.close();
+        }
+        
+    }
+    
+    
     
 }

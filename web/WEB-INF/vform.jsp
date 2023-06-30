@@ -25,42 +25,44 @@
 
         <style>
 
-            
-            
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Adjust the transparency here */
-    z-index: 9999;
-    animation: 2s ease-in-out;
-}
 
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
 
-.pdf-container {
-    max-width: 90%;
-    max-height: 90%;
-    background-color: #fff; /* Set the background color for the PDF container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow for styling */
-}
+            .popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8); /* Adjust the transparency here */
+                z-index: 9999;
+            }
+            .confirmPopup{
+                display: none;
+            }
 
-.pdf-container #pdfViewer {
-    display: flex;
-    margin: auto;
-    overflow-x: scroll;
-}
+            .popup-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
 
-            
+            .pdf-container {
+                max-width: 90%;
+                max-height: 90%;
+                background-color: #fff; /* Set the background color for the PDF container */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a box shadow for styling */
+            }
+
+            .pdf-container #pdfViewer {
+                display: flex;
+                margin: auto;
+                overflow-x: scroll;
+            }
+
+
             .show-all-users {
                 color: #ececec;
                 background-color: #0B486B;
@@ -886,22 +888,30 @@
                                                     <td>Medical Form</td>
                                                     <td>${mdform.getTimeAdded()}</td>
                                                     <td><button onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button></td>
-                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td></tr>
-                                                </c:forEach>
-                                                <c:forEach items="${consentforms}" var="csform">
+                                                    <td> <a href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td><button onclick="openDeleteConfirm(this.value, 'medical')" value="${mdform.getId()}">Delete</button></td>
+                                                </tr>
+
+                                            </c:forEach>
+                                            <c:forEach items="${consentforms}" var="csform">
                                                 <tr><td>${csform.getUserid().getFirstname()}</td>
                                                     <td>${csform.getUserid().getLastname()}</td>
                                                     <td>Consent Form</td>
                                                     <td>${csform.getTimeAdded()}</td>
                                                     <td><button onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button></td>
-                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td></tr>
-                                                </c:forEach>
+                                                    <td> <a href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
+                                                    <td><button onclick="openDeleteConfirm(this.value, 'consent')" value="${csform.getId()}">Delete</button></td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                     <div class="show">
                                         <a href="/vform" class="show-all-users">Show all users</a>    
                                     </div>
                                 </c:if>
+                                <div id="javascriptmessage">
+                                    
+                                </div>
 
 
 
@@ -923,14 +933,20 @@
                 </div>
 
                 <!-- The popup container -->
-<div id="pdfPopup" class="popup">
-    <div class="popup-content" id="popup-content">
-        <div class="pdf-container">
-            <div id="pdfViewer" class="pdfViewer"></div>
-        </div>
-        <span class="popup-close" onclick="closePopup()">&times;</span>
-    </div>
-</div>
+                <div id="pdfPopup" class="popup">
+                    <div class="popup-content" id="popup-content">
+                        <div class="pdf-container">
+                            <div id="pdfViewer" class="pdfViewer"></div>
+                        </div>
+                        <span class="popup-close" onclick="closePopup()">&times;</span>
+                    </div>
+                </div>
+                <!-- Confirmation when delete form-->
+                <div id="confirmPopup" class="confirmPopup">
+                    <div class="popup-content" id="confirm-content">
+                        
+                    </div>
+                </div>
 
 
 

@@ -7,6 +7,9 @@ package services;
 
 import dataaccess.MedicalformDB;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Consentform;
 import models.Medicalform;
 
 /**
@@ -29,4 +32,16 @@ public class MedicalFormService {
         mfdb.insert(md);
         return "Form inserted";
     }
+    
+    public String delete(Medicalform md){
+        try{
+            mfdb.delete(md);
+            return "Form Deleted.";
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ConsentFormService.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error";
+        }
+    }
+    
 }

@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import models.Consentform;
-import models.Medicalform;
 
 /**
  *
@@ -55,4 +54,21 @@ public class ConsentformDB {
             em.close();
         }
     }
+    
+    public void delete(Consentform cf) throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try{
+            trans.begin();
+            em.remove(em.merge(cf));
+            trans.commit();
+        }catch(Exception ex){
+            trans.rollback();
+        }finally{
+            em.close();
+        }
+        
+    }
+    
+    
 }

@@ -7,6 +7,8 @@ package services;
 
 import dataaccess.ConsentformDB;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Consentform;
 
 /**
@@ -28,5 +30,16 @@ public class ConsentFormService {
     public String insert(Consentform cf) throws Exception {
         cfdb.insert(cf);
         return "Form inserted";
+    }
+    
+    public String delete(Consentform cf){
+        try{
+            cfdb.delete(cf);
+            return "Form Deleted.";
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ConsentFormService.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error";
+        }
     }
 }

@@ -24,7 +24,7 @@ import services.*;
 
 /**
  *
- * @author rladm
+ * @author Hussein
  */
 public class Aform extends HttpServlet {
 
@@ -34,7 +34,7 @@ public class Aform extends HttpServlet {
         HttpSession session = request.getSession();
         String logout = request.getParameter("logout");
         if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
+            session.invalidate(); 
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }
         UserService us = new UserService();
@@ -60,39 +60,27 @@ public class Aform extends HttpServlet {
 
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
-        // Create a ServletFileUpload
         ServletFileUpload upload = new ServletFileUpload(factory);
         try {
-            // Parse the request
                         RequestContext requestContext = new ServletRequestContext(request);
 
             List<FileItem> items = upload.parseRequest(requestContext);
 
-            // Iterate over the form items
             for (FileItem item : items) {
                 if (item.isFormField()) {
-                    // Process regular form fields
                     if (item.getFieldName().equals("userId")) {
                         userId = Integer.parseInt(item.getString());
                     } else if (item.getFieldName().equals("formType")) {
                         formType = item.getString();
                     }
                 } else {
-                    // Process file upload
                     fileContent = item.getInputStream();
-                    // You can access file metadata like item.getName(), item.getSize(), etc.
                 }
             }
 
-            // Process the form data and uploaded file as needed
         } catch (Exception e) {
-            // Handle any exceptions that occur during the file upload process
             e.printStackTrace();
         }
-
-//        String action = request.getParameter("action");
-//        if (action != null && action.equals("addForm")) {
-//            InputStream fileContent = (request.getPart("pdfFile")).getInputStream();
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             byte[] buffer = new byte[4096];

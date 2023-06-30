@@ -33,7 +33,14 @@
                     <i class="fa-regular fa-user"></i>
                     My Profile
                 </li>
+              </a>
+              <a href="/userforms">
+                <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/userforms.jsp' ? 'active' : ''}">
+<!--                    <i class="fa-regular fa-user"></i> Not sure how to make it a form icon :P-->
+                    View Forms
+                </li>
               </a>    
+                    
           </ul>
         </div>
 

@@ -120,6 +120,10 @@
         <servlet-name>ViewFormServlet</servlet-name>
         <servlet-class>servlets.ViewFormServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserFormsServlet</servlet-name>
+        <servlet-class>servlets.UserFormsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlets</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>ViewFormServlet</servlet-name>
         <url-pattern>/viewForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserFormsServlet</servlet-name>
+        <url-pattern>/userforms</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
