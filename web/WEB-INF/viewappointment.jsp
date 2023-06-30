@@ -324,16 +324,6 @@
                     </footer>
                 </div>
             </div>
-            <script>
-//                var unbookedLinks = document.querySelectorAll('.unbooked');
-//                for (var i = 0; i < unbookedLinks.length; i++) {
-//                    unbookedLinks[i].addEventListener('click', function (event) {
-//                        event.preventDefault();
-//                    });
-//                }
-
-
-            </script>
 
 
 

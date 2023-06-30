@@ -188,68 +188,7 @@
             </div>
         </div>
 
-        <script>
 
-            var divItems = document.getElementsByClassName("getTime");
-            var modal = document.getElementById("bookModal");
-
-            var btn = document.getElementById("bookBtn");
-
-            var span = document.getElementsByClassName("book_close")[0];
-
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-
-            function clicked1(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 9:00am";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked2(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 10:00am";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked3(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 11:00am";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked4(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 12:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked5(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 1:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked6(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 2:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked7(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 3:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked8(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 4:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-            function clicked9(item) {
-                document.getElementById("selectedDateTime").innerHTML = "Sun June 4, 5:00pm";
-//                item.style.backgroundColor = "#0d6efd";
-            }
-
-
-        </script>
 
     </body>
 
