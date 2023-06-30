@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -35,6 +37,24 @@
                 border-radius: 4px;
                 transition: none; 
 
+            }
+            .pageNumbers {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .pageNumber {
+                display: inline-block;
+                margin: 5px;
+                padding: 8px 12px;
+                background-color: #eaeaea;
+                color: #333;
+                text-decoration: none;
+                border-radius: 4px;
+            }
+
+            .pageNumber:hover {
+                background-color: #ccc;
             }
 
             /*            .borderless-button:hover {
@@ -693,7 +713,7 @@
 
             /*--table design end----*/ 
 
- 
+
 
             /*-------footer design start------*/
             footer{
@@ -842,8 +862,7 @@
                     <div class="xp-searchbar">
                         <form>
                             <div class="input-group">
-                                <input type="search" class="form-control" 
-                                       placeholder="Search">
+                                <input type="search" class="form-control" id="searchterm" placeholder="Search By First Name" oninput="handleSearch(this.value)" />
                                 <div class="input-group-append">
                                     <button class="btn" type="submit" 
                                             id="button-addon2">GO</button>
@@ -879,17 +898,94 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% int usersPerPage = 10; %>
+                                        <% List<User> userList = (List<User>) request.getAttribute("userList"); %>
+                                        <% int totalUsers = userList.size(); %>
+                                        <% int totalPages = (int) Math.ceil((double) totalUsers / usersPerPage); %>
+                                        <% int currentPage = 1; %>
+                                        <% String pageParam = request.getParameter("page"); %>
+                                        <% if (pageParam != null && !pageParam.isEmpty()) { %>
+                                        <% currentPage = Integer.parseInt(pageParam); %>
+                                        <% } %>
+                                        <% int startIndex = (currentPage - 1) * usersPerPage; %>
+                                        <% int endIndex = Math.min(startIndex + usersPerPage, totalUsers);%>
+                                        <% int loopIndex = 0; %>
                                         <c:forEach items="${userList}" var="user">
-                                            <tr><td>${user.getFirstname()}</td>
+                                            <tr class="userRow <% if (loopIndex >= startIndex && loopIndex < endIndex) { %>active<% } %>">
+                                                <td>${user.getFirstname()}</td>
                                                 <td>${user.getLastname()}</td>
                                                 <td>${user.getEmailAddress()}</td>
                                                 <td>${user.getPhoneNumber()}</td>
-                                                <td><button name="addForm" onClick="formPopUp(${user.getUserid()})" class="borderless-button">    
-                                                        Add Form</button>
-                                                    <a href="vform?userId=${user.getUserid()}">View forms</a></td></tr>
-                                                </c:forEach>
+                                                <td>
+                                                    <button name="addForm" onClick="formPopUp(${user.getUserid()})" class="borderless-button">Add Form</button>
+                                                    <a href="vform?userId=${user.getUserid()}">View forms</a>
+                                                </td>
+                                            </tr>
+                                            <% loopIndex++; %>
+                                        </c:forEach>
                                     </tbody>
+
                                 </table>
+                                <div class="pageNumbers">
+                                    <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
+                                    <button onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
+                                    <% }%>
+                                </div>
+
+                                <script>
+                                    const userRows = document.querySelectorAll('.userRow');
+                                    const rowsPerPage = 10;
+                                    let currentPage = 1;
+
+                                    function showPage(pageNumber) {
+                                        document.getElementById('searchterm').value="";
+                                        const startIndex = (pageNumber - 1) * rowsPerPage;
+                                        const endIndex = startIndex + rowsPerPage;
+
+                                        userRows.forEach(function (row, index) {
+                                            if (index >= startIndex && index < endIndex) {
+                                                row.style.display = 'table-row';
+                                            } else {
+                                                row.style.display = 'none';
+                                            }
+                                        });
+
+                                        currentPage = pageNumber;
+                                    }
+
+                                    function handleSearch(searchTerm) {
+                                        searchTerm = searchTerm.toLowerCase();
+
+                                        if (searchTerm === '') {
+                                            showPage(1); // Display the first page with all users
+                                            return; // Exit the function
+                                        }
+
+                                        userRows.forEach(function (row) {
+                                            const firstName = row.querySelector('td:first-child').textContent.toLowerCase();
+                                            if (firstName.includes(searchTerm)) {
+                                                row.style.display = 'table-row';
+                                            } else {
+                                                row.style.display = 'none';
+                                            }
+                                        });
+
+                                        // Hide all rows on other pages
+                                        const currentPageRows = Array.from(document.querySelectorAll('.userRow.active'));
+                                        currentPageRows.forEach(function (row) {
+                                            if (!row.style.display) {
+                                                row.style.display = 'none';
+                                            }
+                                        });
+                                    }
+
+                                    // Show the first page on initial load
+                                    showPage(1);
+                                </script>
+
+
+
+
                                 <div id="popupBox" style="display: none;"> 
                                     <div id="popupContent"></div>
                                 </div>
@@ -926,17 +1022,17 @@
 
         <script type="text/javascript">
 
-                                                    $(document).ready(function () {
-                                                        $(".xp-menubar").on('click', function () {
-                                                            $('#sidebar').toggleClass('active');
-                                                            $('#content').toggleClass('active');
-                                                        });
+                                    $(document).ready(function () {
+                                        $(".xp-menubar").on('click', function () {
+                                            $('#sidebar').toggleClass('active');
+                                            $('#content').toggleClass('active');
+                                        });
 
-                                                        $(".xp-menubar,.body-overlay").on('click', function () {
-                                                            $('#sidebar,.body-overlay').toggleClass('show-nav');
-                                                        });
+                                        $(".xp-menubar,.body-overlay").on('click', function () {
+                                            $('#sidebar,.body-overlay').toggleClass('show-nav');
+                                        });
 
-                                                    });
+                                    });
 
         </script>
 

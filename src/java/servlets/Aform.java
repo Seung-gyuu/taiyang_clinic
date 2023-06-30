@@ -37,6 +37,7 @@ public class Aform extends HttpServlet {
             session.invalidate(); 
             getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }
+       
         UserService us = new UserService();
         try {
             List<User> userList = us.getAll();
