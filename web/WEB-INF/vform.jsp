@@ -138,6 +138,16 @@
 
             }
 
+            .xp-searchbar .btn{
+                background-color:#4a5263;
+                color:#fff;
+                font-weight:600;
+                font-size:18px;
+                border-radius:0 50px 50px 0;
+                padding:4px  15px;
+            }
+
+
 
 
 

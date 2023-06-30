@@ -119,6 +119,28 @@
             }
 
 
+            input[type="search"]{
+                background-color: #4a5263;
+                color:#fff;
+                padding-left:20px;
+                border:none;
+                border-radius:50px 0px 0px 50px;
+            }
+
+
+            .xp-searchbar .btn{
+                background-color:#4a5263;
+                color:#fff;
+                font-weight:600;
+                font-size:18px;
+                border-radius:0 50px 50px 0;
+                padding:4px  15px;
+            }
+
+
+
+           
+
         </style>
     </head>
     <body>
@@ -278,7 +300,7 @@
 
                                 </table>
 
-                             
+
 
                                 <div class="pageNumbers">
                                     <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
