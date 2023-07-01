@@ -20,7 +20,76 @@
         <c:import url="./components/headers.jsp" />
 
         <style>
-   
+:focus {
+  outline: 0;
+  border-color: #2260ff;
+  box-shadow: 0 0 0 4px #b5c9fc;
+}
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+label:last-child span {
+  border-radius: 0 .375em .375em 0;
+}
+
+.description-box {
+  width: 100%;
+  height: 200px; /* Adjust the height as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  vertical-align: top;
+  white-space: normal;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+
         </style>
     </head>
     <body>
@@ -97,7 +166,7 @@
                                             <div class="table_data"></div>
                                             <c:forEach items="${day.getAvailabletimeList()}" var="time">
                                                 <c:if test="${time.getIsAvailable()==2}">
-                                                    <div class="table_data data_unavailable">Booked</div>
+                                                    <div class="table_data data_unavailable">Unavailable</div>
                                                 </c:if>    
                                                 <c:if test="${time.getIsAvailable()==1}">
                                                     <div class="table_data data_available" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getTime(this.getAttribute('data-value'))">
@@ -118,19 +187,24 @@
             <!--</div>-->
 
             <div class="bookValue">
-                <input type="hidden" id="dynamicHtml" value="<c:forEach items='${services}' var='s'><input type='radio' name='serviceType' value='${s.serviceid}' onClick='enableBook()'>${s.serviceName}</c:forEach>">  
-                    <div id="popupBox" class="popup-box">
-                        <!-- Content of the popup box will be dynamically updated -->
-                        <div class="popup-content" id="popupContent">
-                            <span class="book_close">&times;</span>
-                        </div>
+                <input type="hidden" id="dynamicHtml" value="<div class='mydict'><c:forEach items='${services}' var='s'>
+  <label>
+    <input class='servicebtns' type='radio' name='serviceType' value='${s.serviceid}' onClick='enableBook()'>
+    <span>${s.serviceName}</span>
+  </label>
+</c:forEach></div>">  
+                <div id="popupBox" class="popup-box">
+                    <!-- Content of the popup box will be dynamically updated -->
+                    <div class="popup-content" id="popupContent">
+                        <span class="book_close">&times;</span>
                     </div>
-                    <div id="confirmBox" class="popup-box">
-                        <div class="popup-content" id="confirmContent">
-                            <span class="book_close">&times;</span>
-                        </div>
+                </div>
+                <div id="confirmBox" class="popup-box">
+                    <div class="popup-content" id="confirmContent">
+                        <span class="book_close">&times;</span>
                     </div>
-                    <input type="hidden" id="hiddenmessage" value="${message}">    
+                </div>
+                <input type="hidden" id="hiddenmessage" value="${message}">    
             </div>
             <!--</div>-->
         </div>

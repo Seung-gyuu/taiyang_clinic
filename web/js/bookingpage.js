@@ -91,8 +91,8 @@ function showForm() {
     output += dynamicHtml;
     output += "<br>";
     output += "<input type='hidden' name='timeId' value='" + clickedTimeId + "'>";
-    output += "<label for='description'>Description (optional) </label> ";
-    output += " <input type='textfield' name='description' id='description'>";
+    output += "<label for='description'>Description (optional) </label> <br> ";
+    output += " <textarea rows='10' cols='50'  class='description-box'  type='textfield' name='description' id='description'></textarea>";
     output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='Cancel' class='cancelBtn'>";
     output += "<input type='submit' id='bookbutton' value='Book' disabled='true' class='confirmBtn'></div>";
     output += "<input type='hidden' name='action' value='book' >";
