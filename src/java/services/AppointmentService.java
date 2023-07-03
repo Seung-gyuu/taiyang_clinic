@@ -76,10 +76,16 @@ public class AppointmentService {
         return adb.findByRange(start, end);
     }
 
-    public String insert(Appointment appt, String templatePath) throws Exception {
+    public String insert(Appointment appt, String templatePath, String language) throws Exception {
         List<Appointment> appts = this.getUserUpcoming(appt.getUserid().getUserid());
         if (appts.size() >= 3) {
-            return "Cannot have more than 3 upcoming appointments at once!";
+            if (language.equals("en")) {
+                return "Cannot have more than 3 upcoming appointments at once!";
+            }
+            if (language.equals("kr")) {
+                return "한 번에 예정된 약속을 3개 이상 가질 수 없습니다!";
+            }
+
         }
         adb.insert(appt);
         AvailableTimeService avt = new AvailableTimeService();
@@ -94,9 +100,21 @@ public class AppointmentService {
         tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
         tags.put("service", appt.getServiceid().getServiceName());
 
-        SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Confirmation", templatePath, tags);
+        if (language.equals("en")) {
+            SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Confirmation", templatePath, tags);
+        }
+        if (language.equals("kr")) {
+            SendEmail.sendMail(appt.getUserid().getEmailAddress(), "태양한의원 - 예약확인", templatePath, tags);
+        }
 
-        return "Appointment Created!";
+        if (language.equals("en")) {
+            return "Appointment Created!";
+        }
+        if (language.equals("kr")) {
+            return "약속이 생성되었습니다!";
+        }
+        return "";
+
     }
 
     public List<Appointment> getOutdated() throws Exception {

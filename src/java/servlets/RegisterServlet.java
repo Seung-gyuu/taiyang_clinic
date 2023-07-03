@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,18 +32,50 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("loggedUser");
+
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/register");
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/register");
+            }
+            return;
+        }
+
         String logout = request.getParameter("logout");
         if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("home");
+            return;
         }
-        if (u == null) { // if no user logged in, they can go to this page
-            getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-        } else { //if user logged in send them home
-            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-            response.sendRedirect("/home");
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        if (language == null) {
+            response.sendRedirect("/welcome");
+        } else {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/register.jsp").forward(request, response);
+            } else if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+            }
         }
     }
 
@@ -50,6 +83,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         if (action.equals("register")) {
             String firstname = request.getParameter("first name");
             String lastname = request.getParameter("last name");
@@ -67,33 +101,53 @@ public class RegisterServlet extends HttpServlet {
             UserService us = new UserService();
             String message = "";
             try {
-                message = us.insert(u);
+                message = us.insert(u, language);
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (!message.equals("Account created!")) {
+            if (!message.equals("Account created!") && !message.equals("계정이 생성되었습니다!")) {
                 request.setAttribute("firstname", firstname);
                 request.setAttribute("lastname", lastname);
                 request.setAttribute("email", email);
                 request.setAttribute("phone", phone);
                 request.setAttribute("message", message);
-                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+                if (language.equals("en")) {
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+                }
+                if (language.equals("kr")) {
+                    getServletContext().getRequestDispatcher("/WEB-INF/kr/register.jsp").forward(request, response);
+                }
+
                 return;
             }
 
             try {
                 u = us.getByEmail(email);
                 if (u.getIsValid() == 2) {
-                    request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
-                            + "Please allow some time for it to arrive or check your spam!");
-                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    String templatePath = "";
+                    if (language.equals("en")) {
+                        request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
+                                + "Please allow some time for it to arrive or check your spam!");
+                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    }
+                    if (language.equals("kr")) {
+                        request.setAttribute("validation", "귀하의 이메일로 확인 링크를 보내드렸습니다. 계정을 확인하려면 클릭하세요!"
+                                + "도착하거나 스팸을 확인하는 데 약간의 시간을 허용하십시오!");
+                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidationKR.jsp");
+                    }
+
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u, templatePath);
+                    vts.sendToken(u, templatePath, language);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+            if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/register.jsp").forward(request, response);
+            }
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/register.jsp").forward(request, response);
+            }
 
         }
     }

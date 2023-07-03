@@ -24,7 +24,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!--        Libraries Stylesheet -->  
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
 
         <style>
             body{
@@ -48,21 +48,21 @@
                     <div class="col-lg-3 col-md-6">
                         <h4 class="d-inline-block text-uppercase border-bottom border-5 border-secondary mb-4" style="color: #03A9F4;">Quick Links</h4>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-light mb-2" href="#" ><i class="fa fa-angle-right me-2"></i>Home</a>
-                            <a class="text-light mb-2" href="/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                            <a class="text-light mb-2" href="/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                            <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                            <a class="text-light" href="/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" href="/${language}/home" ><i class="fa fa-angle-right me-2"></i>Home</a>
+                            <a class="text-light mb-2" href="/${language}/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="/${language}/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="/${language}/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
+                            <a class="text-light" href="/${language}/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="d-inline-block text-uppercase border-bottom border-5 border-secondary mb-4" style="color: #03A9F4;">Popular Links</h4>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
-                            <a class="text-light mb-2" href="/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
-                            <a class="text-light mb-2" href="/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
-                            <a class="text-light mb-2" href="/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                            <a class="text-light" href="/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" href="/${language}/home"><i class="fa fa-angle-right me-2"></i>Home</a>
+                            <a class="text-light mb-2" href="/${language}/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                            <a class="text-light mb-2" href="/${language}/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                            <a class="text-light mb-2" href="/${language}/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
+                            <a class="text-light" href="/${language}/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">

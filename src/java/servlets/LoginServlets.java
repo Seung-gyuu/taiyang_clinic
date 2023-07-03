@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,26 +26,58 @@ public class LoginServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();     
-//        User u = (User) session.getAttribute("loggedUser");
-boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
-   // Remove the attribute if coming from the validate.jsp page
-                 if (fromValidation) {
-                    session.removeAttribute("loggedUser");
-                }
-        String logout = request.getParameter("logout");
-        if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+        HttpSession session = request.getSession(false);
+        boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
+        if (fromValidation) {
+            session.removeAttribute("loggedUser");
         }
-//        if (u == null) { // if a user is logged in they shouldnt be able to reach this page
-//            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-//        } 
-//        else {
-//            //getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-//            response.sendRedirect("/home");
-//        }
-        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/login");
+                //getServletContext().getRequestDispatcher("/WEB-INF/en/aboutus.jsp").forward(request, response);
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/login");
+                //getServletContext().getRequestDispatcher("/WEB-INF/kr/aboutus.jsp").forward(request, response);
+            }
+            return;
+        }
+
+        String logout = request.getParameter("logout");
+    if (logout != null) {
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("login");
+        return;
+    }
+        
+        
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+    if (language == null) {
+        response.sendRedirect("/welcome");
+    } else {
+        session = request.getSession(true); // Create a new session
+        session.setAttribute("language", language);
+        if (language.equals("kr")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/kr/login.jsp").forward(request, response);
+        } else if (language.equals("en")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
+        }
+    }
 
     }
 
@@ -63,8 +96,9 @@ boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidati
             RoleService rs = new RoleService();
             request.setAttribute("email", email);
             try {
-                String message = us.login(email, password);
-                if (message.equals("Login")) {
+                String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+                String message = us.login(email, password,language);
+                if (message.equals("Login") || message.equals("로그인")) {
                     User u = us.getByEmail(email);
                     int role = u.getRoleid().getRoleid();
                     int status = rs.get(role).getRoleid();
@@ -78,15 +112,20 @@ boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidati
                         response.sendRedirect("/admin");
                     }
                 } else {
-                    if (message.equals("User has not validated account. Please validate!")) {
+                    if (message.equals("User has not validated account. Please validate!")|| message.equals("사용자가 계정을 확인하지 않았습니다. 확인해주세요!")) {
                         request.setAttribute("message", message);
-                        getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
-                    }else{
-                        request.setAttribute("message", message);                   
-                       getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                        if(language.equals("en"))
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+                        if(language.equals("kr"))
+                            getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("message", message);
+                        if(language.equals("en"))
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
+                        if(language.equals("kr"))
+                            getServletContext().getRequestDispatcher("/WEB-INF/kr/login.jsp").forward(request, response);
                     }
-                 }
-
+                }
 
             } catch (Exception ex) {
                 Logger.getLogger(LoginServlets.class.getName()).log(Level.SEVERE, null, ex);

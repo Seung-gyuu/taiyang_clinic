@@ -27,7 +27,7 @@ public class Areport extends HttpServlet {
         if (logout != null) {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         } //log out should be put in post, since get is best for just retrieval
         //get the user from the database
         String action = request.getParameter("action");
@@ -50,7 +50,7 @@ public class Areport extends HttpServlet {
             request.setAttribute("userList", userList);
         } catch (Exception e) {
             request.setAttribute("message", "Unable to retrieve users");
-            getServletContext().getRequestDispatcher("/WEB-INF/areport.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/areport.jsp").forward(request, response);
             return;
         }
     }

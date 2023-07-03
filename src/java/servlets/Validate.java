@@ -19,16 +19,30 @@ public class Validate extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String token = request.getParameter("token");
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         ValidateTokensService vts = new ValidateTokensService();
         try {
-            String message = vts.validate(token);
+            String message = vts.validate(token, language);
             request.setAttribute("message", message);
-            if (message.equals("No token found") || message.equals("Token Expired! Please send a new one!")) {
+            if (message.equals("No token found") || message.equals("토큰을 찾을 수 없습니다.") || message.equals("Token Expired! Please send a new one!") || message.equals("토큰이 만료되었습니다! 새로 보내주세요!")) {
                 request.setAttribute("resend", "resend");
             }
-         getServletContext().getRequestDispatcher("/WEB-INF/validate.jsp").forward(request, response);
+         if(language.equals("en"))   
+              getServletContext().getRequestDispatcher("/WEB-INF/en/validate.jsp").forward(request, response);
+         if(language.equals("kr"))   
+              getServletContext().getRequestDispatcher("/WEB-INF/kr/validate.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(Validate.class.getName()).log(Level.SEVERE, null, ex);
+            if(language.equals("en")){
+                request.setAttribute("message", "Error.  Please try again");
+                getServletContext().getRequestDispatcher("/WEB-INF/en/validate.jsp").forward(request, response);
+            }   
+              
+         if(language.equals("kr")){
+             request.setAttribute("message", "오류. 다시 시도해 주세요");
+             getServletContext().getRequestDispatcher("/WEB-INF/kr/validate.jsp").forward(request, response);
+         }   
+
         }
     }
 

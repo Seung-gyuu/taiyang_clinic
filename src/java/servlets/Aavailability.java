@@ -29,7 +29,7 @@ public class Aavailability extends HttpServlet {
         if (logout != null) {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         DayService ds = new DayService();
         List<Day> days = ds.getCurrentWeek4Months();
@@ -46,7 +46,7 @@ public class Aavailability extends HttpServlet {
             request.setAttribute("unavailableDays", unavailableDays);
             request.setAttribute("availableDays", availableDays);
         
-        getServletContext().getRequestDispatcher("/WEB-INF/aavailability.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/aavailability.jsp").forward(request, response);
 
     }
 

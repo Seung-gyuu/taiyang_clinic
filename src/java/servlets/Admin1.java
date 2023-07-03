@@ -30,7 +30,7 @@ public class Admin1 extends HttpServlet {
         String logout = request.getParameter("logout");
         if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         AppointmentService as = new AppointmentService();
 
@@ -50,7 +50,7 @@ public class Admin1 extends HttpServlet {
             request.setAttribute("message", "error");
 
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/admin.jsp").forward(request, response);
     }
 
    

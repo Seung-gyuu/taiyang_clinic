@@ -29,26 +29,50 @@ public class ResetPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         String logout = request.getParameter("logout");
+        if(request.getParameter("translate")!=null){
+            response.sendRedirect("home");
+            return;
+        }
+            
+        
         String token = request.getParameter("token");
         PasswordTokensService ps = new PasswordTokensService();
 
         if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("home");
         }
-        String message = ps.isTokenValid(token);
+        String message = ps.isTokenValid(token, language);
         try {
-            if (message.equals("reset")) {
+            if (message.equals("reset") || message.equals("초기화")) {
                 session.setAttribute("user", ps.getByToken(token).getUserid());
-                getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+                
+                if (language.equals("en")) 
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/reset.jsp").forward(request, response);
+                if (language.equals("kr")) 
+                    getServletContext().getRequestDispatcher("/WEB-INF/kr/reset.jsp").forward(request, response);
+
             } else {
                 // Handle the case where the token is expired or invalid
                 request.setAttribute("message", message);
-                getServletContext().getRequestDispatcher("/WEB-INF/noTokens.jsp").forward(request, response);
+                if (language.equals("en")) 
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/noTokens.jsp").forward(request, response);
+                if (language.equals("kr")) 
+                    getServletContext().getRequestDispatcher("/WEB-INF/kr/noTokens.jsp").forward(request, response);
+                
             }
         } catch (Exception ex) {
             Logger.getLogger(ResetPasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+            if (language.equals("en")){
+                request.setAttribute("message", "Error");
+                getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
+            }
+            if (language.equals("kr")){
+                request.setAttribute("message", "오류");
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/login.jsp").forward(request, response);
+            }
         }
     }
 
@@ -56,6 +80,7 @@ public class ResetPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         User user = (User) session.getAttribute("user");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirmPassword");
@@ -64,21 +89,41 @@ public class ResetPasswordServlet extends HttpServlet {
         UserService us = new UserService();
         try {
             if (action.equals("reset")) {
-                String message = us.isValidPassword(password);
-                if (message.equals("success")) {
+                String message = us.isValidPassword(password, language);
+                if (message.equals("success") || message.equals("성공")) {
                     if (password.equals(confirm)) {
                         user.setPassword(password);
-                        us.update(user);
+                        us.update(user, language);
                         session.setAttribute("passwordReset", true);
-                        getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+                        if(language.equals("en")){
+                            request.setAttribute("message", "Password Updated.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/login.jsp").forward(request, response);
+                        }
+                             
+                        if(language.equals("kr")){
+                            request.setAttribute("message", "비밀번호가 업데이트되었습니다." );
+                            getServletContext().getRequestDispatcher("/WEB-INF/kr/login.jsp").forward(request, response);
+                        }
+                             
                     } else {
-                        request.setAttribute("message", "passwords do not match");
-                        getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+                        if(language.equals("en")){
+                            request.setAttribute("message", "passwords do not match");
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/reset.jsp").forward(request, response);
+                        }
+                             
+                        if(language.equals("kr")){
+                            request.setAttribute("message", "비밀번호가 일치하지 않습니다");
+                            getServletContext().getRequestDispatcher("/WEB-INF/kr/reset.jsp").forward(request, response);
+                        }
+                        
 
                     }
                 } else {
                     request.setAttribute("message", message);
-                    getServletContext().getRequestDispatcher("/WEB-INF/reset.jsp").forward(request, response);
+                    if(language.equals("en"))
+                             getServletContext().getRequestDispatcher("/WEB-INF/en/reset.jsp").forward(request, response);
+                        if(language.equals("kr"))
+                             getServletContext().getRequestDispatcher("/WEB-INF/kr/reset.jsp").forward(request, response);
 
                 }
             }

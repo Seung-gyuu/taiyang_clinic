@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,28 +26,61 @@ public class ProfileServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("loggedUser");
+
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/profile");
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/profile");
+            }
+            return;
+        }
+
         String logout = request.getParameter("logout");
         if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("home");
+            return;
         }
-//              if (user == null) { // if a user is not logged in they shouldnt be able to reach this page
-//            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-//        }
-//        else{
-        getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        if (language == null) {
+            response.sendRedirect("/welcome");
+        } else {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/profile.jsp").forward(request, response);
+            } else if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/profile.jsp").forward(request, response);
+            }
+        }
 
-//        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+
         User loggedUser = (User) session.getAttribute("loggedUser");
-//        User user = new User();
         UserService us = new UserService();
         String action = request.getParameter("action");
         if (action.equals("update")) {
@@ -60,24 +94,38 @@ public class ProfileServlets extends HttpServlet {
             String message = "";
             try {
 
-                message = us.update(loggedUser);
+                message = us.update(loggedUser, language);
 
-                if (message.equals("Update successful!")) {
+                if (message.equals("Update successful!")||message.equals("업데이트 성공!")) {
                     session.setAttribute("updatedEmail", email);
                     session.setAttribute("updatedPhone", phone);
                     request.setAttribute("updatedInfo", true);
 
                     if (us.getByEmail(email).getIsValid() == 2) {
-                        request.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
-                        getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+
+                        if (language.equals("kr")) {
+                            request.setAttribute("message", "태양의원 서비스를 이용하기 위해서는 먼저 이메일 인증이 필요합니다.");
+                            getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
+                        } else if (language.equals("en")) {
+                            request.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
+                            getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+                        }
+
                     }
                 }
                 request.setAttribute("message", message);
             } catch (Exception ex) {
                 Logger.getLogger(ProfileServlets.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            getServletContext().getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
+            
+            if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/profile.jsp").forward(request, response);
+            }
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/profile.jsp").forward(request, response);
+            }
+            
+            
         }
     }
 

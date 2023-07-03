@@ -28,14 +28,23 @@ public class SendValidation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         User user = (User) session.getAttribute("loggedUser");
                 String logout = request.getParameter("logout");
          if (logout != null) {
             session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            response.sendRedirect("home");
         } 
-        if(user==null)
-            getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+        if(user==null){
+            if(language.equals("en")){
+                getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+            }  
+            if(language.equals("kr")){
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
+            } 
+            
+        }
+            
         else
             response.sendRedirect("/home");
 //            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
@@ -45,6 +54,7 @@ public class SendValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action=request.getParameter("action");
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         if(action.equals("send verification")){
             String email = request.getParameter("email");
             UserService us = new UserService();
@@ -52,15 +62,31 @@ public class SendValidation extends HttpServlet {
                 User u = us.getByEmail(email);
                 if(u!=null){
                     ValidateTokensService vts = new ValidateTokensService();
-                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    String templatePath ="";
+                    if(language.equals("en"))
+                         templatePath=getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    if(language.equals("kr"))
+                         templatePath=getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidationKR.jsp");
                     
-                    String message = vts.sendToken(u, templatePath);
+                    
+                    String message = vts.sendToken(u, templatePath,language);
                     request.setAttribute("message", message);
-                    getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                    if(language.equals("en"))
+                         getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+                    if(language.equals("kr"))
+                         getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
                 }
                 if(u==null){
-                    request.setAttribute("message", "Can't find an account with that email! Please register instead!");
-                    getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                    
+                    if(language.equals("en")){
+                        request.setAttribute("message", "Can't find an account with that email! Please register instead!");
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+                    }    
+                    if(language.equals("kr")){
+                        request.setAttribute("message", "해당 이메일로 계정을 찾을 수 없습니다! 대신 등록하세요!");
+                        getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
+                    }
+                         
                 }
             } catch (Exception ex) {
                 Logger.getLogger(SendValidation.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,13 +1,35 @@
+window.onload = function () {
+    language = getLanguageCookie();
+    resetCalendar();
+};
+
+
 var week = 0;
 var weekCounter = document.getElementById("weekCounter");
-window.onload = resetCalendar;
-
 var clickedTimeId;
 var clickedDayName;
 var clickedMonthName;
 var clickedDayNumber;
 var clickedstartTime;
 var clickedendTime;
+var language;
+
+
+function getLanguageCookie() {
+    var name = "language=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var cookieArray = decodedCookie.split(';');
+
+    for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length);
+        }
+    }
+
+    return null;
+}
+
 
 
 
@@ -17,9 +39,10 @@ function resetCalendar() {
     week = weekCounter.value;
     daysContent.style.transform = "translateX(-" + (week * shiftAmount * 7) + "px)";
     var message = document.getElementById("hiddenmessage").value;
-    if (message === "Appointment Created!" || message === "Cannot have more than 3 upcoming appointments at once!") {
+    //if (message === "Appointment Created!" || message === "Cannot have more than 3 upcoming appointments at once!") {
+    if(message !== "")
         alert(message);
-    }
+    //}
     //this function will take the weekcounter that is reset by the form and should 
     //put them back to where they were whenever they click a button for booking
 }
@@ -68,8 +91,15 @@ function confirm() {
                 showForm();
             } else {
                 // User is not logged in, redirect to the login page
-                localStorage.setItem('loginMessage', 'Please login to book an appointment');
-                window.location.href = '/login';
+                if (language === "en") {
+                    localStorage.setItem('loginMessage', 'Please login to book an appointment');
+                    window.location.href = '/en/login';
+                }
+                if (language === "kr") {
+                    localStorage.setItem('loginMessage', '약속을 예약하려면 로그인하십시오');
+                    window.location.href = '/kr/login';
+                }
+
             }
         }
     };
@@ -80,21 +110,53 @@ function showForm() {
     var dynamicHtml = document.getElementById('dynamicHtml').value;
 
     // Update the content of the popup box with the retrieved day name and month name
-    var output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " to " + clickedendTime;
+    var output;
+
+    if (language === "en") {
+        output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " to " + clickedendTime;
+    }
+    if (language === "kr") {
+        output = "예약 대상:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " 에서 " + clickedendTime;
+    }
+
+    
 //    output += "<br>" + clickedstartTime + " to " + clickedendTime;
 //    output += "<br>";
     output += "<form method='post' action='/book''>";
-    output += "<h2 class='confirmService'>Select Service Type</h2>";
+    if (language === "en") {
+        output += "<h2 class='confirmService'>Select Service Type</h2>";
+    }
+    if (language === "kr") {
+        output += "<h2 class='confirmService'>서비스 유형 선택</h2>";
+    }
+    
 //    output += "<c:forEach items='${services}' var='s'>";
 //    output += "<input type='radio' name='serviceType' value='${s.getServiceid()}'>${s.getServiceName()";
 //    output += "</c:forEach>";
     output += dynamicHtml;
     output += "<br>";
     output += "<input type='hidden' name='timeId' value='" + clickedTimeId + "'>";
-    output += "<label for='description'>Description (optional) </label> <br> ";
+    if (language === "en") {
+        output += "<label for='description'>Description (optional) </label> <br> ";
+    }
+    if (language === "kr") {
+        output += "<label for='description'>설명 (선택 사항)</label> <br> ";
+    }
+    
+    
+    
     output += " <textarea rows='10' cols='50'  class='description-box'  type='textfield' name='description' id='description'></textarea>";
-    output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='Cancel' class='cancelBtn'>";
+    
+    
+    if (language === "en") {
+        output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='Cancel' class='cancelBtn'>";
     output += "<input type='submit' id='bookbutton' value='Book' disabled='true' class='confirmBtn'></div>";
+    }
+    if (language === "kr") {
+        output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='취소' class='cancelBtn'>";
+    output += "<input type='submit' id='bookbutton' value='약속 예약' disabled='true' class='confirmBtn'></div>";
+    }
+    
     output += "<input type='hidden' name='action' value='book' >";
     output += "</form>";
 //    popupBox.innerHTML = output;
@@ -125,9 +187,18 @@ function getTime(timeId) {
 //                var span = document.getElementsByClassName("book_close")[0];
 
                 // Update the content of the popup box with the retrieved day name and month name
-                var output = "<div class='popupText'>Do you want to book for " + dayName + ", " + monthName + " " + dayNumber + " from " + startTime + " to " + endTime + "?</div>";
-                output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>" +
-                        "<button onclick='confirm()' value='confirm' class='confirmBtn'>Confirm</button></div>";
+                var output = "";
+                if (language === "en") {
+                    output = "<div class='popupText'>Do you want to book for " + dayName + ", " + monthName + " " + dayNumber + " from " + startTime + " to " + endTime + "?</div>";
+                    output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>Cancel</button>" +
+                            "<button onclick='confirm()' value='confirm' class='confirmBtn'>Confirm</button></div>";
+                }
+                if (language === "kr") {
+                    output = "<div class='popupText'> 예약하시겠습니까 " + dayName + ", " + monthName + " " + dayNumber + " "+ startTime + " 에서 " + endTime + " 까지 " + "?</div>";
+                    output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>취소</button>" +
+                            "<button onclick='confirm()' value='confirm' class='confirmBtn'>확인하다</button></div>";
+                }
+
 //                popupBox.innerHTML = output;
                 document.getElementById('popupContent').innerHTML = output;
 

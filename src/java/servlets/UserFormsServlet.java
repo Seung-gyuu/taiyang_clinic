@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,13 +28,39 @@ public class UserFormsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         User loggedUser = (User) session.getAttribute("loggedUser");
+        
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/userforms");
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/userforms");
+            }
+            return;
+        }
+        
         
         String logout = request.getParameter("logout");
         if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("home");
+            return;
         }
         
         MedicalFormService mfs = new MedicalFormService();
@@ -44,18 +71,29 @@ public class UserFormsServlet extends HttpServlet {
             List<Medicalform> medicalforms = mfs.getByUserid(loggedUser.getUserid());
             if(consentforms.size()==0 && medicalforms.size()==0){
                 request.setAttribute("userForms", null);
-                getServletContext().getRequestDispatcher("/WEB-INF/userforms.jsp").forward(request, response);
             }
             else{
                 request.setAttribute("userForms", "true");
                 request.setAttribute("medicalforms", medicalforms);
                 request.setAttribute("consentforms", consentforms);
-                getServletContext().getRequestDispatcher("/WEB-INF/userforms.jsp").forward(request, response);
             }
         } catch (Exception ex) {
             Logger.getLogger(UserFormsServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", "Processing Error...");
-            getServletContext().getRequestDispatcher("/WEB-INF/userforms.jsp").forward(request, response);
+        }
+        
+        
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        if (language == null) {
+            response.sendRedirect("/welcome");
+        } else {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/userforms.jsp").forward(request, response);
+            } else if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/userforms.jsp").forward(request, response);
+            }
         }
         
         

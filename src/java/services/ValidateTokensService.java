@@ -52,36 +52,69 @@ public class ValidateTokensService {
         return "Token Deleted";
     }
 
-    public String validate(String token) throws Exception {
+    public String validate(String token, String language) throws Exception {
         if (token.length() != 50) {
-            return "No token found";
+            if (language.equals("en")) {
+                return "No token found";
+            }
+            if (language.equals("kr")) {
+                return "토큰을 찾을 수 없습니다.";
+            }
         }
         Validatetokens vt = this.getByToken(token);
         if (vt == null) {
-            return "No token found";
+            if (language.equals("en")) {
+                return "No token found";
+            }
+            if (language.equals("kr")) {
+                return "토큰을 찾을 수 없습니다.";
+            }
         }
         if (vt.getUserid().getIsValid() == 1) {
-            return "User already validated!";
+            if (language.equals("en")) {
+                return "User already validated!";
+            }
+            if (language.equals("kr")) {
+                return "사용자가 이미 인증되었습니다!";
+            }
+
         }
         if (vt.getUserid().getIsactive() == 2) {
-            return "User is inactive!";
+            if (language.equals("en")) {
+                return "User is inactive!";
+            }
+            if (language.equals("kr")) {
+                return "사용자가 비활성 상태입니다!";
+            }
+
         }
         LocalDateTime now = LocalDateTime.now();
         Date today = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
         if (vt.getExpiryDateTime().before(today)) {
             System.out.println("Expiry Date: " + vt.getExpiryDateTime());
             System.out.println("Right now Date: " + today);
+            if (language.equals("en")) {
+                return "Token Expired! Please send a new one!";
+            }
+            if (language.equals("kr")) {
+                return "토큰이 만료되었습니다! 새로 보내주세요!";
+            }
 
-            return "Token Expired! Please send a new one!";
         }
         UserService us = new UserService();
         vt.getUserid().setIsValid(1);
         us.updateStatus(vt.getUserid());
-        return "User Validated!";
+        if (language.equals("en")) {
+            return "User Validated!";
+        }
+        if (language.equals("kr")) {
+            return "사용자 인증!";
+        }
+        return "";
 
     }
 
-    public String sendToken(User user, String templatePath) throws Exception {
+    public String sendToken(User user, String templatePath, String language) throws Exception {
         Validatetokens token = new Validatetokens();
         String tokenInsert = GenerateToken.generateToken();
 //        LocalDateTime expiryTime = LocalDateTime.now().plusDays(1);
@@ -99,13 +132,30 @@ public class ValidateTokensService {
         tags.put("name", user.getFirstname());
         tags.put("action_url", validationLink);
         try {
-            SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
+            if (language.equals("en")) {
+                SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
+            } else if (language.equals("kr")) {
+                SendEmail.sendMail(recipientEmail, "Taiyang Clinic- 계정 확인 이메일", templatePath, tags);
+            }
 
             System.out.println("Validation email sent successfully!");
-            return "Email sent!";
+            if (language.equals("en")) {
+                return "Email sent!";
+            }
+            if (language.equals("kr")) {
+                return "이메일을 보냈습니다!";
+            }
+            return "";
         } catch (MessagingException e) {
             System.out.println("Failed to send validation email: " + e.getMessage());
-            return "Failed to send validation email!";
+
+            if (language.equals("en")) {
+                return "Failed to send validation email!";
+            }
+            if (language.equals("kr")) {
+                return "확인 이메일을 보내지 못했습니다!";
+            }
+            return "";
         }
     }
 

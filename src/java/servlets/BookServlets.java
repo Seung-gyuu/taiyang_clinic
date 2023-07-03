@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,12 +31,41 @@ public class BookServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/book");
+                //getServletContext().getRequestDispatcher("/WEB-INF/en/aboutus.jsp").forward(request, response);
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/book");
+                //getServletContext().getRequestDispatcher("/WEB-INF/kr/aboutus.jsp").forward(request, response);
+            }
+            return;
+        }
+
         String logout = request.getParameter("logout");
         if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("login");
+            return;
         }
+
         AvailableTimeService as = new AvailableTimeService();
         DayService ds = new DayService();
         List<Day> days = ds.getCurrentWeek4Months();
@@ -55,12 +85,10 @@ public class BookServlets extends HttpServlet {
             request.setAttribute("services", services);
             request.setAttribute("unavailableDays", unavailableDays);
             request.setAttribute("availableDays", availableDays);
-            //request.setAttribute("weekCounter", 3);               ///THIS SETS THE VALUE OF THE WEEK.  I TESTED, IT CORRECTLY MAKES IT TO WEEK 3 ON LOAD
-            //NOW IN DO POST JUST GETPARAMETER(WEEKCOUNTER) THEN SET ATTRIBUTE (WEEK COUNTER)
         } catch (Exception ex) {
             Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         User user = (User) session.getAttribute("loggedUser");
         if (user != null) {
             List<Appointment> upcomingAppointments;
@@ -75,15 +103,30 @@ public class BookServlets extends HttpServlet {
         }
         String message = request.getParameter("message");
         request.setAttribute("message", message);
-        getServletContext().getRequestDispatcher("/WEB-INF/booktest.jsp").forward(request, response);
+        
+        
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+    if (language == null) {
+        response.sendRedirect("/welcome");
+    } else {
+        session = request.getSession(true); // Create a new session
+        session.setAttribute("language", language);
+        if (language.equals("kr")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/kr/booktest.jsp").forward(request, response);
+        } else if (language.equals("en")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/booktest.jsp").forward(request, response);
+        }
     }
-//        getServletContext().getRequestDispatcher("/WEB-INF/book.jsp").forward(request, response);
+        
+        
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         User u = (User) session.getAttribute("loggedUser");
         if (action.equals("book")) {
             AvailableTimeService as = new AvailableTimeService();
@@ -102,10 +145,17 @@ public class BookServlets extends HttpServlet {
                 a.setTimeid(time);
                 a.setStatus("Confirmed");
                 a.setIsupcoming(1);
-                String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
-                String message = apts.insert(a, templatePath);
-                response.sendRedirect("/book?message="+message);
+                String templatePath="";
+                if(language.equals("en")){
+                    templatePath= getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
+                }
+                if(language.equals("kr")){
+                    templatePath= getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmationKR.jsp");
+                }
                 
+                String message = apts.insert(a, templatePath,language);
+                response.sendRedirect("/book?message=" + message);
+
             } catch (Exception ex) {
                 Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -75,7 +75,7 @@ public class PasswordTokensService {
         return "Token inserted";
     }
 
-    public String sendToken(User user, String templatePath) throws Exception {
+    public String sendToken(User user, String templatePath, String language) throws Exception {
         Passwordtokens passwordToken = new Passwordtokens();
 //generate the token
         String tokenInsert = GenerateToken.generateToken();
@@ -95,7 +95,10 @@ public class PasswordTokensService {
         tags.put("name", user.getFirstname());
         tags.put("action_url", resetLink);
         try {
-            SendEmail.sendMail(user.getEmailAddress(), "Taiyang clinic- Reset password Email", templatePath, tags);
+            if(language.equals("en"))
+                 SendEmail.sendMail(user.getEmailAddress(), "Taiyang clinic- Reset password Email", templatePath, tags);
+            if(language.equals("kr"))
+                 SendEmail.sendMail(user.getEmailAddress(), "Taiyang clinic- 비밀번호 재설정 이메일", templatePath, tags);
             System.out.println("Validation email sent successfully!");
             return "Email sent!";
         } catch (MessagingException e) {
@@ -112,7 +115,7 @@ public class PasswordTokensService {
 //        Date expirationDateTime = new Date(expirationTimeMillis);
 //        return expirationDateTime;
 //    }
-    public String isTokenValid(String token) {
+    public String isTokenValid(String token, String language) {
         PasswordTokensDB pwdDB = new PasswordTokensDB();
 //        Date now = new Date();
 
@@ -120,26 +123,50 @@ public class PasswordTokensService {
             Passwordtokens resetToken = pwdDB.getByToken(token);
             if (resetToken != null) {
                 if (resetToken.getUserid().getIsValid() == 2) {
-                    return "Your account is not validated";
+                    if (language.equals("en")) {
+                        return "Your account is not validated";
+                    }
+                    if (language.equals("kr")) {
+                        return "귀하의 계정이 확인되지 않았습니다";
+                    }
                 }
                 if (resetToken.getUserid().getIsactive() == 2) {
-                    return "Your account is inactive";
+                    if (language.equals("en")) {
+                        return "Your account is inactive";
+                    }
+                    if (language.equals("kr")) {
+                        return "계정이 비활성 상태입니다.";
+                    }
+
                 }
                 LocalDateTime now = LocalDateTime.now();
                 Date today = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
                 if (resetToken.getExpiryDateTime().before(today)) {
-//                    System.out.println("Expiry Date: " + resetToken.getExpiryDateTime());
-//                    System.out.println("Right now Date: " + today);
+                    if (language.equals("en")) {
+                        return "The reset link is invalid or expired";
+                    }
+                    if (language.equals("kr")) {
+                        return "재설정 링크가 유효하지 않거나 만료되었습니다";
+                    }
 
-                    return "The reset link is invalid or expired";
                 }
-                return "reset";
+                if (language.equals("en")) 
+                    return "reset";
+                if (language.equals("kr")) 
+                    return "초기화";
+
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(PasswordTokensService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "The reset link is invalid or expired";
+        if (language.equals("en")) {
+            return "The reset link is invalid or expired";
+        }
+        if (language.equals("kr")) {
+            return "재설정 링크가 유효하지 않거나 만료되었습니다.";
+        }
+        return "";
     }
 
 }

@@ -36,7 +36,7 @@ public class Vform extends HttpServlet {
             request.setAttribute("medicalforms", medicalforms);
             request.setAttribute("consentforms", consentforms);
             request.setAttribute("userForm", u);
-            getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/vform.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(Vform.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,10 +46,10 @@ public class Vform extends HttpServlet {
         try {
             List<User> userList = us.getAll();
             request.setAttribute("userList", userList);
-            getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/vform.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("message", "Unable to retrieve users");
-            getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/vform.jsp").forward(request, response);
         }
         }
     }
@@ -83,7 +83,7 @@ public class Vform extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(Vform.class.getName()).log(Level.SEVERE, null, ex);
                     request.setAttribute("message", "Error");
-                    getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/vform.jsp").forward(request, response);
                 }
             }
             else if(form.equals("consent")){
@@ -98,7 +98,7 @@ public class Vform extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(Vform.class.getName()).log(Level.SEVERE, null, ex);
                     request.setAttribute("message", "Error");
-                    getServletContext().getRequestDispatcher("/WEB-INF/vform.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/vform.jsp").forward(request, response);
                 }
             }
         }

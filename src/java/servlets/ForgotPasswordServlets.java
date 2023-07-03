@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import models.User;
 import javax.mail.*;
 import javax.naming.NamingException;
+import javax.servlet.http.Cookie;
 import services.PasswordTokensService;
 import services.SendEmail;
 import services.UserService;
@@ -33,14 +34,44 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-            getServletContext().getRequestDispatcher("/WEB-INF/forgotpassword.jsp").forward(request, response);
+                HttpSession session = request.getSession();
+        if (request.getParameter("translate") != null) { //translate the page
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/forgotpassword");
+            } else {
+                session.setAttribute("language", language);
+                //set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/forgotpassword");
+            }
+            return;
+        }
+                String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        
+        
+        if (language.equals("en")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/forgotpassword.jsp").forward(request, response);
+        }
+        if (language.equals("kr")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/kr/forgotpassword.jsp").forward(request, response);
+        }
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         UserService us = new UserService();
@@ -48,20 +79,43 @@ public class ForgotPasswordServlets extends HttpServlet {
         String action = request.getParameter("action");
         if (action.equals("forgot")) {
             try {
-                String message = us.verify(us.getByEmail(email));
+                String message = us.verify(us.getByEmail(email), language);
                 request.setAttribute("message", message);
-                if (message.equals("Please Validate Account")) {
+                if (message.equals("Please Validate Account") || message.equals("계정을 확인하십시오")) {
                     request.setAttribute("message", message);
-                    getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
-                } else if (message.equals("success")) {
-                    User user = us.getByEmail(email);
-//                    session.setAttribute("loggedUser", user);
+                    if (language.equals("en")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/en/sendvalidation.jsp").forward(request, response);
+                    }
+                    if (language.equals("kr")) {
+                        getServletContext().getRequestDispatcher("/WEB-INF/kr/sendvalidation.jsp").forward(request, response);
+                    }
 
-                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
-                    pws.sendToken(user, templatePath);
-                    request.setAttribute("message", "We sent the reset link to your email! Check it ");
+                } else if (message.equals("success") || message.equals("성공")) {
+                    User user = us.getByEmail(email);
+                    String templatePath = "";
+
+                    if (language.equals("en")) {
+                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
+                    }
+                    if (language.equals("kr")) {
+                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPasswordKR.jsp");
+                    }
+
+                    pws.sendToken(user, templatePath, language);
+                    if (language.equals("en")) {
+                        request.setAttribute("message", "We sent the reset link to your email! Check it ");
+                    }
+                    if (language.equals("kr")) {
+                        request.setAttribute("message", "귀하의 이메일로 재설정 링크를 보내드렸습니다! 확인해 봐");
+                    }
+
                 }
-                getServletContext().getRequestDispatcher("/WEB-INF/forgotpassword.jsp").forward(request, response);
+                if (language.equals("en")) {
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/forgotpassword.jsp").forward(request, response);
+                }
+                if (language.equals("kr")) {
+                    getServletContext().getRequestDispatcher("/WEB-INF/kr/forgotpassword.jsp").forward(request, response);
+                }
 
             } catch (Exception ex) {
                 Logger.getLogger(ForgotPasswordServlets.class.getName()).log(Level.SEVERE, null, ex);

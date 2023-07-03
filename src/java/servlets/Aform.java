@@ -35,7 +35,7 @@ public class Aform extends HttpServlet {
         String logout = request.getParameter("logout");
         if (logout != null) {
             session.invalidate(); 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
        
         UserService us = new UserService();
@@ -44,11 +44,11 @@ public class Aform extends HttpServlet {
             request.setAttribute("userList", userList);
         } catch (Exception e) {
             request.setAttribute("message", "Unable to retrieve users");
-            getServletContext().getRequestDispatcher("/WEB-INF/aform.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/aform.jsp").forward(request, response);
             return;
         }
 
-        getServletContext().getRequestDispatcher("/WEB-INF/aform.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/aform.jsp").forward(request, response);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Aform extends HttpServlet {
                 fileContent.close();
                 List<User> userList = us.getAll();
                 request.setAttribute("userList", userList);
-                getServletContext().getRequestDispatcher("/WEB-INF/aform.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/en/aform.jsp").forward(request, response);
             } catch (Exception ex) {
                 Logger.getLogger(Aform.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -10,63 +10,99 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Appointment;
 import models.User;
+import utilities.*;
 import services.AppointmentService;
 
 /**
  *
- * @author user
+ * @author Hussein
  */
 public class HomeServlets extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    HttpSession session = request.getSession(false); // Pass "false" to get the session without creating a new one
 
-        User user = (User) session.getAttribute("loggedUser");
-        boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
-        // Remove the attribute if coming from the validate.jsp page
-        if (fromValidation) {
-            session.removeAttribute("loggedUser");
-        }
-        String logout = request.getParameter("logout");
-        if (logout != null) {
-            session.invalidate(); // just by going to the login page the user is logged out :-) 
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-        }
-        if (user != null) {
-            List<Appointment> upcomingAppointments;
-            AppointmentService as = new AppointmentService();
-            try {
-                upcomingAppointments = as.getUserUpcoming(user.getUserid());
-                session.setAttribute("upcomingAppointments", upcomingAppointments);
-            } catch (Exception ex) {
-                Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-        getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-
+    User user = null;
+    if (session != null) {
+        user = (User) session.getAttribute("loggedUser");
     }
+
+    if (request.getParameter("translate") != null) {
+        String language = request.getParameter("translate");
+        if (language.equals("en")) {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            // Set the cookie to new language
+            Cookie languageCookie = new Cookie("language", language);
+            languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+            languageCookie.setPath("/");
+            response.addCookie(languageCookie);
+            response.sendRedirect("/en/home");
+        } else {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            // Set the cookie to new language
+            Cookie languageCookie = new Cookie("language", language);
+            languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+            languageCookie.setPath("/");
+            response.addCookie(languageCookie);
+            response.sendRedirect("/kr/home");
+        }
+        return;
+    }
+
+    boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
+
+    if (fromValidation && session != null) {
+        session.removeAttribute("loggedUser");
+    }
+
+    String logout = request.getParameter("logout");
+    if (logout != null) {
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("home");
+        return;
+    }
+
+    if (user != null) {
+        List<Appointment> upcomingAppointments;
+        AppointmentService as = new AppointmentService();
+        try {
+            upcomingAppointments = as.getUserUpcoming(user.getUserid());
+            session.setAttribute("upcomingAppointments", upcomingAppointments);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+    if (language == null) {
+        response.sendRedirect("/welcome");
+    } else {
+        session = request.getSession(true); // Create a new session
+        session.setAttribute("language", language);
+        if (language.equals("kr")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/kr/home.jsp").forward(request, response);
+        } else if (language.equals("en")) {
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
+        }
+    }
+}
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        HttpSession session = request.getSession();
-        if (action != null && action.equals("logout")) {
-            //session.setAttribute("loggedUser", null);
-            session.invalidate();
-//            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
-            response.sendRedirect("home");
-            return;
-        }
 
     }
 }

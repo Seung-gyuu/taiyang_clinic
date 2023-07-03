@@ -88,7 +88,7 @@ public class Ausers extends HttpServlet {
         switch (action) {
             case "edit":
                 try {
-                    us.update(updateUser);
+                    //us.update(updateUser);
                     request.setAttribute("message", UPDATE_SUCCESS);
                 } catch (Exception e) {
                     Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
