@@ -31,7 +31,7 @@ public class Ausers extends HttpServlet {
         if (logout != null) {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         //get the user from the database
         UserService us = new UserService();
@@ -43,7 +43,7 @@ public class Ausers extends HttpServlet {
                 List<User> userList = us.getAll();
                 request.setAttribute("userList", userList);
                 request.setAttribute("viewUser", u);
-                getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -55,7 +55,7 @@ public class Ausers extends HttpServlet {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
 
     }
 
@@ -97,7 +97,7 @@ public class Ausers extends HttpServlet {
                 request.setAttribute("email", email);
                 request.setAttribute("phone", phone);
                 request.setAttribute("message", message);
-                getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
                 return;
             }
             try {
@@ -112,7 +112,7 @@ public class Ausers extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
         } else if (action.equals("edit")) {
             UserService us = new UserService();
             RoleService rs = new RoleService();
@@ -142,7 +142,7 @@ public class Ausers extends HttpServlet {
                     session.setAttribute("updatedInfo", true);
                     if (us.getByEmail(email).getIsValid() == 2) {
                         session.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
-                        getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                        getServletContext().getRequestDispatcher("/WEB-INF/emailTemplate/sendvalidation.jsp").forward(request, response);
                     }
                 }
                 request.setAttribute("message", message);
