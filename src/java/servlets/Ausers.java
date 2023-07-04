@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.User;
-import models.Role;
+import models.*;
 import services.*;
 
 /**
@@ -18,11 +17,11 @@ import services.*;
  */
 public class Ausers extends HttpServlet {
 
-    private final String DEACT_SUCCESS = "User deActivated successfully";
-    private final String DEACT_ERROR = "Unable to deActivate user";
+    private final String DEACT_SUCCESS = "User deactivated successfully";
+    private final String DEACT_ERROR = "Unable to deactivate user";
     private final String SEARCH_ERROR = "Unable to search for user. Please try again.";
     private final String UPDATE_SUCCESS = "User updated successfully";
-    private User updateUser;
+    private final String ERROR = "Unable to process request";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,89 +34,131 @@ public class Ausers extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         //get the user from the database
-        String action = request.getParameter("action");
-        String email = request.getParameter("email");
-        //int userId = Integer.parseInt(request.getParameter("userId"));  //GET method should only get the user list.  Thats all!
-                                                                          // when the admin searches for a user, it should be a post method, or javascript to filter
-                                                                          // the user table
         UserService us = new UserService();
-        if (action!= null && action.equals("search")) {   //What if they just load the page?  It needs to have a default get method 
-                                                          // When admin loads page, doGet should just get userlist, rest is javascript or doPost method
+        int userId = 0;
+        if (request.getParameter("userId") != null) {
+            userId = Integer.parseInt(request.getParameter("userId"));
             try {
-                User user = us.getByEmail(email);
-                //request.setAttribute("userId", userId);
+                User u = us.get(userId);
+                List<User> userList = us.getAll();
+                request.setAttribute("userList", userList);
+                request.setAttribute("viewUser", u);
+                getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
-                request.setAttribute("message", SEARCH_ERROR);
+            }
+        } else {
+            try {
+                List<User> userList = us.getAll();
+                request.setAttribute("userList", userList);
+            } catch (Exception e) {
+                Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-        try {
-            List<User> userList = us.getAll();
-            request.setAttribute("userList", userList);
-        } catch (Exception e) {
-            request.setAttribute("message", "Unable to retrieve users");
-            getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
-            return;
-        }
+        getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String password = "";
-        //int userId = Integer.parseInt(request.getParameter("userId"));  //user ID is auto generated.  Admin should NOT set it as it will
-                                                                            // error in the database
-        int isactive = Integer.parseInt(request.getParameter("isactive"));
-        UserService us = new UserService();
-        RoleService rs = new RoleService();
-        User u = new User();
-        u.setFirstname(firstName);
-        u.setLastname(lastName);
-        u.setEmailAddress(email);
-        u.setPhoneNumber(phone);
-        u.setPassword(password);
-        //u.setUserid(userId);
-        //u.setRoleid(roleId); // in the admin page, get the role ID from a list, use a role service to get the role object
-                               // using the role ID number, then set the ID for that
-        u.setIsactive(1); //set it to the parameter you retrieved?
-        switch (action) {
-            case "edit":
-                try {
-                    //us.update(updateUser);
-                    request.setAttribute("message", UPDATE_SUCCESS);
-                } catch (Exception e) {
-                    Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
-                    request.setAttribute("message", "Unable to update user");
-                }   break;
-            case "add":
-                try {
-                    //us.insert(firstName, lastName, email, phone, password, userId, roleId, 1); make sure that is how insert works.  RoleID should be role object
-                                                                                                // userID should not be set.  IsActive IsValid need revision
-                    request.setAttribute("message", "User added successfully");
-                } catch (Exception e) {
-                    Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
-                    request.setAttribute("message", "Unable to add user");
-                }   break;
-            case "deActivate":
-                try {
-                    //us.deActivate(userId);
-                    request.setAttribute("message", DEACT_SUCCESS);
-                } catch (Exception e) {
-                    Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
-                    request.setAttribute("message", DEACT_ERROR);
-                }   break;
-            default:
-                break;
-        }
+        if (action.equals("add")) {
+            UserService us = new UserService();
+            RoleService rs = new RoleService();
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            String password = "";
+            String role_name = request.getParameter("role_name");
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            int isactive = Integer.parseInt(request.getParameter("isactive"));
+            int isValid = Integer.parseInt(request.getParameter("isValid"));
+            String message = "";
+            User u = new User();
+            u.setFirstname(firstname);
+            u.setLastname(lastname);
+            u.setEmailAddress(email);
+            u.setPhoneNumber(phone);
+            u.setPassword(password);
+            u.setRoleid(rs.get(1));
+            u.setIsactive(isactive);
+            u.setIsValid(isValid);
+            try {
+                message = us.insert(u);
+            } catch (Exception e) {
+                Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
+            }
+            if (!message.equals("Account created!")) {
+                request.setAttribute("firstname", firstname);
+                request.setAttribute("lastname", lastname);
+                request.setAttribute("email", email);
+                request.setAttribute("phone", phone);
+                request.setAttribute("message", message);
+                getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
+                return;
+            }
+            try {
+                u = us.getByEmail(email);
+                if (u.getIsValid() == 2) {
+                    request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
+                            + "Please allow some time for it to arrive or check your spam!");
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                    ValidateTokensService vts = new ValidateTokensService();
+                    vts.sendToken(u, templatePath);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
+        } else if (action.equals("edit")) {
+            UserService us = new UserService();
+            RoleService rs = new RoleService();
+            User viewUser = (User) session.getAttribute("viewUser");
+            String firstname = request.getParameter("firstname");
+            String lastname = request.getParameter("lastname");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+//          String role_name = request.getParameter("role_name"); ---Not sure if I should put roleid or role name.
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            int isactive = Integer.parseInt(request.getParameter("isactive"));
+            int isValid = Integer.parseInt(request.getParameter("isValid"));
+            String message = "";
+            viewUser.setFirstname(firstname);
+            viewUser.setLastname(lastname);
+            viewUser.setEmailAddress(email);
+            viewUser.setPhoneNumber(phone);
+//          viewUser.setRole(role_name);
+            viewUser.setIsactive(isactive);
+            viewUser.setIsValid(isValid);
+            try {
+                message = us.update(viewUser);
 
+                if (message.equals("Update successful!")) {
+                    session.setAttribute("updatedEmail", email);
+                    session.setAttribute("updatedPhone", phone);
+                    session.setAttribute("updatedInfo", true);
+                    if (us.getByEmail(email).getIsValid() == 2) {
+                        session.setAttribute("message", "To use TaiYang clinic services, You need to validate the email first");
+                        getServletContext().getRequestDispatcher("/WEB-INF/sendvalidation.jsp").forward(request, response);
+                    }
+                }
+                request.setAttribute("message", message);
+            } catch (Exception e) {
+                Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
+            }
+        } else if (action.equals("deactivate")) {
+            UserService us = new UserService();
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            String message = "";
+            try {
+                message = DEACT_SUCCESS;
+            } catch (Exception e) {
+                Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
+            }
+            request.setAttribute("message", message);
+        }
     }
 }
-
- 
-
-

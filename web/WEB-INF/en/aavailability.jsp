@@ -11,27 +11,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <title>Tai Yang Clinic</title>
-
-             <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../src/img/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../src/img/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../src/img/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../src/img/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../src/img/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../src/img/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/img/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="../src/img/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="../src/img/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="../src/img/favicon/manifest.json">
+        <link rel="apple-touch-icon" sizes="57x57" href="src/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="src/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="src/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="src/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="src/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="src/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="src/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="src/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="src/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="src/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="src/img/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/availability.css">
-        <script src="../js/availability.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!--        <link rel="stylesheet" href="css/availability.css">-->
+        <script src="js/availability.js"></script>
 
         <!--google fonts -->
 
@@ -41,8 +40,7 @@
 
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
-
-         <%
+        <%
             LocalDate startDate = LocalDate.now();
             LocalDate endDate = startDate.plusDays(6);
 
@@ -667,7 +665,7 @@
         </style>
     </head>
     <body>
-     <c:if test="${weekCounter eq null}">
+        <c:if test="${weekCounter eq null}">
             <input type="hidden" value="0" id="weekCounter" name="weekCounter"> 
         </c:if>
         <c:if test="${weekCounter ne null}">
@@ -725,7 +723,7 @@
                             <i class="material-icons">grid_on</i><span>Reports</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu6">
                     </li>
-                </ul>
+                </ul>    
             </nav>
 
 
@@ -755,8 +753,8 @@
                     </div>
                 </div>
 
-                <!--main contents-->
 
+                <!--main contents-->
                 <div class="main-content">
                     <div class="row">
                         <div class="col-md-12">
@@ -764,122 +762,86 @@
                                 <div class="table-title">
                                     <div class="row">
                                         <div class="col-sm-6 p-0 d-flex justify-content-start align-items-center">
-                                            <h2 class="ml-2">Manage Availability Times</h2>
+                                            <h2 class="ml-2">Schedule Availability</h2>
                                         </div>
-                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
-                                            <div class="d-flex">
-                                                <a href="" class="btn btn-primary mr-2" id="prevBtn">
-                                                    <i class="material-icons">&#xE5C4;</i> 
-                                                </a>
-                                                <a href="" class="btn btn-primary" id="nextBtn">
-                                                    <i class="material-icons">&#xE5C8;</i> 
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
+                                                                                    <div class="d-flex">
+                                                                                        <a class="btn btn-primary mr-2" id="prevBtn">
+                                                                                            <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                                                                        </a>
+                                        
+                                                                                        <a class="btn btn-primary" id="nextBtn">
+                                                                                            <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
+                                                                                        </a>
+                                                                                    </div>
+                                        
+                                                                                </div>-->
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                    </a>
+                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">
+                                        <script>document.write(formattedDate);</script>
+                                    </h4>
+                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
+                                    </a>
+                                </div>
 
-                                <table class="table table-striped table-hover">
+
+                                <table class="table table-striped table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th>Month/Date/Year</th>
-                                            <th>View Times</th>
+                                            <c:forEach begin="0" end="6" varStatus="loop">
+                                                <th style="font-size: 13px;">${booked[loop.index].getDayname()} <br>
+                                                    ${booked[loop.index].getMonthName()} ${booked[loop.index].getDaynumber()}</th>
+                                                </c:forEach>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>June 12, 2023</td>
-                                            <td><a href="#" onclick="showTimes('June', 12, 2023)" class="view-times">View Times</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>June 13, 2023</td>
-                                            <td><a href="#" onclick="showTimes('June', 13, 2023)" class="view-times">View Times</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>June 14, 2023</td>
-                                            <td><a href="#" onclick="showTimes('June', 14, 2023)" class="view-times">View Times</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>June 15, 2023</td>
-                                            <td><a href="#" onclick="showTimes('June', 15, 2023)" class="view-times">View Times</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>June 16, 2023</td>
-                                            <td><a href="#" onclick="showTimes('June', 16, 2023)" class="view-times">View Times</a></td>
+                                            <c:forEach begin="0" end="6" varStatus="loop">
+                                                <td>
+                                                    <table>
+                                                        <tbody>
+                                                            <c:forEach items="${booked[loop.index].getAvailabletimeList()}" var="time">
+                                                                <c:if test="${time.getIsAvailable()==2}">
+                                                                    <tr>
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
+<!--                                                                        padding: 8px; -->
+                                                                        <td>
+                                                                             <button class="btn btn-lg" style="font-size: 25px; background: none; border: none;">
+                                                                                 <a style="color:#0B486B; font-size: 13px;">Booked</a><br></button>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:if>
+                                                                <c:if test="${time.getIsAvailable()==1}">
+                                                                    <tr>
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
+                                                                        <td>
+                                                                            <a style="color:gray; font-size: 12px;">Unbooked</a><br>
+                                                                            <button class="btn btn-unavailable" style = "background-color:#5492d9; font-size: 10px; color: white; "onclick="changeStatus(this)">Available</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </c:forEach>
                                         </tr>
                                     </tbody>
                                 </table>
-
-
-
-
-
-                                <div id="timeSlots" style="display: none;">
-                                    <div class="table-title">
-                                        <div class="row">
-                                            <div class="col-sm-6 p-0 d-flex justify-content-lg-start justify-content-center">
-                                                <h2 class="ml-lg-2">Available Time Slots</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h4 class="text-center mb-2"><span id="selectedDate" style="font-size: 0.8em;"></span></h4>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Time</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="timeSlotsBody">
-                                            <tr>
-                                                <td>9:00 AM - 10:00 AM</td>
-                                                <td>Unbooked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>10:00 AM - 11:00 AM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>11:00 AM - 12:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>12:00 PM - 1:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>1:00 PM - 2:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>2:00 PM - 3:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3:00 PM - 4:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4:00 PM - 5:00 PM</td>
-                                                <td>Booked</td>
-                                                <td><button class="btn btn-danger btn-unavailable" onclick="changeStatus(this)">Unavailable</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
+       
+
 
                 <!--start footer-->
                 <div class="my-5"></div>
@@ -892,21 +854,70 @@
                 </footer>
             </div>
         </div>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script>
-            function changeStatus(button) {
-                if (button.innerHTML === "Unavailable") {
-                    button.innerHTML = "Available";
-                    button.classList.remove("btn-unavailable");
-                    button.classList.add("btn-available");
-                } else {
-                    button.innerHTML = "Unavailable";
-                    button.classList.remove("btn-available");
-                    button.classList.add("btn-unavailable");
-                }
-            }
+                                                                                function changeStatus(button) {
+                                                                                    if (button.innerHTML === "Available") {
+                                                                                        button.innerHTML = "Unavailable";
+                                                                                        button.style.backgroundColor = "#d75353";
+                                                                                        button.classList.remove("btn-available");
+                                                                                        button.classList.add("btn-unavailable");
+                                                                                        updateAvailability(button, "unavailable");
+                                                                                    } else {
+                                                                                        button.innerHTML = "Available";
+                                                                                        button.style.backgroundColor = "#4280c6";
+                                                                                        button.classList.remove("btn-unavailable");
+                                                                                        button.classList.add("btn-available");
+                                                                                        updateAvailability(button, "available");
+                                                                                    }
+                                                                                }
+//            
+//            
+//            document.getElementById("prevBtn").addEventListener("click", function () {
+//                navigateWeeks(-1);
+//            });
+//
+//            document.getElementById("nextBtn").addEventListener("click", function () {
+//                navigateWeeks(1);
+//            });
+
+//                                                                                function changeStatus(button) {
+//                                                                                    if (button.innerHTML === "Available") {
+//                                                                                        button.innerHTML = "Unavailable";
+//                                                                                        button.style.backgroundColor = "#d75353";
+//                                                                                        button.classList.remove("btn-available");
+//                                                                                        button.classList.add("btn-unavailable");
+//                                                                                    } else {
+//                                                                                        button.innerHTML = "Unavailable";
+////                                                                                       button.style.backgroundColor = "#4280c6";
+//                                                                                        button.classList.remove("btn-unavailable");
+//                                                                                        button.classList.add("btn-available");
+//                                                                                    }
+//                                                                                }
+
+
         </script>
 
 
-        <script src="../js/bootstrap.min.js"></script>
+
+
+
+
+
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $(".xp-menubar").on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                    $('#content').toggleClass('active');
+                });
+                $(".xp-menubar,.body-overlay").on('click', function () {
+                    $('#sidebar,.body-overlay').toggleClass('show-nav');
+                });
+            });
+        </script>
     </body>
 </html>

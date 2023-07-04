@@ -11,25 +11,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <title>Tai Yang Clinic</title>
-               <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../src/img/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../src/img/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../src/img/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../src/img/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../src/img/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../src/img/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/img/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="../src/img/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="../src/img/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="../src/img/favicon/manifest.json">
+        <link rel="apple-touch-icon" sizes="57x57" href="src/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="src/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="src/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="src/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="src/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="src/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="src/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="src/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="src/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="src/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="src/img/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/aform.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/aform.css">
         <!--        <script src="js/ausers.js"></script>-->
 
         <!--google fonts -->
@@ -41,7 +41,17 @@
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
         <style>
+
+            .pageNumbers {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+
+
+
             .pageNumbers button{
+
                 margin-bottom: 10px;
                 font-size:13px;
                 border:none;
@@ -137,8 +147,8 @@
 
 
             input[type="search"]{
-/*                background-color:#f9f9f5;*/
-         background-color: #f3f3f3;
+                /*                background-color:#f9f9f5;*/
+                background-color: #f3f3f3;
                 color:#fff;
                 padding-left:20px;
                 border:none;
@@ -155,6 +165,8 @@
                 border-radius:0 50px 50px 0;
                 padding:4px  15px;
             }
+
+
 
 
 
@@ -237,7 +249,7 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                                   <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
                                 <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 
@@ -323,7 +335,7 @@
 
                                 <div class="pageNumbers">
                                     <% for (int pageNumber = 1; pageNumber <= totalPages; pageNumber++) {%>
-                                    <button id="page<%=pageNumber%>" onclick="showPage(<%= pageNumber%>)">Page <%= pageNumber%></button>
+                                    <button id="page<%=pageNumber%>" onclick="showPage(<%= pageNumber%>)" >Page <%= pageNumber%></button>
                                     <% }%>
                                 </div>
 
@@ -336,32 +348,32 @@
                                     let currentPage = 1;
 
                                     function showPage(pageNumber) {
-                                            document.getElementById('searchterm').value = "";
-                                            const startIndex = (pageNumber - 1) * rowsPerPage;
-                                            const endIndex = startIndex + rowsPerPage;
+                                        document.getElementById('searchterm').value = "";
+                                        const startIndex = (pageNumber - 1) * rowsPerPage;
+                                        const endIndex = startIndex + rowsPerPage;
 
-                                            userRows.forEach(function (row, index) {
-                                                if (index >= startIndex && index < endIndex) {
-                                                    row.style.display = 'table-row';
-                                                } else {
-                                                    row.style.display = 'none';
-                                                }
-                                            });
+                                        userRows.forEach(function (row, index) {
+                                            if (index >= startIndex && index < endIndex) {
+                                                row.style.display = 'table-row';
+                                            } else {
+                                                row.style.display = 'none';
+                                            }
+                                        });
 
-                                            currentPage = pageNumber;
+                                        currentPage = pageNumber;
 
-                                            // Reset styles for all buttons
-                                            const pageButtons = document.querySelectorAll('.pageNumbers button');
-                                            pageButtons.forEach(function (button) {
-                                                button.style.backgroundColor = '';
-                                                button.style.color = '';
-                                            });
+                                        // Reset styles for all buttons
+                                        const pageButtons = document.querySelectorAll('.pageNumbers button');
+                                        pageButtons.forEach(function (button) {
+                                            button.style.backgroundColor = '';
+                                            button.style.color = '';
+                                        });
 
-                                            // Apply styles to the clicked button
-                                            const clickedButton = document.getElementById('page' + pageNumber);
-                                            clickedButton.style.backgroundColor = 'blue';
-                                            clickedButton.style.color = 'white';
-                                        }
+                                        // Apply styles to the clicked button
+                                        const clickedButton = document.getElementById('page' + pageNumber);
+                                        clickedButton.style.backgroundColor = 'grey';
+                                        clickedButton.style.color = 'white';
+                                    }
 
                                     function handleSearch(searchTerm) {
                                         searchTerm = searchTerm.toLowerCase();
@@ -428,8 +440,8 @@
 
 
 
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script src="../js/aform.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/aform.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script type="text/javascript">

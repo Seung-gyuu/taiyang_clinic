@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.*;
+import services.AppointmentService;
 import services.AvailableTimeService;
 import services.DayService;
 
@@ -31,23 +32,36 @@ public class Aavailability extends HttpServlet {
             request.setAttribute("message", "You have successfully logged out.");
             getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
+        AvailableTimeService ats = new AvailableTimeService();
         DayService ds = new DayService();
+
         List<Day> days = ds.getCurrentWeek4Months();
-        List<Day> unavailableDays;
-        List<Day> availableDays;
+        List<Day> unbooked;
+        List<Day> booked;
         LocalDate currentDate = LocalDate.now();
         DayOfWeek currentDay = currentDate.getDayOfWeek();
         int currentDayNUmber = currentDay.getValue();
         if (currentDayNUmber == 7) {
             currentDayNUmber = 0;
-        }    
-            unavailableDays = days.subList(0, currentDayNUmber);
-            availableDays = days.subList(currentDayNUmber, days.size());
-            request.setAttribute("unavailableDays", unavailableDays);
-            request.setAttribute("availableDays", availableDays);
-        
+        }
+        unbooked = days.subList(0, currentDayNUmber);
+        booked = days.subList(currentDayNUmber, days.size());
+        try {
+            request.setAttribute("unbooked", unbooked);
+            request.setAttribute("booked", booked);
+        } catch (Exception e) {
+            request.setAttribute("message", "Unable to load days");
+        }
+        //retrieve upcoming appointments
+        List<Appointment> upcomingAppointments;
+        AppointmentService as = new AppointmentService();
+        try {
+            upcomingAppointments = as.getUpcoming();
+            session.setAttribute("upcomingAppointments", upcomingAppointments);
+        } catch (Exception e) {
+            request.setAttribute("message", "Unable to load upcoming appointments");
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/en/aavailability.jsp").forward(request, response);
-
     }
 
     @Override

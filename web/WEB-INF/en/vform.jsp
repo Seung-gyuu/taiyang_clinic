@@ -12,28 +12,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <title>Tai Yang Clinic</title>
-               
-                <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="../src/img/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="../src/img/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="../src/img/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="../src/img/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="../src/img/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="../src/img/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="../src/img/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="../src/img/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../src/img/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="../src/img/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../src/img/favicon/favicon-16x16.png">
-        <link rel="manifest" href="../src/img/favicon/manifest.json">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="src/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="src/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="src/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="src/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="src/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="src/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="src/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="src/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="src/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="src/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="src/img/favicon/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/vform.css">
-        <link rel="stylesheet" href="../css/aform.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/vform.css">
+        <link rel="stylesheet" href="css/aform.css">
         <!--        <script src="js/ausers.js"></script>-->
 
         <!--google fonts -->
@@ -46,6 +45,125 @@
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
         <style>
+
+            .popupText{
+                font-weight: light;
+                color: black;
+                margin-bottom: 20px;
+            }
+
+            #confirm-content {
+                width: 400px;
+                background-color: #f3f3f3;
+                padding: 20px;
+                border-radius: 8px;     
+                margin-bottom: 20px;
+                height: 130px;
+            }
+
+
+
+            .cancelBtn {
+                background-color: #979797;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                font-size: 13px;
+                transition: background-color 0.3s ease;
+                float: left;
+                margin-right: 220px;
+
+            }
+
+
+
+            .confirmBtn {
+                background-color: #0B486B;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                float: right;
+                font-size: 13px;
+
+
+
+            }
+
+
+            .cancelBtn:hover {
+                background-color: #c62828;
+            }
+
+            #javascriptmessage {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #496f53;
+                /*                padding: 11px;*/
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                border-radius: 3px;   
+                text-align:center;
+                color: white;
+
+            }
+
+
+            .show{
+                margin-bottom: 15px;
+            }
+
+            .show-all-users {
+                color: #ececec;
+                background-color: #0B486B;
+                padding: 5px 10px;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size:13px;
+
+            }
+
+            .show-all-users:hover {
+                background-color: #076e95;
+            }
+
+            .view-button{
+                background-color: #0B486B;
+                color: white;
+                border: none;
+                padding: 4px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                font-size:13px;
+
+            }
+
+
+            .delete-button {
+                background-color: #c62828;
+                color: white;
+                border: none;
+                padding: 4px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                font-size:13px;
+
+            }
+
+            .pageNumbers {
+                margin-top: 10px;
+                text-align: center;
+            }
+
+
             .pageNumbers button{
                 margin-bottom: 10px;
                 font-size:13px;
@@ -57,44 +175,6 @@
                 transition: background-color 0.3s ease-in;
             }
 
-            .borderless-button, .delete-button, .view-button {
-                background-color: #0B486B;
-                border-color: #0B486B;
-                padding: 3px 7px;
-                cursor: pointer;
-                margin-right: 20px;
-                font-color: white;
-                color: white;
-                border-radius: 4px;
-                transition: none; 
-
-            }
-
-
-            /*            .borderless-button:hover {
-                            background-color: #0B486B;
-                            border-color: #0B486B;
-                            padding: 3px 7px;
-                        }*/
-            #popupBox {
-                width: 500px;
-                background-color: #f3f3f3;
-                padding: 20px;
-                border-radius: 8px;     
-            }
-
-            .popupText {
-                font-weight: light;
-                color: black;
-                margin-bottom: 10px;
-            }
-
-            .popupBtns {
-                margin-top: 20px;
-                display: flex;
-                justify-content: space-between;
-
-            }
 
             .cancelBtn {
                 background-color: #979797;
@@ -104,9 +184,9 @@
                 border-radius: 4px;
                 cursor: pointer;
                 font-weight: light;
-
                 transition: background-color 0.3s ease;
-                margin-right: auto;
+                float: left;
+
             }
 
             .cancelBtn:hover {
@@ -248,8 +328,8 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn btn-primary me-2">Home</a>
-                                <a href="home?logout" class="btn btn-danger me-2">Logout</a>
+                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Logout</a>
                             </div>
                         </div> 
                     </div>
@@ -370,7 +450,7 @@
 
                                             // Apply styles to the clicked button
                                             const clickedButton = document.getElementById('page' + pageNumber);
-                                            clickedButton.style.backgroundColor = 'blue';
+                                            clickedButton.style.backgroundColor = 'grey';
                                             clickedButton.style.color = 'white';
                                         }
 
@@ -407,6 +487,7 @@
 
                                 </c:if>
 
+
                                 <c:if test="${userForm ne null}">
 
 
@@ -417,6 +498,8 @@
                                                 <th>${userForm.getLastname()}</th>
                                                 <th>${userForm.getEmailAddress()}</th>
                                                 <th>Time Added</th>
+                                                <th>Forms</th>
+                                                <th>Download</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -443,70 +526,206 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+
                                     <div class="show">
                                         <a href="/vform" class="show-all-users">Show all users</a>    
+                                    </div>
+
+                                    <!-- Confirmation when delete form-->
+                                    <div id="confirmPopup" class="confirmPopup">
+                                        <div class="popup-content" id="confirm-content">
+
+                                        </div>
                                     </div>
                                 </c:if>
                                 <div id="javascriptmessage">
 
                                 </div>
 
+                                <div class="clearfix">
+                                    <div class="hint-text"></div>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- The popup container -->
-                <div id="pdfPopup" class="popup">
-                    <div class="popup-content" id="popup-content">
-                        <div class="pdf-container">
-                            <div id="pdfViewer" class="pdfViewer"></div>
-                        </div>
-                        <span class="popup-close" onclick="closePopup()">&times;</span>
-                    </div>
-                </div>
-                <!-- Confirmation when delete form-->
-                <div id="confirmPopup" class="confirmPopup">
-                    <div class="popup-content" id="confirm-content">
-
-                    </div>
-                </div>
-
-
-
-                <!--start footer-->
-                <div class="my-5"></div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="footer-in">
-                            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                    <!-- The popup container -->
+                    <div id="pdfPopup" class="popup">
+                        <div class="popup-content" id="popup-content">
+                            <div class="pdf-container">
+                                <div id="pdfViewer" class="pdfViewer"></div>
+                            </div>
+                            <span class="popup-close" onclick="closePopup()">&times;</span>
                         </div>
                     </div>
-                </footer>
+                    <!--                     Confirmation when delete form
+                                        <div id="confirmPopup" class="confirmPopup">
+                                            <div class="popup-content" id="confirm-content">
+                    
+                                            </div>
+                                        </div>-->
+
+
+
+                    <!--start footer-->
+                    <div class="my-5"></div>
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="footer-in">
+                                <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-    <script src="../js/vform.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+        <script src="js/vform.js"></script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-                            $(document).ready(function () {
-                                $(".xp-menubar").on('click', function () {
-                                    $('#sidebar').toggleClass('active');
-                                    $('#content').toggleClass('active');
+                                setTimeout(function () {
+                                    var messageElement = document.getElementById('javascriptmessage');
+                                    messageElement.style.display = 'none';
+
+                                }, 3000);
+
+                                $(document).ready(function () {
+                                    $(".xp-menubar").on('click', function () {
+                                        $('#sidebar').toggleClass('active');
+                                        $('#content').toggleClass('active');
+                                    });
+
+                                    $(".xp-menubar,.body-overlay").on('click', function () {
+                                        $('#sidebar,.body-overlay').toggleClass('show-nav');
+                                    });
+
                                 });
 
-                                $(".xp-menubar,.body-overlay").on('click', function () {
-                                    $('#sidebar,.body-overlay').toggleClass('show-nav');
-                                });
 
-                            });
+                                window.onload = setParam;
 
-    </script>
+                                function setParam() {
+                                    var urlParams = new URLSearchParams(window.location.search);
 
-</body>
+                                    // Get the value of the 'message' parameter
+                                    var message = urlParams.get('message');
+
+                                    // Set the message as the text content of the div
+                                    var messageDiv = document.getElementById('javascriptmessage');
+                                    messageDiv.textContent = message;
+                                }
+
+
+
+                                function openPdfPopup(url) {
+                                    // Show the popup container
+                                    var popupContainer = document.getElementById('pdfPopup');
+                                    popupContainer.style.display = 'block';
+
+                                    // Load the PDF using pdf.js
+                                    var pdfViewer = document.getElementById('pdfViewer');
+                                    pdfjsLib.getDocument(url).promise.then(function (pdf) {
+                                        var totalPages = pdf.numPages;
+                                        var renderedPages = 0; // Counter for rendered pages
+                                        var renderedCanvasArray = []; // Array to store rendered canvas elements
+
+                                        // Helper function to render a page
+                                        function renderPage(pageNumber) {
+                                            pdf.getPage(pageNumber).then(function (page) {
+                                                var viewport = page.getViewport({scale: 1.0});
+                                                var canvas = document.createElement('canvas');
+                                                var context = canvas.getContext('2d');
+                                                canvas.height = viewport.height;
+                                                canvas.width = viewport.width;
+
+                                                canvas.style.border = '1px solid black';
+
+                                                var renderContext = {
+                                                    canvasContext: context,
+                                                    viewport: viewport
+                                                };
+
+                                                page.render(renderContext).promise.then(function () {
+                                                    // Push the rendered canvas into the array
+                                                    renderedCanvasArray.push({pageNumber: pageNumber, canvas: canvas});
+
+                                                    renderedPages++; // Increment the counter
+
+                                                    // Check if all pages have been rendered
+                                                    if (renderedPages === totalPages) {
+                                                        // Sort the rendered canvas array by page number
+                                                        renderedCanvasArray.sort(function (a, b) {
+                                                            return a.pageNumber - b.pageNumber;
+                                                        });
+
+                                                        // Append the sorted canvas elements to the PDF viewer
+                                                        renderedCanvasArray.forEach(function (renderedPage) {
+                                                            pdfViewer.appendChild(renderedPage.canvas);
+                                                        });
+
+                                                        // Scroll to the first page
+                                                        pdfViewer.scrollTo(0, 0);
+                                                    }
+                                                });
+                                            });
+                                        }
+
+                                        // Render pages in ascending order starting from page 1
+                                        for (var pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                                            renderPage(pageNumber);
+                                        }
+                                    });
+
+                                    document.addEventListener('click', closePopupOnClickOutside);
+                                }
+                                function closePopupOnClickOutside(event) {
+                                    var popupContainer = document.getElementById('popup-content');
+
+                                    if (popupContainer.contains(event.target)) {
+                                        var popupContainer = document.getElementById('pdfPopup');
+                                        popupContainer.style.display = 'none';
+                                        document.removeEventListener('click', closePopupOnClickOutside);
+                                        var pdfViewer = document.getElementById('pdfViewer');
+                                        while (pdfViewer.firstChild) {
+                                            pdfViewer.removeChild(pdfViewer.firstChild);
+                                        }
+                                    }
+                                }
+                                function closePopup() {
+                                    // Hide the popup container
+                                    var popupContainer = document.getElementById('pdfPopup');
+                                    popupContainer.style.display = 'none';
+                                    var pdfViewer = document.getElementById('pdfViewer');
+                                    while (pdfViewer.firstChild) {
+                                        pdfViewer.removeChild(pdfViewer.firstChild);
+                                    }
+                                }
+
+
+                                function openDeleteConfirm(formID, formType) {
+                                    var confirmContainer = document.getElementById('confirm-content');
+                                    var output = "<div class='popupText'>Are you sure you want to delete this form?</div>";
+                                    output += "<form method='post' action='vform'>";
+                                    output += "<input type='hidden' value='" + formID + "' name='formId'>";
+                                    output += "<input type='hidden' value='" + formType + "' name='form'>";
+                                    output += "<input type='hidden' value='deleteform' name='action'>";
+                                    output += "<button type='button' onclick='closeConfirmBox()' class='cancelBtn'>Cancel</button>";
+                                    output += "<input type='submit' class='confirmBtn' value='Confirm'>";
+                                    confirmContainer.innerHTML = output;
+                                    document.getElementById('confirmPopup').style.display = 'block';
+                                    popupBox.style.display = 'block';
+                                }
+                                function closeConfirmBox() {
+                                    document.getElementById('confirmPopup').style.display = 'none';
+                                }
+
+        </script>
+
+    </body>
 </html>
