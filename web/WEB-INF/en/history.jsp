@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="../css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
 
-               <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
@@ -26,10 +26,8 @@
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
-
-
-
         <c:import url="../components/headers.jsp" />
+        
     </head>
     <body>
         <!--History Start-->
@@ -47,7 +45,7 @@
                 <div class="account_main">
                     <div class="history_wrapper">
                         <div class="history_title history_upcoming">
-                             <h4><i class="fa-solid fa-clock"  style="color:#03A9F4"></i>Upcoming Appointments</h4>
+                            <h4><i class="fa-solid fa-clock"  style="color:#03A9F4"></i>Upcoming Appointments</h4>
 
 
                             <table class="history_upcoming_table">
@@ -96,7 +94,7 @@
 
 
                         <div class="history_title history_old">
-                           <h4><i class="fa-solid fa-clock-rotate-left" style="color:gray"></i>Appointments History</h4>                         
+                            <h4><i class="fa-solid fa-clock-rotate-left" style="color:gray"></i>Appointments History</h4>                         
                             <table class="history_old_table">
                                 <thead>
                                     <tr>
@@ -177,28 +175,28 @@
         </script>
         <script src="../js/showMessage.js"></script>
         <script>
-    $(document).ready(function () {
-        <% if (session.getAttribute("deleteAppt") != null && (boolean) session.getAttribute("deleteAppt")) { %>
-            // Call the showMessage function to display the pop-up message
+            $(document).ready(function () {
+            <% if (session.getAttribute("deleteAppt") != null && (boolean) session.getAttribute("deleteAppt")) { %>
+                // Call the showMessage function to display the pop-up message
             <% if (session.getAttribute("language").equals("en")) { %>
                 showMessage("Your Appointment successfully deleted.");
             <% } else if (session.getAttribute("language").equals("kr")) { %>
                 showMessage("귀하의 약속이 성공적으로 삭제되었습니다.");
             <% } %>
             <% session.removeAttribute("deleteAppt"); %> // Remove the flag from the session
-        <% } %>
+            <% } %>
 
-        <% if (session.getAttribute("failCancelAppt") != null && (boolean) session.getAttribute("failCancelAppt")) { %>
-            // Call the showMessage function to display the pop-up message
+            <% if (session.getAttribute("failCancelAppt") != null && (boolean) session.getAttribute("failCancelAppt")) { %>
+                // Call the showMessage function to display the pop-up message
             <% if (session.getAttribute("language").equals("en")) { %>
                 showMessage("You cannot delete an appointment that is scheduled for tomorrow or within the next 24 hours. Please Check cancellation policy.");
             <% } else if (session.getAttribute("language").equals("kr")) { %>
                 showMessage("내일 또는 다음 24시간 이내로 예정된 약속은 삭제할 수 없습니다. 취소 정책을 확인하십시오.");
             <% } %>
             <% session.removeAttribute("failCancelAppt"); %> // Remove the flag from the session
-        <% } %>
-    });
-</script>
+            <% }%>
+            });
+        </script>
 
         <script src="../js/bootstrap.bundle.min.js"></script>
         <footer>

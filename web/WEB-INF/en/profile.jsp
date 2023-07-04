@@ -8,13 +8,13 @@
         <link rel="stylesheet" type="text/css" href="../css/global.css">
         <link rel="stylesheet" type="text/css" href="../css/profile.css">
         <link rel="stylesheet" type="text/css" href="../css/history.css">
-        
-                <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-        
+
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <c:import url="../components/headers.jsp" />
@@ -77,20 +77,20 @@
                                 </label>
 
                                 <div class="formBtns">
-                                     <input type="button" value="Cancel" class="accountCancelBtn" onclick="window.location.href='/home'">
+                                    <input type="button" value="Cancel" class="accountCancelBtn" onclick="window.location.href = '/home'">
                                     <div>                                        
                                         <input type="submit" value="Update" class="accountUpdateBtn">
                                         <input type="hidden" name="action" value="update">
-                                </div>
+                                    </div>
 
                                 </div>
                             </form>   
-                                     <c:if test="${message ne 'Update successful!'}">
-                            <p id="profileMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
-                                     </c:if>
+                            <c:if test="${message ne 'Update successful!'}">
+                                <p id="profileMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                            </c:if>
                             <c:if test="${message eq 'Update successful!'}">
-                            <p id="profileMessage" style="color:blue; font-size: 15px;">${message}</p>
-                                     </c:if>
+                                <p id="profileMessage" style="color:blue; font-size: 15px;">${message}</p>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -99,18 +99,18 @@
         </div>
         <script src="../js/showMessage.js"></script>
         <script>
-            $(document).ready(function () {
+                                        $(document).ready(function () {
             <% if (request.getAttribute("updatedInfo") != null && (boolean) request.getAttribute("updatedInfo")) { %>
-                // Call the showMessage function to display the pop-up message
-                <% if (session.getAttribute("language").equals("en")) { %>
-                showMessage("Your information successfully updated.");
+                                            // Call the showMessage function to display the pop-up message
+            <% if (session.getAttribute("language").equals("en")) { %>
+                                            showMessage("Your information successfully updated.");
             <% } else if (session.getAttribute("language").equals("kr")) { %>
-                showMessage("귀하의 정보가 성공적으로 업데이트되었습니다.");
+                                            showMessage("귀하의 정보가 성공적으로 업데이트되었습니다.");
             <% } %>
-                
+
             <% request.removeAttribute("updatedInfo"); %> // Remove the flag from the session
             <% }%>
-            });
+                                        });
         </script>
 
 
@@ -126,7 +126,7 @@
             <script>
                 var phoneField = document.getElementById("phoneInput");
                 phoneField.value = "${updatedPhone}";
-                <% session.removeAttribute("updatedPhone"); %>
+                <% session.removeAttribute("updatedPhone");%>
             </script>
         </c:if>
     </body>
