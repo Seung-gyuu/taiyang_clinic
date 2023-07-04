@@ -5,18 +5,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
-
-        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-        <!--        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">-->
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
@@ -35,6 +25,16 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <!--        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">-->
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -42,8 +42,8 @@
 
 
         <!--        Libraries Stylesheet -->  
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+<!--        <link rel="stylesheet" type="text/css" href="../css/main.css">-->
 
 
         <style>
@@ -90,16 +90,16 @@
                             <c:if test="${loggedUser eq null}">
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/login">
                                     <i class ="bi bi-person-fill"></i>
-                                    Login (KR)<span class="text-body"></a>|  
-                                <a class ="text-decoration-none text-body px-3" href ="/${language}/register"></span>Register (KR) </a>
+                                    Login<span class="text-body"></a>|  
+                                <a class ="text-decoration-none text-body px-3" href ="/${language}/register"></span>Register KR </a>
 
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
-                                    You have ${upcomingAppointments.size()} upcoming appointments!  (KR)  <br>
+                                    You have ${upcomingAppointments.size()} upcoming appointments! KR  <br>
                                 </c:if>
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/profile">
-                                    Hello  (KR) ,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
+                                    Hello  ,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
                                 </a>
                             </c:if>
                             <a class ="text-body px-2" href ="">
@@ -124,9 +124,7 @@
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                     <a href ="/${language}/home" class ="navbar-brand">
-                        <h1 class="m-0 text-uppercase text-primary"><i class ="fa fa-clinic-medical me-2"></i>
-
-                            Tai Yang Clinic  (KR) </h1>
+                       <img src="../src/img/ClinicLogo.png" alt="Logo" style="height:57px; width: 150px;" >
                     </a>
                     <button class ="navbar-toggler" type ="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -138,37 +136,37 @@
                             <c:set var="contextPath" value="${pageContext.request.contextPath}" />
                             <c:set var="cleanURL" value="${fn:substringAfter(cleanURL, contextPath)}" />
                             <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en">English</a></c:if>
-                            <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국인</a></c:if>
-                            <a href="/${language}/home" class="nav-item nav-link active">Home  (KR)</a>
-                            <a href="/${language}/aboutus" class="nav-item nav-link">About us  (KR)</a>
+                            <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국어</a></c:if>
+                            <a href="/${language}/home" class="nav-item nav-link active">Home KR</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link">About us KR</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services KR</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="/${language}/service1" class="dropdown-item">Acupuncture  (KR)</a>
-                                    <a href="/${language}/service2" class="dropdown-item">Moxibustion  (KR)</a>
-                                    <a href="/${language}/service3" class="dropdown-item">Massage/luiNa  (KR)</a>
-                                    <a href="/${language}/service4" class="dropdown-item">Cupping  (KR)</a>
-                                    <a href="/${language}/service5" class="dropdown-item">Herbal Medicine  (KR)</a>
-                                    <a href="/${language}/service6" class="dropdown-item">Korean beauty  (KR)</a>
+                                    <a href="/${language}/service1" class="dropdown-item">Acupuncture KR</a>
+                                    <a href="/${language}/service2" class="dropdown-item">Moxibustion KR</a>
+                                    <a href="/${language}/service3" class="dropdown-item">Massage/luiNa KR</a>
+                                    <a href="/${language}/service4" class="dropdown-item">Cupping KR</a>
+                                    <a href="/${language}/service5" class="dropdown-item">Herbal Medicine KR</a>
+                                    <a href="/${language}/service6" class="dropdown-item">Korean beauty KR</a>
                                 </div>
                             </div>
-                            <a href="/${language}/book" class="nav-item nav-link">Book  (KR) </a> 
-                            <a href="/${language}/contact" class="nav-item nav-link">Contact  (KR) </a>
+                            <a href="/${language}/book" class="nav-item nav-link">Book  </a> 
+                            <a href="/${language}/contact" class="nav-item nav-link">Contact  KR</a>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/history" class="nav-item nav-link">My Account  (KR) </a> 
+                                <a href="/${language}/history" class="nav-item nav-link">My Account KR </a> 
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
-                                <a href="/${language}/login" class="nav-item nav-link">Login  (KR) </a>
+                                <a href="/${language}/login" class="nav-item nav-link">Login  KR</a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/home?logout" class="nav-item nav-link">Log out  (KR) </a> 
+                                <a href="/${language}/home?logout" class="nav-item nav-link">Log out KR </a> 
                             </c:if>
                         </div>
                     </div>
                 </nav>
             </div>
         </div>
-        <script src="./js/bootstrap.bundle.min.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
