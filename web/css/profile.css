@@ -1,22 +1,7 @@
-
-            .profileHeader h1{
-                /*display: flex;*/
-                /*justify-content: flex-start;*/
-                font-family: Cinzel;
-            }
-            .profileHeader h1::after {
-                content: "";
-                height: 5px;
-                width: 170px;
-                background-color: #ebe4d6;
-                border-radius: 25px;
-                display: block;
-                margin: auto;    
-            }
-
             .account_container {
                 display: flex;
                 /*width: 100%;*/
+               
             }
 
             .account_side {
@@ -31,22 +16,24 @@
                 margin: 20px auto;
             }
 
-            .profile_title h2 {
-                font-size: 18px;
-            }
+            /*            .profile_title h2 {
+                            font-size: 18px;
+                        }*/
 
             .user_info {
-                width: 100%;
-                margin: 0 auto;
+                max-width: 600px;
+                /*margin: 0 auto;*/
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: center;
+                /*align-items: center;*/
+                /*padding: 0 40px;*/
             }
 
             .user_info_name { 
                 display: flex;
                 align-items: center;
+                justify-content:space-between;
             }
 
             .user_info_name h4 {
@@ -57,6 +44,14 @@
                 color:#84BD4D;
                 margin-right: 10px;
                 font-size: 18px;
+            }
+
+            .user_info_notice {
+                margin: 0 15px;
+                padding-top: 5px;
+                /*padding-left: 28px;*/
+                color: gray;
+                font-size: 11px;
             }
 
             [data-initials]:before {
@@ -74,14 +69,6 @@
                 line-height: 200px; 
                 text-align: center; 
                 font-size: 68px;
-            }
-
-            .user_info_notice {
-                margin: 0;
-                padding-top: 5px;
-                /*padding-left: 28px;*/
-                color: gray;
-                font-size: 11px;
             }
 
             .user_info form {
@@ -127,16 +114,16 @@
             }
 
             #fnameInput {
+                width: 300px;
                 margin-right: 10px;
             }
 
             #lnameInput {
-                margin-left: 10px;
+                width: 300px;
+                /*margin-left: 10px;*/
             }
 
             .fullnameField label span input {
-                /*                width: 170px;*/
-                /*margin-right: 10px;*/
                 cursor: not-allowed;
             }
 
@@ -169,4 +156,66 @@
 
             .accountCancelBtn:hover {
                 box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+            }
+
+
+            @media screen and (max-width: 1200px) {
+                .account_main {
+                    flex: 3;
+                    padding: 20px 40px;
+                }
+                .user_info {
+                    padding: 0 ;
+                }
+            }
+
+            @media screen and (max-width: 1075px) {
+                .account_main {
+                    padding: 20px;
+                }
+            }
+
+            @media screen and (max-width: 992px) {
+                .account_container {
+                    display: block;
+                    /*margin: 0 auto;*/
+                }
+
+                .account_main {
+                    padding: 0 40px;
+                }
+                
+                .account_side {
+                    margin-bottom: 20px;
+                }
+
+                .user_info {
+                    width: 100%;
+                }
+
+                #fnameInput {
+                    max-width: 200px;
+                }
+
+                #lnameInput {
+                    max-width: 200px;
+                }
+
+            }
+
+            @media screen and (max-width: 515px) {
+
+                .fullnameField {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    /*width: 100%;*/
+                }
+
+                #fnameInput {
+                   width: 144px;
+                }
+
+                #lnameInput {
+                    width: 144px;;
+                }
             }

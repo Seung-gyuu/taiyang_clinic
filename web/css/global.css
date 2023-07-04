@@ -12,7 +12,19 @@
 }
 
 .gloabal_top_section > h1 {
-    font-size: 32px;
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    font-size: 35px;
+}
+
+.gloabal_top_section > h1::after{
+    content:"";
+    height: 5px;
+    width: 100px;
+    background-color: #ebe4d6;
+    border-radius: 25px;
+    display: block;
+    margin:auto;
 }
 
 .gloabal_main_section {

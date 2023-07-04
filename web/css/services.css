@@ -1,8 +1,5 @@
 .services_container {
-    /*min-height: 100vh;*/
-    /*position: relative;*/
-    /*background: #F5F5F5;*/
-    /*margin-top: 40px;*/
+    margin-bottom: 40px;
 }
 
 .services_top_section {
@@ -61,10 +58,15 @@
     color: #fff;
     font-size: 52px;
     text-align: center;
+
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    /*font-size: 35px;*/
 }
 
 .services_top_section p {
     color: #f7f7f7;
+    font-size: 18px;
     border-bottom: 2px solid #f7f7f7;
 }
 
@@ -78,6 +80,7 @@
     margin-top: 20px;
     border-radius: 10px;
     transition: all ease-out .4s;
+    font-size: 18px;
 }
 
 .services_top_section button:hover {

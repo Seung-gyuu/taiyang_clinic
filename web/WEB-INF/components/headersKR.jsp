@@ -18,7 +18,23 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
+        <link rel="apple-touch-icon" sizes="57x57" href="src/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="src/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="src/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="src/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="src/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="src/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="src/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="src/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="src/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="src/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="src/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="src/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="src/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="src/img/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
@@ -123,21 +139,21 @@
                             <c:set var="cleanURL" value="${fn:substringAfter(cleanURL, contextPath)}" />
                             <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en">English</a></c:if>
                             <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국인</a></c:if>
-                                <a href="/${language}/home" class="nav-item nav-link active">Home  (KR)</a>
-                                <a href="/${language}/aboutus" class="nav-item nav-link">About us  (KR)</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                                    <div class="dropdown-menu m-0">
-                                        <a href="/${language}/service1" class="dropdown-item">Acupuncture  (KR)</a>
-                                        <a href="/${language}/service2" class="dropdown-item">Moxibustion  (KR)</a>
-                                        <a href="/${language}/service3" class="dropdown-item">Massage/luiNa  (KR)</a>
-                                        <a href="/${language}/service4" class="dropdown-item">Cupping  (KR)</a>
-                                        <a href="/${language}/service5" class="dropdown-item">Herbal Medicine  (KR)</a>
-                                        <a href="/${language}/service6" class="dropdown-item">Korean beauty  (KR)</a>
-                                    </div>
+                            <a href="/${language}/home" class="nav-item nav-link active">Home  (KR)</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link">About us  (KR)</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                                <div class="dropdown-menu m-0">
+                                    <a href="/${language}/service1" class="dropdown-item">Acupuncture  (KR)</a>
+                                    <a href="/${language}/service2" class="dropdown-item">Moxibustion  (KR)</a>
+                                    <a href="/${language}/service3" class="dropdown-item">Massage/luiNa  (KR)</a>
+                                    <a href="/${language}/service4" class="dropdown-item">Cupping  (KR)</a>
+                                    <a href="/${language}/service5" class="dropdown-item">Herbal Medicine  (KR)</a>
+                                    <a href="/${language}/service6" class="dropdown-item">Korean beauty  (KR)</a>
                                 </div>
-                                <a href="/${language}/book" class="nav-item nav-link">Book  (KR) </a> 
-                                <a href="/${language}/contact" class="nav-item nav-link">Contact  (KR) </a>
+                            </div>
+                            <a href="/${language}/book" class="nav-item nav-link">Book  (KR) </a> 
+                            <a href="/${language}/contact" class="nav-item nav-link">Contact  (KR) </a>
                             <c:if test="${loggedUser ne null}">
                                 <a href="/${language}/history" class="nav-item nav-link">My Account  (KR) </a> 
                             </c:if>

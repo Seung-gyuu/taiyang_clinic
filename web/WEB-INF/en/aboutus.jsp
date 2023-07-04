@@ -44,18 +44,10 @@
             <div class ="contents">
                 <div class ="article">
                     <h4>
-                        Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
+                      Sunny is a registered acupuncturist with 1000 hours of observation and clinical case experiences. She trained at Alberta College of Acupuncture and Traditional Chinese Medicine and received her acupuncture practitioner license after a successful first attempt at the The Alberta Acupuncture Registration Examinations (AARE) test. Her specialties are: gynecology acupuncture, Korean beauty acupuncture techniques, Facial Rejuvenation Acupuncture (FRA), Tui Na and moxibustion. Sunny actively attends educational conferences to keep up to date with the advances in acupuncture research and treatment. Being a fluent speaker of Korean, English and Japanese, she also offers her consultations and lifestyle/diet advice services to the Korean and Japanese community in Calgary.
 
                     </h4>
-                    <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
+                   <p>Sunny is a registered acupuncturist with 1000 hours of observation and clinical case experiences. She trained at Alberta College of Acupuncture and Traditional Chinese Medicine and received her acupuncture practitioner license after a successful first attempt at the The Alberta Acupuncture Registration Examinations (AARE) test. Her specialties are: gynecology acupuncture, Korean beauty acupuncture techniques, Facial Rejuvenation Acupuncture (FRA), Tui Na and moxibustion. Sunny actively attends educational conferences to keep up to date with the advances in acupuncture research and treatment. Being a fluent speaker of Korean, English and Japanese, she also offers her consultations and lifestyle/diet advice services to the Korean and Japanese community in Calgary.
 
                     </p>
                 </div>

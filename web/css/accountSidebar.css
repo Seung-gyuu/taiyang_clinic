@@ -48,7 +48,9 @@
   padding: 10px 40px;
   /*border-top: 1px solid lightgray;*/
   font-size: 14px;
-
+  
+  /*border-bottom: 1px solid lightgray;*/
+border-top: 1px solid lightgray;
 }
 
 .side_list:hover {
@@ -73,5 +75,5 @@
 .side_last {
     /*border-top: 1px solid lightgray;*/
     border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    /*border-bottom: 1px solid lightgray;*/
 }

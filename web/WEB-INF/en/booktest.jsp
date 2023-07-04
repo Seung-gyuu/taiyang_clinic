@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
         <link rel="stylesheet" type="text/css" href="../css/global.css">
-        <<link rel="stylesheet" type="text/css" href="../css/booktest.css">
+        <link rel="stylesheet" type="text/css" href="../css/booktest.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
         <script src="../js/bookingpage.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">

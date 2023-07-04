@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
         <link rel="stylesheet" type="text/css" href="../css/global.css">
-        <<link rel="stylesheet" type="text/css" href="../css/profile.css">
+        <link rel="stylesheet" type="text/css" href="../css/profile.css">
         <link rel="stylesheet" type="text/css" href="../css/history.css">
         
                 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">

@@ -11,8 +11,89 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
-        <link rel="stylesheet" type="text/css" href="../css/accountSidebar.css">
+        <!--<link rel="stylesheet" type="text/css" href="../css/accountSidebar.css">-->
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
+          <style>
+            /*.account_side {
+  flex: 1;
+  padding: 20px;
+}*/
+
+            .account_side_wrap {
+                /*border: 1px solid lightgray;*/
+                width: 250px;
+                /*background: #f7f7f7;*/
+                margin-top: 10px;
+            }
+
+            .side_title {
+                padding: 10px;
+                background: gray;
+                color: #fff;
+                padding: 15px 40px;
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+            }
+
+            .fa-address-card {
+                margin-right: 10px;
+                margin-top: 3px;
+                display: flex;
+                align-items: center;
+            }
+
+            .side_title span {
+            }
+
+            .side_list_wrapper {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .side_list_wrapper a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .side_list {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                padding: 10px 40px;
+                /*border-top: 1px solid lightgray;*/
+                font-size: 14px;
+
+                /*border-bottom: 1px solid lightgray;*/
+                border-top: 1px solid lightgray;
+            }
+
+            .side_list:hover {
+                background: #212529;
+                color: #fff !important;
+                opacity: 0.8;
+            }
+
+            .active {
+                background: #212529;
+                color: #fff;
+            }
+
+            .fa-regular {
+                margin-right: 10px;
+            }
+
+            .side_first {
+                border-top: 1px solid lightgray;
+            }
+
+            .side_last {
+                /*border-top: 1px solid lightgray;*/
+                border-top: 1px solid lightgray;
+                border-bottom: 1px solid lightgray;
+            }
+        </style>
     </head>
     <body>
 

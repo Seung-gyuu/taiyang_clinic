@@ -16,6 +16,12 @@
         <link rel="stylesheet" type="text/css" href="../css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
 
+               <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
 
         <!--        Libraries Stylesheet -->  
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +47,8 @@
                 <div class="account_main">
                     <div class="history_wrapper">
                         <div class="history_title history_upcoming">
-                            <h2>Upcoming Appointments</h2>
+                             <h4><i class="fa-solid fa-clock"  style="color:#03A9F4"></i>Upcoming Appointments</h4>
+
 
                             <table class="history_upcoming_table">
                                 <thead>
@@ -89,7 +96,7 @@
 
 
                         <div class="history_title history_old">
-                            <h2>Appointments History</h2>
+                           <h4><i class="fa-solid fa-clock-rotate-left" style="color:gray"></i>Appointments History</h4>                         
                             <table class="history_old_table">
                                 <thead>
                                     <tr>

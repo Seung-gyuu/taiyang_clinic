@@ -15,8 +15,13 @@
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
-    <p style ="background-image:url('../src/img/main.png');">
+        <!--<p style ="background-image:url('../src/img/main.png');">-->
 
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
 
 
         <!-- Icon Font Stylesheet -->
@@ -46,7 +51,7 @@
             <div class ="services_top_wrap">
                 <p>Services</p>
                 <h1>Cupping</h1>
-                 <button onclick="window.location.href='/${language}/book'">Book Now</button>
+                <button onclick="window.location.href = '/${language}/book'">Book Now</button>
             </div>
         </div>
         <div class="services_main_section">
@@ -56,9 +61,9 @@
                         What is <strong>Cupping</strong>?    
                     </h2>
                     <p>
-                       Cupping uses suction to draw blood to or away from specific areas of your body. 
-                       People mostly use cupping to relieve conditions that cause pain. 
-                       Some people say it also helps with chronic (ongoing) health issues.
+                        Cupping uses suction to draw blood to or away from specific areas of your body. 
+                        People mostly use cupping to relieve conditions that cause pain. 
+                        Some people say it also helps with chronic (ongoing) health issues.
                     </p>
                 </div>
             </div>
@@ -116,99 +121,21 @@
 
             </div>
         </div>
+
+        <!--</div>-->
         <!-- Services Start -->
-        <div class="container-fluid py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-
-                    <h2>Other Services<h2>
-                            </div>
-                            <div class="row g-5">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-user-md text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Acupuncture</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-procedures text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Moxibustion</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-soli fa-spa text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Massage/luiNa</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-ambulance text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Cupping</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-solid fa-heart text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Herbal Medicine</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-microscope text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Korean beauty</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-                            <!-- Services End -->
-                            </div>
+        <%@include file="../components/servicesList.jsp"%>
+        <!-- Services End -->
+    </div>
 
 
-                            <!-- Footer Start -->
-                            <footer>
-                                <jsp:include page="../components/footer.jsp" />
-                            </footer>
 
-                            <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+    <!-- Footer Start -->
+    <footer>
+        <jsp:include page="../components/footer.jsp" />
+    </footer>
 
-                            </body>
-                            </html>
+    <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+
+</body>
+</html>

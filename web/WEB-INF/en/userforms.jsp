@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
-
+        
         <!--        <link rel="stylesheet" type="text/css" href="css/global.css">-->
         <link rel="stylesheet" type="text/css" href="../css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
@@ -28,126 +28,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
 
 
-
+        <link rel="stylesheet" type="text/css" href="css/global.css">
+        <link rel="stylesheet" type="text/css" href="css/userForms.css">
         <c:import url="../components/headers.jsp" />
-        <style>
-
-
-            @media screen and (max-width: 768px) {
-
-                .account_container {
-                    display: flex;
-                    flex-direction: column;
-                }
-                .account_side {
-                    order: 1;
-
-                }
-                .account_main {
-                    order: 2;
-                }
-
-
-            }
-
-            .download-link {
-                font-weight: bold;
-                color: #393f81;
-                font-size:13.5px;
-            }
-
-            .view-button {
-                background-color: #0B486B;
-                color: #fff;
-                padding: 4px 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .account_main h2{
-                font-size: 20px;
-                font-weight: bold;
-
-
-            }
-
-            .gloabal_top_section h2 {
-                font-family: 'Cinzel', serif;
-                font-size: 25px;
-            }
-
-
-            .gloabal_top_section h2::after {
-                content: "";
-                height: 5px;
-                width: 150px;
-                background-color: #ebe4d6;
-                border-radius: 25px;
-                display: block;
-                margin: auto;    
-            }
-
-
-            .gloabal_container {
-                max-width: 1320px;
-                margin: 40px auto;
-                padding: 1.5rem;
-                min-height: 70vh;
-                min-height: 70vh;
-                font-family: 'Open Sans', sans-serif;
-
-            }
-
-            .gloabal_top_section {
-                text-align: center;
-                margin-bottom: 40px;
-
-            }
-
-            .gloabal_main_section {
-                min-height: 70vh;
-                text-align: center;
-
-            }
-
-
-
-/*            @media screen and (max-width: 1400px) {
-                .gloabal_container {
-                    max-width: 1140px;
-                }
-            }
-
-            @media screen and (max-width: 1200px) {
-                .gloabal_container {
-                    max-width: 960px;  
-                }
-
-            }
-
-            @media screen and (max-width: 992px) {
-
-                .gloabal_container {
-                    max-width: 720px;  
-                    height: 100vh;
-                }
-            }
-
-
-            @media screen and (max-width: 768px) {
-                .gloabal_container {
-                    max-width: 720px;  
-                }
-            }
-
-            @media screen and (max-width: 576px) {
-                .gloabal_container {
-                    max-width: 540px;  
-                }
-            }*/
-
-        </style>
     </head>
     <body>
         <!--History Start-->
@@ -259,7 +142,7 @@
 
 
 
-        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!--<script src="../js/bootstrap.bundle.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
         <script src="../js/vform.js"></script><!-- Vform has the exact same code, no need for new javascript file :P-->
         <footer>
