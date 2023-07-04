@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Appointment.findByTodayAppt", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.status ='Confirmed' AND a.timeid.fulldate.fulldate = CURRENT_DATE AND a.timeid.startTime >= CURRENT_TIME")
     , @NamedQuery(name = "Appointment.findInRange", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate >=:startdate AND a.timeid.fulldate.fulldate<=:enddate")
     , @NamedQuery(name = "Appointment.findByPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2")
-    , @NamedQuery(name = "Appointment.findOutdated", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate <= CURRENT_DATE and a.timeid.startTime < CURRENT_TIMESTAMP")
+    , @NamedQuery(name = "Appointment.findOutdated", query = "SELECT a FROM Appointment a WHERE a.timeid.fulldate.fulldate < CURRENT_DATE or ( a.timeid.fulldate.fulldate = CURRENT_DATE and a.timeid.startTime < CURRENT_TIMESTAMP)")
     , @NamedQuery(name = "Appointment.findUserUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.userid.userid = :userid AND a.status ='Confirmed'")
     , @NamedQuery(name = "Appointment.findUserPassed", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 2 AND a.userid.userid = :userid AND a.status ='Confirmed'")
     , @NamedQuery(name = "Appointment.findByUserIdandUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = :isupcoming")})
