@@ -150,7 +150,7 @@
                     </div>
             </section>
 
-            <script src="../js/bootstrap.bundle.min.js"></script>
+            <script src="./js/bootstrap.bundle.min.js"></script>
             <script src="../js/registerJS.js"></script>
             <footer>
                 <jsp:include page="../components/footerKR.jsp" />

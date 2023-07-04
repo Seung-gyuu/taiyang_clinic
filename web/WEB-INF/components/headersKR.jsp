@@ -96,7 +96,7 @@
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
-                                    You have ${upcomingAppointments.size()} upcoming appointments! KR  <br>
+                                    You have ${upcomingAppointments.size()} upcoming appointments!   KR<br>
                                 </c:if>
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/profile">
                                     Hello  ,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
@@ -137,8 +137,8 @@
                             <c:set var="cleanURL" value="${fn:substringAfter(cleanURL, contextPath)}" />
                             <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en">English</a></c:if>
                             <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국어</a></c:if>
-                            <a href="/${language}/home" class="nav-item nav-link active">Home KR</a>
-                            <a href="/${language}/aboutus" class="nav-item nav-link">About us KR</a>
+                            <a href="/${language}/home" class="nav-item nav-link active">Home</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link">About us</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services KR</a>
                                 <div class="dropdown-menu m-0">
@@ -150,8 +150,8 @@
                                     <a href="/${language}/service6" class="dropdown-item">Korean beauty KR</a>
                                 </div>
                             </div>
-                            <a href="/${language}/book" class="nav-item nav-link">Book  </a> 
-                            <a href="/${language}/contact" class="nav-item nav-link">Contact  KR</a>
+                            <a href="/${language}/book" class="nav-item nav-link">Book  KR</a> 
+                            <a href="/${language}/contact" class="nav-item nav-link">Contact KR </a>
                             <c:if test="${loggedUser ne null}">
                                 <a href="/${language}/history" class="nav-item nav-link">My Account KR </a> 
                             </c:if>
@@ -167,6 +167,6 @@
                 </nav>
             </div>
         </div>
-        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="./js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

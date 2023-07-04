@@ -87,7 +87,7 @@ public class Ausers extends HttpServlet {
             u.setIsactive(isactive);
             u.setIsValid(isValid);
             try {
-                message = us.insert(u);
+                //message = us.insert(u);
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -107,7 +107,7 @@ public class Ausers extends HttpServlet {
                             + "Please allow some time for it to arrive or check your spam!");
                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u, templatePath);
+                    //vts.sendToken(u, templatePath);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,7 +134,7 @@ public class Ausers extends HttpServlet {
             viewUser.setIsactive(isactive);
             viewUser.setIsValid(isValid);
             try {
-                message = us.update(viewUser);
+                //message = us.update(viewUser);
 
                 if (message.equals("Update successful!")) {
                     session.setAttribute("updatedEmail", email);
