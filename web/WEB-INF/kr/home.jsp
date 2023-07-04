@@ -98,11 +98,11 @@
 
                     <div class="col-lg-8 text-center text-lg-start hero-header2">
 
-                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">THE HOME OF HEALTH</h5>
-                        <h1 class="display-10 text-white mb-md-4 hero-header2_2">VISIT OUR TRADITIONAL<br>CHINESE MEDICINE CENTER  ///// THIS IS THE KOREAN SITE</h1>
-                        <h5 class="text-white mb-md-4 ">Can help you achieve health, balance, and the life you striving to live.</h5>
+                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">건강의 집</h5>
+                        <h1 class="display-10 text-white mb-md-4 hero-header2_2">우리의 전통<br>중의학 센터를 방문하세요</h1>
+                        <h5 class="text-white mb-md-4 ">건강, 균형 및 살려고 노력하는 삶을 달성하는 데 도움이 될 수 있습니다.</h5>
                         <div class="pt-2"> 
-                            <a href="/${language}/book" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2 font-weight-bold header_button">Book an appointment</a>
+                            <a href="/${language}/book" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2 font-weight-bold header_button">약속을 잡다</a>
                         </div>
                     </div>
                 </div>
