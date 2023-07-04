@@ -28,7 +28,7 @@ public class ViewAppointment extends HttpServlet {
         if (logout != null) {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }        
         AvailableTimeService ats = new AvailableTimeService();
         DayService ds = new DayService();
@@ -58,7 +58,7 @@ public class ViewAppointment extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load upcoming appointments");
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/viewappointment.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
     }
 
     @Override
@@ -79,6 +79,6 @@ public class ViewAppointment extends HttpServlet {
             Logger.getLogger(ViewAppointment.class.getName()).log(Level.SEVERE, null, e);
             request.setAttribute("message", "Unable to load upcoming appointments");
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/viewappointment.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
     }
 }

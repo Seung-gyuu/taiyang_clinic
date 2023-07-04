@@ -32,7 +32,7 @@ public class Ausers extends HttpServlet {
         if (logout != null) {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         //get the user from the database
         String action = request.getParameter("action");
@@ -56,7 +56,7 @@ public class Ausers extends HttpServlet {
             request.setAttribute("userList", userList);
         } catch (Exception e) {
             request.setAttribute("message", "Unable to retrieve users");
-            getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
             return;
         }
     }
