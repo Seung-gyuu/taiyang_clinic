@@ -823,7 +823,7 @@
                                                                         <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
                                                                         <td>
                                                                             <a style="color:gray; font-size: 12px;">Unbooked</a><br>
-                                                                            <button class="btn btn-unavailable" style = "background-color:#5492d9; font-size: 10px; color: white; "onclick="changeStatus(this)">Available</button>
+                                                                            <button class="btn btn-unavailable" style = "background-color:#5492d9; font-size: 10px; color: white;"onclick="changeStatus(this)">Available</button>
                                                                         </td>
                                                                     </tr>
                                                                 </c:if>
