@@ -917,8 +917,6 @@
                                         <div class="col-sm-6 p-0 d-flex justify-content-lg-end justify-content-center">
                                             <a class="btn" data-bs-toggle="modal" data-bs-target="#newUsersModal" style="background-color: #496f53; font-size: 12px;" >
                                                 <i class="material-icons">&#xE147;</i> <span>Add New User</span></a>
-                                            <!--                                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deactivateUsersModal" >
-                                                                                            <i class="material-icons">&#xE15C;</i> <span>Deactivate</span></a>-->
                                         </div>
                                     </div>
                                 </div>
@@ -926,12 +924,6 @@
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
-                                                <!--                                            <th>
-                                                                                                <span class="custom-checkbox">
-                                                                                                    <input type="checkbox" id="selectAll">
-                                                                                                    <label for="selectAll"></label>
-                                                                                                </span>
-                                                                                            </th>-->
                                                 <th>First Name</th>
                                                 <th>Last Name</th>
                                                 <th>Email</th>
@@ -953,24 +945,14 @@
                                             <% int endIndex = Math.min(startIndex + usersPerPage, totalUsers);%>
                                             <% int loopIndex = 0;%>
                                             <c:forEach var="user" items="${userList}">
-                                                <tr>
-                                                    <!--                                            <td>
-                                                                                                    <span class="custom-checkbox">
-                                                                                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                                                                                        <label for="checkbox1"></label>
-                                                                                                    </span>
-                                                                                                </td>-->
                                                 <tr class="userRow <% if (loopIndex >= startIndex && loopIndex < endIndex) { %>active<% }%>">
                                                     <td>${user.getFirstname()}</td>
                                                     <td>${user.getLastname()}</td>
                                                     <td>${user.getEmailAddress()}</td>
                                                     <td>${user.getPhoneNumber()}</td>
+
                                                     <td>
                                                         <a href="/ausers?userId=${user.getUserid()}">Edit</a>
-        <!--                                                <a href="/ausers?userId=${user.getUserid()}" class="" data-bs-toggle="modal" data-bs-target="#editUsersModal">
-                                                            <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                                        <a href="" class="" data-bs-toggle="modal" data-bs-target="#deactivateUsersModal" >
-                                                            <i class="material-icons" data-toggle="tooltip" title="Deactivate">&#xE872;</i></a>-->
                                                     </td>
                                                 </tr>
                                                 <% loopIndex++;%>
@@ -1049,271 +1031,193 @@
                                     <c:if test="${viewUser ne null}">
                                         <thead>
                                             <tr>
-                                                <td><label for="firstname">First Name:</label>
-                                                    <input type="text" id="firstname" class="form-control" value="${viewUser.getFirstname()}">
+                                                <td><label for="firstnameInput">First Name:
+                                                        <input type="text" id="firstname" class="form-control" value="${viewUser.getFirstname()}"></label>
                                                 </td>
-                                                <td><label for="lastname">Last Name:</label>
-                                                    <input type="text" id="lastname" class="form-control" value="${viewUser.getLastname()}">
+                                                <td><label for="lastnameInput">Last Name:
+                                                        <input type="text" id="lastname" class="form-control" value="${viewUser.getLastname()}"></label>
                                                 </td>
-                                                <td><label for="email">Email address:</label>
-                                                    <input type="text" id="email" class="form-control" value="${viewUser.getEmailAddress()}">
+                                                <td><label for="emailInput">Email address:
+                                                        <input type="text" id="email" class="form-control" value="${viewUser.getEmailAddress()}"></label>
                                                 </td>
-                                                <td><label for="phone">Phone number:</label>
-                                                    <input type="text" id="phone" class="form-control" value="${viewUser.getPhoneNumber()}">
+                                                <td><label for="phoneInput">Phone number:
+                                                        <input type="text" id="phone" class="form-control" value="${viewUser.getPhoneNumber()}"></label>
                                                 </td>
                                                 <td>
-                                                    <div class="radio-group">
-                                                        <label for="deactivate">Activation</label>
-                                                        <input type="radio" id="activate" name="isactive" value="${viewUser.isactive}">${viewUser.isactive}
-
-                                                        <input type="hidden" id="dynamicHtml" value="<c:forEach items='${isadtive}' var='v'>
-                                                               <input type='radio' name='activation' value='${v.iscative}' onClick='activation()'>${v.isactive}</c:forEach>"> </div>
+                                                    <label for="activeInput">Is the user active?  
+                                                        <input type="checkbox" name="isactive" id="isactive" <c:if test="${viewUser.getIsactive() eq 1}">checked</c:if>></label>
                                                     </td>
                                                     <td>
-                                                        <div class="radio-group">
-                                                            <label for="role">Role</label>
-                                                            <input type="hidden" id="dynamicHtml" value="<c:forEach items='${roleName}' var='r'>
-                                                               <input type='radio' name='role' value='${r.roleid}' onClick='role()'>${r.roleName}</c:forEach>">  
-                                                            <input type="radio" id="admin" name="isadmin" value="admin">Admin&nbsp; &nbsp; &nbsp;
-                                                            <input type="radio" id="patient" name="isadmin" value="patient">Patient
-                                                        </div>
-                                                    </td>
+                                                    <c:choose>
+                                                        <c:when test="${viewUser.getUserid() == 1}">
+                                                            <input type="radio" id="regularUser" name="role" value="RegularUser" checked>
+                                                            <label for="regularUser">Regular User</label>
+                                                            <input type="radio" id="admin" name="role" value="Admin">
+                                                            <label for="admin">Admin</label>
+                                                        </c:when>
+                                                        <c:when test="${viewUser.getUserid() == 2}">
+                                                            <input type="radio" id="regularUser" name="role" value="RegularUser">
+                                                            <label for="regularUser">Regular User</label>
+                                                            <input type="radio" id="admin" name="role" value="Admin" checked>
+                                                            <label for="admin">Admin</label>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </td>
+
+                                                <!--                                                    <td>
+                                                                                                        <div class="radio-group">
+                                                                                                            <label for="roleInput">Role
+                                                                                                                <input type="hidden" id="dynamicHtml" value="<c:forEach items='${roleName}' var='r'>
+                                                                                                                   <input type='radio' name='role' value='${r.roleid}' onChange='role()'>${r.roleName}</c:forEach>">  
+                                                                                                                <input type="radio" id="admin" name="isadmin" value="admin">Admin&nbsp; &nbsp; &nbsp;
+                                                                                                                <input type="radio" id="patient" name="isadmin" value="patient">Patient</label>
+                                                                                                        </div>
+                                                                                                    </td>-->
                                                 </tr>
                                             </thead><br>
                                             <div class="button-group">
                                                 <!--<button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>-->
-                                                <input type="hidden" name="action" value="update">
                                                 <a href="/ausers"><input type="button" value="Cancel"  class ="cancelBtn">
-                                                    <input type="submit" name="submit" value="  Save  " class= "saveBtn" onclick="saveData()" id="savebutton">
-                                                    <!--                                            <a href="/ausers"><input type="button" value="Cancel">-->
-                                                    </div>
-                                            </c:if>
-                                            </form>
-
+                                                    <input type="submit" name="submit" value="  Save  " class= "saveBtn" id="savebutton">
+                                                    <input type="hidden" name="action" value="update"></a>
                                             </div>
-                                            </div>
-
-                                            <!--                         Edit Modal HTML 
-                                                                    <div id="addEmployeeModal" class="modal fade">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <form>
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title">Add Employee</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div class="form-group">
-                                                                                            <label>Name</label>
-                                                                                            <input type="text" class="form-control" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Email</label>
-                                                                                            <input type="email" class="form-control" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Address</label>
-                                                                                            <textarea class="form-control" required></textarea>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Phone</label>
-                                                                                            <input type="text" class="form-control" required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                                        <input type="submit" class="btn btn-success" value="Add">
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                     Edit Modal HTML 
-                                                                    <div id="editEmployeeModal" class="modal fade">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <form>
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title">Edit Employee</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" 
-                                                                                                aria-hidden="true">&times;</button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <div class="form-group">
-                                                                                            <label>Name</label>
-                                                                                            <input type="text" class="form-control" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Email</label>
-                                                                                            <input type="email" class="form-control" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Address</label>
-                                                                                            <textarea class="form-control" required></textarea>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Phone</label>
-                                                                                            <input type="text" class="form-control" required>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                                        <input type="submit" class="btn btn-info" value="Save">
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                            
-                                            
-                                            
-                                                                     Delete Modal HTML 
-                                                                    <div id="deactivateEmployeeModal" class="modal fade">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <form>
-                                                                                    <div class="modal-header">
-                                                                                        <h4 class="modal-title">Delete Employee</h4>
-                                                                                        <button type="button" class="close" data-dismiss="modal" 
-                                                                                                aria-hidden="true">&times;</button>
-                                                                                    </div>
-                                                                                    <div class="modal-body">
-                                                                                        <p>Are you sure you want to deactivate these Records?</p>
-                                                                                        <p class="text-warning"><small>This action cannot be undone.</small></p>
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                                                        <input type="submit" class="btn btn-danger" value="Delete" onclick="showMessage()">
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>-->
-
-                                            <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="addNewUsersModalLabel">Add New Users</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <label for="description">First Name:</label>
-                                                            <input type="text" id="description" class="form-control">
-                                                            <label for="description">Last Name:</label>
-                                                            <input type="text" id="description" class="form-control">
-                                                            <label for="description">Email:</label>
-                                                            <input type="text" id="description" class="form-control">
-                                                            <label for="description">Phone Number:</label>
-                                                            <input type="text" id="description" class="form-control">
-                                                            <label for="description">Password:</label>
-                                                            <input type="text" id="description" class="form-control">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal fade" id="deactivateUsersModal" tabindex="-1" aria-labelledby="deactivateUsersModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="deactivateUsersModalLabel">Add New Users</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <!--                                                    <div class="modal-body">
-                                                                                                                <p>Are you sure you want to deactivate this user?</p>
-                                                        
-                                                                                                            </div>
-                                                                                                            <div class="modal-footer">
-                                                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                                                <button type="button" class="btn btn-success" onclick="deactivateUsers()">Deactivate</button>
-                                                                                                            </div>-->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div>
+                                    </c:if>
+                                </form>
+                                <c:if test="${message ne 'Update successful!'}">
+                                    <p id="ausersMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                </c:if>
+                                <c:if test="${message eq 'Update successful!'}">
+                                    <p id="auersMessage" style="color:blue; font-size: 15px;">${message}</p>
+                                </c:if>
                             </div>
-
-                            <!--                                        <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
-                                                                        <div class="modal-dialog">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header">
-                                                                                    <h5 class="modal-title" id="editUsersModalLabel">Edit User Information</h5>
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <label for="description">First Name:</label>
-                                                                                    <input type="text" id="description" class="form-control" ${user.getFirstname()}/>
-                                                                                    <label for="description">Last Name:</label>
-                                                                                    <input type="text" id="description" class="form-control" ${user.getLastname()}/>
-                                                                                    <label for="description">Email:</label>
-                                                                                    <input type="text" id="description" class="form-control" ${user.getEmailAddress()}/>
-                                                                                    <label for="description">Phone Number:</label>
-                                                                                    <input type="text" id="description" class="form-control" ${user.getPhonenumber()}/>
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                    <button type="button" class="btn btn-success" onclick="editUsers()">Save</button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>-->
-
-
-
-                            <!--start footer-->
-                            <div class="my-5"></div>
-                            <footer class="footer">
-                                <div class="container-fluid">
-                                    <div class="footer-in">
-                                        <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                            <% if (request.getAttribute("updatedInfo") != null && (boolean) request.getAttribute("updatedInfo")) { %>
+                                // Call the showMessage function to display the pop-up message
+                                showMessage("Your information successfully updated.");
+                            <% request.removeAttribute("updatedInfo"); %> // Remove the flag from the session
+                            <% }%>
+                            });
+                        </script>
+                        <form action="add" method="post">
+                            <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addNewUsersModalLabel">Add New User</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label class="form-label" for="first-name">First Name</label>
+                                            <input  type="text" id="first-name" class="form-control form-control-lg" name="first name" required="true" value="${firstname}" onchange="validateFirstName()" />
+                                            <span id="first-name-span"></span>
+                                            <label class="form-label" for="last-name">Last Name</label>
+                                            <input type="text" id="last-name" class="form-control form-control-lg" name="last name" required="true" value="${lastname}" onchange="validateLastName()"/>
+                                            <span id="last-name-span"></span>
+                                            <label class="form-label">Email</label>
+                                            <input id="email" type="text" class="form-control form-control-lg" name="email"required="true" value="${email}" onchange="validateEmail()"/>
+                                            <span id="email-span"></span>
+                                            <label class="form-label" for="phone">Phone Number</label>
+                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" required="true" value="${phone}" onchange="validatePhone()"/>
+                                            <span id="phone-span"></span>
+                                            <label class="form-label" >Password</label>
+                                            <input type="text" id="password" name="password" class="form-control form-control-lg" required="true" onchange="validatePassword()" />
+                                            <span id="password-span"></span>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <input type="submit" id="submitbutton" class="btn btn-success" name="submit" value="Save">
+                                            <!--                                            <button type="submit" class="btn btn-success" onclick="saveUsers()">Save</button>-->
+                                        </div>
+                                        <p class="mb-1 pb-lg-2 text-center" style="color: #ff3333; margin-top: 10px;">${message} <br></p>
+                                        <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD;"> ${validation} <br></p>
                                     </div>
                                 </div>
-                            </footer>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <c:if test="${not empty updatedFirstname}">
+                    <script>
+                        var emailField = document.getElementById("firstnameInput");
+                        emailField.value = "${updatedFirstname}";
+                    </script>
+                </c:if>
+                <c:if test="${not empty updatedLastname}">
+                    <script>
+                        var emailField = document.getElementById("lastnameInput");
+                        emailField.value = "${updatedLastname}";
+                    </script>
+                </c:if>
+                <c:if test="${not empty updatedEmail}">
+                    <script>
+                        var emailField = document.getElementById("emailInput");
+                        emailField.value = "${updatedEmail}";
+                    </script>
+                </c:if>
+                <c:if test="${not empty updatedPhone}">
+                    <script>
+                        var phoneField = document.getElementById("phoneInput");
+                        phoneField.value = "${updatedPhone}";
+                    </script>
+                </c:if>
+                <c:if test="${not empty updateIsactive}">
+                    <script>
+                        var emailField = document.getElementById("isactiveInput");
+                        emailField.value = "${updateIsactive}";
+                    </script>
+                </c:if>
+                <c:if test="${not empty updateRole}">
+                    <script>
+                        var emailField = document.getElementById("roleInput");
+                        emailField.value = "${updateRole}";
+                    </script>
+                </c:if>
+
+
+
+                <!--start footer-->
+                <div class="my-5"></div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="footer-in">
+                            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
                         </div>
                     </div>
+                </footer>
+            </div>
+        </div>
 
-                    <script src="js/bootstrap.min.js"></script>
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-                    <script>
-                                                                function saveData() {
-                                                                    var button = document.getElementById("savebutton");
-                                                                }
-                                                                function saveUsers() {
-                                                                    alert("User saved successfully!");
-                                                                    $('#newUsersModal').modal('hide'); // Close the modal
-                                                                }
-//                                            function deactivateUsers() {
-//                                                $('#deactivateUsersModal').modal('hide'); // Close the modal
-//                                            }
-//                                            function editUsers() {
-//                                                alert("User saved successfully!");
-//                                                $('#editUsersModal').modal('hide'); // Close the modal
-//                                            }
-                    </script>
+        <script>
+                        function saveData() {
+                            var button = document.getElementById("savebutton");
+                        }
+                        function saveUsers() {
+                            alert("User saved successfully!");
+                            $('#newUsersModal').modal('hide'); // Close the modal
+                        }
+        </script>
 
 
-                    <script>
-                        $(document).ready(function () {
-                            $(".xp-menubar").on('click', function () {
-                                $('#sidebar').toggleClass('active');
-                                $('#content').toggleClass('active');
-                            });
+        <script>
+            $(document).ready(function () {
+                $(".xp-menubar").on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                    $('#content').toggleClass('active');
+                });
 
-                            $(".xp-menubar, .body-overlay").on('click', function () {
-                                $('#sidebar, .body-overlay').toggleClass('show-nav');
-                            });
-                        });
-                    </script>
+                $(".xp-menubar, .body-overlay").on('click', function () {
+                    $('#sidebar, .body-overlay').toggleClass('show-nav');
+                });
+            });
+        </script>
 
 
 
 
-                    </body>
-                    </html>
+    </body>
+</html>

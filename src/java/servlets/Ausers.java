@@ -35,13 +35,13 @@ public class Ausers extends HttpServlet {
         }
         //get the user from the database
         UserService us = new UserService();
+        RoleService rs = new RoleService();
         int userId = 0;
         if (request.getParameter("userId") != null) {
             userId = Integer.parseInt(request.getParameter("userId"));
             try {
                 User u = us.get(userId);
-                List<User> userList = us.getAll();
-                request.setAttribute("userList", userList);
+                
                 request.setAttribute("viewUser", u);
                 getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
             } catch (Exception e) {
@@ -50,7 +50,10 @@ public class Ausers extends HttpServlet {
         } else {
             try {
                 List<User> userList = us.getAll();
+                List<Role> roleList = rs.getAll();
                 request.setAttribute("userList", userList);
+                request.setAttribute("roleList", roleList);
+
             } catch (Exception e) {
                 Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -113,10 +116,11 @@ public class Ausers extends HttpServlet {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
-        } else if (action.equals("edit")) {
+        } else if (action.equals("update")) {
             UserService us = new UserService();
             RoleService rs = new RoleService();
             User viewUser = (User) session.getAttribute("viewUser");
+            Role viewRole = (Role) session.getAttribute("viewRole");
             String firstname = request.getParameter("firstname");
             String lastname = request.getParameter("lastname");
             String email = request.getParameter("email");
@@ -125,14 +129,17 @@ public class Ausers extends HttpServlet {
             int userId = Integer.parseInt(request.getParameter("userId"));
             int isactive = Integer.parseInt(request.getParameter("isactive"));
             int isValid = Integer.parseInt(request.getParameter("isValid"));
+            Role role = new Role();
+            String rolename = role.getRoleName();
             String message = "";
             viewUser.setFirstname(firstname);
             viewUser.setLastname(lastname);
             viewUser.setEmailAddress(email);
             viewUser.setPhoneNumber(phone);
-//          viewUser.setRole(role_name);
             viewUser.setIsactive(isactive);
             viewUser.setIsValid(isValid);
+           
+
             try {
                 //message = us.update(viewUser);
 
@@ -160,5 +167,7 @@ public class Ausers extends HttpServlet {
             }
             request.setAttribute("message", message);
         }
+        getServletContext().getRequestDispatcher("/WEB-INF/ausers.jsp").forward(request, response);
+        return;
     }
 }

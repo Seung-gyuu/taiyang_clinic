@@ -812,10 +812,7 @@
                                                     <!--form-->
                                                     <!--need to change after view form feature is finished-->
                                                     <td>
-                                                        <a href="" class="" data-toggle="modal">
-                                                            <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                                        <a href="" class="" data-toggle="modal">
-                                                            <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a>
+                                                        <a href="/vform?userId=${today_appt.getUserid()}">View Forms</a>
                                                     </td>
                                                 </tr>     
                                             </c:forEach>
