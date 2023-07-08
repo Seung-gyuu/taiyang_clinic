@@ -18,6 +18,7 @@
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <c:import url="../components/headers.jsp" />
+         <script src="../js/profileJS.js"></script>
 
         <style>
 
@@ -45,11 +46,11 @@
                             <form action="profile" method="post">
                                 <label for="emailInput">
                                     <p>Email</p>
-                                    <input type="text" value="${loggedUser.getEmailAddress()}" name="email" id="emailInput" required>
+                                    <input type="text" value="${loggedUser.getEmailAddress()}" name="email" id="emailInput" onchange="validateEmail()" required>  
+                                    <br> <span id="email-span"></span>
                                 </label>
+                              
 
-                                <!--Email: <c:out value="${loggedUser.getEmailAddress()}"/> 
-                                <input type="hidden" name="email" value="${loggedUser.getEmailAddress()}"> <br>-->
                                 <div class="fullnameField">
                                     <label for="fnameInput">
                                         <p>First name</p>
@@ -68,29 +69,36 @@
                                 </div>    
 
                                 <label for="phoneInput">
-                                    <p>Phone</p>
-                                    <input type="text" id="phoneInput" value="${loggedUser.getPhoneNumber()}" name="phone" placeholder="1234567890" required> <br> 
+                                    <p>Phone</p> 
+                                    <input type="text" id="phoneInput" value="${loggedUser.getPhoneNumber()}" name="phone" placeholder="1234567890" onchange="validatePhone()" required>
+                                    <br><span id="phone-span"></span> 
                                 </label>
+                                
+                                
                                 <label for="pwdInput">
                                     <p>Password</p>
-                                    <input type="password" value="" name="password" id="pwdInput" required>
+                                    <input type="password" value="" name="password" id="pwdInput" onchange="validatePassword()" required>
+                                    <br><span id="pwd-span"></span>
                                 </label>
+                                
 
                                 <div class="formBtns">
                                     <input type="button" value="Cancel" class="accountCancelBtn" onclick="window.location.href = '/home'">
                                     <div>                                        
-                                        <input type="submit" value="Update" class="accountUpdateBtn">
+                                        <input type="submit" value="Update" id="submitbutton" class="accountUpdateBtn">
                                         <input type="hidden" name="action" value="update">
                                     </div>
 
                                 </div>
                             </form>   
-                            <c:if test="${message ne 'Update successful!'}">
-                                <p id="profileMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
-                            </c:if>
-                            <c:if test="${message eq 'Update successful!'}">
-                                <p id="profileMessage" style="color:blue; font-size: 15px;">${message}</p>
-                            </c:if>
+                                    <c:choose>
+                                        <c:when test="${message ne 'Update successful!'}">
+                                            <p id="profileMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p id="profileMessage" style="color:blue; font-size: 15px;">${message}</p>                   
+                                        </c:otherwise>
+                                    </c:choose>
                         </div>
                     </div>
                 </div>
@@ -112,23 +120,7 @@
             <% }%>
                                         });
         </script>
-
-
-        <!-- Display updated email and phone -->
-        <c:if test="${not empty updatedEmail}">
-            <script>
-                var emailField = document.getElementById("emailInput");
-                emailField.value = "${updatedEmail}";
-                <% session.removeAttribute("updatedEmail"); %>
-            </script>
-        </c:if>
-        <c:if test="${not empty updatedPhone}">
-            <script>
-                var phoneField = document.getElementById("phoneInput");
-                phoneField.value = "${updatedPhone}";
-                <% session.removeAttribute("updatedPhone");%>
-            </script>
-        </c:if>
+ <script src="../js/profileJS.js"></script>
     </body>
 
     <footer>

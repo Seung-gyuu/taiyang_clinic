@@ -82,7 +82,14 @@
                                             </div>
                                         </form>
                                         <br>
-                                        <p id="resetMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                            <c:choose>
+                                        <c:when test="${message ne 'Password Updated.'}">
+                                            <p id="resetMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p id="resetMessage" style="color:blue; font-size: 15px;">${message}</p>                   
+                                        </c:otherwise>
+                                    </c:choose>
                                             <script>
                                                 var resetMessage = localStorage.getItem('resetMessage');
                                                 var messageElement = document.getElementById('resetMessage');

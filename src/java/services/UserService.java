@@ -73,8 +73,8 @@ public class UserService {
             }
 
         }
-        String message2 = validate(user, language);
-        if (!message2.equals("Valid")) {
+        String message2 = isValidPassword(user.getPassword(), language);
+        if (!message2.equals("success")) {
             return message2;
         }
 
@@ -98,41 +98,26 @@ public class UserService {
 
     public String update(User updateUser, String language) throws Exception {
         try {
-//            User existingUser = udb.get(userid);
             List<User> users = getAll();
             for (User user : users) {
-                if (updateUser.getEmailAddress().equals(user.getEmailAddress()) && !user.getUserid().equals(updateUser.getUserid())) {
-                    if (language.equals("en")) {
-                        return "Email Already Taken!";
-                    }
-                    if (language.equals("kr")) {
-                        return "이메일이 이미 사용되었습니다!";
-                    }
-
-                }
                 if (!updateUser.getEmailAddress().equals(user.getEmailAddress()) && user.getUserid().equals(updateUser.getUserid())) {
                     updateUser.setIsValid(2); // Set the isValid status to 2 if the email address has changed
                 }
-                if (updateUser.getPhoneNumber().equals(user.getPhoneNumber()) && !user.getUserid().equals(updateUser.getUserid())) {
-                    if (language.equals("en")) {
-                        return "Phone number Already Taken!";
-                    }
-                    if (language.equals("kr")) {
-                        return "전화번호는 이미 사용 중입니다!";
-                    }
 
-                }
             }
-            String validatemsg = validate(updateUser, language);
-            if (!validatemsg.equals("Valid")) {
-                return validatemsg;
+            String msg = isValidPassword(updateUser.getPassword(), language);
+            if (!msg.equals("success") && !msg.equals("성공")) {
+                return msg;
             }
-            //
+//            if (msg.equals("")) {
+//                msg += "Valid";
+//            }
+            
             String salt = HashAndSalt.getSalt();
             String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
             updateUser.setSalt(salt);
             updateUser.setPassword(hashedPassword);
-//
+            
             udb.update(updateUser);
             if (language.equals("en")) {
                 return "Update successful!";
@@ -141,7 +126,7 @@ public class UserService {
                 return "업데이트 성공!";
             }
             return "";
-            
+
         } catch (Exception ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
             if (language.equals("en")) {
@@ -151,7 +136,7 @@ public class UserService {
                 return "업데이트 중 오류가 발생했습니다!";
             }
             return "";
-            
+
         }
     }
 
@@ -173,69 +158,40 @@ public class UserService {
         return "User deleted successfully!";
     }
 
-    private String validate(User user, String language) {
-        String email = user.getEmailAddress();
-        String firstName = user.getFirstname();
-        String lastName = user.getLastname();
-        String phone = user.getPhoneNumber();
-        String password = user.getPassword();
-        String message = "";
-        if (firstName.length() > 15) {
+    public String updateValidate(String email, String phone, String pw, String language, User loggedUser) {
+        try {
+            List<User> users = getAll();
+            for (User user : users) {
+                if (!email.equals(loggedUser.getEmailAddress()) && email.equals(user.getEmailAddress())) {
+                    if (language.equals("en")) {
+                        return "Sorry, this email is already taken";
+                    }
+                    if (language.equals("kr")) {
+                        return "이메일이 이미 사용되었습니다!";
+                    }
+                }
+
+                if (!phone.equals(loggedUser.getPhoneNumber()) && phone.equals(user.getPhoneNumber())) {
+                    if (language.equals("en")) {
+                        return "Sorry, this phone number is already taken";
+                    }
+                    if (language.equals("kr")) {
+                        return "전화번호가 이미 사용 중입니다!";
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
             if (language.equals("en")) {
-                message += "First Name is incorrect format  <br>";
+                return "Error occurred during update!";
             }
             if (language.equals("kr")) {
-                message += "이름이 잘못된 형식입니다.  <br>";
+                return "업데이트 중 오류가 발생했습니다!";
             }
-
         }
-        if (lastName.length() > 15) {
-            if (language.equals("en")) {
-                message += "Last Name is incorrect format <br>";
-            }
-            if (language.equals("kr")) {
-                message += "성의 형식이 잘못되었습니다. <br>";
-            }
-
-        }
-        if (containsSpecialCharacters(firstName) || containsSpecialCharacters(lastName)) {
-            System.out.println("First Name contains special characters");
-            if (language.equals("en")) {
-                message += "Only letters in first and last name!  <br>";
-            }
-            if (language.equals("kr")) {
-                message += "성과 이름은 영문자만 가능! <br>";
-            }
-
-        }
-        if (phone.length() != 10 || !phone.matches("^\\d{10}$")) {
-            if (language.equals("en")) {
-                message += "Phone number is incorrect format <br>";
-            }
-            if (language.equals("kr")) {
-                message += "전화번호 형식이 잘못되었습니다. <br>";
-            }
-
-        }
-        if (email.length() > 40 || !email.matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
-            if (language.equals("en")) {
-                message += "Email is incorrect format  <br>";
-            }
-            if (language.equals("kr")) {
-                message += "이메일 형식이 잘못되었습니다. <br>";
-            }
-
-        }
-
-        String msg = isValidPassword(password, language);
-        if (!msg.equals("success") && !msg.equals("성공")) {
-                message += msg + " <br>";
-        }
-        if (message.equals("")) {
-                message += "Valid";
-        }
-        return message;
+        return "Valid";
     }
+
 
     public static boolean containsSpecialCharacters(String name) {
         // Regular expression to match special characters
