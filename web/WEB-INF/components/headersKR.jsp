@@ -25,7 +25,7 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        
+
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="../css/bootstrap.min.css" rel="stylesheet">
-<!--        <link rel="stylesheet" type="text/css" href="../css/main.css">-->
+        <!--        <link rel="stylesheet" type="text/css" href="../css/main.css">-->
 
 
         <style>
@@ -62,6 +62,21 @@
             .starter2 h1{
                 font-size: 30px;
             }
+
+
+            .dropdown-item.language-link-en {
+                font-size: 0.8rem; 
+            }
+
+            .dropdown-item.language-link-kr {
+                font-size: 0.8rem; 
+            }
+
+            .nav-item.dropdown .dropdown-menu .flag-icon {
+                margin-right: 0.5rem; 
+            }
+
+
         </style>
 
     </head>
@@ -90,8 +105,8 @@
                             <c:if test="${loggedUser eq null}">
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/login">
                                     <i class ="bi bi-person-fill"></i>
-                                    Login<span class="text-body"></a>|  
-                                <a class ="text-decoration-none text-body px-3" href ="/${language}/register"></span>Register KR </a>
+                                    로그인<span class="text-body"></a>|  
+                                <a class ="text-decoration-none text-body px-3" href ="/${language}/register"></span>회원가입</a>
 
                             </c:if>
                             <c:if test="${loggedUser ne null}">
@@ -124,7 +139,7 @@
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                     <a href ="/${language}/home" class ="navbar-brand">
-                       <img src="../src/img/ClinicLogo.png" alt="Logo" style="height:57px; width: 150px;" >
+                        <img src="../src/img/ClinicLogo.png" alt="Logo" style="height:57px; width: 150px;" >
                     </a>
                     <button class ="navbar-toggler" type ="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -135,32 +150,39 @@
                             <c:set var="cleanURL" value="${fn:substringBefore(currentURL, ';')}" />
                             <c:set var="contextPath" value="${pageContext.request.contextPath}" />
                             <c:set var="cleanURL" value="${fn:substringAfter(cleanURL, contextPath)}" />
-                            <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en">English</a></c:if>
-                            <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국어</a></c:if>
-                            <a href="/${language}/home" class="nav-item nav-link active">Home</a>
-                            <a href="/${language}/aboutus" class="nav-item nav-link">About us</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services KR</a>
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Language</a>
+                                <div class="dropdown-menu custom-dropdown-menu m-0">
+                                    <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en" class="dropdown-item language-link-en">
+                                            <span class="flag-icon">🇨🇦</span>English</a></c:if>
+                                    <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr" class="dropdown-item language-link-kr">
+                                            <span class="flag-icon">🇰🇷</span> 한국어</a></c:if>
+                                    </div>
+                                </div>
+                                <a href="/${language}/home" class="nav-item nav-link active">Home</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link active">About us</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Services</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="/${language}/service1" class="dropdown-item">Acupuncture KR</a>
-                                    <a href="/${language}/service2" class="dropdown-item">Moxibustion KR</a>
-                                    <a href="/${language}/service3" class="dropdown-item">Massage/luiNa KR</a>
-                                    <a href="/${language}/service4" class="dropdown-item">Cupping KR</a>
-                                    <a href="/${language}/service5" class="dropdown-item">Herbal Medicine KR</a>
-                                    <a href="/${language}/service6" class="dropdown-item">Korean beauty KR</a>
+                                    <a href="/${language}/service1" class="dropdown-item">침술</a>
+                                    <a href="/${language}/service2" class="dropdown-item">뜸</a>
+                                    <a href="/${language}/service3" class="dropdown-item">추나요법</a>
+                                    <a href="/${language}/service4" class="dropdown-item">안면침 </a>
+                                    <a href="/${language}/service5" class="dropdown-item">괄사</a>
+                                    <a href="/${language}/service6" class="dropdown-item">라이프스타일/식이요법 컨설팅</a>
                                 </div>
                             </div>
-                            <a href="/${language}/book" class="nav-item nav-link">Book  KR</a> 
-                            <a href="/${language}/contact" class="nav-item nav-link">Contact KR </a>
+                            <a href="/${language}/book" class="nav-item nav-link active">Book</a> 
+                            <a href="/${language}/contact" class="nav-item nav-link active">Contact  </a>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/history" class="nav-item nav-link">My Account KR </a> 
+                                <a href="/${language}/history" class="nav-item nav-link active">My Account  </a> 
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
-                                <a href="/${language}/login" class="nav-item nav-link">Login  KR</a>
+                                <a href="/${language}/login" class="nav-item nav-link active">Login  </a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/home?logout" class="nav-item nav-link">Log out KR </a> 
+                                <a href="/${language}/home?logout" class="nav-item nav-link active">Log out  </a> 
                             </c:if>
                         </div>
                     </div>

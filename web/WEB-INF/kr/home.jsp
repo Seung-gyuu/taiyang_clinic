@@ -23,6 +23,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/home.css">
         <c:import url="../components/headersKR.jsp" />
+        
 
         <style>
 
@@ -98,11 +99,11 @@
 
                     <div class="col-lg-8 text-center text-lg-start hero-header2">
 
-                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">건강의 집</h5>
+                        <h5 class="d-inline-block text-white text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">THE HOME OF HEALTH</h5>
                         <h1 class="display-10 text-white mb-md-4 hero-header2_2">우리의 전통<br>중의학 센터를 방문하세요</h1>
                         <h5 class="text-white mb-md-4 ">건강, 균형 및 살려고 노력하는 삶을 달성하는 데 도움이 될 수 있습니다.</h5>
                         <div class="pt-2"> 
-                            <a href="/${language}/book" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2 font-weight-bold header_button">약속을 잡다</a>
+                            <a href="/${language}/book" class="btn btn-outline-light rounded-pill py-md-10 px-md-5 mx-2 font-weight-bold header_button">예약 페이지로 가기</a>
                         </div>
                     </div>
                 </div>
@@ -126,11 +127,7 @@
                             <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5 fw-bold mb-4 header1">About Us</h5>
                             <h2 class="mb-4 first_title">Best Medical Care For Yourself and Your Family</h2>
                         </div>
-                        <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                            A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                            She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]</p>
+                        <p>Sunny는 1000시간의 관찰과 임상 사례 경험을 가진 등록 침술사입니다. 그녀는 알버타 침술과 중국 전통 의학 대학에서 훈련했고 알버타 침술 등록 시험 (AARE) 시험에서 성공적인 첫 번째 시도 후에 침술사 자격증을 받았습니다. 그녀의 전공은 부인과 침술, 한국 미용 침술, 얼굴 회춘 침술, 투이나 그리고 뜸입니다. Sunny는 침술 연구 및 치료의 발전에 대한 최신 정보를 얻기 위해 교육 컨퍼런스에 적극적으로 참석합니다. 한국어, 영어, 일본어를 유창하게 구사하는 그녀는 또한 캘거리에 있는 한국인과 일본인 사회에 상담과 생활 방식/다이어트 조언 서비스를 제공합니다.</p>
 
                     </div>
                 </div>
@@ -151,8 +148,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-user-md"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">Acupuncture</h5>
-                            <p class="m-0">Acupuncture is a procedure that uses tiny needles inserted into the skin to help balance a person’s energy.</p>
+                            <h5 class="mb-3 fw-bold h4_1">침술</h5>
+                            <p class="m-0">침술은 가늘고 긴 바늘 형태를 한 침을 정해진 혈자리에 일정한 굵기와 깊이로 찔러넣어 신체 내 기의 부조합 혹은 기의 침체를..</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service1" style="background-color: #0B486B;color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -163,8 +160,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-procedures text-black"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">Moxibustion</h5>
-                            <p class="m-0">Moxibustion is a form of therapy that entails the burning of mugwort leaves.  This is a small, spongy herb.. </p>
+                            <h5 class="mb-3 fw-bold h4_1">뜸</h5>
+                            <p class="m-0">뜸은 약쑥을 비벼서 쌀알 크기로 빚은 다음 살 위의 혈에 놓고 불을 붙여 열기가 살 속으로 퍼지게 하는 한의학 요법입니다.</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service2" style="background-color: #0B486B; color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -175,8 +172,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-soli fa-spa text-black"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">TuiNa Massage</h5>
-                            <p class="m-0">Tuina practitioners use a combination of hand and arm techniques to massage and realign the recipient's muscles..</p>
+                            <h5 class="mb-3 fw-bold h4_1">추나요법</h5>
+                            <p class="m-0">추나요법은 한의사가 환자의 비틀어진 척추·관절을 밀고 당겨 신체의 틀어진 부분을 바로 잡고 통증을 개선하는 한방 치료법입니다.</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service3" style="background-color: #0B486B; color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -187,8 +184,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-ambulance text-black"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">Korean beauty</h5>
-                            <p class="m-0"> Korean beauty treatments are a booming market, globally. Consumers who switch to Korean beauty products tend..</p>
+                            <h5 class="mb-3 fw-bold h4_1">안면침</h5>
+                            <p class="m-0"> 동안침이라 부르기도 하는 안면침은 치료와 미용을 목적으로 얼굴의 혈자리 및 근육 부위에 침을 시술하는 것입니다.</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service4" style="background-color: #0B486B; color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -199,8 +196,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-solid fa-heart text-black"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">Herbal Formula Prescription </h5>
-                            <p class="m-0"> Herbal formulations means a dosage form consisting of one or more herbs or processed herbs in specified quantities to..</p>
+                            <h5 class="mb-3 fw-bold h4_1">괄사</h5>
+                            <p class="m-0"> 괄사는 치료 부위에 괄사 기구를 반복적으로 긁어서 치료하는 요법으로써, 우리 나라 사람들이 뜸이나 부항에 익숙한 만큼이나..</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service5" style="background-color: #0B486B; color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -211,8 +208,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-microscope text-black"></i>
                             </div>
-                            <h5 class="mb-2 fw-bold h4_1">Lifestyle and Diet therapy</h5>
-                            <p class="m-0">A therapeutic diet is a meal plan that controls the intake of certain foods or nutrients. It is part of the treatment of..</p>
+                            <h5 class="mb-3 fw-bold h4_1">라이프스타일/식이요법 컨설팅</h5>
+                            <p class="m-0">Tai Yang Clinic 은 영어, 한국어, 일본어로 생활습관 및 식이요법 컨설팅 서비스를 제공 하고 있습니다. </p>
                             <!--                        <a class="btn btn-lg btn-primary rounded-pill" href="/service6">
                                                         <i class="bi bi-arrow-right"></i>
                                                     </a>-->

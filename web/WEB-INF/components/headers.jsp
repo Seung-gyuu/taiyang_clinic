@@ -25,7 +25,7 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        
+
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
 
         <!--        Libraries Stylesheet -->  
         <link href="../css/bootstrap.min.css" rel="stylesheet">
-<!--        <link rel="stylesheet" type="text/css" href="../css/main.css">-->
+        <!--        <link rel="stylesheet" type="text/css" href="../css/main.css">-->
 
 
         <style>
@@ -62,6 +62,49 @@
             .starter2 h1{
                 font-size: 30px;
             }
+
+            /*            .nav-link.language-link-en {
+                            background-color: #0B486B;
+                            font-size: 0.8rem;
+                            font-weight:light;
+                            border: 1px  #0B486B;
+                            border-radius: 0.25rem;
+                            text-align:center;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                            color:#fff;
+                            margin-right: 1rem;
+            
+                        }
+            
+                        .nav-link.language-link-kr {
+                            background-color: #0B486B;
+                            font-size: 0.8rem;
+                            font-weight:light;
+                            border: 1px  #0B486B;
+                            border-radius: 0.25rem;
+                            text-align:center;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                            color:#fff;
+                            margin-right: 1rem;
+            
+                        }*/
+            .dropdown-item.language-link-en {
+                font-size: 0.8rem; 
+            }
+
+            .dropdown-item.language-link-kr {
+                font-size: 0.8rem; 
+            }
+
+            .nav-item.dropdown .dropdown-menu .flag-icon {
+                margin-right: 0.5rem; 
+            }
+
+
+
+
+
+
         </style>
 
     </head>
@@ -124,7 +167,7 @@
             <div class ="container">
                 <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
                     <a href ="/${language}/home" class ="navbar-brand">
-                       <img src="../src/img/ClinicLogo.png" alt="Logo" style="height:57px; width: 150px;" >
+                        <img src="../src/img/ClinicLogo.png" alt="Logo" style="height:57px; width: 150px;" >
                     </a>
                     <button class ="navbar-toggler" type ="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -135,12 +178,19 @@
                             <c:set var="cleanURL" value="${fn:substringBefore(currentURL, ';')}" />
                             <c:set var="contextPath" value="${pageContext.request.contextPath}" />
                             <c:set var="cleanURL" value="${fn:substringAfter(cleanURL, contextPath)}" />
-                            <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en">English</a></c:if>
-                            <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr">한국어</a></c:if>
-                            <a href="/${language}/home" class="nav-item nav-link active">Home</a>
-                            <a href="/${language}/aboutus" class="nav-item nav-link">About us</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Language</a>
+                                <div class="dropdown-menu custom-dropdown-menu m-0">
+                                    <c:if test="${language eq 'kr'}"><a href="${cleanURL}?translate=en" class="dropdown-item language-link-en">
+                                            <span class="flag-icon">🇨🇦</span>English</a></c:if>
+                                    <c:if test="${language eq 'en'}"><a href="${cleanURL}?translate=kr" class="dropdown-item language-link-kr">
+                                            <span class="flag-icon">🇰🇷</span> 한국어</a></c:if>
+                                    </div>
+                                </div>
+                                <a href="/${language}/home" class="nav-item nav-link active">Home</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link active">About us</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Services</a>
                                 <div class="dropdown-menu m-0">
                                     <a href="/${language}/service1" class="dropdown-item">Acupuncture</a>
                                     <a href="/${language}/service2" class="dropdown-item">Moxibustion</a>
@@ -150,17 +200,17 @@
                                     <a href="/${language}/service6" class="dropdown-item">Korean beauty</a>
                                 </div>
                             </div>
-                            <a href="/${language}/book" class="nav-item nav-link">Book  </a> 
-                            <a href="/${language}/contact" class="nav-item nav-link">Contact  </a>
+                            <a href="/${language}/book" class="nav-item nav-link active">Book  </a> 
+                            <a href="/${language}/contact" class="nav-item nav-link active">Contact  </a>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/history" class="nav-item nav-link">My Account  </a> 
+                                <a href="/${language}/history" class="nav-item nav-link active">My Account  </a> 
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
-                                <a href="/${language}/login" class="nav-item nav-link">Login  </a>
+                                <a href="/${language}/login" class="nav-item nav-link active">Login  </a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/home?logout" class="nav-item nav-link">Log out  </a> 
+                                <a href="/${language}/home?logout" class="nav-item nav-link active">Log out  </a> 
                             </c:if>
                         </div>
                     </div>

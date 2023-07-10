@@ -810,7 +810,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -875,7 +875,7 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="/en/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
                                 <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 
