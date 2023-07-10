@@ -45,18 +45,18 @@
             </div>           
             <div class ="services_top_wrap">
                 <p>Services</p>
-                <h1>Korean Beauty</h1>
-                 <button onclick="window.location.href='/${language}/book'">Book Now</button>
+                <h1>라이프스타일/식이요법 컨설팅</h1>
+                 <button onclick="window.location.href='/${language}/book'">예약하기</button>
             </div>
         </div>
         <div class="services_main_section">
             <div class ="services_main_top">
                 <div class ="services_main_top_text">
                     <h2>
-                        About <strong>Korean Beauty</strong>?    
+                        <strong>라이프스타일/식이요법 컨설팅</strong>이 무엇일까요?    
                     </h2>
                     <p>
-                        KR SIDE
+                        Tai Yang Clinic 은 영어, 한국어, 일본어로 생활습관 및 식이요법 컨설팅 서비스를 제공 하고 있습니다.
                     </p>
                 </div>
             </div>
@@ -65,128 +65,131 @@
                     <img src="../src/img/kbeauty2.jpg" alt="" />
                 </div>
                 <div class ="services_main_text" style="object-position: top;">
-                    <h3>Benefits of using k-skincare</h3>
+                    <h3>라이프스타일/식이요법 컨설팅의 장점들</h3>
                     <ul>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>HIGH-QUALITY INGREDIENTS</span>
+                            <span>개인화된 접근법</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>NEW PRODUCTS</span>
+                            <span>건강증진 및 질병예방</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>FOCUS ON PREVENTION</span>
+                            <span>체중 관리</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>GENTLE AND NATURAL FORMULAS</span>
+                            <span>에너지 및 활력 향상</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>GREAT VALUE FOR YOUR MONEY/span>
+                            <span>향상된 정신 건강</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>TARGETS SPECIFIC NEEDS</span>
+                            <span>장기 지속 가능성</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>LATEST SKINCARE TECHNOLOGY</span>
+                            <span>장 건강 개선</span>
                         </li>
                         <li class ="services_text_list">
                             <i class="fa-regular fa-circle-check"></i>
-                            <span>OPTIONS GALORE</span>
+                            <span>혈당 관리</span>
                         </li>
                     </ul>
                 </div>
 
             </div>
         </div>
-        <!-- Services Start -->
         <div class="container-fluid py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5 fw-bold mb-4 header1">Services</h5>
+                    <h2 class="mb-4 second_title">Best Clinic Services</h2>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-user-md"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">침술</h5>
+                            <p class="m-0">침술은 가늘고 긴 바늘 형태를 한 침을 정해진 혈자리에 일정한 굵기와 깊이로 찔러넣어 신체 내 기의 부조합 혹은 기의 침체를..</p>
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service1" style="background-color: #0B486B;color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-procedures text-black"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">뜸</h5>
+                            <p class="m-0">뜸은 약쑥을 비벼서 쌀알 크기로 빚은 다음 살 위의 혈에 놓고 불을 붙여 열기가 살 속으로 퍼지게 하는 한의학 요법입니다.</p>
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service2" style="background-color: #0B486B; color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-soli fa-spa text-black"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">추나요법</h5>
+                            <p class="m-0">추나요법은 한의사가 환자의 비틀어진 척추·관절을 밀고 당겨 신체의 틀어진 부분을 바로 잡고 통증을 개선하는 한방 치료법입니다.</p>
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service3" style="background-color: #0B486B; color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 ">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-ambulance text-black"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">안면침</h5>
+                            <p class="m-0"> 동안침이라 부르기도 하는 안면침은 치료와 미용을 목적으로 얼굴의 혈자리 및 근육 부위에 침을 시술하는 것입니다.</p>
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service4" style="background-color: #0B486B; color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-solid fa-heart text-black"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">괄사</h5>
+                            <p class="m-0"> 괄사는 치료 부위에 괄사 기구를 반복적으로 긁어서 치료하는 요법으로써, 우리 나라 사람들이 뜸이나 부항에 익숙한 만큼이나..</p>
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service5" style="background-color: #0B486B; color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4 mt-2">
+                                <i class="fa fa-2x fa-microscope text-black"></i>
+                            </div>
+                            <h5 class="mb-3 fw-bold h4_1">라이프스타일/식이요법 컨설팅</h5>
+                            <p class="m-0">Tai Yang Clinic 은 영어, 한국어, 일본어로 생활습관 및 식이요법 컨설팅 서비스를 제공 하고 있습니다. </p>
+                            <!--                        <a class="btn btn-lg btn-primary rounded-pill" href="/service6">
+                                                        <i class="bi bi-arrow-right"></i>
+                                                    </a>-->
+                            <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service6" style="background-color: #0B486B; color: white;">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
 
-                    <h2>Other Services<h2>
-                            </div>
-                            <div class="row g-5">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-user-md text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Acupuncture</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-procedures text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Moxibustion</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-soli fa-spa text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Massage/luiNa</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-ambulance text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Cupping</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-solid fa-heart text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Herbal Medicine</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                                        <div class="service-icon mb-4">
-                                            <i class="fa fa-2x fa-microscope text-black"></i>
-                                        </div>
-                                        <h4 class="mb-3">Korean beauty</h4>
-                                        <p class="m-0">Text still needs to be filled. Not too long, but just one line.</p>
-                                        <a class="btn btn-lg btn-primary rounded-pill" href="">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                             <!-- Services End -->
                             </div>
 

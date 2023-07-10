@@ -113,7 +113,7 @@ label {
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
                 </div>
-                <h1>BOOK AN APPOINTMENT KOREAN SIDE</h1>
+                <h1>BOOK AN APPOINTMENT</h1>
                 <div class="rightArrow">
                     <button onclick="goRight()">
                         <!--&rightarrow;-->

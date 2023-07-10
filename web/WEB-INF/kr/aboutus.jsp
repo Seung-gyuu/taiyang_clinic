@@ -44,16 +44,10 @@
             <div class ="contents">
                 <div class ="article">
                     <h4>
-                        this IS THE KOREAN SIDE !!!!!!!!!!!!!!!!!!!!!!!health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
+                       Sunny는 1000시간의 관찰과 임상 사례 경험을 가진 등록 침술사입니다. 그녀는 알버타 침술과 중국 전통 의학 대학에서 훈련했고 알버타 침술 등록 시험 (AARE) 시험에서 성공적인 첫 번째 시도 후에 침술사 자격증을 받았습니다. 그녀의 전공은 부인과 침술, 한국 미용 침술, 얼굴 회춘 침술, 투이나 그리고 뜸입니다. Sunny는 침술 연구 및 치료의 발전에 대한 최신 정보를 얻기 위해 교육 컨퍼런스에 적극적으로 참석합니다. 한국어, 영어, 일본어를 유창하게 구사하는 그녀는 또한 캘거리에 있는 한국인과 일본인 사회에 상담과 생활 방식/다이어트 조언 서비스를 제공합니다.
 
                     </h4>
-                    <p>Sunny Gym holds a Diploma in Chinese Medicine and Acupuncture from the Calgary University of Traditional Chinese Medicine and Acupuncture. Her undergraduate studies were done, where she studied Business Administration in the Bissett School of Business.
-
-                        A strong passion for improving the health of others through the use of Traditional Chinese Medicine (TCM) and acupuncture, motivates her to apply her vast knowledge of TCM to the health and wellness community.
-
-                        She is a Board Licensed Acupuncturist across Canada, and registered with the College of Acupuncturists of Alberta (CAA). Certified in Acutonics and NADA protocol, as well as a Certified Yoga Instructor.[I just copy from other website, should change it]
+                    <p>Sunny는 1000시간의 관찰과 임상 사례 경험을 가진 등록 침술사입니다. 그녀는 알버타 침술과 중국 전통 의학 대학에서 훈련했고 알버타 침술 등록 시험 (AARE) 시험에서 성공적인 첫 번째 시도 후에 침술사 자격증을 받았습니다. 그녀의 전공은 부인과 침술, 한국 미용 침술, 얼굴 회춘 침술, 투이나 그리고 뜸입니다. Sunny는 침술 연구 및 치료의 발전에 대한 최신 정보를 얻기 위해 교육 컨퍼런스에 적극적으로 참석합니다. 한국어, 영어, 일본어를 유창하게 구사하는 그녀는 또한 캘거리에 있는 한국인과 일본인 사회에 상담과 생활 방식/다이어트 조언 서비스를 제공합니다.
 
                     </p>
                 </div>

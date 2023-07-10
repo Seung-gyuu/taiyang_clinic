@@ -195,8 +195,8 @@
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-solid fa-heart text-black"></i>
                             </div>
-                            <h5 class="mb-3 fw-bold h4_1">Herbal Formula Prescription </h5>
-                            <p class="m-0"> Herbal formulations means a dosage form consisting of one or more herbs or processed herbs in specified quantities to..</p>
+                           <h5 class="mb-3 fw-bold h4_1">Gua Sha Massage and Demo</h5>
+                            <p class="m-0"> Gua sha (pronounced “gwah-shah”) is the practice of using a tool to apply pressure and scrape the skin to relieve pain..</p>
                             <a class="btn btn-lg rounded-pill mb-2" href="/${language}/service5" style="background-color: #0B486B; color: white;">
                                 <i class="bi bi-arrow-right"></i>
                             </a>

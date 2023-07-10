@@ -21,7 +21,7 @@
             <div class="contact_container">
                 <div class="gloabal_top_section contact_top_section">
                     <h1>Contact Us</h1>
-                    <p>Get in touch and let us know how we can help  THIS IS THE KOREAN SIDE.</p>
+                    <p>어떤 도움이든 필요하시거나 궁금한점이 있으시면 연락주세요.</p>
                 </div>
                 <div class="contact_main_section">
                     <div class="contact_info">
