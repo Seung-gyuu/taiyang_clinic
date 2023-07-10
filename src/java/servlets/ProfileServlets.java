@@ -87,7 +87,7 @@ public class ProfileServlets extends HttpServlet {
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
             String password = request.getParameter("password");
-            String validateMsg = us.updateValidate(email, phone, phone, language, loggedUser);
+            String validateMsg = us.updateValidate(email, phone, language, loggedUser);
             String message = "";
 
             if (validateMsg.equals("Valid")) {

@@ -105,19 +105,17 @@ public class UserService {
                 }
 
             }
+            if(updateUser.getPassword().length() < 20 && updateUser.getPassword().length() > 8){
             String msg = isValidPassword(updateUser.getPassword(), language);
             if (!msg.equals("success") && !msg.equals("성공")) {
                 return msg;
-            }
-//            if (msg.equals("")) {
-//                msg += "Valid";
-//            }
-            
+            } 
             String salt = HashAndSalt.getSalt();
             String hashedPassword = HashAndSalt.hashAndSaltPassword(updateUser.getPassword(), salt);
             updateUser.setSalt(salt);
             updateUser.setPassword(hashedPassword);
-            
+            }
+
             udb.update(updateUser);
             if (language.equals("en")) {
                 return "Update successful!";
@@ -158,7 +156,7 @@ public class UserService {
         return "User deleted successfully!";
     }
 
-    public String updateValidate(String email, String phone, String pw, String language, User loggedUser) {
+    public String updateValidate(String email, String phone, String language, User loggedUser) {
         try {
             List<User> users = getAll();
             for (User user : users) {

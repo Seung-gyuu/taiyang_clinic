@@ -30,7 +30,6 @@
         <meta name="theme-color" content="#ffffff">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/ausers.css">
-        <script src="js/ausers.js"></script>
 
         <!--google fonts -->
 
@@ -92,7 +91,7 @@
             }
 
 
-            #savebutton {
+            #submitbutton, #savebutton {
                 background-color: #0B486B;
                 color: #0B486B;
                 color: white;
@@ -1027,155 +1026,139 @@
                                         showPage(1);
                                     </script>
                                 </c:if>
-                                <form action="update" method="post">
+
+                                <form action="ausers" method="post">
                                     <c:if test="${viewUser ne null}">
                                         <thead>
                                             <tr>
-                                                <td><label for="firstnameInput">First Name:
-                                                        <input type="text" id="firstname" class="form-control" value="${viewUser.getFirstname()}"></label>
-                                                </td>
-                                                <td><label for="lastnameInput">Last Name:
-                                                        <input type="text" id="lastname" class="form-control" value="${viewUser.getLastname()}"></label>
-                                                </td>
-                                                <td><label for="emailInput">Email address:
-                                                        <input type="text" id="email" class="form-control" value="${viewUser.getEmailAddress()}"></label>
-                                                </td>
-                                                <td><label for="phoneInput">Phone number:
-                                                        <input type="text" id="phone" class="form-control" value="${viewUser.getPhoneNumber()}"></label>
-                                                </td>
                                                 <td>
-                                                    <label for="activeInput">Is the user active?  
-                                                        <input type="checkbox" name="isactive" id="isactive" <c:if test="${viewUser.getIsactive() eq 1}">checked</c:if>></label>
-                                                    </td>
-                                                    <td>
-                                                    <c:choose>
-                                                        <c:when test="${viewUser.getUserid() == 1}">
-                                                            <input type="radio" id="regularUser" name="role" value="RegularUser" checked>
-                                                            <label for="regularUser">Regular User</label>
-                                                            <input type="radio" id="admin" name="role" value="Admin">
-                                                            <label for="admin">Admin</label>
-                                                        </c:when>
-                                                        <c:when test="${viewUser.getUserid() == 2}">
-                                                            <input type="radio" id="regularUser" name="role" value="RegularUser">
-                                                            <label for="regularUser">Regular User</label>
-                                                            <input type="radio" id="admin" name="role" value="Admin" checked>
-                                                            <label for="admin">Admin</label>
-                                                        </c:when>
-                                                    </c:choose>
+                                                    <input type="hidden" name="userId" value="${viewUser.getUserid()}"></input>
+                                                    <label for="first-name">First Name:
+                                                        <input type="text" id="first-name" class="form-control" name="firstName" value="${viewUser.getFirstname()}" required="true" onchange="validateFirstName()">
+                                                        <span id="first-name-span"></span>
+                                                    </label>
                                                 </td>
 
-                                                <!--                                                    <td>
-                                                                                                        <div class="radio-group">
-                                                                                                            <label for="roleInput">Role
-                                                                                                                <input type="hidden" id="dynamicHtml" value="<c:forEach items='${roleName}' var='r'>
-                                                                                                                   <input type='radio' name='role' value='${r.roleid}' onChange='role()'>${r.roleName}</c:forEach>">  
-                                                                                                                <input type="radio" id="admin" name="isadmin" value="admin">Admin&nbsp; &nbsp; &nbsp;
-                                                                                                                <input type="radio" id="patient" name="isadmin" value="patient">Patient</label>
-                                                                                                        </div>
-                                                                                                    </td>-->
-                                                </tr>
-                                            </thead><br>
-                                            <div class="button-group">
-                                                <!--<button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>-->
-                                                <a href="/ausers"><input type="button" value="Cancel"  class ="cancelBtn">
-                                                    <input type="submit" name="submit" value="  Save  " class= "saveBtn" id="savebutton">
-                                                    <input type="hidden" name="action" value="update"></a>
-                                            </div>
+                                                <td><label for="last-name">Last Name:
+                                                        <input type="text" id="last-name" class="form-control" name="lastName" required="true" value="${viewUser.getLastname()}" onchange="validateLastName()">
+                                                        <span id="last-name-span"></span> 
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label>Email address:
+                                                        <input type="text" id="email" class="form-control" name="email" required="true" onchange="validateEmail()" value="${viewUser.getEmailAddress()}">
+                                                        <span id="email-span"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label>Phone number:
+                                                        <input type="text" id="phone" class="form-control" name="phone" required="true" onchange="validatePhone()" value="${viewUser.getPhoneNumber()}">
+                                                        <span id="phone-span"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <c:if test="${viewUser.getIsactive() eq 1}">
+                                                        Status <select name="isactive" id="isactive">                                                                     
+                                                            <option value="1" selected >Active</option> 
+                                                            <option value="2">Deactivate</option>                                              
+                                                        </select>
+                                                    </c:if>
+                                                    <c:if test="${viewUser.getIsactive() ne 1}">
+                                                        Status <select name="isactive" id="isactive">                                                                     
+                                                            <option value="1">Active</option> 
+                                                            <option value="2" selected>Deactivate</option>                                              
+                                                        </select>
+                                                    </c:if>
+                                                </td>
+                                        <br>
+                                        <td>
+                                            <c:choose>
+
+                                                <c:when test="${viewUser.getRoleid().getRoleid() == 1}">
+                                                    Role: <select name="role">                                                                     
+                                                        <option value="1" selected >User</option> 
+                                                        <option value="2">Admin</option>                                              
+                                                    </select>
+                                                </c:when>
+                                                <c:when test="${viewUser.getRoleid().getRoleid() == 2}">
+                                                    Role: <select name="role">                                                                     
+                                                        <option value="1">User</option> 
+                                                        <option value="2" selected>Admin</option>                                              
+                                                    </select>
+                                                </c:when>
+                                            </c:choose>
+                                        </td>
+                                        </tr>
+                                        </thead><br>
+                                        <div class="button-group">
+                                            <!--<button type="button" class="btn btn-success" onclick="saveUsers()">Save</button>-->
+                                            <input type="button" value="Cancel" class="cancelBtn" onclick="window.location.href = '/ausers?cancel=true'">
+                                            <input type="submit" name="submit" value="Save" class= "saveBtn" id="submitbutton">
+                                            <input type="hidden" name="action" value="update">
+                                        </div>
                                     </c:if>
                                 </form>
                                 <c:if test="${message ne 'Update successful!'}">
                                     <p id="ausersMessage" style="color: #ff3333; font-size: 15px;">${message}</p>
                                 </c:if>
                                 <c:if test="${message eq 'Update successful!'}">
-                                    <p id="auersMessage" style="color:blue; font-size: 15px;">${message}</p>
+                                    <p id="ausersMessage" style="color:blue; font-size: 15px;">${message}</p>
                                 </c:if>
                             </div>
                         </div>
-                        <script>
-                            $(document).ready(function () {
-                            <% if (request.getAttribute("updatedInfo") != null && (boolean) request.getAttribute("updatedInfo")) { %>
-                                // Call the showMessage function to display the pop-up message
-                                showMessage("Your information successfully updated.");
-                            <% request.removeAttribute("updatedInfo"); %> // Remove the flag from the session
-                            <% }%>
-                            });
-                        </script>
-                        <form action="add" method="post">
-                            <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true">
+               
+
+                        <form action="ausers" method="post" >
+                            <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true" >
+
                                 <div class="modal-dialog">
-                                    <div class="modal-content">
+                                    <div class="modal-content"> 
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="addNewUsersModalLabel">Add New User</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <label class="form-label" for="first-name">First Name</label>
-                                            <input  type="text" id="first-name" class="form-control form-control-lg" name="first name" required="true" value="${firstname}" onchange="validateFirstName()" />
-                                            <span id="first-name-span"></span>
-                                            <label class="form-label" for="last-name">Last Name</label>
-                                            <input type="text" id="last-name" class="form-control form-control-lg" name="last name" required="true" value="${lastname}" onchange="validateLastName()"/>
-                                            <span id="last-name-span"></span>
-                                            <label class="form-label">Email</label>
-                                            <input id="email" type="text" class="form-control form-control-lg" name="email"required="true" value="${email}" onchange="validateEmail()"/>
-                                            <span id="email-span"></span>
-                                            <label class="form-label" for="phone">Phone Number</label>
-                                            <input type="text" id="phone" name="phone" class="form-control form-control-lg" required="true" value="${phone}" onchange="validatePhone()"/>
-                                            <span id="phone-span"></span>
-                                            <label class="form-label" >Password</label>
-                                            <input type="text" id="password" name="password" class="form-control form-control-lg" required="true" onchange="validatePassword()" />
-                                            <span id="password-span"></span>
+                                            <label class="form-label" for="first-name">First Name
+                                                <input type="text" id="first-name" class="form-control form-control-lg" name="firstName" required="true" value="${firstName}" onchange="validateFirstName()" />
+                                                <span id="first-name-span"></span>
+                                            </label>
+                                            <label class="form-label" for="last-name">Last Name
+                                                <input type="text" id="last-name" class="form-control form-control-lg" name="lastName" required="true" value="${lastName}" onchange="validateLastName()"/>
+                                                <span id="last-name-span"></span>
+                                            </label>
+                                            <label class="form-label">Email
+                                                <input id="email" type="text" class="form-control form-control-lg" name="email"required="true" value="${email}" onchange="validateEmail()"/>
+                                                <span id="email-span"></span>
+                                            </label>
+                                            <label class="form-label" for="phone">Phone Number
+                                                <input type="text" id="phone" name="phone" class="form-control form-control-lg" required="true" value="${phone}" onchange="validatePhone()"/>
+                                                <span id="phone-span"></span>
+                                            </label>
+                                            <label class="form-label" >Password
+                                                <input type="password" id="password" name="password" class="form-control form-control-lg" required="true" onchange="validatePassword()" />
+                                                <span id="password-span"></span>
+                                            </label>
+
+                                            Role: <select name="role">                                                                     
+                                                <option default value="1" >User</option> 
+                                                <option value="2">Admin</option>                                              
+                                            </select>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <input type="submit" id="submitbutton" class="btn btn-success" name="submit" value="Save">
+                                            <input type="submit" id="savebutton" class="btn btn-success" name="submit" value="Save">
+                                            <input type="hidden" name="action" value="add">
                                             <!--                                            <button type="submit" class="btn btn-success" onclick="saveUsers()">Save</button>-->
                                         </div>
-                                        <p class="mb-1 pb-lg-2 text-center" style="color: #ff3333; margin-top: 10px;">${message} <br></p>
-                                        <p class="mb-1 pb-lg-2 text-center" style="color: #0D6EFD;"> ${validation} <br></p>
+                                        <c:if test="${message ne 'Account created!'}">
+                                            <p id="addmsg" style="color: #ff3333; margin-top: 10px;">${addmsg}</p>
+                                        </c:if>                      
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <c:if test="${not empty updatedFirstname}">
-                    <script>
-                        var emailField = document.getElementById("firstnameInput");
-                        emailField.value = "${updatedFirstname}";
-                    </script>
-                </c:if>
-                <c:if test="${not empty updatedLastname}">
-                    <script>
-                        var emailField = document.getElementById("lastnameInput");
-                        emailField.value = "${updatedLastname}";
-                    </script>
-                </c:if>
-                <c:if test="${not empty updatedEmail}">
-                    <script>
-                        var emailField = document.getElementById("emailInput");
-                        emailField.value = "${updatedEmail}";
-                    </script>
-                </c:if>
-                <c:if test="${not empty updatedPhone}">
-                    <script>
-                        var phoneField = document.getElementById("phoneInput");
-                        phoneField.value = "${updatedPhone}";
-                    </script>
-                </c:if>
-                <c:if test="${not empty updateIsactive}">
-                    <script>
-                        var emailField = document.getElementById("isactiveInput");
-                        emailField.value = "${updateIsactive}";
-                    </script>
-                </c:if>
-                <c:if test="${not empty updateRole}">
-                    <script>
-                        var emailField = document.getElementById("roleInput");
-                        emailField.value = "${updateRole}";
-                    </script>
-                </c:if>
-
-
 
                 <!--start footer-->
                 <div class="my-5"></div>
@@ -1191,32 +1174,42 @@
 
         <script src="js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!--
+                <script>
+                                                        function saveData() {
+                                                            var button = document.getElementById("savebutton");
+                                                        }
+                                                        function saveUsers() {
+                                                            alert("User saved successfully!");
+                                                            $('#newUsersModal').modal('hide'); // Close the modal
+                                                        }
+                </script>-->
+
 
         <script>
-                        function saveData() {
-                            var button = document.getElementById("savebutton");
-                        }
-                        function saveUsers() {
-                            alert("User saved successfully!");
-                            $('#newUsersModal').modal('hide'); // Close the modal
-                        }
+                                                    $(document).ready(function () {
+                                                        $(".xp-menubar").on('click', function () {
+                                                            $('#sidebar').toggleClass('active');
+                                                            $('#content').toggleClass('active');
+                                                        });
+
+                                                        $(".xp-menubar, .body-overlay").on('click', function () {
+                                                            $('#sidebar, .body-overlay').toggleClass('show-nav');
+                                                        });
+                                                    });
         </script>
-
-
+     
         <script>
             $(document).ready(function () {
-                $(".xp-menubar").on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                    $('#content').toggleClass('active');
-                });
-
-                $(".xp-menubar, .body-overlay").on('click', function () {
-                    $('#sidebar, .body-overlay').toggleClass('show-nav');
-                });
+            <% if (request.getAttribute("addedInfo") != null && (boolean) request.getAttribute("addedInfo")) { %>
+                // Call the showMessage function to display the pop-up message
+                showMessage("${addmsg}");
+            <% request.removeAttribute("addedInfo"); %>
+            <% }%>
             });
         </script>
-
-
+        <script src="../js/ausers.js"></script>
+        <script src="../js/showMessage.js"></script>
 
 
     </body>
