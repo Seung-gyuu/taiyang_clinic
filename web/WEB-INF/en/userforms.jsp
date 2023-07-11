@@ -259,7 +259,7 @@
 
 
 
-        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!--<script src="../js/bootstrap.bundle.min.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
         <script src="../js/vform.js"></script><!-- Vform has the exact same code, no need for new javascript file :P-->
         <footer>

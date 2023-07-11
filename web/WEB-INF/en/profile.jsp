@@ -120,7 +120,7 @@
             <% }%>
                                         });
         </script>
- <script src="../js/profileJS.js"></script>
+ <!--<script src="../js/profileJS.js"></script>-->
     </body>
 
     <footer>
