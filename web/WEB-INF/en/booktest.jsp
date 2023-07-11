@@ -20,7 +20,7 @@
         <c:import url="../components/headers.jsp" />
 
         <style>
-          :focus {
+            :focus {
                 outline: 0;
                 border-color: #2260ff;
                 box-shadow: 0 0 0 4px #b5c9fc;
@@ -217,10 +217,12 @@
                         <span class="book_close">&times;</span>
                     </div>
                 </div>
-                <input type="hidden" id="hiddenmessage" value="${message}">    
+                <input type="hidden" id="hiddenmessage" value="${message}"> 
+
             </div>
             <!--</div>-->
         </div>
+
         <script src="../js/bookingpage.js"></script>
 
     </body>

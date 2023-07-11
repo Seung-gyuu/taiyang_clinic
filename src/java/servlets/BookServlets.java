@@ -101,24 +101,23 @@ public class BookServlets extends HttpServlet {
             }
 
         }
-        String message = request.getParameter("message");
-        request.setAttribute("message", message);
         
-        
+        request.setAttribute("message", session.getAttribute("message"));
+        session.removeAttribute("message");
+
         String language = utilities.GetLanguageCookie.getLanguageCookie(request);
-    if (language == null) {
-        response.sendRedirect("/welcome");
-    } else {
-        session = request.getSession(true); // Create a new session
-        session.setAttribute("language", language);
-        if (language.equals("kr")) {
-            getServletContext().getRequestDispatcher("/WEB-INF/kr/booktest.jsp").forward(request, response);
-        } else if (language.equals("en")) {
-            getServletContext().getRequestDispatcher("/WEB-INF/en/booktest.jsp").forward(request, response);
+        if (language == null) {
+            response.sendRedirect("/welcome");
+        } else {
+            session = request.getSession(true); // Create a new session
+            session.setAttribute("language", language);
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/booktest.jsp").forward(request, response);
+            } else if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/booktest.jsp").forward(request, response);
+            }
         }
-    }
-        
-        
+
     }
 
     @Override
@@ -145,19 +144,29 @@ public class BookServlets extends HttpServlet {
                 a.setTimeid(time);
                 a.setStatus("Confirmed");
                 a.setIsupcoming(1);
-                String templatePath="";
-                if(language.equals("en")){
-                    templatePath= getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
+                String templatePath = "";
+                if (language.equals("en")) {
+                    templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
                 }
-                if(language.equals("kr")){
-                    templatePath= getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmationKR.jsp");
+                if (language.equals("kr")) {
+                    templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmationKR.jsp");
                 }
-                
-                String message = apts.insert(a, templatePath,language);
-                response.sendRedirect("/book?message=" + message);
+
+                String message = apts.insert(a, templatePath, language);
+                session.setAttribute("message", message);
+                response.sendRedirect("/book");
 
             } catch (Exception ex) {
                 Logger.getLogger(BookServlets.class.getName()).log(Level.SEVERE, null, ex);
+
+                if (language.equals("kr")) {
+                    request.setAttribute("message", "Error");
+                    getServletContext().getRequestDispatcher("/WEB-INF/kr/booktest.jsp").forward(request, response);
+                } else if (language.equals("en")) {
+                    request.setAttribute("message", "Error");
+                    getServletContext().getRequestDispatcher("/WEB-INF/en/booktest.jsp").forward(request, response);
+                }
+
             }
         }
     }
