@@ -27,7 +27,7 @@
         <!--Profile Start-->
         <div class="gloabal_container">
             <div class="gloabal_top_section profileHeader">
-                <h1>MY PROFILE KOREAN</h1>       
+                <h1>내 정보</h1>       
             </div>
             <div class="account_container">           
                 <div class="account_side">
@@ -39,9 +39,9 @@
                         <div class="user_info">
                             <div class="user_info_name">
                                 <i class="fa-solid fa-leaf"></i>
-                                <h4>Hello, ${loggedUser.getFirstname()} ${loggedUser.getLastname()}</h4> 
+                                <h4>안녕하세요, ${loggedUser.getFirstname()} ${loggedUser.getLastname()}</h4> 
                             </div>
-                            <p class="user_info_notice">* You can update your personal information.</p>
+                            <p class="user_info_notice">* 당신은 개인 정보를 변경하실 수 있습니다.</p>
                             <form action="profile" method="post">
                                 <label for="emailInput">
                                     <p>Email</p>

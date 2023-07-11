@@ -29,7 +29,7 @@
         <!--History Start-->
         <div class="gloabal_container">
             <div class="gloabal_top_section">
-                <h1>MY ACCOUNT  KOREAN</h1>
+                <h1>내 예약 목록</h1>
                 <!--<%out.println(request.getRequestURL());%>-->
                 <!--${pageContext.request.requestURI}-->
             </div>
@@ -41,21 +41,21 @@
                 <div class="account_main">
                     <div class="history_wrapper">
                         <div class="history_title history_upcoming">
-                            <h2>Upcoming Appointments KOREAN</h2>
+                            <h2>예정된 예약 목록</h2>
 
                             <table class="history_upcoming_table">
                                 <thead>
                                     <tr>
-                                        <th class="upcoming_head">Date</th>
-                                        <th class="upcoming_head">Time</th>
-                                        <th class="upcoming_head">Treatment</th>
+                                        <th class="upcoming_head">날짜</th>
+                                        <th class="upcoming_head">시간</th>
+                                        <th class="upcoming_head">치료 내용</th>
                                         <th class="upcoming_head last_cell"></th>
                                     </tr>
                                 </thead>               
                                 <tbody>
                                     <c:if test="${upcoming_message eq 'empty'}">
                                         <tr>
-                                            <td colspan="4" style="text-align: center">There's no upcoming appointment.</td>
+                                            <td colspan="4" style="text-align: center">예정된 예약이 없습니다.</td>
                                         </tr>
                                     </c:if>
                                     <c:if test="${upcoming_message ne 'empty'}">   
@@ -76,7 +76,7 @@
                                                 <!--appointment ID--> 
                                                 <td class="upcoming_data appointmentid" hidden>${upcoming.appointmentid}</td>
                                                 <td class="upcoming_data last_cell cell_buttons">
-                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"> Cancel Appointment</button>
+                                                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal">예약 취소하기</button>
                                                 </td> 
 
                                             </tr>     
@@ -89,20 +89,20 @@
 
 
                         <div class="history_title history_old">
-                            <h2>Appointments History</h2>
+                            <h2>지난 예약 목록</h2>
                             <table class="history_old_table">
                                 <thead>
                                     <tr>
-                                        <th class="old_head">Date</th>
-                                        <th class="old_head">Time</th>
-                                        <th class="old_head last_cell">Treatment</th>
+                                        <th class="old_head">날짜</th>
+                                        <th class="old_head">시간</th>
+                                        <th class="old_head last_cell">치료 내용</th>
                                         <!--<th class="old_head last_cell">Report</th>-->
                                     </tr>
                                 </thead>   
                                 <tbody>
                                     <c:if test="${past_message eq 'empty'}">
                                         <tr>
-                                            <td colspan="3" style="text-align: center">There's no previous appointment.</td>
+                                            <td colspan="3" style="text-align: center">지난 예약 내역이 없습니다.</td>
                                         </tr>
                                     </c:if>
                                     <c:if test="${past_message ne 'empty'}">   

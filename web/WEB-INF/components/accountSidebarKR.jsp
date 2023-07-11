@@ -14,12 +14,7 @@
         <link rel="stylesheet" type="text/css" href="../css/accountSidebar.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
                   <style>
-            /*.account_side {
-  flex: 1;
-  padding: 20px;
-}*/
-
-            .account_side_wrap {
+           .account_side_wrap {
                 /*border: 1px solid lightgray;*/
                 width: 250px;
                 /*background: #f7f7f7;*/
@@ -104,21 +99,21 @@
                     <li class="side_list side_first ${pageContext.request.requestURI eq '/WEB-INF/kr/history.jsp'  ? 'active' : ''}">
 
                         <i class="fa-regular fa-calendar-check"></i>
-                        My Appointments KOREAN
+                        내 예약 목록
                         <!--${pageContext.request.requestURI}-->
                         <i class="fa-light fa-chevrons-right"></i>
                     </li>
                 </a>
                 <a href="/kr/profile">
-                    <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/kr/profile.jsp' ? 'active' : ''}">
+                    <li class="side_list ${pageContext.request.requestURI eq '/WEB-INF/kr/profile.jsp' ? 'active' : ''}">
                         <i class="fa-regular fa-user"></i>
-                        My Profile  KOREAN
+                        내 정보
                     </li>
                 </a>
                 <a href="/kr/userforms">
                     <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/kr/userforms.jsp' ? 'active' : ''}">
                         <i class="fa-regular 	far fa-file-alt"></i>
-                        View Forms KOREAN
+                        서류 보기
                     </li>
                 </a>    
 

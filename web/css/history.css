@@ -52,9 +52,13 @@
             }
 
             .cell_buttons {
-                display: flex;
+/*                display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: center;*/
+                width: 22%;
+                font-size: 14px;
+                 /*margin: 0 auto;*/
+                 text-align: center;
             }
 
             .cell_buttons button {
@@ -96,7 +100,8 @@
             }
 
             .last_cell {
-                width: 200px;
+                /*width: 200px;*/
+/*                width: 15%;*/
             }
 
             @media screen and (max-width: 1200px) {

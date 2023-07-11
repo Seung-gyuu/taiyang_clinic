@@ -14,12 +14,7 @@
         <!--<link rel="stylesheet" type="text/css" href="../css/accountSidebar.css">-->
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
           <style>
-            /*.account_side {
-  flex: 1;
-  padding: 20px;
-}*/
-
-            .account_side_wrap {
+          .account_side_wrap {
                 /*border: 1px solid lightgray;*/
                 width: 250px;
                 /*background: #f7f7f7;*/
@@ -110,7 +105,7 @@
                     </li>
                 </a>
                 <a href="/en/profile">
-                    <li class="side_list side_last ${pageContext.request.requestURI eq '/WEB-INF/en/profile.jsp' ? 'active' : ''}">
+                    <li class="side_list  ${pageContext.request.requestURI eq '/WEB-INF/en/profile.jsp' ? 'active' : ''}">
                         <i class="fa-regular fa-user"></i>
                         My Profile
                     </li>

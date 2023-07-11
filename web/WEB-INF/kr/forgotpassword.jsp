@@ -55,7 +55,8 @@
                                     <div class="card-body p-5">
 
                                         <p class="card-text py-2" style="font-size: 1.2rem;">
-                                            Enter your email address to verify your email. KOREAN SIDE 
+<!--                                            Enter your email address to verify your email. KOREAN SIDE -->
+                                                이메일 주소를 입력하십시오.
                                         </p>
                                         <div class ="form-outline">
                                             <form method="post" action="forgotpassword">

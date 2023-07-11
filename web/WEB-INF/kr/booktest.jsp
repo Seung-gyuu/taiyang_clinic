@@ -20,74 +20,74 @@
         <c:import url="../components/headersKR.jsp" />
 
         <style>
-:focus {
-  outline: 0;
-  border-color: #2260ff;
-  box-shadow: 0 0 0 4px #b5c9fc;
-}
+          :focus {
+                outline: 0;
+                border-color: #2260ff;
+                box-shadow: 0 0 0 4px #b5c9fc;
+            }
 
-.mydict div {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-  justify-content: center;
-}
+            .mydict div {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 0.5rem;
+                justify-content: center;
+            }
 
-.mydict input[type="radio"] {
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
+            .mydict input[type="radio"] {
+                clip: rect(0 0 0 0);
+                clip-path: inset(100%);
+                height: 1px;
+                overflow: hidden;
+                position: absolute;
+                white-space: nowrap;
+                width: 1px;
+            }
 
-.mydict input[type="radio"]:checked + span {
-  box-shadow: 0 0 0 0.0625em #0043ed;
-  background-color: #dee7ff;
-  z-index: 1;
-  color: #0043ed;
-}
+            .mydict input[type="radio"]:checked + span {
+                box-shadow: 0 0 0 0.0625em #0043ed;
+                background-color: #dee7ff;
+                z-index: 1;
+                color: #0043ed;
+            }
 
-label span {
-  display: block;
-  cursor: pointer;
-  background-color: #fff;
-  padding: 0.375em .75em;
-  position: relative;
-  margin-left: .0625em;
-  box-shadow: 0 0 0 0.0625em #b5bfd9;
-  letter-spacing: .05em;
-  color: #3e4963;
-  text-align: center;
-  transition: background-color .5s ease;
-}
+            label span {
+                display: block;
+                cursor: pointer;
+                background-color: #fff;
+                padding: 0.375em .75em;
+                position: relative;
+                margin-left: .0625em;
+                box-shadow: 0 0 0 0.0625em #b5bfd9;
+                letter-spacing: .05em;
+                color: #3e4963;
+                text-align: center;
+                transition: background-color .5s ease;
+            }
 
-label:first-child span {
-  border-radius: .375em 0 0 .375em;
-}
+            label:first-child span {
+                border-radius: .375em 0 0 .375em;
+            }
 
-label:last-child span {
-  border-radius: 0 .375em .375em 0;
-}
+            label:last-child span {
+                border-radius: 0 .375em .375em 0;
+            }
 
-.description-box {
-  width: 100%;
-  height: 200px; /* Adjust the height as needed */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  vertical-align: top;
-  white-space: normal;
-}
+            .description-box {
+                width: 100%;
+                height: 200px; /* Adjust the height as needed */
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                vertical-align: top;
+                white-space: normal;
+            }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
 
 
         </style>
@@ -113,7 +113,7 @@ label {
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
                 </div>
-                <h1>BOOK AN APPOINTMENT</h1>
+                <h1>예약 페이지</h1>
                 <div class="rightArrow">
                     <button onclick="goRight()">
                         <!--&rightarrow;-->
@@ -143,8 +143,12 @@ label {
                     <div class="days-content">
                         <c:forEach items="${unavailableDays}" var="day">
                             <div class="unavailableDay">
-                                <div class="table_header">${day.getDayname().substring(0,3)}
-                                    ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                <div class="table_header">
+                                    <span>
+                                        ${day.getDayname().substring(0,3)}       
+                                    </span>
+                                    <p>${day.getMonthName().substring(0,3)} ${day.getDaynumber()}</p>
+                                </div>
                                 <div class="unavailable_time_data">
                                 </div>
                             </div>
@@ -153,15 +157,23 @@ label {
                             <c:choose>
                                 <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} "> <!-- THIS DOESNT WORK FOR SOME REASON-->
                                     <div class="unavailableDay">
-                                        <div class="table_header">${day.getDayname().substring(0,3)}
-                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                        <div class="table_header">
+                                            <span>
+                                                ${day.getDayname().substring(0,3)}       
+                                            </span>
+                                            <p>${day.getMonthName().substring(0,3)} ${day.getDaynumber()}</p>
+                                        </div>
                                         <div class="unavailable_time_data"></div>
                                     </div>                
                                 </c:when>
                                 <c:otherwise>
                                     <div class="availableDay">
-                                        <div class="table_header">${day.getDayname().substring(0,3)}
-                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                        <div class="table_header">
+                                            <span>
+                                                ${day.getDayname().substring(0,3)}       
+                                            </span>
+                                            <p>${day.getMonthName().substring(0,3)} ${day.getDaynumber()}</p>
+                                        </div>
                                         <div class="table_time_data">
                                             <div class="table_data"></div>
                                             <c:forEach items="${day.getAvailabletimeList()}" var="time">
