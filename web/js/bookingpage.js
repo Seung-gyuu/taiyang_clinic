@@ -100,7 +100,7 @@ function confirm() {
                     window.location.href = '/en/login';
                 }
                 if (language === "kr") {
-                    localStorage.setItem('loginMessage', '약속을 예약하려면 로그인하십시오');
+                    localStorage.setItem('loginMessage', '예약하려면 로그인하십시오');
                     window.location.href = '/kr/login';
                 }
 
@@ -120,7 +120,7 @@ function showForm() {
         output = "Booking for:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " to " + clickedendTime;
     }
     if (language === "kr") {
-        output = "예약 대상:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " 에서 " + clickedendTime;
+        output = "예약 시간:  " + clickedDayName + ", " + clickedMonthName + " " + clickedDayNumber + " " + clickedstartTime + " 에서 " + clickedendTime + " 까지 ";
     }
 
     
@@ -158,7 +158,7 @@ function showForm() {
     }
     if (language === "kr") {
         output += "<div class='popupBtns'><input type='button' onclick='cancel()' value='취소' class='cancelBtn'>";
-    output += "<input type='submit' id='bookbutton' value='약속 예약' disabled='true' class='confirmBtn'></div>";
+    output += "<input type='submit' id='bookbutton' value='예약' disabled='true' class='confirmBtn'></div>";
     }
     
     output += "<input type='hidden' name='action' value='book' >";
@@ -198,9 +198,9 @@ function getTime(timeId) {
                             "<button onclick='confirm()' value='confirm' class='confirmBtn'>Confirm</button></div>";
                 }
                 if (language === "kr") {
-                    output = "<div class='popupText'> 예약하시겠습니까 " + dayName + ", " + monthName + " " + dayNumber + " "+ startTime + " 에서 " + endTime + " 까지 " + "?</div>";
+                    output = "<div class='popupText'> " + dayName + ", " + monthName + " " + dayNumber + " "+ startTime + " 부터 " + endTime + " 까지로 예약하시겠습니까" + "?</div>";
                     output += "<br>" + "<div class='popupBtns'><button onclick='cancel()' value='Cancel' class='cancelBtn'>취소</button>" +
-                            "<button onclick='confirm()' value='confirm' class='confirmBtn'>확인하다</button></div>";
+                            "<button onclick='confirm()' value='confirm' class='confirmBtn'>확인</button></div>";
                 }
 
 //                popupBox.innerHTML = output;
