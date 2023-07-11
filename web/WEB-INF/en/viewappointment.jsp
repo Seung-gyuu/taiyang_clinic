@@ -29,11 +29,12 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-        <link rel="stylesheet" href="../css/booktest.css">
+        <link rel="stylesheet" href="../css/viewappointmenttable.css">
 
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../css/availability.css">
-        <script src="js/availability.js"></script>
+        <script src="../js/availability.js"></script>
+        
 
         <!--google fonts -->
 
@@ -812,28 +813,13 @@
                                                                 <div class="table_data"></div>
                                                                 <c:forEach items="${day.getAvailabletimeList()}" var="time">
                                                                     <c:if test="${time.getIsAvailable()==2}">
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                                            <c:forEach items="${apptInfo}" var="apptInfo">
-                                                                                <c:if test="${apptInfo.timeid.timeid == time.timeid}">
-                                                                                <a style="color:gray; font-size: 12px;">Name: 
-                                                                                    <c:out value="${apptInfo.userid.getFirstname()}" />
-                                                                                    <c:out value="${apptInfo.userid.getLastname()}"  />
-                                                                                    <br>Service: 
-                                                                                    <c:out value="${apptInfo.serviceid.serviceName}"  />
-                                                                                    <br>
-                                                                                    <c:choose>
-                                                                                        <c:when test="${empty apptInfo.description}">
-                                                                                            No description
-                                                                                        </c:when>
-                                                                                        <c:otherwise>
-                                                                                            <c:out value="${apptInfo.description}" />
-                                                                                        </c:otherwise>
-                                                                                    </c:choose></a><br>
-                                                                                <td>
-                                                                                    <a href="/vform?userId=${apptInfo.userid.getUserid()}" style="font-size: 12px;">View Forms</a><br>
-                                                                                </td>
-                                                                            </c:if>
-                                                                        </c:forEach>
+                                                                        <c:if test="${time.getIsBooked()==2}">
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getAppointmentDetails(this.getAttribute('data-value'))">Booked</div>
+                                                                        </c:if>
+                                                                        <c:if test="${time.getIsBooked()==1}">
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable">Unavailable</div>
+                                                                        </c:if>
+                                                                            
                                                                     </c:if>    
                                                                     <c:if test="${time.getIsAvailable()==1}">
                                                                         <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
@@ -941,7 +927,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-
+<script src="../js/viewappointment.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {

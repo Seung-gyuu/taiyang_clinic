@@ -45,11 +45,6 @@ function resetCalendar() {
 }
 
 
-function showMessage(){
-                    
-                    }
-
-
 function goLeft() {
     if (week === 0)
         return;

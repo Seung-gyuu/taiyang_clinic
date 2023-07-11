@@ -51,25 +51,25 @@ public class ViewAppointment extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load days");
         }
-        // retrieve upcoming appointments
-        int appointmentId = 0;
-        AppointmentService as = new AppointmentService();
-        if (request.getParameter("appointmentId") != null) {
-            appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
-            try {
-                Appointment apt = as.get(appointmentId);
-                request.setAttribute("viewAppt", apt);
-            } catch (Exception e) {
-                request.setAttribute("message", "Unable to load upcoming appointments");
-            }
-        }
-        List<Appointment> apptInfo;
-        try {
-            apptInfo = as.getUpcoming();
-            session.setAttribute("apptInfo", apptInfo);
-        } catch (Exception e) {
-            request.setAttribute("message", "Unable to load upcoming appointments");
-        }
+//        // retrieve upcoming appointments
+//        int appointmentId = 0;
+//        AppointmentService as = new AppointmentService();
+//        if (request.getParameter("appointmentId") != null) {
+//            appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
+//            try {
+//                Appointment apt = as.get(appointmentId);
+//                request.setAttribute("viewAppt", apt);
+//            } catch (Exception e) {
+//                request.setAttribute("message", "Unable to load upcoming appointments");
+//            }
+//        }
+//        List<Appointment> apptInfo;
+//        try {
+//            apptInfo = as.getUpcoming();
+//            session.setAttribute("apptInfo", apptInfo);
+//        } catch (Exception e) {
+//            request.setAttribute("message", "Unable to load upcoming appointments");
+//        }
         getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
     }
 
