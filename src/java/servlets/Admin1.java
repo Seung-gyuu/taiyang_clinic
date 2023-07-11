@@ -15,13 +15,13 @@ import models.Service;
 import models.User;
 import services.AppointmentService;
 import services.ServiceService;
+import services.UserService;
 
 /**
  *
  * @author rladm
  */
 public class Admin1 extends HttpServlet {
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,17 +33,15 @@ public class Admin1 extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
         AppointmentService as = new AppointmentService();
-
+        UserService us = new UserService();
 
         try {
             List<Appointment> today_appts = as.getTodayAppt();
-
             request.setAttribute("today_appts", today_appts);
 
             if (today_appts.isEmpty()) {
                 request.setAttribute("message", "empty");
             }
-
 
         } catch (Exception ex) {
             Logger.getLogger(HistoryServlets.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,11 +51,9 @@ public class Admin1 extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/en/admin.jsp").forward(request, response);
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
 
 }

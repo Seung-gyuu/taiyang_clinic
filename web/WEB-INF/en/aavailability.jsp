@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <title>Tai Yang Clinic</title>
+        <link rel="stylesheet" type="text/css" href="../css/availability.css">
         <link rel="apple-touch-icon" sizes="57x57" href="src/img/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="src/img/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="src/img/favicon/apple-icon-72x72.png">
@@ -41,18 +42,16 @@
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
         <%
-            LocalDate startDate = LocalDate.now();
-            LocalDate endDate = startDate.plusDays(6);
-
-            String formattedStartDate = startDate.getMonth() + " " + startDate.getDayOfMonth() + ", " + startDate.getYear();
-            String formattedEndDate = endDate.getMonth() + " " + endDate.getDayOfMonth() + ", " + endDate.getYear();
+            LocalDate today = LocalDate.now();
+            String formattedDate = today.getMonth() + " " + today.getDayOfMonth() + ", " + today.getYear();
         %>
         <script>
-            var formattedDate = '<%= formattedStartDate%>' + " - " + '<%= formattedEndDate%>';
+            var formattedDate = '<%= formattedDate%>';
+            // Use the formattedDate variable in your JavaScript code
         </script>
 
         <style>
-  
+
             table.table tr th,
             table.table tr td {
                 border-color: #A8AAAF;
@@ -506,7 +505,7 @@
                 overflow: auto;
                 border-radius: 3px;
                 box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-               
+
             }
 
             .table-title{
@@ -553,13 +552,13 @@
                 font-weight: 400;
             }
 
-/*            table.table tr th:first-child{
-                width:200px;
-            }
-
-            table.table tr th:last-child{
-                width:200px;
-            }*/
+            /*            table.table tr th:first-child{
+                            width:200px;
+                        }
+            
+                        table.table tr th:last-child{
+                            width:200px;
+                        }*/
 
             table.table-stripped tbody tr:nth-of-type(odd){
                 background-color:#fcfcfc;
@@ -678,7 +677,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                      <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -764,83 +763,89 @@
                                         <div class="col-sm-6 p-0 d-flex justify-content-start align-items-center">
                                             <h2 class="ml-2">Schedule Availability</h2>
                                         </div>
-                                        <!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
-                                                                                    <div class="d-flex">
-                                                                                        <a class="btn btn-primary mr-2" id="prevBtn">
-                                                                                            <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
-                                                                                        </a>
-                                        
-                                                                                        <a class="btn btn-primary" id="nextBtn">
-                                                                                            <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
-                                                                                        </a>
-                                                                                    </div>
-                                        
-                                                                                </div>-->
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
                                     </a>
-                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">
+                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
                                         <script>document.write(formattedDate);</script>
                                     </h4>
                                     <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
+                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
                                     </a>
                                 </div>
 
-
-                                <table class="table table-striped table-hover text-center">
-                                    <thead>
-                                        <tr>
-                                            <c:forEach begin="0" end="6" varStatus="loop">
-                                                <th style="font-size: 13px;">${booked[loop.index].getDayname()} <br>
-                                                    ${booked[loop.index].getMonthName()} ${booked[loop.index].getDaynumber()}</th>
-                                                </c:forEach>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <c:forEach begin="0" end="6" varStatus="loop">
-                                                <td>
-                                                    <table>
-                                                        <tbody>
-                                                            <c:forEach items="${booked[loop.index].getAvailabletimeList()}" var="time">
-                                                                <c:if test="${time.getIsAvailable()==2}">
-                                                                    <tr>
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
-<!--                                                                        padding: 8px; -->
-                                                                        <td>
-                                                                             <button class="btn btn-lg" style="font-size: 25px; background: none; border: none;">
-                                                                                 <a style="color:#0B486B; font-size: 13px;">Booked</a><br></button>
-
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:if>
-                                                                <c:if test="${time.getIsAvailable()==1}">
-                                                                    <tr>
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
+                                <div class="fullCalendar">
+                                    <div class="days">
+                                        <div class="days-content">
+                                            <c:forEach items="${unbooked}" var="day">
+                                                <div class="unavailableDay">
+                                                    <div class="table_header">${day.getDayname()}<br>
+                                                        ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                    <div class="unavailable_time_data">
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                            <c:forEach items="${booked}" var="day">
+                                                <c:choose>
+                                                    <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} "> <!-- THIS DOESNT WORK FOR SOME REASON-->
+                                                        <div class="unavailableDay">
+                                                            <div class="table_header">${day.getDayname()}
+                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                            <div class="unavailable_time_data"></div>
+                                                        </div>                
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="availableDay">
+                                                            <div class="table_header">${day.getDayname()}<br>
+                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                            <div class="table_time_data">
+                                                                <div class="table_data"></div>
+                                                                <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                                                    <c:if test="${time.getIsBooked()==2}">
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                                        <div class="table_data data_unavailable">Booked</div>
+                                                                    </c:if>
+                                                                    <c:if test="${time.getIsBooked()==1}">
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
                                                                         <td>
                                                                             <a style="color:gray; font-size: 12px;">Unbooked</a><br>
-                                                                            <button class="btn btn-unavailable" style = "background-color:#5492d9; font-size: 10px; color: white;"onclick="changeStatus(this)">Available</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </c:forEach>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                                            <c:choose>
+                                                                                <c:when test="${time.getIsAvailable() == 1}">
+                                                                                    <button class="btn btn-available" style="background-color:#5492d9; font-size: 10px; color: white;"
+                                                                                            onclick="changeStatus(this, ${time.getTimeid()})">Available</button><br>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 10px; color: white;"
+                                                                                            onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button><br>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
 
+                                                                        </td>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </div>     
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                            <c:forEach items="${passed}" var="passed">
+                                                <div class="unavailableDay">
+                                                    <div class="table_header">Unbooked</div>
+                                                    <div class="unavailable_time_data">
+                                                        <span>${time.getTruncatedStartTime()}</span>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>    
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-       
 
 
                 <!--start footer-->
@@ -858,45 +863,35 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-                                                                                function changeStatus(button) {
-                                                                                    if (button.innerHTML === "Available") {
-                                                                                        button.innerHTML = "Unavailable";
-                                                                                        button.style.backgroundColor = "#d75353";
-                                                                                        button.classList.remove("btn-available");
-                                                                                        button.classList.add("btn-unavailable");
-                                                                                        updateAvailability(button, "unavailable");
-                                                                                    } else {
-                                                                                        button.innerHTML = "Available";
-                                                                                        button.style.backgroundColor = "#4280c6";
-                                                                                        button.classList.remove("btn-unavailable");
-                                                                                        button.classList.add("btn-available");
-                                                                                        updateAvailability(button, "available");
-                                                                                    }
-                                                                                }
-//            
-//            
-//            document.getElementById("prevBtn").addEventListener("click", function () {
-//                navigateWeeks(-1);
-//            });
-//
-//            document.getElementById("nextBtn").addEventListener("click", function () {
-//                navigateWeeks(1);
-//            });
+                                                                                                function changeStatus(button, timeId) {
+                                                                                                    var currentStatus = button.innerHTML.toLowerCase();
+                                                                                                    var newStatus = currentStatus === "available" ? "unavailable" : "available";
+                                                                                                    var data = "action=" + newStatus + "&timeid=" + timeId + "&status=" + currentStatus;
+                                                                                                    var blue = "#5492d9";
+                                                                                                    var red = "#d75353";
 
-//                                                                                function changeStatus(button) {
-//                                                                                    if (button.innerHTML === "Available") {
-//                                                                                        button.innerHTML = "Unavailable";
-//                                                                                        button.style.backgroundColor = "#d75353";
-//                                                                                        button.classList.remove("btn-available");
-//                                                                                        button.classList.add("btn-unavailable");
-//                                                                                    } else {
-//                                                                                        button.innerHTML = "Unavailable";
-////                                                                                       button.style.backgroundColor = "#4280c6";
-//                                                                                        button.classList.remove("btn-unavailable");
-//                                                                                        button.classList.add("btn-available");
-//                                                                                    }
-//                                                                                }
+                                                                                                    var xhr = new XMLHttpRequest();
+                                                                                                    xhr.onreadystatechange = function () {
+                                                                                                        if (xhr.readyState === 4 && xhr.status === 200) {
+                                                                                                            var message = xhr.responseText.trim();
+                                                                                                            if (message === "Time slot is now unavailable") {
+                                                                                                                button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                                                                                                                button.style.backgroundColor = newStatus === "available" ? blue : red;
+                                                                                                                button.classList.toggle("btn-unavailable");
+                                                                                                                button.classList.toggle("btn-available");
+                                                                                                            } else if (message === "Time slot is now available") {
+                                                                                                                button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                                                                                                                button.style.backgroundColor = newStatus === "unavailable" ? red : blue;
+                                                                                                                button.classList.toggle("btn-unavailable");
+                                                                                                                button.classList.toggle("btn-available");
+                                                                                                            }
+                                                                                                        }
+                                                                                                    };
 
+                                                                                                    xhr.open("POST", "aavailability", true);
+                                                                                                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                                                                                    xhr.send(data);
+                                                                                                }
 
         </script>
 
@@ -917,7 +912,8 @@
                 $(".xp-menubar,.body-overlay").on('click', function () {
                     $('#sidebar,.body-overlay').toggleClass('show-nav');
                 });
-            });
+            }
+            );
         </script>
     </body>
 </html>

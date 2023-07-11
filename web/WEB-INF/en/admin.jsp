@@ -657,7 +657,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -808,11 +808,8 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </td>
-
-                                                    <!--form-->
-                                                    <!--need to change after view form feature is finished-->
                                                     <td>
-                                                        <a href="/vform?userId=${today_appt.getUserid()}">View Forms</a>
+                                                        <a href="/vform?userId=${today_appt.userid.getUserid()}">View Forms</a>
                                                     </td>
                                                 </tr>     
                                             </c:forEach>

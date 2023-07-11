@@ -11,7 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <title>Tai Yang Clinic</title>
-               <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="../src/img/favicon/apple-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="76x76" href="../src/img/favicon/apple-icon-76x76.png">
@@ -30,7 +31,7 @@
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <!--        <link rel="stylesheet" href="css/viewappointment.css">-->
+        <link rel="stylesheet" type="text/css" href="../css/availability.css">
         <script src="js/availability.js"></script>
 
         <!--google fonts -->
@@ -42,14 +43,12 @@
         <!--google material icon-->
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
         <%
-            LocalDate startDate = LocalDate.now();
-            LocalDate endDate = startDate.plusDays(6);
-
-            String formattedStartDate = startDate.getMonth() + " " + startDate.getDayOfMonth() + ", " + startDate.getYear();
-            String formattedEndDate = endDate.getMonth() + " " + endDate.getDayOfMonth() + ", " + endDate.getYear();
+            LocalDate today = LocalDate.now();
+            String formattedDate = today.getMonth() + " " + today.getDayOfMonth() + ", " + today.getYear();
         %>
         <script>
-            var formattedDate = '<%= formattedStartDate%>' + " - " + '<%= formattedEndDate%>';
+            var formattedDate = '<%= formattedDate%>';
+            // Use the formattedDate variable in your JavaScript code
         </script>
 
         <style>
@@ -679,7 +678,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -771,151 +770,191 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--                                     <a class="btn btn-primary mr-2" id="prevBtn">
-                                                                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
-                                                                                    </a>
-                                                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em; ">
-                                                                        <script>document.write(formattedDate);</script>
-                                                                    </h4>
-                                                                     <a class="btn btn-primary" id="nextBtn">
-                                                                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
-                                                                                    </a>-->
                                 <br>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
                                     </a>
-                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">
+                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
                                         <script>document.write(formattedDate);</script>
                                     </h4>
                                     <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
+                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
                                     </a>
                                 </div>
                                 <br>
-                                <table class="table table-striped table-hover text-center">
-                                    <thead>
-                                        <tr>
-                                            <c:forEach begin="0" end="4" varStatus="loop" >
-                                                <th style="font-size: 13px; width: 20%">${booked[loop.index].getDayname()} <br>
-                                                    ${booked[loop.index].getMonthName()} ${booked[loop.index].getDaynumber()}</th>
-                                                </c:forEach>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <c:forEach begin="0" end="4" varStatus="loop">
-                                                <td style="width: 20%">
-                                                    <table>
-                                                        <tbody>
-                                                            <c:forEach items="${booked[loop.index].getAvailabletimeList()}" var="time">
-                                                                <c:if test="${time.getIsAvailable()==2}">
-                                                                    <tr>
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
-                                                                        <td>
-                                                                            <a style="color:#0B486B; font-size: 13px;" data-bs-toggle="modal" data-bs-target="#viewAppointmentModal">Booked</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:if>
-                                                                <c:if test="${time.getIsAvailable()==1}">
-                                                                    <tr>
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}</td>
-                                                                        <td>
-                                                                            <a style="color:gray; font-size: 13px;">Unbooked</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
+                                <div class="fullCalendar">
+                                    <div class="days">
+                                        <div class="days-content">
+                                            <c:forEach items="${unbooked}" var="day">
+                                                <div class="unavailableDay">
+                                                    <div class="table_header">${day.getDayname()}<br>
+                                                        ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                    <div class="unavailable_time_data">
+                                                    </div>
+                                                </div>
                                             </c:forEach>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <c:forEach items="${booked}" var="day">
+                                                <c:choose>
+                                                    <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} ">
+                                                        <div class="unavailableDay">
+                                                            <div class="table_header">${day.getDayname()}
+                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                            <div class="unavailable_time_data"></div>
+                                                        </div>                
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="availableDay">
+                                                            <div class="table_header">${day.getDayname()}<br>
+                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                            <div class="table_time_data">
+                                                                <div class="table_data"></div>
+                                                                <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                                                    <c:if test="${time.getIsAvailable()==2}">
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                                            <c:forEach items="${apptInfo}" var="apptInfo">
+                                                                                <c:if test="${apptInfo.timeid.timeid == time.timeid}">
+                                                                                <a style="color:gray; font-size: 12px;">Name: 
+                                                                                    <c:out value="${apptInfo.userid.getFirstname()}" />
+                                                                                    <c:out value="${apptInfo.userid.getLastname()}"  />
+                                                                                    <br>Service: 
+                                                                                    <c:out value="${apptInfo.serviceid.serviceName}"  />
+                                                                                    <br>
+                                                                                    <c:choose>
+                                                                                        <c:when test="${empty apptInfo.description}">
+                                                                                            No description
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            <c:out value="${apptInfo.description}" />
+                                                                                        </c:otherwise>
+                                                                                    </c:choose></a><br>
+                                                                                <td>
+                                                                                    <a href="/vform?userId=${apptInfo.userid.getUserid()}" style="font-size: 12px;">View Forms</a><br>
+                                                                                </td>
+                                                                            </c:if>
+                                                                        </c:forEach>
+                                                                    </c:if>    
+                                                                    <c:if test="${time.getIsAvailable()==1}">
+                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                                        <td>
+                                                                            <a style="color:gray; font-size: 12px;">Unbooked</a><br>
 
+                                                                        </td>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </div>     
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="popupBox" style="display: none;"> 
+                                    <div id="popupContent"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentmodalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="viewAppointmentmodalLabel">Patient Info</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label for="description">Start Time: <c:out value="${upcoming_appts.getTruncatedStartTime()}"/></label><br>
-                                <label for="description">End Time: <c:out value="${upcoming_appts.getTruncatedEndTime()}"/></label><br>
-                                <label for="description">Name: <c:out value="${time.userid.getFirstname()} ${time.userid.getLasttname()}"/></label><br>
-                                <label for="description">Service: <c:out value="${time.serviceid.serviceName}"/></label><br>
-                                <label for="description">Describe: <c:choose>
-                                        <c:when test="${empty time.description}">
-                                            No description
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:out value="${time.description}" />
-                                        </c:otherwise>
-                                    </c:choose></label><br>
-                                <label for="description"> Form: <a href="" class="" data-toggle="modal">
-                                        <i class="material-icons" data-toggle="tooltip" title="">&#xf1c4;</i></a>
-                                    <a href="" class="" data-toggle="modal">
-                                        <i class="material-icons" data-toggle="tooltip" title="">&#xf1c3;</i></a></label>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--start footer-->
-                <div class="my-5"></div>
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="footer-in">
-                            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
-                        </div>
-                    </div>
-                </footer>
+                <!--                                <div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentmodalLabel" aria-hidden="true">
+                                                     Modal content 
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="viewAppointmentmodalLabel">Patient Info</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                <c:out value="${apptInfo.userid.getFirstname()}" />
+                <c:out value="${apptInfo.userid.getLastname()}"  />
+                <br>Service: 
+                <c:out value="${apptInfo.serviceid.serviceName}"  />
+                <br>Description:
+                <c:choose>
+                    <c:when test="${empty apptInfo.description}">
+                        No description
+                    </c:when>
+                    <c:otherwise>
+                        <c:out value="${apptInfo.description}" />
+                    </c:otherwise>
+                </c:choose>
+                -->                                            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
-        <script>
-            //                var unbookedLinks = document.querySelectorAll('.unbooked');
-            //                for (var i = 0; i < unbookedLinks.length; i++) {
-            //                    unbookedLinks[i].addEventListener('click', function (event) {
-            //                        event.preventDefault();
-            //                    });
-            //                }
+    </div>
+</div>-->
+
+<!--<script>
+    $('#viewAppointmentModal').on('show.bs.modal', function (event) {
+        // Get the button that triggered the modal
+        var button = $(event.relatedTarget);
+
+        // Extract data attributes from the clicked button
+        var startTime = button.data('start-time');
+        var endTime = button.data('end-time');
+        var firstName = button.data('first-name');
+        var lastName = button.data('last-name');
+        var serviceName = button.data('service-name');
+        var description = button.data('description');
+
+        // Update the modal's elements with the retrieved values
+        var modal = $(this);
+        modal.find('#startTime').text(startTime);
+        modal.find('#endTime').text(endTime);
+        modal.find('#patientName').text(firstName + ' ' + lastName);
+        modal.find('#serviceName').text(serviceName);
+        modal.find('#description').text(description);
+    });
+</script>-->
 
 
-        </script>
+<!--start footer-->
+<div class="my-5"></div>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="footer-in">
+            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+<script>
+    //                var unbookedLinks = document.querySelectorAll('.unbooked');
+    //                for (var i = 0; i < unbookedLinks.length; i++) {
+    //                    unbookedLinks[i].addEventListener('click', function (event) {
+    //                        event.preventDefault();
+    //                    });
+    //                }
+
+
+</script>
 
 
 
-        <script src="js/bootstrap.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
-            $(document).ready(function () {
-                $(".xp-menubar").on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                    $('#content').toggleClass('active');
-                });
+    $(document).ready(function () {
+        $(".xp-menubar").on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
 
-                $(".xp-menubar,.body-overlay").on('click', function () {
-                    $('#sidebar,.body-overlay').toggleClass('show-nav');
-                });
+        $(".xp-menubar,.body-overlay").on('click', function () {
+            $('#sidebar,.body-overlay').toggleClass('show-nav');
+        });
 
-            });
+    });
 
-        </script>
-    </body>
+</script>
+</body>
 </html>

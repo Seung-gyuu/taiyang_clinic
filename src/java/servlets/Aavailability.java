@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,8 +35,19 @@ public class Aavailability extends HttpServlet {
         }
         AvailableTimeService ats = new AvailableTimeService();
         DayService ds = new DayService();
-
+//        List<Availabletime> available = ats.findByTimeId(0);
         List<Day> days = ds.getCurrentWeek4Months();
+        try {
+            List<Day> updatedDays = new ArrayList<>();
+            for (Day day : days) {
+                List<Availabletime> availableTimes = ats.findByDate(day.getFulldate());
+                day.setAvailabletimeList(availableTimes);
+                updatedDays.add(day);
+            }
+            request.setAttribute("days", updatedDays);
+        } catch (Exception e) {
+            request.setAttribute("message", "Unable to load availability");
+        }
         List<Day> unbooked;
         List<Day> booked;
         LocalDate currentDate = LocalDate.now();
@@ -52,48 +64,69 @@ public class Aavailability extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load days");
         }
-        //retrieve upcoming appointments
         List<Appointment> upcomingAppointments;
+        List<Appointment> passed;
         AppointmentService as = new AppointmentService();
         try {
             upcomingAppointments = as.getUpcoming();
+            passed = as.getPassed();
             session.setAttribute("upcomingAppointments", upcomingAppointments);
+            session.setAttribute("passed", passed);
         } catch (Exception e) {
-            request.setAttribute("message", "Unable to load upcoming appointments");
+            request.setAttribute("message", "Unable to load appointments");
         }
+//        List<Availabletime> passed = ats.findAllPassed();
+//        request.setAttribute("passed", passed);
+// To display passed unbook 'Unbooked'
+//        List<Availabletime> passed;
+//        try {
+//            passed = ats.findAllPassedUnbooked();
+//            request.setAttribute("passed", passed);
+//        } catch (Exception e) {
+//            request.setAttribute("message", "Unable to load passed appointments");
+//        }
+
         getServletContext().getRequestDispatcher("/WEB-INF/en/aavailability.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String action = request.getParameter("action");
-            String timeid = request.getParameter("timeid");
+            int timeId = Integer.parseInt(request.getParameter("timeid"));
             String message = "";
+            String status = request.getParameter("status");
             AvailableTimeService ats = new AvailableTimeService();
-            List<Availabletime> availableTimes = ats.findAllUpcoming();
+
             if (action.equals("unavailable")) {
                 try {
-                    Availabletime at = ats.findByTimeId(Integer.parseInt(timeid));
+                    Availabletime at = ats.findByTimeId(timeId);
                     at.setIsAvailable(0);
-                    ats.unavailable(at);
+                    ats.update(at);
                     message = "Time slot is now unavailable";
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status_" + timeId, "unavailable"); // Set the session attribute for the time slot
                 } catch (Exception e) {
                     message = "Unable to make time slot unavailable";
                 }
             } else if (action.equals("available")) {
                 try {
-                    Availabletime at = ats.findByTimeId(Integer.parseInt(timeid));
+                    Availabletime at = ats.findByTimeId(timeId);
                     at.setIsAvailable(1);
-                    ats.insert(at);
+                    ats.update(at);
                     message = "Time slot is now available";
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status_" + timeId, "available"); // Set the session attribute for the time slot
                 } catch (Exception e) {
                     message = "Unable to make time slot available";
                 }
             }
+            response.setContentType("text/plain");
+            response.getWriter().write(message);
         } catch (Exception ex) {
             Logger.getLogger(Aavailability.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
+
 }

@@ -29,9 +29,10 @@ public class ViewAppointment extends HttpServlet {
             request.getSession().invalidate();
             request.setAttribute("message", "You have successfully logged out.");
             getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
-        }        
+        }
         AvailableTimeService ats = new AvailableTimeService();
         DayService ds = new DayService();
+        UserService us = new UserService();
         List<Day> days = ds.getCurrentWeek4Months();
         List<Day> unbooked;
         List<Day> booked;
@@ -46,15 +47,26 @@ public class ViewAppointment extends HttpServlet {
         try {
             request.setAttribute("unbooked", unbooked);
             request.setAttribute("booked", booked);
+            
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load days");
         }
         // retrieve upcoming appointments
-        List<Appointment> upcomingAppointments;
+        int appointmentId = 0;
         AppointmentService as = new AppointmentService();
+        if (request.getParameter("appointmentId") != null) {
+            appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
+            try {
+                Appointment apt = as.get(appointmentId);
+                request.setAttribute("viewAppt", apt);
+            } catch (Exception e) {
+                request.setAttribute("message", "Unable to load upcoming appointments");
+            }
+        }
+        List<Appointment> apptInfo;
         try {
-            upcomingAppointments = as.getUpcoming();
-            session.setAttribute("upcomingAppointments", upcomingAppointments);
+            apptInfo = as.getUpcoming();
+            session.setAttribute("apptInfo", apptInfo);
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load upcoming appointments");
         }
@@ -64,21 +76,6 @@ public class ViewAppointment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        String timeid = request.getParameter("timeid");
-        String message = "";
-        AppointmentService as = new AppointmentService();
-        try {
-            List<Appointment> upcoming_appts = as.getUpcoming();
-            request.setAttribute("upcoming_appts", upcoming_appts);
 
-            if (upcoming_appts.isEmpty()) {
-                request.setAttribute("message", "Unbooked");
-            }
-        } catch (Exception e) {
-            Logger.getLogger(ViewAppointment.class.getName()).log(Level.SEVERE, null, e);
-            request.setAttribute("message", "Unable to load upcoming appointments");
-        }
-        getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
     }
 }
