@@ -854,19 +854,7 @@
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                <c:out value="${apptInfo.userid.getFirstname()}" />
-                <c:out value="${apptInfo.userid.getLastname()}"  />
-                <br>Service: 
-                <c:out value="${apptInfo.serviceid.serviceName}"  />
-                <br>Description:
-                <c:choose>
-                    <c:when test="${empty apptInfo.description}">
-                        No description
-                    </c:when>
-                    <c:otherwise>
-                        <c:out value="${apptInfo.description}" />
-                    </c:otherwise>
-                </c:choose>
+
                 -->                                            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

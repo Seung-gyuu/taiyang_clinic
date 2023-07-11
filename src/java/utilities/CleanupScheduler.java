@@ -15,7 +15,6 @@ public class CleanupScheduler implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
          System.out.println("Application startup: StartupListener initialized");
-  
         timer = new Timer();
         // Run the task every hour (adjust the interval as needed)
         long interval = 24 * 60 * 1000;

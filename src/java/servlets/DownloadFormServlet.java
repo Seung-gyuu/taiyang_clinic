@@ -30,6 +30,40 @@ public class DownloadFormServlet extends HttpServlet {
         User loggedUser = (User) session.getAttribute("loggedUser");
         int formId = Integer.parseInt(request.getParameter("formId"));
         int form = Integer.parseInt(request.getParameter("form")); //form 1 = medical form 2 = consent.
+        /*************************************************************************************************************//*************************************************************************************************************/
+        // base case -- formId = 1 means that its the empty consent and medical form.  Anyone can download so skip the check
+        if(formId==1){
+            if(form==1){
+                MedicalFormService mfs = new MedicalFormService();
+                Medicalform mf=null;
+                try {
+                    mf = mfs.get(formId);
+                } catch (Exception ex) {
+                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition", "attachment; filename=\"TaiYangClinicMedicalForm.pdf\"");
+                response.getOutputStream().write(mf.getPdfFile());
+                response.getOutputStream().flush();
+                response.sendRedirect(request.getParameter("referer"));
+            }
+            else if(form==2){
+                ConsentFormService cfs = new ConsentFormService();
+                Consentform cf=null;
+                try {
+                    cf = cfs.get(formId);
+                } catch (Exception ex) {
+                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                response.setContentType("application/pdf");
+                response.setHeader("Content-Disposition", "attachment; filename=\"TaiYangClinicConsentForm.pdf\"");
+                response.getOutputStream().write(cf.getPdfFile());
+                response.getOutputStream().flush();
+                response.sendRedirect(request.getParameter("referer"));
+            }
+            
+        }
+        /*************************************************************************************************************//*************************************************************************************************************/
         Medicalform mftest;
         Consentform cftest;
         if(loggedUser.getRoleid().getRoleid()==1){  //if they are a regular user, they go through this check.  If they are admin, check is skipped

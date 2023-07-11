@@ -3,9 +3,9 @@ delete from reminder;
 delete from appointment;
 delete from availabletime;
 delete from day;
-delete from user;
 delete from medicalform;
 delete from consentform;
+delete from user;
 delete from passwordtokens;
 delete from validatetokens;
 delete from role;
@@ -23,7 +23,8 @@ INSERT INTO user (firstname, lastname, email_address, phone_number, password, sa
 --INSERT INTO user (firstname, lastname, email_address, phone_number, password,salt, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6','/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=' , '1', '1', '1');
 
 
-
+insert into medicalform(userid,pdfFile,timeAdded) VALUES(1,'./forms/medical.pdf',NOW());
+insert into consentform(userid,pdfFile,timeAdded) VALUES(1,'./forms/consent.pdf',NOW()); 
 
 
 insert into service values(1, 1,'Massage', 'Your head will be massaged');
