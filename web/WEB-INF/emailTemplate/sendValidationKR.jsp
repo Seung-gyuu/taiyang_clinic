@@ -475,7 +475,7 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <p>If you did not request a password reset, please ignore this email AND THIS IS THE KOREAN EMAIL TESTING HJDASLHAJKDSALDHSJKDASLHJKDSAHJK </p>
+                                                <p>If you did not request a password reset, please ignore this email AND THIS IS THE KOREAN EMAIL TESTING </p>
                                                 <p>Thanks,
                                                     <br>TaiYang Clinic </p>
                                             </div>

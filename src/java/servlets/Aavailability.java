@@ -101,7 +101,7 @@ public class Aavailability extends HttpServlet {
             if (action.equals("unavailable")) {
                 try {
                     Availabletime at = ats.findByTimeId(timeId);
-                    at.setIsAvailable(0);
+                    at.setIsAvailable(2);
                     ats.update(at);
                     message = "Time slot is now unavailable";
                     HttpSession session = request.getSession();

@@ -74,7 +74,7 @@ public class UserService {
 
         }
         String message2 = isValidPassword(user.getPassword(), language);
-        if (!message2.equals("success")) {
+        if (!message2.equals("success") && !message2.equals("성공")) {
             return message2;
         }
 
