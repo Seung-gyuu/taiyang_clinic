@@ -45,8 +45,8 @@ public class AppointmentDB {
         try {
             TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findByTimeId", Appointment.class);
             query.setParameter("timeid", timeId);
-            Appointment appt = query.getSingleResult();
-            return appt;
+            List<Appointment> appt = query.getResultList();
+            return appt.get(0);
         } catch (Exception e) {
             return null;
         } finally {

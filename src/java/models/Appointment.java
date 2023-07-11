@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     //needs test
     , @NamedQuery(name = "Appointment.findUpcomingByRange", query = "SELECT a FROM Appointment a where a.timeid.fulldate.fulldate >=CURRENT_DATE and a.timeid.fulldate.fulldate <=:endDate and a.isupcoming=1")
     , @NamedQuery(name = "Appointment.findByAppointmentid", query = "SELECT a FROM Appointment a WHERE a.appointmentid = :appointmentid")
-    , @NamedQuery(name = "Appointment.findByTimeId", query = "SELECT a FROM Appointment a WHERE a.timeid = :timeid")
+    , @NamedQuery(name = "Appointment.findByTimeId", query = "SELECT a FROM Appointment a WHERE a.timeid.timeid = :timeid AND a.status='Confirmed'")
     , @NamedQuery(name = "Appointment.findByDescription", query = "SELECT a FROM Appointment a WHERE a.description = :description")
     , @NamedQuery(name = "Appointment.findByUpcoming", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1")
     , @NamedQuery(name = "Appointment.findByTodayAppt", query = "SELECT a FROM Appointment a WHERE a.isupcoming = 1 AND a.status ='Confirmed' AND a.timeid.fulldate.fulldate = CURRENT_DATE AND a.timeid.startTime >= CURRENT_TIME")
