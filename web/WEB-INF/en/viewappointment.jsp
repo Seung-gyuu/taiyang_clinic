@@ -60,6 +60,34 @@
     min-height: 70vh;
     margin: 40px auto;
 }*/
+            
+   
+.time-divider {
+  border-top: 1px solid gray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+             .time-entry {
+                position: relative;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .time-entry:first-child {
+                border-top: none;
+            }
+
+            .time-entry .time {
+                font-size: 12px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .time-entry .status {
+                font-size: 10px;
+                color: #555;
+            }
 
 
             .book_container {
@@ -129,30 +157,30 @@
                 padding-top: 10px;
             }
 
-            .table_header span {
+/*            .table_header span {
                 margin-right: 5px;
-            }
+            }*/
 
             .table_header p {
                 margin: 0;
             }
-
+/*
             .header_time {
                 height: 100%;
                 background-color: white;
                 margin-top: -50px;
-            }
+            }*/
 
-            .table_time {
-                height: 15px;
-                padding-top: 30px;
+/*            .table_time {
+           
+             
                 font-size: 11px;
-                margin-top: 70%;
-            }
+                
+            }*/
 
-            .book_table_date {
+/*            .book_table_date {
                 margin-left: 3px;
-            }
+            }*/
 
             .table_time_data {
                 background-color: #f5f5f5;
@@ -182,13 +210,14 @@
             }
 
             .table_header{
-                padding-top: 20px;
+/*                padding-top: 20px;*/
                 /*                margin: 20px auto;*/
                 text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-family: sans-serif;
+                font-size: 13px;
                 /*color: white;*/
             }
 
@@ -236,9 +265,9 @@
                 border: 2px solid #fff;
             }
             .table_data {
-                height: 30px;
-                padding: 25px 15px;
-                padding-top: 35px;
+/*                height: 30px;*/
+/*                padding: 25px 15px;*/
+/*                padding-top: 35px;*/
                 border-radius: 5px;
                 font-size: 13px;
                 display: flex;
@@ -254,26 +283,32 @@
             .data_available {
                 background-color: #5ea1ff;
                 color:#fff;
-                border: 1px solid #fff;
+/*                border: 1px solid #fff;*/
                 cursor: pointer;
-                height: 50px;
-                max-height: 50px;
-                min-height: 50px;
+                 height: 30px;
+                width: 70px;
+                align-items: center;
+                text-align:center;
+                font-size: 12px;
+                margin-bottom: 15px;
+            
+           
 
             }
 
             .data_available:hover {
-                background-color: #0d6efd;
+                background-color: #0B486B;
             }
 
             .data_unavailable {
                 background-color: lightgray;
                 color: gray;
-                border: 2px solid #fff;
+/*                border: 2px solid #fff;*/
                 cursor: not-allowed;
-                height: 50px;
-                max-height: 50px;
-                min-height: 50px;
+                font-size: 12px;
+                 height: 30px;
+                width: 80px;
+                 margin-bottom: 15px;
             }
 
             .book_main_right {
@@ -1171,7 +1206,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                     <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -1257,14 +1292,16 @@
                                         <div class="col-sm-6 p-0 d-flex justify-content-start align-items-center">
                                             <h2 class="ml-2">View Appointment</h2>
                                         </div>
-                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
+                                    </div>
+                                </div>
+<!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
 
 
                                         </div>
                                     </div>
                                 </div>
-                                <br>
-                                <div class="d-flex justify-content-between align-items-center">
+                                <br>-->
+<!--                                <div class="d-flex justify-content-between align-items-center">
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
                                         <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
                                     </a>
@@ -1273,6 +1310,19 @@
                                     </h4>
                                     <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
                                         <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
+                                    </a>
+                                </div>
+                                -->
+                                
+                                 <div class="d-flex justify-content-between align-items-center" >
+                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                    </a>
+                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">
+                                        <script>document.write(formattedDate);</script>
+                                    </h4>
+                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
                                     </a>
                                 </div>
                                 <br>
@@ -1297,29 +1347,33 @@
                                                         </div>                
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <div class="availableDay">
+                                                        <div class="availableDay" >
                                                             <div class="table_header">${day.getDayname()}<br>
                                                                 ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                                            <div class="table_time_data">
-                                                                <div class="table_data"></div>
+                                                            <div class="table_time_data" style="font-size: 13px; text-align: center; font-weight: bold;">
+                                                                <div class="table_data" ></div>
+                                                                
                                                                 <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                                                     <div class="time-divider"></div>
                                                                     <c:if test="${time.getIsAvailable()==2}">
                                                                         <c:if test="${time.getIsBooked()==2}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getAppointmentDetails(this.getAttribute('data-value'))">Booked</div>
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" style="font-weight: normal;" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getAppointmentDetails(this.getAttribute('data-value'))">Booked</div>
                                                                         </c:if>
                                                                         <c:if test="${time.getIsBooked()==1}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable">Unavailable</div>
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable" style="font-weight: normal; align-items: center;" >Unavailable</div>
                                                                         </c:if>
 
                                                                     </c:if>    
                                                                     <c:if test="${time.getIsAvailable()==1}">
+
                                                                         <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
                                                                         <td>
-                                                                            <a style="color:gray; font-size: 12px;">Unbooked</a><br>
+                                                                            <a style="color:#0B486B; font-weight:bold; font-size: 12px; cursor: not-allowed;">Unbooked</a><br>
 
                                                                         </td>
                                                                     </c:if>
                                                                 </c:forEach>
+                                                             
                                                             </div>     
                                                         </div>
                                                     </c:otherwise>
@@ -1328,6 +1382,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                                                            
+
+                                                                            
+                                                                            
+                                                                            
                                 <div id="popupBox" style="display: none;"> 
                                     <div id="popupContent"></div>
                                 </div>
