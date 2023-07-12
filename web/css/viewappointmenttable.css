@@ -106,13 +106,13 @@
     overflow-x: hidden;
     position: relative;
     border:none;
-    width: 1225px;
+/*    width: 1225px;*/
     white-space: nowrap;
     /*overflow-x: scroll;*/
 }
 
 .days .days-content {
-    width: 100%;
+/*    width: 100%;*/
      /*width: 1225px;*/
     display: flex;
     position: relative;
