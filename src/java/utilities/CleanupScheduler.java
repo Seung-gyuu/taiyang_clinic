@@ -3,6 +3,7 @@ package utilities;
 import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -15,6 +16,10 @@ public class CleanupScheduler implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
          System.out.println("Application startup: StartupListener initialized");
+         ServletContext servletContext = event.getServletContext();
+        //Get the absolute path to the "res" folder
+        String resFolderPath = servletContext.getRealPath("/WEB-INF/classes/res");
+        AddForms addForms = new AddForms(resFolderPath);
         timer = new Timer();
         // Run the task every hour (adjust the interval as needed)
         long interval = 24 * 60 * 1000;

@@ -26,8 +26,7 @@ public class DownloadFormServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        User loggedUser = (User) session.getAttribute("loggedUser");
+        
         int formId = Integer.parseInt(request.getParameter("formId"));
         int form = Integer.parseInt(request.getParameter("form")); //form 1 = medical form 2 = consent.
         /*************************************************************************************************************//*************************************************************************************************************/
@@ -38,35 +37,41 @@ public class DownloadFormServlet extends HttpServlet {
                 Medicalform mf=null;
                 try {
                     mf = mfs.get(formId);
-                } catch (Exception ex) {
-                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                response.setContentType("application/pdf");
+                    response.setContentType("application/pdf");
                 response.setHeader("Content-Disposition", "attachment; filename=\"TaiYangClinicMedicalForm.pdf\"");
                 response.getOutputStream().write(mf.getPdfFile());
                 response.getOutputStream().flush();
-                response.sendRedirect(request.getParameter("referer"));
+                return;
+                //response.sendRedirect(request.getParameter("referer"));
+                } catch (Exception ex) {
+                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
             else if(form==2){
                 ConsentFormService cfs = new ConsentFormService();
                 Consentform cf=null;
                 try {
                     cf = cfs.get(formId);
-                } catch (Exception ex) {
-                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                response.setContentType("application/pdf");
+                    response.setContentType("application/pdf");
                 response.setHeader("Content-Disposition", "attachment; filename=\"TaiYangClinicConsentForm.pdf\"");
                 response.getOutputStream().write(cf.getPdfFile());
                 response.getOutputStream().flush();
-                response.sendRedirect(request.getParameter("referer"));
+                return;
+                //response.sendRedirect(request.getParameter("referer"));
+                } catch (Exception ex) {
+                    Logger.getLogger(DownloadFormServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
             
         }
         /*************************************************************************************************************//*************************************************************************************************************/
         Medicalform mftest;
         Consentform cftest;
-        if(loggedUser.getRoleid().getRoleid()==1){  //if they are a regular user, they go through this check.  If they are admin, check is skipped
+        HttpSession session = request.getSession(false);
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        if(loggedUser!=null && loggedUser.getRoleid().getRoleid()==1){  //if they are a regular user, they go through this check.  If they are admin, check is skipped
             if (form == 1) {
             MedicalFormService mfs = new MedicalFormService();
             try {
@@ -92,6 +97,9 @@ public class DownloadFormServlet extends HttpServlet {
         }
         }
         //Admins are directly at this line, if the user passes the check, they are also here.
+        if(loggedUser==null){
+            response.sendRedirect("home");
+        }
         if (form == 1) {
             MedicalFormService mfs = new MedicalFormService();
             try {
