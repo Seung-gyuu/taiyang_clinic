@@ -1,3 +1,9 @@
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.time.Instant"%>
+<%@page import="models.Availabletime"%>
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.time.LocalDate"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -144,7 +150,7 @@
                 font-size: 13px;
                 margin-top: -25px;
                 padding-top: 10px;
-               
+
             }
 
             .table_header span {
@@ -1130,7 +1136,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                     <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -1221,17 +1227,17 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="d-flex justify-content-between align-items-center" >
-                                    <a class="btn mr-2" id="prevBtn" >
-                                        <button onclick="goLeft()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C4;</button> 
-                                    </a>
-                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
-                                        <script>document.write(formattedDate);</script>
-                                    </h4>
-                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; ">
-                                        <button onclick="goRight()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C8;</button> 
-                                    </a>
-                                </div>
+                                <!--                                <div class="d-flex justify-content-between align-items-center" >
+                                                                    <a class="btn mr-2" id="prevBtn" >
+                                                                        <button onclick="goLeft()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C4;</button> 
+                                                                    </a>
+                                                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
+                                                                        <script>document.write(formattedDate);</script>
+                                                                    </h4>
+                                                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; ">
+                                                                        <button onclick="goRight()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C8;</button> 
+                                                                    </a>
+                                                                </div>
                                 -->
                                 <div class="d-flex justify-content-between align-items-center" >
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
@@ -1245,86 +1251,6 @@
                                     </a>
                                 </div>
 
-
-
-
-
-
-                                <!--                                <div class="fullCalendar"  >
-                                                                    <div class="days">
-                                                                        <div class="days-content">
-                                <c:forEach items="${unbooked}" var="day">
-                                    <div class="unavailableDay">
-                                        <div class="table_header">${day.getDayname()}<br>
-                                    ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                <div class="unavailable_time_data">
-                                </div>
-                            </div>
-                                </c:forEach>
-                                <c:forEach items="${booked}" var="day">
-                                    <c:choose>
-                                        <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} ">  THIS DOESNT WORK FOR SOME REASON
-                                            <div class="unavailableDay">
-                                                <div class="table_header">${day.getDayname()}
-                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                        <div class="unavailable_time_data"></div>
-                                    </div>                
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="availableDay">
-                                                <div class="table_header">${day.getDayname()}<br>
-                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                        <div class="table_time_data">
-                                            <div class="table_data"></div>
-
-
-                                            <c:forEach items="${day.getAvailabletimeList()}" var="time">
-                                                          
-                                                <c:if test="${time.getIsBooked()==2}">
-
-                                                    <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                    <div class="table_data data_unavailable">Booked</div>
-                                                </c:if>
-                                           
-                                           
-                                                <c:if test="${time.getIsBooked()==1}">
-                                                    
-                                                    <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                    <td>
-                                                                                                                                    <a style="color:gray; font-size: 12px;">Unbooked</a><br>
-                                                        
-                                                    <c:choose>
-                                                        <c:when test="${time.getIsAvailable() == 1}">
-                                                            <button class="btn btn-available" style="background-color:#5492d9; font-size: 10px; color: white;"
-                                                                    onclick="changeStatus(this, ${time.getTimeid()})">Available</button><br>
-                                                        </c:when>
-                                                                    
-                                                        <c:otherwise>
-                                                            <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 10px; color: white;"
-                                                                    onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button><br>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                 
-                                                </td>
-                                                </c:if>
-                                           
-                                            </c:forEach>
-                                        </div>     
-                                    </div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                                <c:forEach items="${passed}" var="passed">
-                                    <div class="unavailableDay">
-                                                                                            <div class="table_header">Unbooked</div>
-                                        <div class="unavailable_time_data">
-                                            <span>${time.getTruncatedStartTime()}</span>
-                                        </div>
-                                    </div>
-                                </c:forEach>    
-                            </div>
-                        </div>
-                    </div>-->
 
                                 <div class="fullCalendar" style="width:1100px;">
                                     <div class="days">
@@ -1358,18 +1284,37 @@
                                                                     <div class="time-entry">
                                                                         <div class="time">${time.getTruncatedStartTime()}</div>
                                                                         <div class="status" style="font-size: 15px;  color: #0B486B; font-weight: bold; cursor: not-allowed; ">
-                                                                          <div class="status2" style="margin-bottom: 3px;">
-                                                                            <c:if test="${time.getIsBooked()==2}">
-                                                                                Booked
-                                                                            </c:if>
-                                                                          </div>
+                                                                            <div class="status2" style="margin-bottom: 3px;">
+                                                                                <c:if test="${time.getIsBooked()==2}">
+                                                                                    Booked
+                                                                                </c:if>
+                                                                            </div>
                                                                             <c:if test="${time.getIsBooked()==1}">
                                                                                 <c:choose>
                                                                                     <c:when test="${time.getIsAvailable() == 1}">
                                                                                         <button class="btn btn-available" style="background-color:#5492d9; font-size: 11px; color: white;" onclick="changeStatus(this, ${time.getTimeid()})">Available</button>
                                                                                     </c:when>
                                                                                     <c:otherwise>
+                                                                                        <% //get the current date time.  If time.getFullDate.getFullDate and time.getStartTime is before  the current date and time, make it unclickable%>
+                                                                                        <% // Get the current date and time
+                                                                                            Date currentDate = new Date();
+                                                                                            LocalTime currentTime = LocalTime.now();
+                                                                                            Availabletime avt = (Availabletime) pageContext.getAttribute("time");
+
+                                                                                            // Convert avt's start time to LocalTime
+                                                                                            Date avtStartTime = avt.getStartTime();
+                                                                                            Instant instant = avtStartTime.toInstant();
+                                                                                            ZoneId zoneId = ZoneId.systemDefault();
+                                                                                            LocalTime avtLocalTime = LocalDateTime.ofInstant(instant, zoneId).toLocalTime();
+                                                                                        %>
+
+                                                                                        <% // Check if time.getFullDate and time.getStartTime are before the current date and time
+                                                                                            if (avt.getFulldate().getFulldate().before(currentDate) && avtLocalTime.isBefore(currentTime)) {
+                                                                                        %>
+                                                                                        <button class="btn btn-unavailable" disabled="true" style="background-color:#d75353; font-size: 11px; color: white; cursor:not-allowed">Unavailable</button>
+                                                                                        <% } else { %>
                                                                                         <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 11px; color: white;" onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button>
+                                                                                        <% }%>
                                                                                     </c:otherwise>
                                                                                 </c:choose>
                                                                             </c:if>
