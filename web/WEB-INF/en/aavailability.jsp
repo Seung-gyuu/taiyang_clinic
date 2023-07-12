@@ -52,33 +52,52 @@
         </script>
 
         <style>
-/*
-            .book_all_container {
-    max-width: 1320px;
-    min-height: 70vh;
-    margin: 40px auto;
-}*/
 
-
-            .book_container {
-                margin: 0;
-                padding: 0;
-
-                display: flex;
-                align-items: center;
-            }
-            .book_container h1 {
-                font-weight: 600;
-                font-family: 'Cinzel', serif;
-                font-size: 35px;
-                margin: 0;
-
+            .time-entry {
+                position: relative;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid #ccc;
             }
 
-            .bookValue {
-                margin-left: 45px;
-                font-size: 16px;
+            .time-entry:first-child {
+                border-top: none;
             }
+
+            .time-entry .time {
+                font-size: 12px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .time-entry .status {
+                font-size: 10px;
+                color: #555;
+            }
+
+
+            /*
+                        .book_all_container {
+                max-width: 1320px;
+                min-height: 70vh;
+                margin: 40px auto;
+            }*/
+
+            .test {
+                /*                border: 1px solid black;*/
+                border-radius: 5px;
+                padding-bottom: 5px;
+                border-bottom:  1px solid black;
+
+
+            }
+
+            /*            .test2 {
+                            border: 1px solid black;
+                             border-radius: 5px;
+                        }*/
+
+
 
             .fullCalendar{
                 width: 100%;
@@ -122,9 +141,10 @@
                 color:#000;
                 height: 70px;
                 padding: 15px;
-                font-size: 15px;
+                font-size: 13px;
                 margin-top: -25px;
                 padding-top: 10px;
+               
             }
 
             .table_header span {
@@ -161,9 +181,9 @@
                 overflow-x: hidden;
                 position: relative;
                 border:none;
-/*                width: 1225px;*/
+                /*                width: 1225px;*/
                 white-space: nowrap;
-                /*overflow-x: scroll;*/
+                /*                overflow-x: scroll;*/
             }
 
             .days .days-content {
@@ -190,6 +210,17 @@
                 /*color: white;*/
             }
 
+            .table_data.data_unavailable {
+                font-size: 14px;
+                font-weight: bold;
+                padding: 15px;
+                text-align: center;
+                /*                width: 100%;*/
+                justify-content: center;
+                align-items: center;
+
+            }
+
             /*.table_header p {
                 margin: 0;
             }*/
@@ -202,6 +233,7 @@
                 padding-top: 10px;
                 background:#f5f5f5;
                 border: 2px solid #fff;
+                text-align: center;
             }
             .days .unavailableDay {
                 flex: 0 0 auto;
@@ -210,6 +242,7 @@
                 min-width: calc(100% / 7);
                 padding-top: 10px;
                 border: 2px solid #fff;
+                text-align: center;
             }
 
 
@@ -234,21 +267,22 @@
                 border: 2px solid #fff;
             }
             .table_data {
-                height: 30px;
-                padding: 25px 15px;
-                padding-top: 35px;
+                /*                height: 30px;*/
+                /*                padding: 25px 15px;*/
+                padding-top: 15px;
+
                 border-radius: 5px;
                 font-size: 13px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background:#f5f5f5;
+                /*                background:#f5f5f5;*/
             }
-            /*.days{
+            .days{
                 display: flex;
                 overflow: hidden;
-                border: solid red 2px;
-            }*/
+                /*                border: solid red 2px;*/
+            }
             .data_available {
                 background-color: #5ea1ff;
                 color:#fff;
@@ -265,13 +299,15 @@
             }
 
             .data_unavailable {
-                background-color: lightgray;
-                color: gray;
-                border: 2px solid #fff;
+                /*                background-color: lightgray;*/
+                color: #0B486B;
+
+                /*                border: 2px solid #fff;*/
+                height: 5px;
                 cursor: not-allowed;
-                height: 50px;
-                max-height: 50px;
-                min-height: 50px;
+                /*                height: 10px;
+                                max-height: 50px;
+                                min-height: 50px;*/
             }
 
             .book_main_right {
@@ -282,12 +318,7 @@
 
             }
 
-            .book_right_icon {
-                display: flex;
-                justify-content: space-between;
-                margin: 10px;
-                font-size: 11px;
-            }
+
 
             .able {
                 background-color: #0d6efd;
@@ -303,36 +334,6 @@
                 border-radius: 10px
             }
 
-            .book_right_selected {
-                display: flex;
-                justify-content: space-between;
-                background-color: #f5f5f5;
-                border-radius: 5px;
-                padding: 20px 10px;
-                margin: 10px;
-                font-size: 14px;
-            }
-
-            .book_right_btn {
-                margin: 20px 10px;
-            }
-
-            .book_btn {
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-                cursor: pointer;
-                width: 100%;
-                background-color: lightgray;
-                color: gray;
-                font-weight: 300;
-
-            }
-
-            .book_btn:hover {
-                background: #212529;
-                color: #fff;
-            }
 
             @media screen and (max-width: 1400px) {
                 .book_container {
@@ -340,7 +341,7 @@
                 }
 
                 .days {
-                    max-width: 1040px;
+                    /*                    max-width: 1040px;*/
                 }
 
                 /*        
@@ -355,194 +356,154 @@
 
             }
 
-            @media screen and (max-width: 1200px) {
-                .book_container {
-                    max-width: 960px;  
-                }
-                .table_data  {
-                    flex-direction: column;
-                }
-            }
-
-            @media screen and (max-width: 992px) {
-
-                .book_container {
-                    max-width: 720px;  
-                    /*height: 100vh;*/
-                }
-
-                .book_main_section {
-                    display: block;
-                }
-
-                .book_main_right {
-                    display: block;
-                    margin: 20px 0;
-                    height: 160px;
-
-                }
-
-                .book_right_icon {
-                    justify-content: flex-start;
-                }
-
-                .book_right_icon > div {
-                    margin-right: 20px;
-                }
-
-                .book_right_selected {
-                }
-
-                .book_btn {
-
-                }
-            }
-
-
-            @media screen and (max-width: 768px) {
-                .book_container {
-                    max-width: 720px;  
-                }
-
-                .table_header {
-                    display: block
-                }
-
-                .table_header span {
-                    margin-right: 0;
-                }
-
-
-                /*.data_available {
-                    height: 30px;
-                    padding: 25px 15px;
-                    padding-top: 35px;
-                    border-radius: 5px;
-                    font-size: 13px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    background:#f5f5f5;
-                }*/
-
-
-            }
-
-            @media screen and (max-width: 576px) {
-                .book_container {
-                    max-width: 540px;  
-                }
-            }
-
-            .popup-box {
-                display: none; 
-                position: fixed;
-                z-index: 1021;
-                padding-top: 100px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%; 
-                overflow: auto; 
-                background-color: rgb(0,0,0); 
-                background-color: rgba(0,0,0,0.4); 
-
-            }
-
-            .popup-content {
-                width: 570px;
-                /*text-align: center;*/
-                background-color: #fefefe;
-                /*margin: auto;*/
-                padding: 30px;
-                border: 1px solid #888;
-                position: absolute;
-                float: left;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                border-radius: 5px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            .book_close {
-                color: #aaaaaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                text-align: right;
-            }
-
-            .book_close:hover,
-            .book_close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .popupBtns {
-                display: flex;
-                align-items: center;
-                /*justify-content: flex-end;*/
-                justify-content: center;
-            }
-
-            .popupBtns button {
-                border: none;
-                padding: 5px 0;
-                width: 70px;
-                border-radius: 10px;
-                margin-left: 20px;
-            }
-
-            .popupBtns input[type=button],
-            .popupBtns input[type=submit]{
-                border: none;
-                padding: 5px 0;
-                width: 70px;
-                border-radius: 10px;
-                margin-left: 15px;
-
-                margin-top: 15px;
-            }
-
-
-            .confirmBtn {
-                background: #0b486b;
-                color:#fff;
-                font-size: 14px;
-            }
-
-            .confirmBtn:hover {
-                /*                border:2px solid #0b486b;
-                                background: #fff;
-                                color:#000;*/
-                box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-            }
-
-            .cancelBtn:hover {
-                box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
-            }
-
-            #confirmBox form {
-                margin-top: 15px;
-            }
-
-            #confirmBox form input {
-                /*                display: flex;
-                                align-items: center;*/
-                /*flex-direction: column;*/
-            }
-
-
-            .confirmService {
-                font-size: 18px;
-                font-weight: 600;
-                margin-bottom: 15px;
-            }
+            /*            @media screen and (max-width: 1200px) {
+            
+                            .table_data  {
+                                flex-direction: column;
+                            }
+                        }
+            
+                        @media screen and (max-width: 768px) {
+            
+                            .table_header {
+                                display: block
+                            }
+            
+                            .table_header span {
+                                margin-right: 0;
+                            }
+            
+            
+                            .data_available {
+                                height: 30px;
+                                padding: 25px 15px;
+                                padding-top: 35px;
+                                border-radius: 5px;
+                                font-size: 13px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                background:#f5f5f5;
+                            }
+            
+            
+                        }
+            
+                        @media screen and (max-width: 576px) {
+                            .book_container {
+                                max-width: 540px;  
+                            }
+                        }
+            
+                        .popup-box {
+                            display: none; 
+                            position: fixed;
+                            z-index: 1021;
+                            padding-top: 100px;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%; 
+                            overflow: auto; 
+                            background-color: rgb(0,0,0); 
+                            background-color: rgba(0,0,0,0.4); 
+            
+                        }
+            
+                        .popup-content {
+                            width: 570px;
+                            text-align: center;
+                            background-color: #fefefe;
+                            margin: auto;
+                            padding: 30px;
+                            border: 1px solid #888;
+                            position: absolute;
+                            float: left;
+                            left: 50%;
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            border-radius: 5px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+            
+                        .book_close {
+                            color: #aaaaaa;
+                            float: right;
+                            font-size: 28px;
+                            font-weight: bold;
+                            text-align: right;
+                        }
+            
+                        .book_close:hover,
+                        .book_close:focus {
+                            color: #000;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+            
+                        .popupBtns {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            justify-content: center;
+                        }
+            
+                        .popupBtns button {
+                            border: none;
+                            padding: 5px 0;
+                            width: 70px;
+                            border-radius: 10px;
+                            margin-left: 20px;
+                        }
+            
+                        .popupBtns input[type=button],
+                        .popupBtns input[type=submit]{
+                            border: none;
+                            padding: 5px 0;
+                            width: 70px;
+                            border-radius: 10px;
+                            margin-left: 15px;
+            
+                            margin-top: 15px;
+                        }
+            
+            
+                        .confirmBtn {
+                            background: #0b486b;
+                            color:#fff;
+                            font-size: 14px;
+                        }
+            
+                        .confirmBtn:hover {
+                                            border:2px solid #0b486b;
+                                            background: #fff;
+                                            color:#000;
+                            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+                        }
+            
+                        .cancelBtn:hover {
+                            box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+                        }
+            
+                        #confirmBox form {
+                            margin-top: 15px;
+                        }
+            
+                        #confirmBox form input {
+                                            display: flex;
+                                            align-items: center;
+                            flex-direction: column;
+                        }
+            
+            
+                        .confirmService {
+                            font-size: 18px;
+                            font-weight: 600;
+                            margin-bottom: 15px;
+                        }*/
 
             table.table tr th,
             table.table tr td {
@@ -1169,7 +1130,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3><img src="logo" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                     <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -1244,6 +1205,9 @@
                     </div>
                 </div>
 
+                <style>
+
+                </style>
 
                 <!--main contents-->
                 <div class="main-content">
@@ -1257,80 +1221,173 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center" >
-                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; ">
-                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
+<!--                                <div class="d-flex justify-content-between align-items-center" >
+                                    <a class="btn mr-2" id="prevBtn" >
+                                        <button onclick="goLeft()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C4;</button> 
                                     </a>
                                     <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
                                         <script>document.write(formattedDate);</script>
                                     </h4>
                                     <a class="btn mr-2" id="nextBtn" style="font-size: 1px; ">
-                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
+                                        <button onclick="goRight()" class="material-icons" style="font-size: 20px; padding: 5px 10px;  border-radius: 3px;">&#xE5C8;</button> 
+                                    </a>
+                                </div>
+                                -->
+                                <div class="d-flex justify-content-between align-items-center" >
+                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
+                                    </a>
+                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">
+                                        <script>document.write(formattedDate);</script>
+                                    </h4>
+                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                        <i onclick="goRight()" class="material-icons">&#xE5C8;</i> 
                                     </a>
                                 </div>
 
-                                <div class="fullCalendar"  >
+
+
+
+
+
+                                <!--                                <div class="fullCalendar"  >
+                                                                    <div class="days">
+                                                                        <div class="days-content">
+                                <c:forEach items="${unbooked}" var="day">
+                                    <div class="unavailableDay">
+                                        <div class="table_header">${day.getDayname()}<br>
+                                    ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                <div class="unavailable_time_data">
+                                </div>
+                            </div>
+                                </c:forEach>
+                                <c:forEach items="${booked}" var="day">
+                                    <c:choose>
+                                        <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} ">  THIS DOESNT WORK FOR SOME REASON
+                                            <div class="unavailableDay">
+                                                <div class="table_header">${day.getDayname()}
+                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                        <div class="unavailable_time_data"></div>
+                                    </div>                
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="availableDay">
+                                                <div class="table_header">${day.getDayname()}<br>
+                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                        <div class="table_time_data">
+                                            <div class="table_data"></div>
+
+
+                                            <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                                          
+                                                <c:if test="${time.getIsBooked()==2}">
+
+                                                    <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                    <div class="table_data data_unavailable">Booked</div>
+                                                </c:if>
+                                           
+                                           
+                                                <c:if test="${time.getIsBooked()==1}">
+                                                    
+                                                    <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                    <td>
+                                                                                                                                    <a style="color:gray; font-size: 12px;">Unbooked</a><br>
+                                                        
+                                                    <c:choose>
+                                                        <c:when test="${time.getIsAvailable() == 1}">
+                                                            <button class="btn btn-available" style="background-color:#5492d9; font-size: 10px; color: white;"
+                                                                    onclick="changeStatus(this, ${time.getTimeid()})">Available</button><br>
+                                                        </c:when>
+                                                                    
+                                                        <c:otherwise>
+                                                            <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 10px; color: white;"
+                                                                    onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button><br>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                 
+                                                </td>
+                                                </c:if>
+                                           
+                                            </c:forEach>
+                                        </div>     
+                                    </div>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                                <c:forEach items="${passed}" var="passed">
+                                    <div class="unavailableDay">
+                                                                                            <div class="table_header">Unbooked</div>
+                                        <div class="unavailable_time_data">
+                                            <span>${time.getTruncatedStartTime()}</span>
+                                        </div>
+                                    </div>
+                                </c:forEach>    
+                            </div>
+                        </div>
+                    </div>-->
+
+                                <div class="fullCalendar" style="width:1100px;">
                                     <div class="days">
                                         <div class="days-content">
                                             <c:forEach items="${unbooked}" var="day">
                                                 <div class="unavailableDay">
                                                     <div class="table_header">${day.getDayname()}<br>
-                                                        ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                                    <div class="unavailable_time_data">
+                                                        ${day.getMonthName()} ${day.getDaynumber()}
                                                     </div>
+                                                    <div class="unavailable_time_data"></div>
                                                 </div>
                                             </c:forEach>
                                             <c:forEach items="${booked}" var="day">
                                                 <c:choose>
-                                                    <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} "> <!-- THIS DOESNT WORK FOR SOME REASON-->
+                                                    <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '}">
                                                         <div class="unavailableDay">
                                                             <div class="table_header">${day.getDayname()}
-                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                                ${day.getMonthName()} ${day.getDaynumber()}
+                                                            </div>
                                                             <div class="unavailable_time_data"></div>
-                                                        </div>                
+                                                        </div>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <div class="availableDay">
                                                             <div class="table_header">${day.getDayname()}<br>
-                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                                ${day.getMonthName()} ${day.getDaynumber()}
+                                                            </div>
                                                             <div class="table_time_data">
                                                                 <div class="table_data"></div>
                                                                 <c:forEach items="${day.getAvailabletimeList()}" var="time">
-                                                                    <c:if test="${time.getIsBooked()==2}">
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                                        <div class="table_data data_unavailable">Booked</div>
-                                                                    </c:if>
-                                                                    <c:if test="${time.getIsBooked()==1}">
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                                        <td>
-                                                                            <a style="color:gray; font-size: 12px;">Unbooked</a><br>
-                                                                            <c:choose>
-                                                                                <c:when test="${time.getIsAvailable() == 1}">
-                                                                                    <button class="btn btn-available" style="background-color:#5492d9; font-size: 10px; color: white;"
-                                                                                            onclick="changeStatus(this, ${time.getTimeid()})">Available</button><br>
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                    <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 10px; color: white;"
-                                                                                            onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button><br>
-                                                                                </c:otherwise>
-                                                                            </c:choose>
-
-                                                                        </td>
-                                                                    </c:if>
+                                                                    <div class="time-entry">
+                                                                        <div class="time">${time.getTruncatedStartTime()}</div>
+                                                                        <div class="status" style="font-size: 15px;  color: #0B486B; font-weight: bold; cursor: not-allowed; ">
+                                                                          <div class="status2" style="margin-bottom: 3px;">
+                                                                            <c:if test="${time.getIsBooked()==2}">
+                                                                                Booked
+                                                                            </c:if>
+                                                                          </div>
+                                                                            <c:if test="${time.getIsBooked()==1}">
+                                                                                <c:choose>
+                                                                                    <c:when test="${time.getIsAvailable() == 1}">
+                                                                                        <button class="btn btn-available" style="background-color:#5492d9; font-size: 11px; color: white;" onclick="changeStatus(this, ${time.getTimeid()})">Available</button>
+                                                                                    </c:when>
+                                                                                    <c:otherwise>
+                                                                                        <button class="btn btn-unavailable" style="background-color:#d75353; font-size: 11px; color: white;" onclick="changeStatus(this, ${time.getTimeid()})">Unavailable</button>
+                                                                                    </c:otherwise>
+                                                                                </c:choose>
+                                                                            </c:if>
+                                                                        </div>
+                                                                    </div>
                                                                 </c:forEach>
-                                                            </div>     
+                                                            </div>
                                                         </div>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
                                             <c:forEach items="${passed}" var="passed">
                                                 <div class="unavailableDay">
-                                                    <div class="table_header">Unbooked</div>
                                                     <div class="unavailable_time_data">
                                                         <span>${time.getTruncatedStartTime()}</span>
                                                     </div>
                                                 </div>
-                                            </c:forEach>    
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -1339,6 +1396,8 @@
                         </div>
                     </div>
                 </div>
+
+
 
 
                 <!--start footer-->
@@ -1356,35 +1415,35 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <script>
-                                                                                                function changeStatus(button, timeId) {
-                                                                                                    var currentStatus = button.innerHTML.toLowerCase();
-                                                                                                    var newStatus = currentStatus === "available" ? "unavailable" : "available";
-                                                                                                    var data = "action=" + newStatus + "&timeid=" + timeId + "&status=" + currentStatus;
-                                                                                                    var blue = "#5492d9";
-                                                                                                    var red = "#d75353";
+                                                                                            function changeStatus(button, timeId) {
+                                                                                                var currentStatus = button.innerHTML.toLowerCase();
+                                                                                                var newStatus = currentStatus === "available" ? "unavailable" : "available";
+                                                                                                var data = "action=" + newStatus + "&timeid=" + timeId + "&status=" + currentStatus;
+                                                                                                var blue = "#5492d9";
+                                                                                                var red = "#d75353";
 
-                                                                                                    var xhr = new XMLHttpRequest();
-                                                                                                    xhr.onreadystatechange = function () {
-                                                                                                        if (xhr.readyState === 4 && xhr.status === 200) {
-                                                                                                            var message = xhr.responseText.trim();
-                                                                                                            if (message === "Time slot is now unavailable") {
-                                                                                                                button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-                                                                                                                button.style.backgroundColor = newStatus === "available" ? blue : red;
-                                                                                                                button.classList.toggle("btn-unavailable");
-                                                                                                                button.classList.toggle("btn-available");
-                                                                                                            } else if (message === "Time slot is now available") {
-                                                                                                                button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-                                                                                                                button.style.backgroundColor = newStatus === "unavailable" ? red : blue;
-                                                                                                                button.classList.toggle("btn-unavailable");
-                                                                                                                button.classList.toggle("btn-available");
-                                                                                                            }
+                                                                                                var xhr = new XMLHttpRequest();
+                                                                                                xhr.onreadystatechange = function () {
+                                                                                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                                                                                        var message = xhr.responseText.trim();
+                                                                                                        if (message === "Time slot is now unavailable") {
+                                                                                                            button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                                                                                                            button.style.backgroundColor = newStatus === "available" ? blue : red;
+                                                                                                            button.classList.toggle("btn-unavailable");
+                                                                                                            button.classList.toggle("btn-available");
+                                                                                                        } else if (message === "Time slot is now available") {
+                                                                                                            button.innerHTML = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+                                                                                                            button.style.backgroundColor = newStatus === "unavailable" ? red : blue;
+                                                                                                            button.classList.toggle("btn-unavailable");
+                                                                                                            button.classList.toggle("btn-available");
                                                                                                         }
-                                                                                                    };
+                                                                                                    }
+                                                                                                };
 
-                                                                                                    xhr.open("POST", "aavailability", true);
-                                                                                                    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                                                                                                    xhr.send(data);
-                                                                                                }
+                                                                                                xhr.open("POST", "aavailability", true);
+                                                                                                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                                                                                xhr.send(data);
+                                                                                            }
 
         </script>
 
