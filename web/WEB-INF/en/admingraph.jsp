@@ -30,76 +30,70 @@
 
         <script>
             var appointmentsData = [];
-var canceledAppointmentsData = [];
-var completedAppointmentsData = [];
+            var canceledAppointmentsData = [];
+            var completedAppointmentsData = [];
+            var labels = [];
 
-// Assuming appointmentsArrayList, canceledAppointmentsArrayList, and completedAppointmentsArrayList
-// contain the corresponding appointment objects
-<%
-    Vector<Appointment> appointmentsArrayList = (Vector<Appointment>) request.getAttribute("appts");
-    Vector<Appointment> canceledAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("canceledAppts");
-    Vector<Appointment> completedAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("completedAppts");
-    // Convert appointments data to JSON format
-    StringBuilder appointmentsJson = new StringBuilder();
-    StringBuilder canceledAppointmentsJson = new StringBuilder();
-    StringBuilder completedAppointmentsJson = new StringBuilder();
-    int totalAppointmentsCount = 0;
-    List<Integer> labels = new ArrayList<>();
+            // Assuming appointmentsArrayList, canceledAppointmentsArrayList, and completedAppointmentsArrayList
+            // contain the corresponding appointment objects
+            <%
+                Vector<Appointment> appointmentsArrayList = (Vector<Appointment>) request.getAttribute("appts");
+                Vector<Appointment> canceledAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("canceledAppts");
+                Vector<Appointment> completedAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("completedAppts");
+                // Convert appointments data to JSON format
+                StringBuilder appointmentsJson = new StringBuilder();
+                StringBuilder canceledAppointmentsJson = new StringBuilder();
+                StringBuilder completedAppointmentsJson = new StringBuilder();
+                int totalAppointmentsCount = 0;
+                for (int i = 0; i < appointmentsArrayList.size(); i++) {
+                    Appointment appointment = appointmentsArrayList.get(i);
+                    String appointmentDate = appointment.getTimeid().getFulldate().getTruncatedDate();
+                    int dayOfMonth = appointment.getTimeid().getFulldate().getDaynumber();
 
-    for (int i = 0; i < appointmentsArrayList.size(); i++) {
-        Appointment appointment = appointmentsArrayList.get(i);
-        String appointmentDate = appointment.getTimeid().getFulldate().getTruncatedDate();
-        int dayOfMonth = appointment.getTimeid().getFulldate().getDaynumber();
+                    // Build JSON object for total appointments
+                    appointmentsJson.append("{");
+                    appointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+                    appointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+                    totalAppointmentsCount++;
+                    appointmentsJson.append("\"count\":").append(totalAppointmentsCount);
+                    appointmentsJson.append("}");
 
-        // Build JSON object for total appointments
-        appointmentsJson.append("{");
-        appointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
-        appointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
-        totalAppointmentsCount++;
-        appointmentsJson.append("\"count\":").append(totalAppointmentsCount);
-        appointmentsJson.append("}");
+                    // Add comma separator for all but the last appointment
+                    if (i < appointmentsArrayList.size() - 1) {
+                        appointmentsJson.append(",");
+                    }
 
-        // Add comma separator for all but the last appointment
-        if (i < appointmentsArrayList.size() - 1) {
-            appointmentsJson.append(",");
-        }
+                    // Check if the appointment is canceled
+                    if (canceledAppointmentsArrayList.contains(appointment)) {
+                        // Build JSON object for canceled appointments
+                        canceledAppointmentsJson.append("{");
+                        canceledAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+                        canceledAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+                        canceledAppointmentsJson.append("\"count\":1");
+                        canceledAppointmentsJson.append("}");
 
-        // Check if the appointment is canceled
-        if (canceledAppointmentsArrayList.contains(appointment)) {
-            // Build JSON object for canceled appointments
-            canceledAppointmentsJson.append("{");
-            canceledAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
-            canceledAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
-            canceledAppointmentsJson.append("\"count\":1");
-            canceledAppointmentsJson.append("}");
+                        // Add comma separator for all but the last canceled appointment
+                        if (canceledAppointmentsArrayList.indexOf(appointment) < canceledAppointmentsArrayList.size() - 1) {
+                            canceledAppointmentsJson.append(",");
+                        }
+                    }
 
-            // Add comma separator for all but the last canceled appointment
-            if (canceledAppointmentsArrayList.indexOf(appointment) < canceledAppointmentsArrayList.size() - 1) {
-                canceledAppointmentsJson.append(",");
-            }
-        }
+                    // Check if the appointment is completed
+                    if (completedAppointmentsArrayList.contains(appointment)) {
+                        // Build JSON object for completed appointments
+                        completedAppointmentsJson.append("{");
+                        completedAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+                        completedAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+                        completedAppointmentsJson.append("\"count\":1");
+                        completedAppointmentsJson.append("}");
 
-        // Check if the appointment is completed
-        if (completedAppointmentsArrayList.contains(appointment)) {
-            // Build JSON object for completed appointments
-            completedAppointmentsJson.append("{");
-            completedAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
-            completedAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
-            completedAppointmentsJson.append("\"count\":1");
-            completedAppointmentsJson.append("}");
-
-            // Add comma separator for all but the last completed appointment
-            if (completedAppointmentsArrayList.indexOf(appointment) < completedAppointmentsArrayList.size() - 1) {
-                completedAppointmentsJson.append(",");
-            }
-        }
-
-        // Add dayOfMonth to labels array
-        if (!labels.contains(dayOfMonth)) {
-            labels.add(dayOfMonth);
-        }
-    }
-%>
+                        // Add comma separator for all but the last completed appointment
+                        if (completedAppointmentsArrayList.indexOf(appointment) < completedAppointmentsArrayList.size() - 1) {
+                            completedAppointmentsJson.append(",");
+                        }
+                    }
+                }
+            %>
 
             // Parse the JSON appointments data
             var appointments = JSON.parse('[<%= appointmentsJson.toString()%>]');
@@ -111,13 +105,8 @@ var completedAppointmentsData = [];
                 var dayOfMonth = appointment.dayOfMonth;
                 var count = appointment.count;
 
-                var index = labels.indexOf(dayOfMonth);
-                if (index === -1) {
-                    labels.push(dayOfMonth);
-                    appointmentsData.push(count);
-                } else {
-                    appointmentsData[index] += count;
-                }
+                labels.push(dayOfMonth);
+                appointmentsData.push(count);
             });
 
             // Process the canceled appointments data
@@ -148,19 +137,17 @@ var completedAppointmentsData = [];
                 }
             });
 
-            // Sort the labels in ascending order
-            labels.sort(function (a, b) {
-                return a - b;
-            });
+            // Determine the number of days in the month
+            var daysInMonth = 31; // Modify this value based on the actual number of days in the month
 
-            // Fill in missing days with zero count
-            var daysInMonth = labels[labels.length - 1]; // Last day in the labels array
+            // Fill in missing days with the last known count
             for (var i = 1; i <= daysInMonth; i++) {
-                if (!labels.includes(i)) {
+                var index = labels.indexOf(i);
+                if (index === -1) {
                     labels.push(i);
-                    appointmentsData.push(0);
-                    canceledAppointmentsData.push(0);
-                    completedAppointmentsData.push(0);
+                    appointmentsData.push(appointmentsData[appointmentsData.length - 1]);
+                    canceledAppointmentsData.push(canceledAppointmentsData[canceledAppointmentsData.length - 1]);
+                    completedAppointmentsData.push(completedAppointmentsData[completedAppointmentsData.length - 1]);
                 }
             }
 
