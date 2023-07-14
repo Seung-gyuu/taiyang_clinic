@@ -241,7 +241,7 @@ If you need to cancel your appointment, we respectfully request at least 24 hour
   </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="264ee24b-c2b0-457c-a9c1-d465879f9935.1" data-mc-module-version="2019-10-22">
     <tbody>
       <tr>
-        <td style="padding:18px 20px 30px 30px; line-height:22px; text-align:inherit; background-color:#FFFFFF;" height="100%" valign="top" bgcolor="#FFFFFF" role="module-content"><div><div style="font-family: inherit; text-align: inherit">If you have any further questions, please don't hesitate to reach out to <a href="http://localhost:8084/home?fromValidation=true" style="color:#0A6EBD"> our clinic website.</a>                                                                                                                                  
+        <td style="padding:18px 20px 30px 30px; line-height:22px; text-align:inherit; background-color:#FFFFFF;" height="100%" valign="top" bgcolor="#FFFFFF" role="module-content"><div><div style="font-family: inherit; text-align: inherit">If you have any further questions, please don't hesitate to reach out to <a href="http://3.96.57.160/en/home?fromValidation=true" style="color:#0A6EBD"> our clinic website.</a>                                                                                                                                  
         We look forward to seeing you soon, </div>
 <div style="font-family: inherit; text-align: inherit">Best Regards, </div>
 <div style="font-family: inherit; text-align: inherit">TaiYang Clinic</div>

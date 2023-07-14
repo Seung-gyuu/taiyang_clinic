@@ -106,7 +106,10 @@ public class LoginServlets extends HttpServlet {
 
                     //login as user -> home , login as admin -> admin jsp to manage 
                     if (status == 1) {
-                        response.sendRedirect("/home");
+                         if(language.equals("en"))
+                            response.sendRedirect("/en/home");
+                        if(language.equals("kr"))
+                        response.sendRedirect("/kr/home");
                         //  getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
                     } else {
                         response.sendRedirect("/admin");
