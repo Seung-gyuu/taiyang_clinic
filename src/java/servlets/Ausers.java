@@ -67,6 +67,7 @@ public class Ausers extends HttpServlet {
         } catch (Exception e) {
             Logger.getLogger(Ausers.class.getName()).log(Level.SEVERE, null, e);
         }
+        request.removeAttribute("addmsg");
         getServletContext().getRequestDispatcher("/WEB-INF/en/ausers.jsp").forward(request, response);
     }
 

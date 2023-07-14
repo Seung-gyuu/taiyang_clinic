@@ -1,4 +1,13 @@
 
+window.onload=loadMessage;
+
+function loadMessage(){
+    var msg = document.getElementById("addmsg").textContent;
+    if(msg!==null && msg!==""){
+        alert(msg);
+    }
+}
+
 var fn = 0;
 var ln = 0;
 var e = 0;
