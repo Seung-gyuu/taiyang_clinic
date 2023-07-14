@@ -152,6 +152,12 @@ public class Day implements Serializable {
         }
         return true;
     }
+    
+    public String getTruncatedDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd yyyy");
+        return dateFormat.format(fulldate);
+    }
+    
 
     @Override
     public String toString() {

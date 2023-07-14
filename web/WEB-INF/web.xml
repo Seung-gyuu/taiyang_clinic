@@ -133,6 +133,10 @@
         <servlet-name>GetAppointmentDetailsServlets</servlet-name>
         <servlet-class>servlets.GetAppointmentDetailsServlets</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminGraphsServlet</servlet-name>
+        <servlet-class>servlets.AdminGraphsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlets</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -515,6 +519,10 @@
         <servlet-name>GetAppointmentDetailsServlets</servlet-name>
         <url-pattern>/getApptDetails</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminGraphsServlet</servlet-name>
+        <url-pattern>/analytics</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -536,12 +544,12 @@
         <env-entry-type>java.lang.String</env-entry-type>
         <env-entry-value>cdhbavfilwoawjkz</env-entry-value>
     </env-entry>
-     <error-page>
+    <error-page>
         <error-code>404</error-code>
         <location>/error404.jsp</location>
-    </error-page> 
+    </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/error500.jsp</location>
-    </error-page> 
+    </error-page>
 </web-app>

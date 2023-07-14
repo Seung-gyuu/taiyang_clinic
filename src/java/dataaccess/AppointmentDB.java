@@ -119,6 +119,18 @@ public class AppointmentDB {
     
     
     
+    public List<Appointment> getByMonthYear(String month, int year) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findByMonthYear", Appointment.class);
+            query.setParameter("month", month);
+            query.setParameter("year", year);
+            List<Appointment> appts = query.getResultList();
+            return appts;
+        } finally {
+           em.close();
+        }
+    }
     
     public List<Appointment> getUserPassed(int userId) throws Exception {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();

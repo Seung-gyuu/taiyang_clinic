@@ -153,5 +153,9 @@ public class AppointmentService {
         adb.update(a);
         return "Updated";
     }
+    
+    public List<Appointment> getByMonthYear(String month, int year) throws Exception {
+        return adb.getByMonthYear(month, year);
+    }
 
 }
