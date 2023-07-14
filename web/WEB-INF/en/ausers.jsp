@@ -41,6 +41,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
 
         <style>
+
+            .role-select {
+                margin-top: 10px;
+            }
             form {
                 /*                display: flex;*/
                 flex-direction: column;
@@ -91,7 +95,7 @@
             }
 
 
-            #submitbutton, #savebutton {
+            #submitbutton{
                 background-color: #0B486B;
                 color: #0B486B;
                 color: white;
@@ -102,6 +106,19 @@
                 font-weight: light;
                 margin-left: 5px;
                 font-size: 15px;
+            }
+
+            #savebutton {
+                background-color: #0B486B;
+                color: #0B486B;
+                color: white;
+                border: none;
+                padding: 6px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                margin-left: 5px;
+                font-size: 16px;
             }
 
 
@@ -115,6 +132,7 @@
                 font-weight: light;
                 transition: background-color 0.3s ease;
                 font-size: 15px;
+
 
             }
 
@@ -1075,10 +1093,12 @@
                                             <c:choose>
 
                                                 <c:when test="${viewUser.getRoleid().getRoleid() == 1}">
-                                                    Role: <select name="role">                                                                     
-                                                        <option value="1" selected >User</option> 
-                                                        <option value="2">Admin</option>                                              
-                                                    </select>
+                                                    <div class="role-select">
+                                                        Role: <select name="role">                                                                     
+                                                            <option value="1" selected >User</option> 
+                                                            <option value="2">Admin</option>                                              
+                                                        </select>
+                                                    </div>
                                                 </c:when>
                                                 <c:when test="${viewUser.getRoleid().getRoleid() == 2}">
                                                     Role: <select name="role">                                                                     
@@ -1106,7 +1126,7 @@
                                 </c:if>
                             </div>
                         </div>
-               
+
 
                         <form action="ausers" method="post" >
                             <div class="modal fade" id="newUsersModal" tabindex="-1" aria-labelledby="addNewUsersModalLabel" aria-hidden="true" >
@@ -1198,7 +1218,7 @@
                                                         });
                                                     });
         </script>
-     
+
         <script>
             $(document).ready(function () {
             <% if (request.getAttribute("addedInfo") != null && (boolean) request.getAttribute("addedInfo")) { %>
