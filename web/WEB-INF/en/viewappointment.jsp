@@ -29,9 +29,11 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-<!--        <link rel="stylesheet" href="../css/viewappointmenttable.css">-->
+        <!--        <link rel="stylesheet" href="../css/viewappointmenttable.css">-->
 
         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
         <link rel="stylesheet" type="text/css" href="../css/availability.css">
         <script src="../js/availability.js"></script>
 
@@ -60,14 +62,60 @@
     min-height: 70vh;
     margin: 40px auto;
 }*/
+
+
+            .modal-header {
+                background-color: #f8f9fa;
+                border-bottom: none;
+            }
+
+
+            .modal-title {
+                color: #333; 
+            }
+
+
+            .modal-body {
+                padding: 20px;
+            }
+
+
+            .modal-content {
+                border-radius: 10px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+
+            .modal-content .btn-close {
+                color: #999;
+            }
+
+
+            .modal-content .btn-close:hover {
+                color: #333;
+            }
+
+            .link-style {
+                color: #0B486B;
+                text-decoration: underline;
+                font-weight: bold;
+                cursor: pointer;
+              
+            }
+
             
-   
-.time-divider {
-  border-top: 1px solid gray;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-             .time-entry {
+            .link-style:hover {
+                color: #08316D;
+            }
+
+
+
+            .time-divider {
+                border-top: 1px solid gray;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            .time-entry {
                 position: relative;
                 padding-bottom: 10px;
                 margin-bottom: 10px;
@@ -114,7 +162,9 @@
                 width: 100%;
                 display: flex;
                 overflow: hidden;
-                margin: 20px auto;
+                margin: auto ;
+                margin-bottom: 20px;
+
             }
 
             .TimesLeft {
@@ -157,48 +207,49 @@
                 padding-top: 10px;
             }
 
-/*            .table_header span {
-                margin-right: 5px;
-            }*/
+            /*            .table_header span {
+                            margin-right: 5px;
+                        }*/
 
             .table_header p {
                 margin: 0;
             }
-/*
-            .header_time {
-                height: 100%;
-                background-color: white;
-                margin-top: -50px;
-            }*/
+            /*
+                        .header_time {
+                            height: 100%;
+                            background-color: white;
+                            margin-top: -50px;
+                        }*/
 
-/*            .table_time {
-           
-             
-                font-size: 11px;
-                
-            }*/
+            /*            .table_time {
+                       
+                         
+                            font-size: 11px;
+                            
+                        }*/
 
-/*            .book_table_date {
-                margin-left: 3px;
-            }*/
+            /*            .book_table_date {
+                            margin-left: 3px;
+                        }*/
 
             .table_time_data {
                 background-color: #f5f5f5;
                 border-radius: 5px;
+
             }
             .days {
                 display: flex;
                 overflow-x: hidden;
                 position: relative;
                 border:none;
-/*                    width: 1225px;*/
+                /*                    width: 1225px;*/
                 white-space: nowrap;
                 /*overflow-x: scroll;*/
             }
 
             .days .days-content {
-                    width: 100%;
-/*                width: 1225px;*/
+                width: 100%;
+                /*                width: 1225px;*/
                 display: flex;
                 position: relative;
                 transition: transform 0.6s ease;
@@ -210,7 +261,7 @@
             }
 
             .table_header{
-/*                padding-top: 20px;*/
+                /*                padding-top: 20px;*/
                 /*                margin: 20px auto;*/
                 text-align: center;
                 display: flex;
@@ -265,15 +316,22 @@
                 border: 2px solid #fff;
             }
             .table_data {
-/*                height: 30px;*/
-/*                padding: 25px 15px;*/
-/*                padding-top: 35px;*/
+                /*                height: 30px;*/
+                /*                padding: 25px 15px;*/
+                /*                padding-top: 35px;*/
                 border-radius: 5px;
                 font-size: 13px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 background:#f5f5f5;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+
+
             }
             /*.days{
                 display: flex;
@@ -281,18 +339,16 @@
                 border: solid red 2px;
             }*/
             .data_available {
-                background-color: #5ea1ff;
+                background-color: #5492d9;
                 color:#fff;
-/*                border: 1px solid #fff;*/
+                /*                border: 1px solid #fff;*/
                 cursor: pointer;
-                 height: 30px;
+                height: 30px;
                 width: 70px;
-                align-items: center;
-                text-align:center;
                 font-size: 12px;
+                justify-content: center;
                 margin-bottom: 15px;
-            
-           
+
 
             }
 
@@ -303,12 +359,12 @@
             .data_unavailable {
                 background-color: lightgray;
                 color: gray;
-/*                border: 2px solid #fff;*/
+                /*                border: 2px solid #fff;*/
                 cursor: not-allowed;
                 font-size: 12px;
-                 height: 30px;
+                height: 30px;
                 width: 80px;
-                 margin-bottom: 15px;
+                margin-bottom: 15px;
             }
 
             .book_main_right {
@@ -392,48 +448,48 @@
 
             }
 
-            @media screen and (max-width: 1200px) {
-                .book_container {
-                    max-width: 960px;  
-                }
-                .table_data  {
-                    flex-direction: column;
-                }
-            }
+            /*            @media screen and (max-width: 1200px) {
+                            .book_container {
+                                max-width: 960px;  
+                            }
+                            .table_data  {
+                                flex-direction: column;
+                            }
+                        }*/
 
-            @media screen and (max-width: 992px) {
-
-                .book_container {
-                    max-width: 720px;  
-                    /*height: 100vh;*/
-                }
-
-                .book_main_section {
-                    display: block;
-                }
-
-                .book_main_right {
-                    display: block;
-                    margin: 20px 0;
-                    height: 160px;
-
-                }
-
-                .book_right_icon {
-                    justify-content: flex-start;
-                }
-
-                .book_right_icon > div {
-                    margin-right: 20px;
-                }
-
-                .book_right_selected {
-                }
-
-                .book_btn {
-
-                }
-            }
+            /*            @media screen and (max-width: 992px) {
+            
+                            .book_container {
+                                max-width: 720px;  
+                                height: 100vh;
+                            }
+            
+                            .book_main_section {
+                                display: block;
+                            }
+            
+                            .book_main_right {
+                                display: block;
+                                margin: 20px 0;
+                                height: 160px;
+            
+                            }
+            
+                            .book_right_icon {
+                                justify-content: flex-start;
+                            }
+            
+                            .book_right_icon > div {
+                                margin-right: 20px;
+                            }
+            
+                            .book_right_selected {
+                            }
+            
+                            .book_btn {
+            
+                            }
+                        }*/
 
 
             @media screen and (max-width: 768px) {
@@ -1206,7 +1262,7 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                     <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
+                    <h3><img src="src/img/ClinicLogo.png" class="img-fluid"/><span>Tai Yang Clinic</span></h3>
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
@@ -1294,27 +1350,28 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>-->
-<!--                                <div class="d-flex justify-content-between align-items-center">
-                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
-                                    </a>
-                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
-                                        <script>document.write(formattedDate);</script>
-                                    </h4>
-                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
-                                    </a>
-                                </div>
-                                -->
+                                <!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
                                 
-                                 <div class="d-flex justify-content-between align-items-center" >
+                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br>-->
+                                <!--                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
+                                                                    </a>
+                                                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
+                                                                        <script>document.write(formattedDate);</script>
+                                                                    </h4>
+                                                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
+                                                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
+                                                                    </a>
+                                                                </div>
+                                -->
+
+
+                                <div class="d-flex justify-content-between align-items-center" >
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
                                         <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
                                     </a>
@@ -1326,7 +1383,7 @@
                                     </a>
                                 </div>
                                 <br>
-                                <div class="fullCalendar">
+                                <div class="fullCalendar" style="width:1100px;">
                                     <div class="days">
                                         <div class="days-content">
                                             <c:forEach items="${unbooked}" var="day">
@@ -1352,28 +1409,32 @@
                                                                 ${day.getMonthName()} ${day.getDaynumber()}</div>
                                                             <div class="table_time_data" style="font-size: 13px; text-align: center; font-weight: bold;">
                                                                 <div class="table_data" ></div>
-                                                                
+
                                                                 <c:forEach items="${day.getAvailabletimeList()}" var="time">
-                                                                     <div class="time-divider"></div>
+                                                                    <!--                                                                     <div class="time-divider"></div>-->
                                                                     <c:if test="${time.getIsAvailable()==2}">
                                                                         <c:if test="${time.getIsBooked()==2}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" style="font-weight: normal;" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getAppointmentDetails(this.getAttribute('data-value'))">Booked</div>
-                                                                        </c:if>
-                                                                        <c:if test="${time.getIsBooked()==1}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable" style="font-weight: normal; align-items: center;" >Unavailable</div>
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" style="font-weight: normal; text-align: center; cursor: pointer;" id="${time.getTimeid()}" onClick="getAppointmentDetails('${time.getTimeid()}')">Booked</div>
                                                                         </c:if>
 
+                                                                        <c:if test="${time.getIsBooked()==1}">
+                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable" style="font-weight: normal; align-items: center; text-align: center; " >Unavailable</div>
+                                                                        </c:if>
+                                                                        <hr class="time-divider">
                                                                     </c:if>    
                                                                     <c:if test="${time.getIsAvailable()==1}">
 
                                                                         <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                                        <td>
-                                                                            <a style="color:#0B486B; font-weight:bold; font-size: 12px; cursor: not-allowed;">Unbooked</a><br>
+                                                                        <div style="margin-top: 6px; margin-bottom: 20.5px;">
+                                                                            <td>
+                                                                                <a style="color:#0B486B; font-weight:bold; font-size: 13px; cursor: not-allowed; ">Unbooked</a><br>
 
-                                                                        </td>
+                                                                            </td>
+                                                                        </div>
+                                                                        <hr class="time-divider">
                                                                     </c:if>
                                                                 </c:forEach>
-                                                             
+
                                                             </div>     
                                                         </div>
                                                     </c:otherwise>
@@ -1382,104 +1443,162 @@
                                         </div>
                                     </div>
                                 </div>
-                                                                            
 
-                                                                            
-                                                                            
-                                                                            
-                                <div id="popupBox" style="display: none;"> 
-                                    <div id="popupContent"></div>
+
+
+
+                                <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="popupModalLabel">Appointment Details</h5>
+                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="popupContent"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+
+
+                                <!--                                <div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentmodalLabel" aria-hidden="true">
+                                                                     Modal content 
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="viewAppointmentmodalLabel">Patient Info</h5>
+                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                
+                                -->                                            </div>
+                            <!--            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>-->
                         </div>
                     </div>
                 </div>
 
-                <!--                                <div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentmodalLabel" aria-hidden="true">
-                                                     Modal content 
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="viewAppointmentmodalLabel">Patient Info</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
+                <!--<script>
+                    $('#viewAppointmentModal').on('show.bs.modal', function (event) {
+                        // Get the button that triggered the modal
+                        var button = $(event.relatedTarget);
+                
+                        // Extract data attributes from the clicked button
+                        var startTime = button.data('start-time');
+                        var endTime = button.data('end-time');
+                        var firstName = button.data('first-name');
+                        var lastName = button.data('last-name');
+                        var serviceName = button.data('service-name');
+                        var description = button.data('description');
+                
+                        // Update the modal's elements with the retrieved values
+                        var modal = $(this);
+                        modal.find('#startTime').text(startTime);
+                        modal.find('#endTime').text(endTime);
+                        modal.find('#patientName').text(firstName + ' ' + lastName);
+                        modal.find('#serviceName').text(serviceName);
+                        modal.find('#description').text(description);
+                    });
+                </script>-->
 
-                -->                                            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <!--start footer-->
+                <div class="my-5"></div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="footer-in">
+                            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-    </div>
-</div>-->
-
-<!--<script>
-    $('#viewAppointmentModal').on('show.bs.modal', function (event) {
-        // Get the button that triggered the modal
-        var button = $(event.relatedTarget);
-
-        // Extract data attributes from the clicked button
-        var startTime = button.data('start-time');
-        var endTime = button.data('end-time');
-        var firstName = button.data('first-name');
-        var lastName = button.data('last-name');
-        var serviceName = button.data('service-name');
-        var description = button.data('description');
-
-        // Update the modal's elements with the retrieved values
-        var modal = $(this);
-        modal.find('#startTime').text(startTime);
-        modal.find('#endTime').text(endTime);
-        modal.find('#patientName').text(firstName + ' ' + lastName);
-        modal.find('#serviceName').text(serviceName);
-        modal.find('#description').text(description);
-    });
-</script>-->
+        <script>
+            //                var unbookedLinks = document.querySelectorAll('.unbooked');
+            //                for (var i = 0; i < unbookedLinks.length; i++) {
+            //                    unbookedLinks[i].addEventListener('click', function (event) {
+            //                        event.preventDefault();
+            //                    });
+            //                }
 
 
-<!--start footer-->
-<div class="my-5"></div>
-<footer class="footer">
-    <div class="container-fluid">
-        <div class="footer-in">
-            <p class="mb-0">&copy Tai Yang Clinic. All Rights Reserved.</p>
-        </div>
-    </div>
-</footer>
-</div>
-</div>
-<script>
-    //                var unbookedLinks = document.querySelectorAll('.unbooked');
-    //                for (var i = 0; i < unbookedLinks.length; i++) {
-    //                    unbookedLinks[i].addEventListener('click', function (event) {
-    //                        event.preventDefault();
-    //                    });
-    //                }
-
-
-</script>
+        </script>
 
 
 
-<script src="js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.min.js"></script>
 
 
-<script src="../js/viewappointment.js"></script>
-<script type="text/javascript">
+        <script src="../js/viewappointment.js"></script>
+        <script type="text/javascript">
 
-    $(document).ready(function () {
-        $(".xp-menubar").on('click', function () {
-            $('#sidebar').toggleClass('active');
-            $('#content').toggleClass('active');
-        });
+            $(document).ready(function () {
+                $(".xp-menubar").on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                    $('#content').toggleClass('active');
+                });
 
-        $(".xp-menubar,.body-overlay").on('click', function () {
-            $('#sidebar,.body-overlay').toggleClass('show-nav');
-        });
+                $(".xp-menubar,.body-overlay").on('click', function () {
+                    $('#sidebar,.body-overlay').toggleClass('show-nav');
+                });
 
-    });
+            });
 
-</script>
-</body>
+            function getAppointmentDetails(timeID) {
+                fetch('/getApptDetails?timeId=' + timeID) //make the new server endpoint, get appointment details.  Add popup with details and href to view forms for that userID
+                        .then(response => response.json())
+                        .then(data => {
+                            var firstName = data.firstName;
+                            var lastName = data.lastName;
+                            var serviceName = data.serviceName;
+                            var apptDesc = data.apptDesc;
+                            var userId = data.userId;
+
+                            var output = "";
+
+//                            output = "<div class='popupText'>Appointment Details";
+                            output += "Name: " + firstName + " " + lastName;
+                            output += "<br> Service Name: " + serviceName;
+                            output += "<br> Desc: " + apptDesc;
+                            output += "<br><a href='/vform?userId=" + userId + "' class='link-style'>View forms</a>";
+//                            output += "<button onClick='closePopup()'>Close</button>";
+                            output += "<br><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>";
+                            output += "</div>";
+
+                            document.getElementById('popupContent').innerHTML = output;
+
+                            $('#popupModal').modal('show');
+                        })
+                        .catch(error => {
+                            // Handle any error that occurs during the request
+                            console.error('Error:', error);
+                        });
+            }
+
+//            function closePopup() {
+//                var popupBox = document.getElementById('popupBox');
+//                popupBox.style.display = 'none';
+//            }
+
+
+            window.onclick = function (event) {
+                var popupBox = document.getElementById('popupBox');
+                var confirmBox = document.getElementById('confirmBox');
+                if (event.target === popupBox) {
+                    popupBox.style.display = "none";
+                }
+                if (event.target === confirmBox) {
+                    confirmBox.style.display = "none";
+                }
+
+            }
+
+        </script>
+
+
+    </body>
 </html>
