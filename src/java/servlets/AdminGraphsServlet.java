@@ -31,7 +31,11 @@ public class AdminGraphsServlet extends HttpServlet {
         AppointmentService aps = new AppointmentService();
         try {
             List<Appointment> appts = aps.getByMonthYear(month, year);
+            List<Appointment> canceledAppts = aps.getByMonthYear(month, year);
+            List<Appointment> completedAppts = aps.getByMonthYear(month, year);
             request.setAttribute("appts", appts);
+            request.setAttribute("canceledAppts", canceledAppts);
+            request.setAttribute("completedAppts", completedAppts);
             getServletContext().getRequestDispatcher("/WEB-INF/en/admingraph.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(AdminGraphsServlet.class.getName()).log(Level.SEVERE, null, ex);

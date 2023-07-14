@@ -33,12 +33,12 @@ public class UpdateTimes extends TimerTask {
                 avt.update(t);
             }
             
-            List<Availabletime> bookedTimes;
-            List<Availabletime> bookedTimes1 = avt.findAllPassedBooked();
+            //List<Availabletime> bookedTimes;
+            //List<Availabletime> bookedTimes1 = avt.findAllPassedBooked();
             List<Availabletime> bookedTimes2 = avt.findAllUpcomingBooked();
-            bookedTimes1.addAll(0, bookedTimes2);
-            bookedTimes=bookedTimes1;
-            for(Availabletime t : bookedTimes){
+            //bookedTimes1.addAll(0, bookedTimes2);
+            //bookedTimes=bookedTimes1;
+            for(Availabletime t : bookedTimes2){
                 t.setIsAvailable(2);
                 avt.update(t);
             }

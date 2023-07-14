@@ -157,5 +157,11 @@ public class AppointmentService {
     public List<Appointment> getByMonthYear(String month, int year) throws Exception {
         return adb.getByMonthYear(month, year);
     }
+    public List<Appointment> getByMonthYearConfirmed(String month, int year) throws Exception {
+        return adb.getByMonthYearConfirmed(month, year);
+    }
+    public List<Appointment> getByMonthYearCanceled(String month, int year) throws Exception {
+        return adb.getByMonthYearCanceled(month, year);
+    }
 
 }

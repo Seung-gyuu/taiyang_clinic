@@ -22,94 +22,182 @@
             <c:forEach items="${appts}" var="appt">
                 <tr><td>${appt.getTimeid().getFulldate().getTruncatedDate()}</td><td>${appt.getAppointmentid()}</td><td>${appt.getStatus()}</td><td>${appt.getUserid().getFirstname()}</td></tr>
             </c:forEach>
-                
-         
+
+
         </table>
         <h1>Canvas : </h1>
-                <canvas id="lineChart"></canvas>
- <script>
-        var appointmentsData = [];
-        var labels = [];
+        <canvas id="lineChart"></canvas>
 
-        // Assuming appointmentsVector contains the appointment objects
-        <%
-        Vector<Appointment> appointmentsVector = (Vector<Appointment>) request.getAttribute("appts");
-        System.out.print(appointmentsVector);
-        // Convert appointments data to JSON format
-        StringBuilder appointmentsJson = new StringBuilder();
-        for (int i = 0; i < appointmentsVector.size(); i++) {
-            Appointment appointment = appointmentsVector.get(i);
-            String appointmentDate = appointment.getTimeid().getFulldate().getTruncatedDate();
-            int dayOfMonth = appointment.getTimeid().getFulldate().getDaynumber();
+        <script>
+            var appointmentsData = [];
+var canceledAppointmentsData = [];
+var completedAppointmentsData = [];
 
-            // Build JSON object for each appointment
-            appointmentsJson.append("{");
-            appointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
-            appointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
-            appointmentsJson.append("\"count\":1"); // Assuming each appointment has a count of 1
-            appointmentsJson.append("}");
+// Assuming appointmentsArrayList, canceledAppointmentsArrayList, and completedAppointmentsArrayList
+// contain the corresponding appointment objects
+<%
+    Vector<Appointment> appointmentsArrayList = (Vector<Appointment>) request.getAttribute("appts");
+    Vector<Appointment> canceledAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("canceledAppts");
+    Vector<Appointment> completedAppointmentsArrayList = (Vector<Appointment>) request.getAttribute("completedAppts");
+    // Convert appointments data to JSON format
+    StringBuilder appointmentsJson = new StringBuilder();
+    StringBuilder canceledAppointmentsJson = new StringBuilder();
+    StringBuilder completedAppointmentsJson = new StringBuilder();
+    int totalAppointmentsCount = 0;
+    List<Integer> labels = new ArrayList<>();
 
-            // Add comma separator for all but the last appointment
-            if (i < appointmentsVector.size() - 1) {
-                appointmentsJson.append(",");
-            }
+    for (int i = 0; i < appointmentsArrayList.size(); i++) {
+        Appointment appointment = appointmentsArrayList.get(i);
+        String appointmentDate = appointment.getTimeid().getFulldate().getTruncatedDate();
+        int dayOfMonth = appointment.getTimeid().getFulldate().getDaynumber();
+
+        // Build JSON object for total appointments
+        appointmentsJson.append("{");
+        appointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+        appointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+        totalAppointmentsCount++;
+        appointmentsJson.append("\"count\":").append(totalAppointmentsCount);
+        appointmentsJson.append("}");
+
+        // Add comma separator for all but the last appointment
+        if (i < appointmentsArrayList.size() - 1) {
+            appointmentsJson.append(",");
         }
-        %>
 
-        // Parse the JSON appointments data
-        var appointments = JSON.parse('[<%= appointmentsJson.toString() %>]');
+        // Check if the appointment is canceled
+        if (canceledAppointmentsArrayList.contains(appointment)) {
+            // Build JSON object for canceled appointments
+            canceledAppointmentsJson.append("{");
+            canceledAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+            canceledAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+            canceledAppointmentsJson.append("\"count\":1");
+            canceledAppointmentsJson.append("}");
 
-        // Process the appointments data
-        appointments.forEach(function(appointment) {
-            var dayOfMonth = appointment.dayOfMonth;
-
-            var index = labels.indexOf(dayOfMonth);
-            if (index === -1) {
-                labels.push(dayOfMonth);
-                appointmentsData.push(1);
-            } else {
-                appointmentsData[index] += 1;
-            }
-        });
-
-        // Determine the number of days in the month
-        var daysInMonth = 31; // Modify this value based on the actual number of days in the month
-
-        // Fill in missing days with zero count
-        for (var i = 1; i <= daysInMonth; i++) {
-            if (!labels.includes(i)) {
-                labels.push(i);
-                appointmentsData.push(0);
+            // Add comma separator for all but the last canceled appointment
+            if (canceledAppointmentsArrayList.indexOf(appointment) < canceledAppointmentsArrayList.size() - 1) {
+                canceledAppointmentsJson.append(",");
             }
         }
 
-        // Sort the labels and data arrays in ascending order
-        var sortedAppointmentsData = [];
-        for (var i = 1; i <= daysInMonth; i++) {
-            var index = labels.indexOf(i);
-            sortedAppointmentsData.push(appointmentsData[index]);
-        }
-        labels.sort(function(a, b) { return a - b; });
-        appointmentsData = sortedAppointmentsData;
+        // Check if the appointment is completed
+        if (completedAppointmentsArrayList.contains(appointment)) {
+            // Build JSON object for completed appointments
+            completedAppointmentsJson.append("{");
+            completedAppointmentsJson.append("\"date\":\"").append(appointmentDate).append("\",");
+            completedAppointmentsJson.append("\"dayOfMonth\":").append(dayOfMonth).append(",");
+            completedAppointmentsJson.append("\"count\":1");
+            completedAppointmentsJson.append("}");
 
-        // Create the line chart using Chart.js
-        var ctx = document.getElementById('lineChart').getContext('2d');
-        var lineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Appointments',
-                    data: appointmentsData,
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                // Add any additional options for styling and customization
+            // Add comma separator for all but the last completed appointment
+            if (completedAppointmentsArrayList.indexOf(appointment) < completedAppointmentsArrayList.size() - 1) {
+                completedAppointmentsJson.append(",");
             }
-        });
-    </script>
+        }
+
+        // Add dayOfMonth to labels array
+        if (!labels.contains(dayOfMonth)) {
+            labels.add(dayOfMonth);
+        }
+    }
+%>
+
+            // Parse the JSON appointments data
+            var appointments = JSON.parse('[<%= appointmentsJson.toString()%>]');
+            var canceledAppointments = JSON.parse('[<%= canceledAppointmentsJson.toString()%>]');
+            var completedAppointments = JSON.parse('[<%= completedAppointmentsJson.toString()%>]');
+
+            // Process the appointments data
+            appointments.forEach(function (appointment) {
+                var dayOfMonth = appointment.dayOfMonth;
+                var count = appointment.count;
+
+                var index = labels.indexOf(dayOfMonth);
+                if (index === -1) {
+                    labels.push(dayOfMonth);
+                    appointmentsData.push(count);
+                } else {
+                    appointmentsData[index] += count;
+                }
+            });
+
+            // Process the canceled appointments data
+            canceledAppointments.forEach(function (appointment) {
+                var dayOfMonth = appointment.dayOfMonth;
+                var count = appointment.count;
+
+                var index = labels.indexOf(dayOfMonth);
+                if (index === -1) {
+                    labels.push(dayOfMonth);
+                    canceledAppointmentsData.push(count);
+                } else {
+                    canceledAppointmentsData[index] = count;
+                }
+            });
+
+            // Process the completed appointments data
+            completedAppointments.forEach(function (appointment) {
+                var dayOfMonth = appointment.dayOfMonth;
+                var count = appointment.count;
+
+                var index = labels.indexOf(dayOfMonth);
+                if (index === -1) {
+                    labels.push(dayOfMonth);
+                    completedAppointmentsData.push(count);
+                } else {
+                    completedAppointmentsData[index] = count;
+                }
+            });
+
+            // Sort the labels in ascending order
+            labels.sort(function (a, b) {
+                return a - b;
+            });
+
+            // Fill in missing days with zero count
+            var daysInMonth = labels[labels.length - 1]; // Last day in the labels array
+            for (var i = 1; i <= daysInMonth; i++) {
+                if (!labels.includes(i)) {
+                    labels.push(i);
+                    appointmentsData.push(0);
+                    canceledAppointmentsData.push(0);
+                    completedAppointmentsData.push(0);
+                }
+            }
+
+            // Create the line chart using Chart.js
+            var ctx = document.getElementById('lineChart').getContext('2d');
+            var lineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Total Appointments',
+                            data: appointmentsData,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Canceled Appointments',
+                            data: canceledAppointmentsData,
+                            fill: false,
+                            borderColor: 'rgb(255, 99, 132)',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Completed Appointments',
+                            data: completedAppointmentsData,
+                            fill: false,
+                            borderColor: 'rgb(54, 162, 235)',
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    // Add any additional options for styling and customization
+                }
+            });
+        </script>
     </body>
 </html>

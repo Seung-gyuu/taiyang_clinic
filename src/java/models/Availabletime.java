@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "availabletime")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Availabletime.findAllPassed", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < current_date")
+    @NamedQuery(name = "Availabletime.findAllPassed", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < current_date and a.isAvailable=1")
     , @NamedQuery(name = "Availabletime.findAllPassedToday", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate = current_date AND a.startTime < CURRENT_TIME")    
     , @NamedQuery(name = "Availabletime.findAllPassedInRange", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.fulldate.fulldate >= :startDate")
     , @NamedQuery(name = "Availabletime.findAllPassedBooked", query = "SELECT a FROM Availabletime a WHERE a.fulldate.fulldate < CURRENT_DATE AND a.isBooked = 2")
