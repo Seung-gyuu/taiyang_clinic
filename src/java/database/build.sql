@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`reminder` (
  
 
 --sent reminders is the same table so that we can retain all the information, without it clogging the reminder table
-CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentReminders` (
+CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentreminders` (
     `sentreminderid` INT AUTO_INCREMENT,
     PRIMARY KEY (`sentreminderid`),
     `userid` INT NOT NULL,

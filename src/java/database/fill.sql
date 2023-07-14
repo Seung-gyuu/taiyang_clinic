@@ -408,12 +408,4 @@ insert into service values(4, 2, 'sauna', 'Sauna ');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-20', 2024, 'Monday', 20, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-21', 2024, 'Tuesday', 21, 'May');
 
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,1,1,'My Tummy Hurting',2);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,218,1,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,220,3,'My Tummy Hurting',1);
---insert into appointment(userid,timeid,serviceid,isupcoming) values (4,224,2,1);
-insert into appointment(userid,timeid,serviceid,description,isupcoming) values (3,301,2,'My Tummy Hurting',1);
-insert into appointment(userid,timeid,serviceid,isupcoming) values (3,305,2,1);
 
-
--- we can add a timer class that runs every 24hrs and automatically adds a day!!

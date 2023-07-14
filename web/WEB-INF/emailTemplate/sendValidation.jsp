@@ -475,7 +475,7 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <p>If you did not request a password reset, please ignore this email </p>
+                                                <p>If you did not request email validation, please ignore this email </p>
                                                 <p>Thanks,
                                                     <br>TaiYang Clinic </p>
                                             </div>
