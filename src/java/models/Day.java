@@ -158,6 +158,37 @@ public class Day implements Serializable {
         return dateFormat.format(fulldate);
     }
     
+    public static int getMonthNumber(String month){
+        switch (month) {
+        case "January":
+            return 0;
+        case "February":
+            return 1;
+        case "March":
+            return 2;
+        case "April":
+            return 3;
+        case "May":
+            return 4;
+        case "June":
+            return 5;
+        case "July":
+            return 6;
+        case "August":
+            return 7;
+        case "September":
+            return 8;
+        case "October":
+            return 9;
+        case "November":
+            return 10;
+        case "December":
+            return 11;
+        default:
+            throw new IllegalArgumentException("Invalid month: " + month);
+    }
+    }
+    
 
     @Override
     public String toString() {

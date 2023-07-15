@@ -158,6 +158,18 @@ public class AppointmentDB {
            em.close();
         }
     }
+    public List<Appointment> getByDate(Date d) throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Appointment> query = em.createNamedQuery("Appointment.findAppointmentsByDate", Appointment.class);
+            query.setParameter("date", d);
+            List<Appointment> appts = query.getResultList();
+            return appts;
+        } finally {
+           em.close();
+        }
+    }
+    
     
     
     

@@ -8,6 +8,8 @@ package servlets;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,20 +38,21 @@ public class AdminGraphsServlet extends HttpServlet {
             List<Appointment> completedAppts = aps.getByMonthYearConfirmed(month, year);
 
             int daysInMonth = 31; // Calculate the number of days in the month
-                    // Create arrays for x and y values
-            int[] xValuesTotalAppts = new int[daysInMonth]; //really just the x values at the bottom
+            // Create arrays for x and y values
+            String[] xValuesTotalAppts = new String[daysInMonth]; //really just the x values at the bottom
             int[] yValuesTotalAppts = new int[daysInMonth];
             //int[] xValuesCompleteAppts = new int[daysInMonth];
             int[] yValuesCompleteAppts = new int[daysInMonth];
             //int[] xValuesCanceledAppts = new int[daysInMonth];
             int[] yValuesCanceledAppts = new int[daysInMonth];
+
+            int[] yValuesApptMadeDaily = new int[daysInMonth];
 // Initialize x-axis values
             for (int i = 0; i < daysInMonth; i++) {
-                xValuesTotalAppts[i] = i + 1; // Start from day 1
-            }   
+                xValuesTotalAppts[i] = month + " "+(i + 1); // Start from day 1
+            }
             //xValuesCompleteAppts=xValuesCanceledAppts=xValuesTotalAppts;
-            
-            
+
 // Calculate y-axis values
             int appointmentIndex = 0;
             int currentDay = 1;
@@ -112,27 +115,40 @@ public class AdminGraphsServlet extends HttpServlet {
                 currentDay++;
             }
 
+            //appts made daily y values
+            List<Appointment> apptDaily;
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, models.Day.getMonthNumber(month));
+// Iterate over the days in the month
+            for (int i = 1; i <= daysInMonth; i++) {
+                // Set the day of the month
+                calendar.set(Calendar.DAY_OF_MONTH, i);
+                // Get the date object for the current day
+                Date date = calendar.getTime();
+                // Get the appointments made on the current date
+                apptDaily = aps.getByDate(date);
+
+                // Set the y-axis value for the current day to the number of appointments made
+                yValuesApptMadeDaily[i - 1] = apptDaily.size();
+            }
+
 // Set the x and y values as request attributes        
             String xValuesTotalJson = new Gson().toJson(xValuesTotalAppts);
             String yValuesTotalJson = new Gson().toJson(yValuesTotalAppts);
-            
-            //String xValuesCanceledJson = new Gson().toJson(xValuesCanceledAppts);
             String yValuesCanceledJson = new Gson().toJson(yValuesCanceledAppts);
-            
-            //String xValuesCompleteJson = new Gson().toJson(xValuesCompleteAppts);
             String yValuesCompleteJson = new Gson().toJson(yValuesCompleteAppts);
+            String yValuesApptMadeDailyJson = new Gson().toJson(yValuesApptMadeDaily);
 // Set xValuesJson and yValuesJson as request attributes
+
+
             request.setAttribute("xValuesTotalJson", xValuesTotalJson);
             request.setAttribute("yValuesTotalJson", yValuesTotalJson);
-            
-            //request.setAttribute("xValuesCanceledJson", xValuesCanceledJson);
             request.setAttribute("yValuesCanceledJson", yValuesCanceledJson);
-            
-            //request.setAttribute("xValuesCompleteJson", xValuesCompleteJson);
             request.setAttribute("yValuesCompleteJson", yValuesCompleteJson);
+            request.setAttribute("yValuesApptMadeDailyJson", yValuesApptMadeDailyJson);
             
-            
-            
+
             request.setAttribute("appts", appts);
             request.setAttribute("canceledAppts", canceledAppts);
             request.setAttribute("completedAppts", completedAppts);

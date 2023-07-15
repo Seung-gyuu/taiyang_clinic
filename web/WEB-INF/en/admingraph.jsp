@@ -37,6 +37,7 @@
     //var xValuesComplete = JSON.parse('${xValuesCompleteJson}');
     var yValuesComplete = JSON.parse('${yValuesCompleteJson}');
 
+    var yValuesApptMadeDaily = JSON.parse('${yValuesApptMadeDailyJson}');
     // Create the line chart using Chart.js
     var ctx = document.getElementById('lineChart').getContext('2d');
     var lineChart = new Chart(ctx, {
@@ -63,6 +64,13 @@
                     data: yValuesComplete,
                     fill: false,
                     borderColor: 'green',
+                    tension: 0.1
+                },
+                {
+                    label: 'Daily Appointments',
+                    data: yValuesApptMadeDaily,
+                    fill: false,
+                    borderColor: 'black',
                     tension: 0.1
                 }
             ]
