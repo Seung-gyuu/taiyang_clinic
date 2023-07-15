@@ -8,6 +8,9 @@ package servlets;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -29,15 +32,30 @@ public class AdminGraphsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String month = "July";
-        int year = 2023;
+        String month;
+        int year;
+        if (request.getParameter("month") != null && request.getParameter("year") != null) {
+            int monthNumber = Integer.parseInt(request.getParameter("month"));
+            month = Month.of(monthNumber).name();
+            month = month.substring(0, 1) + month.substring(1).toLowerCase();
+            year = Integer.parseInt(request.getParameter("year"));
+        } else {
+            LocalDate currentDate = LocalDate.now();
+            month = currentDate.getMonth().minus(1).toString();
+            month = month.substring(0, 1) + month.substring(1).toLowerCase();
+
+            year = currentDate.getYear();
+        }
         AppointmentService aps = new AppointmentService();
         try {
             List<Appointment> appts = aps.getByMonthYear(month, year);
             List<Appointment> canceledAppts = aps.getByMonthYearCanceled(month, year);
             List<Appointment> completedAppts = aps.getByMonthYearConfirmed(month, year);
-
-            int daysInMonth = 31; // Calculate the number of days in the month
+            
+            int monthNumber = models.Day.getMonthNumber(month);
+            YearMonth yearMonth = YearMonth.of(year, monthNumber);
+            int daysInMonth = yearMonth.lengthOfMonth();
+            
             // Create arrays for x and y values
             String[] xValuesTotalAppts = new String[daysInMonth]; //really just the x values at the bottom
             int[] yValuesTotalAppts = new int[daysInMonth];
@@ -49,7 +67,7 @@ public class AdminGraphsServlet extends HttpServlet {
             int[] yValuesApptMadeDaily = new int[daysInMonth];
 // Initialize x-axis values
             for (int i = 0; i < daysInMonth; i++) {
-                xValuesTotalAppts[i] = month + " "+(i + 1); // Start from day 1
+                xValuesTotalAppts[i] = month + " " + (i + 1); // Start from day 1
             }
             //xValuesCompleteAppts=xValuesCanceledAppts=xValuesTotalAppts;
 
@@ -141,13 +159,11 @@ public class AdminGraphsServlet extends HttpServlet {
             String yValuesApptMadeDailyJson = new Gson().toJson(yValuesApptMadeDaily);
 // Set xValuesJson and yValuesJson as request attributes
 
-
             request.setAttribute("xValuesTotalJson", xValuesTotalJson);
             request.setAttribute("yValuesTotalJson", yValuesTotalJson);
             request.setAttribute("yValuesCanceledJson", yValuesCanceledJson);
             request.setAttribute("yValuesCompleteJson", yValuesCompleteJson);
             request.setAttribute("yValuesApptMadeDailyJson", yValuesApptMadeDailyJson);
-            
 
             request.setAttribute("appts", appts);
             request.setAttribute("canceledAppts", canceledAppts);
