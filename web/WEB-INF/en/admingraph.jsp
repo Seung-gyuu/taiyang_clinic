@@ -50,14 +50,6 @@
         %>  
 
 
-<!--        <table>
-            <c:forEach items="${appts}" var="appt">
-                <tr><td>${appt.getTimeid().getFulldate().getTruncatedDate()}</td><td>${appt.getAppointmentid()}</td><td>${appt.getStatus()}</td><td>${appt.getUserid().getFirstname()}</td></tr>
-            </c:forEach>
-
-
-        </table>-->
-        <h1>Canvas : </h1>
         <canvas id="lineChart"></canvas>
         
         

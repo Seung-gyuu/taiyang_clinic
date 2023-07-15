@@ -27,18 +27,67 @@ import services.AppointmentService;
 public class HomeServlets extends HttpServlet {
 
     @Override
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    HttpSession session = request.getSession(false); // Pass "false" to get the session without creating a new one
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false); // Pass "false" to get the session without creating a new one
 
-    User user = null;
-    if (session != null) {
-        user = (User) session.getAttribute("loggedUser");
-    }
+        User user = null;
+        if (session != null) {
+            user = (User) session.getAttribute("loggedUser");
+        }
 
-    if (request.getParameter("translate") != null) {
-        String language = request.getParameter("translate");
-        if (language.equals("en")) {
+        if (request.getParameter("translate") != null) {
+            String language = request.getParameter("translate");
+            if (language.equals("en")) {
+                session = request.getSession(true); // Create a new session
+                session.setAttribute("language", language);
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/en/home");
+            } else {
+                session = request.getSession(true); // Create a new session
+                session.setAttribute("language", language);
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+                response.sendRedirect("/kr/home");
+            }
+            return;
+        }
+
+        boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
+
+        if (fromValidation && session != null) {
+            session.removeAttribute("loggedUser");
+        }
+
+        String logout = request.getParameter("logout");
+        if (logout != null) {
+            if (session != null) {
+                session.invalidate();
+            }
+            response.sendRedirect("home");
+            return;
+        }
+
+        if (user != null) {
+            List<Appointment> upcomingAppointments;
+            AppointmentService as = new AppointmentService();
+            try {
+                upcomingAppointments = as.getUserUpcoming(user.getUserid());
+                session.setAttribute("upcomingAppointments", upcomingAppointments);
+            } catch (Exception ex) {
+                Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        if (language == null) {
             session = request.getSession(true); // Create a new session
             session.setAttribute("language", language);
             // Set the cookie to new language
@@ -50,55 +99,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         } else {
             session = request.getSession(true); // Create a new session
             session.setAttribute("language", language);
-            // Set the cookie to new language
-            Cookie languageCookie = new Cookie("language", language);
-            languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-            languageCookie.setPath("/");
-            response.addCookie(languageCookie);
-            response.sendRedirect("/kr/home");
-        }
-        return;
-    }
-
-    boolean fromValidation = Boolean.parseBoolean(request.getParameter("fromValidation"));
-
-    if (fromValidation && session != null) {
-        session.removeAttribute("loggedUser");
-    }
-
-    String logout = request.getParameter("logout");
-    if (logout != null) {
-        if (session != null) {
-            session.invalidate();
-        }
-        response.sendRedirect("home");
-        return;
-    }
-
-    if (user != null) {
-        List<Appointment> upcomingAppointments;
-        AppointmentService as = new AppointmentService();
-        try {
-            upcomingAppointments = as.getUserUpcoming(user.getUserid());
-            session.setAttribute("upcomingAppointments", upcomingAppointments);
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlets.class.getName()).log(Level.SEVERE, null, ex);
+            if (language.equals("kr")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/kr/home.jsp").forward(request, response);
+            } else if (language.equals("en")) {
+                getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
+            }
         }
     }
-
-    String language = utilities.GetLanguageCookie.getLanguageCookie(request);
-    if (language == null) {
-        response.sendRedirect("/welcome");
-    } else {
-        session = request.getSession(true); // Create a new session
-        session.setAttribute("language", language);
-        if (language.equals("kr")) {
-            getServletContext().getRequestDispatcher("/WEB-INF/kr/home.jsp").forward(request, response);
-        } else if (language.equals("en")) {
-            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
-        }
-    }
-}
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
