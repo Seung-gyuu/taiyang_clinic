@@ -124,8 +124,8 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`service` (
     PRIMARY KEY (`serviceid`),
     `isAvailable` INT DEFAULT 1 not null, --default 1 means it IS available, 2 means it is NOT available
     CHECK (`isAvailable` IN (1,2)),
-    `serviceName` VARCHAR(30) NOT NULL,
-    `serviceDescription` VARCHAR(250) NOT NULL
+    `serviceName` VARCHAR(100) NOT NULL,
+    `serviceDescription` VARCHAR(500) NOT NULL
 );
 
  

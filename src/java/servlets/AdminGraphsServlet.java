@@ -13,6 +13,7 @@ import java.time.Month;
 import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,11 +52,22 @@ public class AdminGraphsServlet extends HttpServlet {
             List<Appointment> appts = aps.getByMonthYear(month, year);
             List<Appointment> canceledAppts = aps.getByMonthYearCanceled(month, year);
             List<Appointment> completedAppts = aps.getByMonthYearConfirmed(month, year);
-            
+
             int monthNumber = models.Day.getMonthNumber(month);
             YearMonth yearMonth = YearMonth.of(year, monthNumber);
             int daysInMonth = yearMonth.lengthOfMonth();
-            
+
+            HashMap<String, Integer> serviceCounts = new HashMap<>(); // Assuming there are 5 service IDs (1-4)
+
+// Iterate through the appointments
+    ServiceService ss = new ServiceService();
+            for (Appointment appointment : appts) {
+                int serviceId = appointment.getServiceid().getServiceid();
+                String serviceName = ss.get(serviceId).getServiceName();
+                // Increment the count for the corresponding service ID
+                serviceCounts.put(serviceName, serviceCounts.getOrDefault(serviceName, 0) + 1);
+            }
+            request.setAttribute("serviceCounts", serviceCounts);
             // Create arrays for x and y values
             String[] xValuesTotalAppts = new String[daysInMonth]; //really just the x values at the bottom
             int[] yValuesTotalAppts = new int[daysInMonth];
@@ -138,6 +150,7 @@ public class AdminGraphsServlet extends HttpServlet {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, models.Day.getMonthNumber(month));
+            int totalApptsMade = 0;
 // Iterate over the days in the month
             for (int i = 1; i <= daysInMonth; i++) {
                 // Set the day of the month
@@ -149,8 +162,9 @@ public class AdminGraphsServlet extends HttpServlet {
 
                 // Set the y-axis value for the current day to the number of appointments made
                 yValuesApptMadeDaily[i - 1] = apptDaily.size();
+                totalApptsMade += apptDaily.size();
             }
-
+            double avgDaily = totalApptsMade / daysInMonth;
 // Set the x and y values as request attributes        
             String xValuesTotalJson = new Gson().toJson(xValuesTotalAppts);
             String yValuesTotalJson = new Gson().toJson(yValuesTotalAppts);
@@ -168,6 +182,14 @@ public class AdminGraphsServlet extends HttpServlet {
             request.setAttribute("appts", appts);
             request.setAttribute("canceledAppts", canceledAppts);
             request.setAttribute("completedAppts", completedAppts);
+
+            request.setAttribute("TotalMade", yValuesTotalAppts[yValuesTotalAppts.length - 1]);
+            request.setAttribute("TotalCanceled", yValuesCanceledAppts[yValuesCanceledAppts.length - 1]);
+            request.setAttribute("TotalGoneThrough", yValuesCompleteAppts[yValuesCompleteAppts.length - 1]);
+            request.setAttribute("AvgDaily", avgDaily);
+
+            request.setAttribute("month", month);
+            request.setAttribute("year", year);
             getServletContext().getRequestDispatcher("/WEB-INF/en/admingraph.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(AdminGraphsServlet.class.getName()).log(Level.SEVERE, null, ex);

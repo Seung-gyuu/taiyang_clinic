@@ -59,7 +59,29 @@
         </table>-->
         <h1>Canvas : </h1>
         <canvas id="lineChart"></canvas>
+        
+        
+        <table>
+            <tr><td>In ${month} ${year} You Had: </td> <td>${TotalMade} Appointments</td></tr>
+            <tr><td> You Had: </td> <td>${TotalGoneThrough} Complete Appointments</td></tr>
+            <tr><td> You Had: </td> <td>${TotalCanceled} Canceled Appointments</td></tr>
+            <tr><td> You Had: </td> <td> ~ ${AvgDaily} Appointments Created Per Day</td></tr>
+        </table>
 
+        <table>
+            <c:forEach items="${serviceCounts}" var="entry">
+                <thead>
+                <th>Service Name</th>
+                <th>Service Count</th>
+                </thead>
+            <tr>
+                <td>${entry.key}</td>
+                <td>${entry.value}</td>
+            </tr>
+        </c:forEach>
+        </table>
+        
+        
         <script>
             // Parse xValuesJson and yValuesJson into arrays
             var xValuesTotal = JSON.parse('${xValuesTotalJson}');

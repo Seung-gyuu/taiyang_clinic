@@ -28,10 +28,18 @@ INSERT INTO user (firstname, lastname, email_address, phone_number, password, sa
 -- insert into consentform(userid,pdfFile,timeAdded) VALUES(1,'res%2Fconsent.pdf',NOW()); 
 
 
-insert into service values(1, 1,'Massage', 'Your head will be massaged');
-insert into service values(2, 1,'Head scratch', 'Head scratching by the best scratcher');
-insert into service values(3, 1,'rock bath', 'Bathe in rocks ! :D');
-insert into service values(4, 2, 'sauna', 'Sauna ');
+insert into service values(1, 1,'Acupuncture Treatment ', 'Acupuncture involves inserting very thin needles into the body at different locations and depths. It aims to balance the life forces known as Qi that are responsible for different health issues. Acupuncture can help relieve pain and treat a range of other complaints.');
+insert into service values(2, 1,'Korean Beauty Acupuncture (Facial Rejuvenation Acupuncture)', 'Sometimes called an "acupuncture face-lift," this specialized technique involves the use of very fine needles applied to the face, scalp and neck. Rejuvenation Acupuncture technique helps to relax muscle tension, smooth lines, gently promote collagen production and stimulate healthy circulation and lymphatic flow.');
+insert into service values(3, 1,'Moxibustion ', 'Moxibustion is a form of therapy that entails the burning of mugwort leaves. This is a small, spongy herb that is believed to enhance healing with acupuncture. As such, the leaves are burnt close to the skin’s surface using a stick to apply heat.');
+insert into service values(4, 1, 'Cupping ', 'Cupping Is a type of deep-tissue massage that involves putting special cups on the patient’s skin for a few minutes to create suction. Cupping helps with pain, inflammation, blood flow, relaxation and well-being.   ');
+insert into service values(5, 1,'Tui Na Massage', 'Tui Na (pronounced “tween-uh”) is the oldest known form of massage. Tuina practitioners use massage and manipulation techniques to achieve a therapeutic effect. The massage aims to balance theC flow of qi through a person, which proponents claim encourages natural self-healing within the body. ');
+insert into service values(6, 1,'Gua Sha Massage and Demo', 'Gua sha (pronounced “gwah-shah”) is the practice of using a tool to apply pressure and scrape the skin to relieve pain and tension. This action causes light bruising, which often appears as purple or red spots known as petechiae or sha. Tai Yang Clinic offers demo sessions for at-home Gua Sha techniques. ');
+insert into service values(7, 1,'Lifestyle / Diet Therapy consulting (English, Korean & Japanese)', 'Tai Yang Clinic is happy to provide consulting sessions regarding lifestyle and diet therapy advices in order to maximize the effects of acupuncture treatments in 3 different languages, which are: English, Korean and Japanese ');
+insert into service values(8, 1, 'Herbal Formula prescriptions', 'Tai Yang Clinic provides prescriptions and sells herbal formulas to help our patients in their holistic medical journey.');
+
+
+
+
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-13', 2023, 'Saturday', 13, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-14', 2023, 'Sunday', 14, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2023-05-15', 2023, 'Monday', 15, 'May');
