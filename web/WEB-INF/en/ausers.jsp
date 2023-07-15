@@ -45,6 +45,7 @@
             .role-select {
                 margin-top: 10px;
             }
+            
             form {
                 /*                display: flex;*/
                 flex-direction: column;
@@ -1101,10 +1102,12 @@
                                                     </div>
                                                 </c:when>
                                                 <c:when test="${viewUser.getRoleid().getRoleid() == 2}">
+                                                     <div class="role-select">
                                                     Role: <select name="role">                                                                     
                                                         <option value="1">User</option> 
                                                         <option value="2" selected>Admin</option>                                              
                                                     </select>
+                                                     </div>
                                                 </c:when>
                                             </c:choose>
                                         </td>
