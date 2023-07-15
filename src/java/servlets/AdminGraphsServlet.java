@@ -32,24 +32,29 @@ public class AdminGraphsServlet extends HttpServlet {
         AppointmentService aps = new AppointmentService();
         try {
             List<Appointment> appts = aps.getByMonthYear(month, year);
-            List<Appointment> canceledAppts = aps.getByMonthYear(month, year);
-            List<Appointment> completedAppts = aps.getByMonthYear(month, year);
+            List<Appointment> canceledAppts = aps.getByMonthYearCanceled(month, year);
+            List<Appointment> completedAppts = aps.getByMonthYearConfirmed(month, year);
 
             int daysInMonth = 31; // Calculate the number of days in the month
                     // Create arrays for x and y values
-            int[] xValues = new int[daysInMonth];
-            int[] yValues = new int[daysInMonth];
-
+            int[] xValuesTotalAppts = new int[daysInMonth]; //really just the x values at the bottom
+            int[] yValuesTotalAppts = new int[daysInMonth];
+            //int[] xValuesCompleteAppts = new int[daysInMonth];
+            int[] yValuesCompleteAppts = new int[daysInMonth];
+            //int[] xValuesCanceledAppts = new int[daysInMonth];
+            int[] yValuesCanceledAppts = new int[daysInMonth];
 // Initialize x-axis values
             for (int i = 0; i < daysInMonth; i++) {
-                xValues[i] = i + 1; // Start from day 1
-            }
-
+                xValuesTotalAppts[i] = i + 1; // Start from day 1
+            }   
+            //xValuesCompleteAppts=xValuesCanceledAppts=xValuesTotalAppts;
+            
+            
 // Calculate y-axis values
             int appointmentIndex = 0;
             int currentDay = 1;
             int appointmentCount = 0;
-
+            //total appts y values
             for (int i = 0; i < daysInMonth; i++) {
                 while (appointmentIndex < appts.size()) {
                     Appointment appointment = appts.get(appointmentIndex);
@@ -63,21 +68,68 @@ public class AdminGraphsServlet extends HttpServlet {
                     }
                 }
 
-                yValues[i] = appointmentCount;
+                yValuesTotalAppts[i] = appointmentCount;
+                currentDay++;
+            }
+            //canceled appts y values
+            appointmentIndex = 0;
+            currentDay = 1;
+            appointmentCount = 0;
+            for (int i = 0; i < daysInMonth; i++) {
+                while (appointmentIndex < canceledAppts.size()) {
+                    Appointment appointment = canceledAppts.get(appointmentIndex);
+                    int appointmentDay = appointment.getTimeid().getFulldate().getDaynumber();
+
+                    if (appointmentDay == currentDay) {
+                        appointmentCount++;
+                        appointmentIndex++;
+                    } else {
+                        break;
+                    }
+                }
+
+                yValuesCanceledAppts[i] = appointmentCount;
+                currentDay++;
+            }
+            //complete appts y values
+            appointmentIndex = 0;
+            currentDay = 1;
+            appointmentCount = 0;
+            for (int i = 0; i < daysInMonth; i++) {
+                while (appointmentIndex < completedAppts.size()) {
+                    Appointment appointment = completedAppts.get(appointmentIndex);
+                    int appointmentDay = appointment.getTimeid().getFulldate().getDaynumber();
+
+                    if (appointmentDay == currentDay) {
+                        appointmentCount++;
+                        appointmentIndex++;
+                    } else {
+                        break;
+                    }
+                }
+
+                yValuesCompleteAppts[i] = appointmentCount;
                 currentDay++;
             }
 
-// Set the x and y values as request attributes
-            request.setAttribute("xValues", xValues);
-            request.setAttribute("yValues", yValues);
-
+// Set the x and y values as request attributes        
+            String xValuesTotalJson = new Gson().toJson(xValuesTotalAppts);
+            String yValuesTotalJson = new Gson().toJson(yValuesTotalAppts);
             
-            String xValuesJson = new Gson().toJson(xValues);
-String yValuesJson = new Gson().toJson(yValues);
-
+            //String xValuesCanceledJson = new Gson().toJson(xValuesCanceledAppts);
+            String yValuesCanceledJson = new Gson().toJson(yValuesCanceledAppts);
+            
+            //String xValuesCompleteJson = new Gson().toJson(xValuesCompleteAppts);
+            String yValuesCompleteJson = new Gson().toJson(yValuesCompleteAppts);
 // Set xValuesJson and yValuesJson as request attributes
-request.setAttribute("xValuesJson", xValuesJson);
-request.setAttribute("yValuesJson", yValuesJson);
+            request.setAttribute("xValuesTotalJson", xValuesTotalJson);
+            request.setAttribute("yValuesTotalJson", yValuesTotalJson);
+            
+            //request.setAttribute("xValuesCanceledJson", xValuesCanceledJson);
+            request.setAttribute("yValuesCanceledJson", yValuesCanceledJson);
+            
+            //request.setAttribute("xValuesCompleteJson", xValuesCompleteJson);
+            request.setAttribute("yValuesCompleteJson", yValuesCompleteJson);
             
             
             

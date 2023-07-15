@@ -41,6 +41,10 @@ public class AddForms {
 
         UserService us = new UserService();
         try {
+            if(mfs.get(1)!=null){
+                System.out.println("Medical Form Exists Already");
+            }
+            else{
             User u = us.get(1);
             Medicalform mf = new Medicalform();
             mf.setUserid(u);
@@ -61,11 +65,16 @@ public class AddForms {
             System.out.println("Added Medical Form");
             outputStream.close();
             fileContent.close();
+            }
         } catch (Exception ex) {
             System.out.println("Error Adding Medical Form");
             Logger.getLogger(AddForms.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
+            if(cfs.get(1)!=null){
+                System.out.println("Consent Form Exists Already");
+            }
+            else{
             User u = us.get(1);
             Consentform cf = new Consentform();
             cf.setUserid(u);
@@ -85,6 +94,7 @@ public class AddForms {
             System.out.println("Added Consent Form");
             outputStream.close();
             fileContent.close();
+            }
         } catch (Exception ex) {
             System.out.println("Error Adding Consent Form");
             Logger.getLogger(AddForms.class.getName()).log(Level.SEVERE, null, ex);

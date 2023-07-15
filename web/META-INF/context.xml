@@ -2,7 +2,7 @@
 <Context path="/">    
     <Resource name="jdbc/clinicdb" auth="Container"
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://taiyang-1.c7jmbvtdznqk.ca-central-1.rds.amazonaws.com:3306/clinicdb?useSSL=false&amp;requireSSL=false"
+        url="jdbc:mysql://localhost:3306/clinicdb"
         username="root" password="password"
         maxActive="100" maxIdle="30" maxWait="10000"
         logAbandoned="true" removeAbandoned="true"
