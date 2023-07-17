@@ -661,43 +661,43 @@
                 </div>
                 <ul class="list-unstyled components">
                     <li  class="active">
-                        <a href="admin" class="dashboard"><i class="material-icons">dashboard</i>
+                        <a href="/admin" class="dashboard"><i class="material-icons">dashboard</i>
                             <span>Today</span></a>
                     </li>
 
 
                     <li class="dropdown">
-                        <a href="ausers" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/ausers" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">aspect_ratio</i>Users</a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="aavailability" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/aavailability" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">library_books</i><span>Availability</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="aform" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/aform" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">border_color</i><span>Add Form</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="vform" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/vform" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">extension</i><span>View Form</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="viewappointment" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/viewappointment" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">apps</i><span>View Appointments</span></a>
                     </li>
 
                     <li class="dropdown">
-                        <a href="analytics" data-toggle="collapse" aria-expanded="false" 
+                        <a href="/analytics" data-toggle="collapse" aria-expanded="false" 
                            class="dropdown-toggle">
                             <i class="material-icons">grid_on</i><span>Reports</span></a>
                         <ul class="collapse list-unstyled menu" id="pageSubmenu6">
@@ -722,7 +722,7 @@
                                 </div>
                             </div> 
                             <div class="col-10 col-md-11 col-lg-11 order-1 order-md-2 text-end">
-                                <a href="/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
+                                <a href="/en/home" class="btn me-2" style="color:#fff; border-bottom-color: #f9f9f5 ">Home</a>
                                 <a href="home?logout" class="btn  me-2" style="color:#fff; border-bottom-color: #f9f9f5">Logout</a>
                             </div>
                         </div> 

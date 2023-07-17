@@ -21,7 +21,6 @@ insert into user (firstname, lastname, email_address, phone_number, password, ro
 -- password = password1
 
 INSERT INTO user (firstname, lastname, email_address, phone_number, password, salt, isvalid,  roleid, isactive) values('tai', 'yang', 'temptaiyang@gmail.com', '1234565644', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6', '/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=', '1', '1', '1');
---INSERT INTO user (firstname, lastname, email_address, phone_number, password,salt, isvalid,  roleid, isactive) values('ADS', 'ASD', '00captainyolo00@gmail.com', '4039990000', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6','/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=' , '1', '1', '1');
 
 
 -- insert into medicalform(userid,pdfFile,timeAdded) VALUES(1,'res%2Fmedical.pdf',NOW());

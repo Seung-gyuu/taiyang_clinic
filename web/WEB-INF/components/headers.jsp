@@ -139,7 +139,7 @@
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
-                                    You have ${upcomingAppointments.size()} upcoming appointments!   <br>
+                                    You have ${upcomingAppointments.size()} upcoming appointments! <br>
                                 </c:if>
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/profile">
                                     Hello  ,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
@@ -187,7 +187,13 @@
                                             <span class="flag-icon">🇰🇷</span> 한국어</a></c:if>
                                     </div>
                                 </div>
+                            <c:if test="${loggedUser.getRoleid().getRoleid() ne 2}">
                                 <a href="/${language}/home" class="nav-item nav-link active">Home</a>
+                            </c:if>
+                            <c:if test="${loggedUser.getRoleid().getRoleid() eq 2}">
+                                <a href="/admin" class="nav-item nav-link active">Admin</a>
+                            </c:if>
+
                             <a href="/${language}/aboutus" class="nav-item nav-link active">About us</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Services</a>
@@ -207,10 +213,10 @@
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
-                                <a href="/${language}/login" class="nav-item nav-link active">Login  </a>
+                                <a href="/${language}/login" class="nav-item nav-link active">Login </a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/home?logout" class="nav-item nav-link active">Log out  </a> 
+                                <a href="/${language}/home?logout" class="nav-item nav-link active">Log out </a> 
                             </c:if>
                         </div>
                     </div>

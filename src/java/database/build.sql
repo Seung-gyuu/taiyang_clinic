@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`user` (
     -- password 100 because of the hash and salt!
     `password` VARCHAR(100) NOT NULL,
     `salt` VARCHAR(70),
-    `isValid` INT Default 2 NOT NULL, --1 means they are valid , 2 means they are NOT valid
+    `isValid` INT Default 2 NOT NULL, -- 1 means they are valid , 2 means they are NOT valid
     CHECK  (`isValid` IN (1,2)), 
     `roleid` INT DEFAULT 1,
     CONSTRAINT `fk_user_role`
@@ -110,9 +110,9 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
     CHECK (`start_time` >= '09:00:00' AND `start_time` <= '16:00:00'),
     `end_time` TIME  NOT NULL,
     CHECK (`end_time` >= '10:00:00' AND `end_time` <= '17:00:00'),
-    `isBooked` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is not booked. 2 means it is booked
+    `isBooked` INT NOT NULL DEFAULT 1,  -- default is 1,  1 means it is not booked. 2 means it is booked
     CONSTRAINT `ck_time_booked` CHECK (`isBooked` IN (1, 2)),
-    `isAvailable` INT NOT NULL DEFAULT 1,  --default is 1,  1 means it is available. 2 means it is  not available
+    `isAvailable` INT NOT NULL DEFAULT 1,  -- default is 1,  1 means it is available. 2 means it is  not available
     CONSTRAINT `ck_time_available` CHECK (`isAvailable` IN (1, 2))
 );
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `clinicdb`.`availabletime` (
 CREATE TABLE IF NOT EXISTS `clinicdb`.`service` (
     `serviceid` INT,
     PRIMARY KEY (`serviceid`),
-    `isAvailable` INT DEFAULT 1 not null, --default 1 means it IS available, 2 means it is NOT available
+    `isAvailable` INT DEFAULT 1 not null, -- default 1 means it IS available, 2 means it is NOT available
     CHECK (`isAvailable` IN (1,2)),
     `serviceName` VARCHAR(100) NOT NULL,
     `serviceDescription` VARCHAR(500) NOT NULL
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`appointment` (
     CONSTRAINT `fk_appointment_service` 
         FOREIGN KEY (`serviceid`) REFERENCES `clinicdb`.`service` (`serviceid`),
     `description` VARCHAR(250),
-    `isupcoming` INT DEFAULT 1 not null, --isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
+    `isupcoming` INT DEFAULT 1 not null, -- isupcoming defaults to 1.  1 means it is upcoming.  2 means it has passed.
     CONSTRAINT `ck_appt_upcoming` CHECK (`isupcoming` IN (1, 2)),
     `status` VARCHAR(10) DEFAULT 'Confirmed' NOT NULL,
         CONSTRAINT `ck_appt_status` CHECK (`status` IN ('Confirmed', 'Canceled'))
@@ -162,12 +162,12 @@ CREATE TABLE IF NOT EXISTS  `clinicdb`.`reminder` (
     `appointmentid` INT NOT NULL,
     CONSTRAINT fk_reminder_appt 
         FOREIGN KEY (`appointmentid`) REFERENCES `clinicdb`.`appointment` (`appointmentid`),
-    `sendTime` DATE NOT NULL --sendtime is 24 hours before the appointment.  Trigger below automatically adds a reminder
+    `sendTime` DATE NOT NULL -- sendtime is 24 hours before the appointment.  Trigger below automatically adds a reminder
 );
 
  
 
---sent reminders is the same table so that we can retain all the information, without it clogging the reminder table
+-- sent reminders is the same table so that we can retain all the information, without it clogging the reminder table
 CREATE TABLE  IF NOT EXISTS  `clinicdb`.`sentreminders` (
     `sentreminderid` INT AUTO_INCREMENT,
     PRIMARY KEY (`sentreminderid`),
