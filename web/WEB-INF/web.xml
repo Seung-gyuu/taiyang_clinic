@@ -137,6 +137,10 @@
         <servlet-name>AdminGraphsServlet</servlet-name>
         <servlet-class>servlets.AdminGraphsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAppointmentListServlet</servlet-name>
+        <servlet-class>servlets.GetAppointmentListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlets</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -522,6 +526,10 @@
     <servlet-mapping>
         <servlet-name>AdminGraphsServlet</servlet-name>
         <url-pattern>/analytics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAppointmentListServlet</servlet-name>
+        <url-pattern>/getAppoinmentList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

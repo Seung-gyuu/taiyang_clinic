@@ -9,12 +9,17 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -54,13 +59,14 @@ public class AdminGraphsServlet extends HttpServlet {
             List<Appointment> completedAppts = aps.getByMonthYearConfirmed(month, year);
 
             int monthNumber = models.Day.getMonthNumber(month);
+            request.setAttribute("monthNumber", monthNumber);
             YearMonth yearMonth = YearMonth.of(year, monthNumber);
             int daysInMonth = yearMonth.lengthOfMonth();
 
             HashMap<String, Integer> serviceCounts = new HashMap<>(); // Assuming there are 5 service IDs (1-4)
 
 // Iterate through the appointments
-    ServiceService ss = new ServiceService();
+            ServiceService ss = new ServiceService();
             for (Appointment appointment : appts) {
                 int serviceId = appointment.getServiceid().getServiceid();
                 String serviceName = ss.get(serviceId).getServiceName();
@@ -68,6 +74,29 @@ public class AdminGraphsServlet extends HttpServlet {
                 serviceCounts.put(serviceName, serviceCounts.getOrDefault(serviceName, 0) + 1);
             }
             request.setAttribute("serviceCounts", serviceCounts);
+            
+            
+           // Create a TreeMap with a custom comparator to order by start time
+TreeMap<LocalTime, Integer> sortedTimeCounts = new TreeMap<>(new Comparator<LocalTime>() {
+    @Override
+    public int compare(LocalTime time1, LocalTime time2) {
+        return time1.compareTo(time2);
+    }
+});
+
+// Iterate through the appointments
+for (Appointment appointment : appts) {
+    String time = appointment.getTimeid().getTruncatedStartTime();
+    LocalTime startTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("h:mm a"));
+
+    // Increment the count for the corresponding start time
+    sortedTimeCounts.put(startTime, sortedTimeCounts.getOrDefault(startTime, 0) + 1);
+}
+
+// Now you have the start times ordered chronologically
+
+// Set the sortedTimeCounts as a request attribute
+request.setAttribute("sortedTimeCounts", sortedTimeCounts);
             // Create arrays for x and y values
             String[] xValuesTotalAppts = new String[daysInMonth]; //really just the x values at the bottom
             int[] yValuesTotalAppts = new int[daysInMonth];
