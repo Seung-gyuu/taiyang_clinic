@@ -100,10 +100,10 @@
                 text-decoration: underline;
                 font-weight: bold;
                 cursor: pointer;
-              
+
             }
 
-            
+
             .link-style:hover {
                 color: #08316D;
             }
@@ -1348,29 +1348,20 @@
                                         <div class="col-sm-6 p-0 d-flex justify-content-start align-items-center">
                                             <h2 class="ml-2">View Appointment</h2>
                                         </div>
+                                        <div>
+                                            <h2>Search Time Frame: </h2>
+                                            <br>
+                                            <form method="post" action="viewappointment">
+                                                <label for="start">Start Date:</label>
+                                                <input type="date" id="start" name="start" min="2023-05-13">
+                                                <label for="end">End Date:</label>
+                                                <input type="date" id="start" name="end" min="2023-05-13">
+                                                <input type="submit" value="Submit">
+                                                <input type="hidden" name="action" value="range">
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                                <!--                                        <div class="col-sm-6 p-0 d-flex justify-content-end">
-                                
-                                
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <br>-->
-                                <!--                                <div class="d-flex justify-content-between align-items-center">
-                                                                    <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                                                        <button onclick="goLeft()" class="material-icons">&#xE5C4;</button> 
-                                                                    </a>
-                                                                    <h4 class="text-center mt-3 mb-3" style="font-size: 1.1em;">Today is 
-                                                                        <script>document.write(formattedDate);</script>
-                                                                    </h4>
-                                                                    <a class="btn mr-2" id="nextBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
-                                                                        <button onclick="goRight()" class="material-icons">&#xE5C8;</button> 
-                                                                    </a>
-                                                                </div>
-                                -->
-
-
                                 <div class="d-flex justify-content-between align-items-center" >
                                     <a class="btn mr-2" id="prevBtn" style="font-size: 1px; border: 2px solid rgb(0, 0, 0);">
                                         <i onclick="goLeft()" class="material-icons">&#xE5C4;</i> 
@@ -1383,76 +1374,77 @@
                                     </a>
                                 </div>
                                 <br>
-                                <div class="fullCalendar" style="width:1100px;">
-                                    <div class="days">
-                                        <div class="days-content">
-                                            <c:forEach items="${unbooked}" var="day">
-                                                <div class="unavailableDay">
-                                                    <div class="table_header">${day.getDayname()}<br>
-                                                        ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                                    <div class="unavailable_time_data">
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
-                                            <c:forEach items="${booked}" var="day">
-                                                <c:choose>
-                                                    <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} ">
-                                                        <div class="unavailableDay">
-                                                            <div class="table_header">${day.getDayname()}
-                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                                            <div class="unavailable_time_data"></div>
-                                                        </div>                
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <div class="availableDay" >
-                                                            <div class="table_header">${day.getDayname()}<br>
-                                                                ${day.getMonthName()} ${day.getDaynumber()}</div>
-                                                            <div class="table_time_data" style="font-size: 13px; text-align: center; font-weight: bold;">
-                                                                <div class="table_data" ></div>
-
-                                                                <c:forEach items="${day.getAvailabletimeList()}" var="time">
-                                                                    <!--                                                                     <div class="time-divider"></div>-->
-                                                                    <c:if test="${time.getIsAvailable()==2}">
-                                                                        <c:if test="${time.getIsBooked()==2}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_available" style="font-weight: normal; text-align: center; cursor: pointer;" id="${time.getTimeid()}" onClick="getAppointmentDetails('${time.getTimeid()}')">Booked</div>
-                                                                        </c:if>
-
-                                                                        <c:if test="${time.getIsBooked()==1}">
-                                                                            ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable" style="font-weight: normal; align-items: center; text-align: center; " >Unavailable</div>
-                                                                        </c:if>
-                                                                        <hr class="time-divider">
-                                                                    </c:if>    
-                                                                    <c:if test="${time.getIsAvailable()==1}">
-
-                                                                        <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
-                                                                        <div style="margin-top: 6px; margin-bottom: 20.5px;">
-                                                                            <td>
-                                                                                <a style="color:#0B486B; font-weight:bold; font-size: 13px; cursor: not-allowed; ">Unbooked</a><br>
-
-                                                                            </td>
-                                                                        </div>
-                                                                        <hr class="time-divider">
-                                                                    </c:if>
-                                                                </c:forEach>
-
-                                                            </div>     
+                                    <div class="fullCalendar" style="width:1100px;">
+                                        <div class="days">
+                                            <div class="days-content">
+                                                <c:forEach items="${unbooked}" var="day">
+                                                    <div class="unavailableDay">
+                                                        <div class="table_header">${day.getDayname()}<br>
+                                                            ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                        <div class="unavailable_time_data">
                                                         </div>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+                                                    </div>
+                                                </c:forEach>
+                                                <c:forEach items="${booked}" var="day">
+                                                    <c:choose>
+                                                        <c:when test="${day.getDayname() eq 'Saturday ' || day.getDayname() eq 'Sunday '} ">
+                                                            <div class="unavailableDay">
+                                                                <div class="table_header">${day.getDayname()}
+                                                                    ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                                <div class="unavailable_time_data"></div>
+                                                            </div>                
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="availableDay" >
+                                                                <div class="table_header">${day.getDayname()}<br>
+                                                                    ${day.getMonthName()} ${day.getDaynumber()}</div>
+                                                                <div class="table_time_data" style="font-size: 13px; text-align: center; font-weight: bold;">
+                                                                    <div class="table_data" ></div>
+
+                                                                    <c:forEach items="${day.getAvailabletimeList()}" var="time">
+                                                                        <c:if test="${time.getIsAvailable()==2}">
+                                                                            <c:if test="${time.getIsBooked()==2}">
+                                                                                ${time.getTruncatedStartTime()}<br><div class="table_data data_available" style="font-weight: normal; text-align: center; cursor: pointer;" id="${time.getTimeid()}" onClick="getAppointmentDetails('${time.getTimeid()}')">Booked</div>
+                                                                            </c:if>
+
+                                                                            <c:if test="${time.getIsBooked()==1}">
+                                                                                ${time.getTruncatedStartTime()}<br><div class="table_data data_unavailable" style="font-weight: normal; align-items: center; text-align: center; " >Unavailable</div>
+                                                                            </c:if>
+                                                                            <hr class="time-divider">
+                                                                        </c:if>    
+                                                                        <c:if test="${time.getIsAvailable()==1}">
+
+                                                                            <td style="font-size: 12px;">${time.getTruncatedStartTime()}<br></td>
+                                                                            <div style="margin-top: 6px; margin-bottom: 20.5px;">
+                                                                                <td>
+                                                                                    <a style="color:#0B486B; font-weight:bold; font-size: 13px; cursor: not-allowed; ">Unbooked</a><br>
+
+                                                                                </td>
+                                                                            </div>
+                                                                            <hr class="time-divider">
+                                                                        </c:if>
+                                                                    </c:forEach>
+
+                                                                </div>     
+                                                            </div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-
-
+                                <c:if test="${range ne null}">
+                                    <form action="viewappointment" method="get">
+                                        <input type="submit" value="Go Back">
+                                    </form>
+                                </c:if>
 
                                 <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="popupModalLabel">Appointment Details</h5>
-                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div id="popupContent"></div>
@@ -1460,49 +1452,11 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-
-                                <!--                                <div class="modal fade" id="viewAppointmentModal" tabindex="-1" aria-labelledby="viewAppointmentmodalLabel" aria-hidden="true">
-                                                                     Modal content 
-                                                                    <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="viewAppointmentmodalLabel">Patient Info</h5>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                
-                                -->                                            </div>
-                            <!--            <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        </div>-->
                         </div>
                     </div>
                 </div>
-
-                <!--<script>
-                    $('#viewAppointmentModal').on('show.bs.modal', function (event) {
-                        // Get the button that triggered the modal
-                        var button = $(event.relatedTarget);
-                
-                        // Extract data attributes from the clicked button
-                        var startTime = button.data('start-time');
-                        var endTime = button.data('end-time');
-                        var firstName = button.data('first-name');
-                        var lastName = button.data('last-name');
-                        var serviceName = button.data('service-name');
-                        var description = button.data('description');
-                
-                        // Update the modal's elements with the retrieved values
-                        var modal = $(this);
-                        modal.find('#startTime').text(startTime);
-                        modal.find('#endTime').text(endTime);
-                        modal.find('#patientName').text(firstName + ' ' + lastName);
-                        modal.find('#serviceName').text(serviceName);
-                        modal.find('#description').text(description);
-                    });
-                </script>-->
-
 
                 <!--start footer-->
                 <div class="my-5"></div>
@@ -1515,18 +1469,6 @@
                 </footer>
             </div>
         </div>
-        <script>
-            //                var unbookedLinks = document.querySelectorAll('.unbooked');
-            //                for (var i = 0; i < unbookedLinks.length; i++) {
-            //                    unbookedLinks[i].addEventListener('click', function (event) {
-            //                        event.preventDefault();
-            //                    });
-            //                }
-
-
-        </script>
-
-
 
         <script src="js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1536,66 +1478,60 @@
         <script src="../js/viewappointment.js"></script>
         <script type="text/javascript">
 
-            $(document).ready(function () {
-                $(".xp-menubar").on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                    $('#content').toggleClass('active');
-                });
+                                                                            $(document).ready(function () {
+                                                                                $(".xp-menubar").on('click', function () {
+                                                                                    $('#sidebar').toggleClass('active');
+                                                                                    $('#content').toggleClass('active');
+                                                                                });
 
-                $(".xp-menubar,.body-overlay").on('click', function () {
-                    $('#sidebar,.body-overlay').toggleClass('show-nav');
-                });
+                                                                                $(".xp-menubar,.body-overlay").on('click', function () {
+                                                                                    $('#sidebar,.body-overlay').toggleClass('show-nav');
+                                                                                });
 
-            });
+                                                                            });
 
-            function getAppointmentDetails(timeID) {
-                fetch('/getApptDetails?timeId=' + timeID) //make the new server endpoint, get appointment details.  Add popup with details and href to view forms for that userID
-                        .then(response => response.json())
-                        .then(data => {
-                            var firstName = data.firstName;
-                            var lastName = data.lastName;
-                            var serviceName = data.serviceName;
-                            var apptDesc = data.apptDesc;
-                            var userId = data.userId;
+                                                                            function getAppointmentDetails(timeID) {
+                                                                                fetch('/getApptDetails?timeId=' + timeID) //make the new server endpoint, get appointment details.  Add popup with details and href to view forms for that userID
+                                                                                        .then(response => response.json())
+                                                                                        .then(data => {
+                                                                                            var firstName = data.firstName;
+                                                                                            var lastName = data.lastName;
+                                                                                            var serviceName = data.serviceName;
+                                                                                            var apptDesc = data.apptDesc;
+                                                                                            var userId = data.userId;
 
-                            var output = "";
+                                                                                            var output = "";
 
 //                            output = "<div class='popupText'>Appointment Details";
-                            output += "Name: " + firstName + " " + lastName;
-                            output += "<br> Service Name: " + serviceName;
-                            output += "<br> Desc: " + apptDesc;
-                            output += "<br><a href='/vform?userId=" + userId + "' class='link-style'>View forms</a>";
+                                                                                            output += "Name: " + firstName + " " + lastName;
+                                                                                            output += "<br> Service Name: " + serviceName;
+                                                                                            output += "<br> Desc: " + apptDesc;
+                                                                                            output += "<br><a href='/vform?userId=" + userId + "' class='link-style'>View forms</a>";
 //                            output += "<button onClick='closePopup()'>Close</button>";
-                            output += "<br><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>";
-                            output += "</div>";
+                                                                                            output += "<br><button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>";
+                                                                                            output += "</div>";
 
-                            document.getElementById('popupContent').innerHTML = output;
+                                                                                            document.getElementById('popupContent').innerHTML = output;
 
-                            $('#popupModal').modal('show');
-                        })
-                        .catch(error => {
-                            // Handle any error that occurs during the request
-                            console.error('Error:', error);
-                        });
-            }
+                                                                                            $('#popupModal').modal('show');
+                                                                                        })
+                                                                                        .catch(error => {
+                                                                                            // Handle any error that occurs during the request
+                                                                                            console.error('Error:', error);
+                                                                                        });
+                                                                            }
 
-//            function closePopup() {
-//                var popupBox = document.getElementById('popupBox');
-//                popupBox.style.display = 'none';
-//            }
+                                                                            window.onclick = function (event) {
+                                                                                var popupBox = document.getElementById('popupBox');
+                                                                                var confirmBox = document.getElementById('confirmBox');
+                                                                                if (event.target === popupBox) {
+                                                                                    popupBox.style.display = "none";
+                                                                                }
+                                                                                if (event.target === confirmBox) {
+                                                                                    confirmBox.style.display = "none";
+                                                                                }
 
-
-            window.onclick = function (event) {
-                var popupBox = document.getElementById('popupBox');
-                var confirmBox = document.getElementById('confirmBox');
-                if (event.target === popupBox) {
-                    popupBox.style.display = "none";
-                }
-                if (event.target === confirmBox) {
-                    confirmBox.style.display = "none";
-                }
-
-            }
+                                                                            }
 
         </script>
 

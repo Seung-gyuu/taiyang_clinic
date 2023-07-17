@@ -38,4 +38,9 @@ public class DayService {
     public Day getByDate(Date d){
         return ddb.getByDate(d);
     }
+    
+     public List<Day> getByRange(Date start, Date end) {
+         return ddb.getByRange(start, end);
+     }
+    
 }

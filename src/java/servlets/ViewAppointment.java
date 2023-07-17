@@ -2,7 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +38,6 @@ public class ViewAppointment extends HttpServlet {
         }
         AvailableTimeService ats = new AvailableTimeService();
         DayService ds = new DayService();
-        UserService us = new UserService();
         List<Day> days = ds.getCurrentWeek4Months();
         List<Day> unbooked;
         List<Day> booked;
@@ -51,31 +56,39 @@ public class ViewAppointment extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("message", "Unable to load days");
         }
-//        // retrieve upcoming appointments
-//        int appointmentId = 0;
-//        AppointmentService as = new AppointmentService();
-//        if (request.getParameter("appointmentId") != null) {
-//            appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
-//            try {
-//                Appointment apt = as.get(appointmentId);
-//                request.setAttribute("viewAppt", apt);
-//            } catch (Exception e) {
-//                request.setAttribute("message", "Unable to load upcoming appointments");
-//            }
-//        }
-//        List<Appointment> apptInfo;
-//        try {
-//            apptInfo = as.getUpcoming();
-//            session.setAttribute("apptInfo", apptInfo);
-//        } catch (Exception e) {
-//            request.setAttribute("message", "Unable to load upcoming appointments");
-//        }
+        request.removeAttribute("range");
         getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if(action.equals("range")){
+            String startDateStr = request.getParameter("start");
+        String endDateStr = request.getParameter("end");
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDateLD = LocalDate.parse(startDateStr, dateFormatter);
+        LocalDate endDateLD = LocalDate.parse(endDateStr, dateFormatter);
+
+        ZonedDateTime zonedDateTime = startDateLD.atStartOfDay(ZoneId.systemDefault());
+        Instant instant = zonedDateTime.toInstant();
+        Date startDate = Date.from(instant);
+
+        
+        ZonedDateTime zonedDateTime2 = endDateLD.atStartOfDay(ZoneId.systemDefault());
+        Instant instant2 = zonedDateTime2.toInstant();
+        Date endDate = Date.from(instant2);
+        
+        DayService ds= new DayService();
+        List<Day> days = ds.getByRange(startDate, endDate);
+        request.setAttribute("booked", days);
+        request.setAttribute("range", true);
+        List<Day> unbooked = new ArrayList<>();
+        request.setAttribute("unbooked", unbooked);
+        getServletContext().getRequestDispatcher("/WEB-INF/en/viewappointment.jsp").forward(request, response);
+        }
 
     }
 }

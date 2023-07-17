@@ -35,6 +35,7 @@ import services.AvailableTimeService;
 @NamedQueries({
     @NamedQuery(name = "Day.findAll", query = "SELECT d FROM Day d")
     , @NamedQuery(name = "Day.findCurrentWeek4Months", query = "SELECT d FROM Day d WHERE d.fulldate >= :startDate AND d.fulldate <= :endDate")
+    , @NamedQuery(name = "Day.findByRange", query = "SELECT d FROM Day d WHERE d.fulldate >= :startDate AND d.fulldate <= :endDate")
     , @NamedQuery(name = "Day.find4Months", query = "SELECT d FROM Day d WHERE d.fulldate >= :currentDate AND d.fulldate <= :endDate")
     , @NamedQuery(name = "Day.findLast4Months", query = "SELECT d FROM Day d WHERE d.fulldate <= :currentDate AND d.fulldate >= :startDate")
     , @NamedQuery(name = "Day.findUpcomingByWeeks", query = "SELECT d FROM Day d WHERE d.fulldate >= :currentDate AND d.fulldate <= :endDate")
