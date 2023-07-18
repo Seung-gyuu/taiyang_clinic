@@ -97,7 +97,7 @@
                     </div>
 
 
-                    <% if(session.getAttribute("language")!="kr" || session.getAttribute("language")!="en"){
+                     <% if(session.getAttribute("language").equals("kr") && session.getAttribute("language").equals("en")){
                         session.setAttribute("language", "en");
                     }
                         %>

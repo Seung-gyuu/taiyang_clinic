@@ -38,6 +38,7 @@ public class HomeServlets extends HttpServlet {
 
         if (request.getParameter("translate") != null) {
             String language = request.getParameter("translate");
+            //utility.setcookie(lan)
             if (language.equals("en")) {
                 session = request.getSession(true); // Create a new session
                 session.setAttribute("language", language);
@@ -47,7 +48,7 @@ public class HomeServlets extends HttpServlet {
                 languageCookie.setPath("/");
                 response.addCookie(languageCookie);
                 response.sendRedirect("/en/home");
-            } else {
+            } else if (language.equals("kr")){
                 session = request.getSession(true); // Create a new session
                 session.setAttribute("language", language);
                 // Set the cookie to new language
@@ -56,6 +57,9 @@ public class HomeServlets extends HttpServlet {
                 languageCookie.setPath("/");
                 response.addCookie(languageCookie);
                 response.sendRedirect("/kr/home");
+            }
+            else{
+                response.sendRedirect("home");
             }
             return;
         }

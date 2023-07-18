@@ -36,7 +36,7 @@ public class GetLanguageCookie {
                 }
             }
         }
-        if(language!="kr" && language!="en" || language==null){
+        if((language.equals("kr") && language.equals("en")) || language==null){
             HttpSession session = req.getSession(true); // Create a new session
                 session.setAttribute("language", "en");
                 // Set the cookie to new language
