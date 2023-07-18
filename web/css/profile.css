@@ -21,13 +21,13 @@
 }
 
 .user_info {
-    width: 100%;
+    width: 80%;
     /*margin: 0 auto;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     /*align-items: center;*/
-    padding: 0 40px;
+    /*padding: 0 40px;*/
 }
 
 .user_info_name { 
@@ -89,6 +89,7 @@ label {
     /*margin-right: 10px;*/
     /*font-size: 16px;*/
     margin-bottom: 20px; 
+    width: 100%;
 }
 
 .user_info form label p {
@@ -111,15 +112,22 @@ label {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 30px;
 }
 
+/*.fnameField {
+    
+}*/
+
 #fnameInput {
-    width: 300px;
-    margin-right: 10px;
+    width: 100%;
+    /*width: 300px;*/
+    /*margin-right: 10px;*/
 }
 
 #lnameInput {
-    width: 300px;
+    width: 100%;
+    /*width: 300px;*/
     /*margin-left: 10px;*/
 }
 
@@ -161,6 +169,10 @@ label {
 }
 
 
+/*@media screen and (max-width: 1400px) { 
+
+}*/
+
 @media screen and (max-width: 1200px) {
     .account_main {
         flex: 3;
@@ -193,12 +205,12 @@ label {
 
     }
 
-    .fullnameField {
+/*    .fullnameField {
         display: block;
 
         width: 100%;
-    }
-
+    }*/
+/*
     #fnameInput {
         width: 100%;
         margin: 0;
@@ -207,8 +219,8 @@ label {
     #lnameInput {
         width: 100%;
         margin: 0;
-        /*margin-left: 10px;*/
-    }
+        margin-left: 10px;
+    }*/
 
 }
 
@@ -223,12 +235,12 @@ label {
         margin-bottom: 20px;
     }
 
-    .fullnameField {
+/*    .fullnameField {
         display: flex;
-        /*align-items: ceneter;*/
-    }
+        align-items: ceneter;
+    }*/
 
-    #fnameInput {
+/*    #fnameInput {
         margin-right: 10px;
-    }
+    }*/
 }

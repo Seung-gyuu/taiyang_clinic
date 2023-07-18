@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
 
-        <!--        <link rel="stylesheet" type="text/css" href="css/global.css">-->
+        <link rel="stylesheet" type="text/css" href="../css/global.css">
         <link rel="stylesheet" type="text/css" href="../css/history.css">
         <script src="https://kit.fontawesome.com/b0274adb94.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -111,41 +111,12 @@
 
             }
 
-
-
-/*            @media screen and (max-width: 1400px) {
-                .gloabal_container {
-                    max-width: 1140px;
-                }
+            .userForm_title h4 {
+                margin-right: 10px;
+                /*font-size: 18px;*/
+                display: flex;
+                align-items: center;
             }
-
-            @media screen and (max-width: 1200px) {
-                .gloabal_container {
-                    max-width: 960px;  
-                }
-
-            }
-
-            @media screen and (max-width: 992px) {
-
-                .gloabal_container {
-                    max-width: 720px;  
-                    height: 100vh;
-                }
-            }
-
-
-            @media screen and (max-width: 768px) {
-                .gloabal_container {
-                    max-width: 720px;  
-                }
-            }
-
-            @media screen and (max-width: 576px) {
-                .gloabal_container {
-                    max-width: 540px;  
-                }
-            }*/
 
         </style>
     </head>
@@ -153,7 +124,7 @@
         <!--History Start-->
         <div class="gloabal_container">
             <div class="gloabal_top_section">
-                <h2>MY ACCOUNT</h2>
+                <h1>VIEW FORMS</h1>
                 <!--<%out.println(request.getRequestURL());%>-->
                 <!--${pageContext.request.requestURI}-->
             </div>
@@ -163,59 +134,58 @@
                     <%@include file="../components/accountSidebar.jsp"%>
                 </div>
                 <div class="account_main">
-
-
-                    <h2>Forms</h2>
-
-
-
-
-                    <c:if test="${userForms eq null}">
-                        <table>
-                            <tr><th>You have no forms!</th></tr>
-                        </table>
-                    </c:if>
-                    <c:if test="${userForms ne null}">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Form</th>
-                                    <th>Date Added</th>
-                                    <th>View</th>
-                                    <th>Download</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${medicalforms}" var="mdform">
-                                    <tr>
-                                        <td>Medical</td>
-                                        <td>${mdform.getTimeAdded()}</td>
-                                        <td><button class="view-button" onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button></td>                                        
-                                        <td> <a class="download-link" href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
-                                    </tr>
-                                </c:forEach>
-                                <c:forEach items="${consentforms}" var="csform">
-                                    <tr>
-                                        <td>Consent</td>
-                                        <td>${csform.getTimeAdded()}</td>
-                                        <td><button class="view-button" onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button></td>                                        
-                                        <td> <a class="download-link" href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                    </c:if>
-                    <div id="pdfPopup" class="popup">
-                        <div class="popup-content" id="popup-content">
-                            <div class="pdf-container">
-                                <div id="pdfViewer" class="pdfViewer"></div>
+                    <!--<h2>Forms</h2>-->
+                    <div class="history_wrapper">
+                        <div class="userForm_title history_title ">
+                            <h4><i class="fa-solid fa-rectangle-list" style="color:#03A9F4"></i>My Forms</h4>
+                            <c:if test="${userForms eq null}">
+                                <table>
+                                    <tr><th>You have no forms!</th></tr>
+                                </table>
+                            </c:if>
+                            <c:if test="${userForms ne null}">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Form</th>
+                                            <th>Date Added</th>
+                                            <th>View</th>
+                                            <th>Download</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${medicalforms}" var="mdform">
+                                            <tr>
+                                                <td>Medical</td>
+                                                <td>${mdform.getTimeAdded()}</td>
+                                                <td><button class="view-button" onclick="openPdfPopup('/viewForm?formId=${mdform.getId()}&form=1')">View</button></td>                                        
+                                                <td> <a class="download-link" href="/downloadForm?formId=${mdform.getId()}&form=1&referer=${pageContext.request.requestURI}">Download</a></td>
+                                            </tr>
+                                        </c:forEach>
+                                        <c:forEach items="${consentforms}" var="csform">
+                                            <tr>
+                                                <td>Consent</td>
+                                                <td>${csform.getTimeAdded()}</td>
+                                                <td><button class="view-button" onclick="openPdfPopup('/viewForm?formId=${csform.getId()}&form=2')">View</button></td>                                        
+                                                <td> <a class="download-link" href="/downloadForm?formId=${csform.getId()}&form=2&referer=${pageContext.request.requestURI}">Download</a></td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </c:if>
+                            <div id="pdfPopup" class="popup">
+                                <div class="popup-content" id="popup-content">
+                                    <div class="pdf-container">
+                                        <div id="pdfViewer" class="pdfViewer"></div>
+                                    </div>
+                                    <span class="popup-close" onclick="closePopup()">&times;</span>
+                                </div>
                             </div>
-                            <span class="popup-close" onclick="closePopup()">&times;</span>
-                        </div>
-                    </div>
 
-                </div>
-            </div>  
+                        </div>
+                    </div>  
+                </div>  </div>  
+
 
         </div>
 

@@ -33,7 +33,7 @@
         <!--History Start-->
         <div class="gloabal_container">
             <div class="gloabal_top_section">
-                <h1>MY ACCOUNT</h1>
+                <h1>MY APPOINTMENTS</h1>
                 <!--<%out.println(request.getRequestURL());%>-->
                 <!--${pageContext.request.requestURI}-->
             </div>

@@ -140,7 +140,7 @@
         padding: 10px 20px;
         border-radius: 10px;
         cursor: pointer;
-        background: #0b486b;
+        background: #2B89BE;
         color: #fff;
         /* border: 1px solid #b5bfd9;
         background: #fff; */

@@ -1,5 +1,6 @@
 .services_container {
     margin-bottom: 40px;
+    max-width: 1320px;
 }
 
 .services_top_section {
@@ -131,7 +132,8 @@
     justify-content: center;
     align-items: center;
     margin-top: 40px;
-    width: 1350px;
+    /*width: 1350px;*/
+    width: 100%;
 }
 
 .services_main_img {
@@ -183,3 +185,47 @@
 .p_first  {
     margin:0;
 }
+
+
+
+@media screen and (max-width: 1400px) {
+    .services_container {
+        max-width: 1140px;
+    }
+    /*    
+        services_main_Info {
+            width: 1140px;
+        }*/
+}
+
+@media screen and (max-width: 1200px) {
+    .services_container {
+        max-width: 960px;  
+    }
+    .services_main_Info {
+        display: block;
+        /*width: 100%;*/
+    }    
+}
+
+@media screen and (max-width: 992px) {
+
+    .services_container {
+        max-width: 720px;  
+        /*height: 100vh;*/
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .services_container {
+        max-width: 720px;  
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .services_container {
+        max-width: 540px;  
+    }
+}
+

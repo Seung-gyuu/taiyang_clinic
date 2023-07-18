@@ -41,7 +41,7 @@
                 <div class="account_main">
                     <div class="history_wrapper">
                         <div class="history_title history_upcoming">
-                            <h2>예정된 예약 목록</h2>
+                            <h4><i class="fa-solid fa-clock"  style="color:#03A9F4"></i>예정된 예약목록</h4>
 
                             <table class="history_upcoming_table">
                                 <thead>
@@ -89,7 +89,8 @@
 
 
                         <div class="history_title history_old">
-                            <h2>지난 예약 목록</h2>
+                            <!--<h2>지난 예약 목록</h2>-->
+                            <h4><i class="fa-solid fa-clock-rotate-left" style="color:gray"></i>지난 예약 목록</h4>   
                             <table class="history_old_table">
                                 <thead>
                                     <tr>

@@ -26,11 +26,12 @@
                 box-shadow: 0 0 0 4px #b5c9fc;
             }
 
-            .mydict div {
+            .mydict {
                 display: flex;
-                flex-wrap: wrap;
+                flex-direction: column;
+                /*flex-wrap: wrap;*/
                 margin-top: 0.5rem;
-                justify-content: center;
+                /*justify-content: center;*/
             }
 
             .mydict input[type="radio"] {

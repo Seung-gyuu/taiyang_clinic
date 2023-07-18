@@ -5,12 +5,14 @@
 }*/
 
 
+
 .book_container {
     margin: 0;
     padding: 0;
 
     display: flex;
     align-items: center;
+    
 }
 .book_container h1 {
     font-weight: 600;
@@ -53,12 +55,11 @@
 }
 
 .global_top_section button {
-    background-color: #0B486B;
+    background-color: #2B89BE;
     border: none;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
-
     border-radius: 50%;
 }
 
@@ -212,7 +213,7 @@
 .data_unavailable {
     background-color: lightgray;
     color: gray;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     cursor: not-allowed;
     height: 50px;
     max-height: 50px;
@@ -310,6 +311,10 @@
 }
 
 @media screen and (max-width: 992px) {
+    
+    h1 {
+        font-size: 18px;
+    }
 
     .book_container {
         max-width: 720px;  
@@ -355,6 +360,13 @@
 
 .table_header span {
     margin-right: 0;
+}
+
+.leftArrow{
+    padding-right: 5%;
+}
+.rightArrow{
+    padding-left: 5%;
 }
 
 
@@ -433,6 +445,7 @@
     align-items: center;
     /*justify-content: flex-end;*/
     justify-content: center;
+    cursor: pointer;
 }
 
 .popupBtns button {
@@ -441,6 +454,7 @@
     width: 70px;
     border-radius: 10px;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .popupBtns input[type=button],
@@ -450,8 +464,8 @@
     width: 70px;
     border-radius: 10px;
     margin-left: 15px;
-
     margin-top: 15px;
+    cursor: pointer;
 }
 
 
@@ -459,6 +473,7 @@
     background: #0b486b;
     color:#fff;
     font-size: 14px;
+   cursor: pointer;
 }
 
 .confirmBtn:hover {
