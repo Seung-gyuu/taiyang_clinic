@@ -63,12 +63,7 @@ public class SendValidation extends HttpServlet {
                 if(u!=null){
                     ValidateTokensService vts = new ValidateTokensService();
                     String templatePath ="";
-                    if(language.equals("en"))
-                         templatePath=getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
-                    if(language.equals("kr"))
-                         templatePath=getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidationKR.jsp");
-                    
-                    
+                         templatePath=getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");      
                     String message = vts.sendToken(u, templatePath,language);
                     request.setAttribute("message", message);
                     if(language.equals("en"))

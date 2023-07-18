@@ -27,24 +27,15 @@ public class Service3 extends HttpServlet {
         
         
         HttpSession session = request.getSession(false);
-        if (request.getParameter("translate") != null) { //translate the page
+         if (request.getParameter("translate") != null) {
             String language = request.getParameter("translate");
-            if (language.equals("en")) {
-                session.setAttribute("language", language);
-                //set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
-                response.sendRedirect("/en/service3");
-            } else {
-                session.setAttribute("language", language);
-                //set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
+            //utility.setcookie(lan)
+            utilities.GetLanguageCookie.setLanguageCookie(request,response,language);
+            if(language.equals("kr")){
                 response.sendRedirect("/kr/service3");
+            }
+            else{
+                response.sendRedirect("/en/service3");
             }
             return;
         }

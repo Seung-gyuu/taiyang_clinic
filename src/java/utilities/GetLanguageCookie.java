@@ -36,7 +36,10 @@ public class GetLanguageCookie {
                 }
             }
         }
-        if((language.equals("kr") && language.equals("en")) || language==null){
+        else{
+            return "en";
+        }
+        if((!language.equals("kr") && !language.equals("en")) || language==null){
             HttpSession session = req.getSession(true); // Create a new session
                 session.setAttribute("language", "en");
                 // Set the cookie to new language
@@ -50,5 +53,35 @@ public class GetLanguageCookie {
         }
         return language;
         
+    }
+
+    public static void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String language) throws IOException {
+        HttpSession session = request.getSession(true);
+        if (language.equals("en")) {
+                session = request.getSession(true); // Create a new session
+                session.setAttribute("language", language);
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+            } else if (language.equals("kr")){
+                session = request.getSession(true); // Create a new session
+                session.setAttribute("language", language);
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", language);
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+            }
+            else{
+                session = request.getSession(true); // Create a new session
+                session.setAttribute("language", "en");
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", "en");
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                response.addCookie(languageCookie);
+            }
     }
 }

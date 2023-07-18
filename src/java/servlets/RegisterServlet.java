@@ -35,24 +35,15 @@ public class RegisterServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         User u = (User) session.getAttribute("loggedUser");
 
-        if (request.getParameter("translate") != null) { //translate the page
+         if (request.getParameter("translate") != null) {
             String language = request.getParameter("translate");
-            if (language.equals("en")) {
-                session.setAttribute("language", language);
-                //set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
-                response.sendRedirect("/en/register");
-            } else {
-                session.setAttribute("language", language);
-                //set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
+            //utility.setcookie(lan)
+            utilities.GetLanguageCookie.setLanguageCookie(request,response,language);
+            if(language.equals("kr")){
                 response.sendRedirect("/kr/register");
+            }
+            else{
+                response.sendRedirect("/en/register");
             }
             return;
         }
@@ -124,16 +115,15 @@ public class RegisterServlet extends HttpServlet {
             try {
                 u = us.getByEmail(email);
                 if (u.getIsValid() == 2) {
-                    String templatePath = "";
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
                     if (language.equals("en")) {
                         request.setAttribute("validation", "We have sent a validation link to your email.  Please click on it to validate your account!  "
                                 + "Please allow some time for it to arrive or check your spam!");
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
+                        
                     }
                     if (language.equals("kr")) {
                         request.setAttribute("validation", "귀하의 이메일로 확인 링크를 보내드렸습니다. 계정을 확인하려면 클릭하세요!"
                                 + "도착하거나 스팸을 확인하는 데 약간의 시간을 허용하십시오!");
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidationKR.jsp");
                     }
 
                     ValidateTokensService vts = new ValidateTokensService();

@@ -30,7 +30,7 @@ public class HomeServlets extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false); // Pass "false" to get the session without creating a new one
-
+        utilities.GetLanguageCookie.setLanguageCookie(request,response,"en");
         User user = null;
         if (session != null) {
             user = (User) session.getAttribute("loggedUser");
@@ -38,29 +38,14 @@ public class HomeServlets extends HttpServlet {
 
         if (request.getParameter("translate") != null) {
             String language = request.getParameter("translate");
-            //utility.setcookie(lan)
-            if (language.equals("en")) {
-                session = request.getSession(true); // Create a new session
-                session.setAttribute("language", language);
-                // Set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
-                response.sendRedirect("/en/home");
-            } else if (language.equals("kr")){
-                session = request.getSession(true); // Create a new session
-                session.setAttribute("language", language);
-                // Set the cookie to new language
-                Cookie languageCookie = new Cookie("language", language);
-                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
-                languageCookie.setPath("/");
-                response.addCookie(languageCookie);
+            utilities.GetLanguageCookie.setLanguageCookie(request,response,language);
+            if(language.equals("kr")){
                 response.sendRedirect("/kr/home");
             }
             else{
-                response.sendRedirect("home");
+                response.sendRedirect("/en/home");
             }
+            
             return;
         }
 
