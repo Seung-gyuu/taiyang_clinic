@@ -90,7 +90,7 @@
                                         <form action="login" method="post">
 
                                             <div class="header1">
-                                                <h2 class="text-uppercase mb-4 ">WELCOME BACK!</h2>
+                                                <h2 class="text-uppercase mb-4 ">환영합니다!</h2>
                                             </div>
 
                                             <!--style="letter-spacing: 1px;"-->
