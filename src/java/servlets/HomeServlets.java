@@ -29,8 +29,8 @@ public class HomeServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false); // Pass "false" to get the session without creating a new one
-        utilities.GetLanguageCookie.setLanguageCookie(request,response,"en");
+
+        HttpSession session = request.getSession(true); 
         User user = null;
         if (session != null) {
             user = (User) session.getAttribute("loggedUser");
@@ -77,7 +77,7 @@ public class HomeServlets extends HttpServlet {
 
         String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
-            session = request.getSession(true); // Create a new session
+            session = request.getSession(false); // Create a new session
             session.setAttribute("language", language);
             // Set the cookie to new language
             Cookie languageCookie = new Cookie("language", language);
@@ -85,12 +85,13 @@ public class HomeServlets extends HttpServlet {
             languageCookie.setPath("/");
             response.addCookie(languageCookie);
             response.sendRedirect("/en/home");
+            getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         } else {
-            session = request.getSession(true); // Create a new session
+            session = request.getSession(false); // Create a new session
             session.setAttribute("language", language);
             if (language.equals("kr")) {
                 getServletContext().getRequestDispatcher("/WEB-INF/kr/home.jsp").forward(request, response);
-            } else if (language.equals("en")) {
+            } else{
                 getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
             }
         }

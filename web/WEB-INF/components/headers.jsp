@@ -126,7 +126,7 @@
 
 
 
-                    <% if(session.getAttribute("language").equals("kr") && session.getAttribute("language").equals("en")){
+                    <% if(session.getAttribute("language")!=null&&!session.getAttribute("language").equals("kr") && !session.getAttribute("language").equals("en")){
                         session.setAttribute("language", "en");
                     }
                         %>

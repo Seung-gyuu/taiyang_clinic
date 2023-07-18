@@ -56,7 +56,7 @@ public class GetLanguageCookie {
     }
 
     public static void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String language) throws IOException {
-        HttpSession session = request.getSession(true);
+        HttpSession session;
         if (language.equals("en")) {
                 session = request.getSession(true); // Create a new session
                 session.setAttribute("language", language);

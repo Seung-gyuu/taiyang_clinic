@@ -50,9 +50,6 @@ public class AboutUs extends HttpServlet {
         
         
         String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
-    if (language == null) {
-        response.sendRedirect("/welcome");
-    } else {
         session = request.getSession(true); // Create a new session
         session.setAttribute("language", language);
         if (language.equals("kr")) {
@@ -60,7 +57,6 @@ public class AboutUs extends HttpServlet {
         } else if (language.equals("en")) {
             getServletContext().getRequestDispatcher("/WEB-INF/en/aboutus.jsp").forward(request, response);
         }
-    }
 
         
     }
