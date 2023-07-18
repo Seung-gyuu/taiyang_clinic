@@ -90,7 +90,7 @@
 
 
             .gloabal_container {
-                max-width: 1320px;
+                /*max-width: 1320px;*/
                 margin: 40px auto;
                 padding: 1.5rem;
                 min-height: 70vh;
