@@ -56,7 +56,7 @@ public class ForgotPasswordServlets extends HttpServlet {
             }
             return;
         }
-                String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+                String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         
         
         if (language.equals("en")) {
@@ -71,7 +71,7 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         UserService us = new UserService();

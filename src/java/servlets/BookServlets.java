@@ -105,7 +105,7 @@ public class BookServlets extends HttpServlet {
         request.setAttribute("message", session.getAttribute("message"));
         session.removeAttribute("message");
 
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
             response.sendRedirect("/welcome");
         } else {
@@ -125,7 +125,7 @@ public class BookServlets extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         HttpSession session = request.getSession(false);
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         User u = (User) session.getAttribute("loggedUser");
         if (action.equals("book")) {
             AvailableTimeService as = new AvailableTimeService();

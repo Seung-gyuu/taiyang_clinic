@@ -66,7 +66,7 @@ public class LoginServlets extends HttpServlet {
     }
         
         
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
     if (language == null) {
         response.sendRedirect("/welcome");
     } else {
@@ -96,7 +96,7 @@ public class LoginServlets extends HttpServlet {
             RoleService rs = new RoleService();
             request.setAttribute("email", email);
             try {
-                String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+                String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
                 String message = us.login(email, password,language);
                 if (message.equals("Login") || message.equals("로그인")) {
                     User u = us.getByEmail(email);

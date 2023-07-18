@@ -59,7 +59,7 @@ public class Service5 extends HttpServlet {
     }
         
         
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
     if (language == null) {
         response.sendRedirect("/welcome");
     } else {

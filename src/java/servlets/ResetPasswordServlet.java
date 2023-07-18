@@ -29,7 +29,7 @@ public class ResetPasswordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         String logout = request.getParameter("logout");
         if(request.getParameter("translate")!=null){
             response.sendRedirect("home");
@@ -80,7 +80,7 @@ public class ResetPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         User user = (User) session.getAttribute("user");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirmPassword");

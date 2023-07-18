@@ -126,7 +126,10 @@
 
 
 
-
+                    <% if(session.getAttribute("language")!="kr" || session.getAttribute("language")!="en"){
+                        session.setAttribute("language", "en");
+                    }
+                        %>
 
                     <div class ="col-md-6 text-right text-lg-end">
                         <div class ="d-inline-flex align-items-center">

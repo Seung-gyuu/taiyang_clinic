@@ -19,7 +19,7 @@ public class Validate extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String token = request.getParameter("token");
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         ValidateTokensService vts = new ValidateTokensService();
         try {
             String message = vts.validate(token, language);

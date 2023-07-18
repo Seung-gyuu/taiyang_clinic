@@ -65,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("home");
             return;
         }
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
             response.sendRedirect("/welcome");
         } else {
@@ -83,7 +83,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (action.equals("register")) {
             String firstname = request.getParameter("first name");
             String lastname = request.getParameter("last name");

@@ -59,7 +59,7 @@ public class ProfileServlets extends HttpServlet {
             response.sendRedirect("home");
             return;
         }
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
             response.sendRedirect("/welcome");
         } else {
@@ -78,7 +78,7 @@ public class ProfileServlets extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
 
         User loggedUser = (User) session.getAttribute("loggedUser");
         UserService us = new UserService();

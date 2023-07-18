@@ -28,7 +28,7 @@ public class SendValidation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         User user = (User) session.getAttribute("loggedUser");
                 String logout = request.getParameter("logout");
          if (logout != null) {
@@ -54,7 +54,7 @@ public class SendValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action=request.getParameter("action");
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if(action.equals("send verification")){
             String email = request.getParameter("email");
             UserService us = new UserService();

@@ -92,7 +92,7 @@ public class HistoryServlets extends HttpServlet {
 
         }
 
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
             response.sendRedirect("/welcome");
         } else {
@@ -110,7 +110,7 @@ public class HistoryServlets extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         HttpSession session = request.getSession(false);
         AppointmentService as = new AppointmentService();
         ServiceService ss = new ServiceService();

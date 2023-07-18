@@ -86,7 +86,7 @@ public class HomeServlets extends HttpServlet {
             }
         }
 
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
         if (language == null) {
             session = request.getSession(true); // Create a new session
             session.setAttribute("language", language);
