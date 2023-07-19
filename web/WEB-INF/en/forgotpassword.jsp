@@ -88,7 +88,7 @@
                 </div>
             </div>
         </section>
-        <script src="../js/bootstrap.bundle.min.js"></script>
+        <!--<script src="../js/bootstrap.bundle.min.js"></script>-->
         <footer>
             <jsp:include page="../components/footer.jsp" />
         </footer>

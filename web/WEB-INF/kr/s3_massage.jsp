@@ -11,6 +11,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
+        <c:import url="../components/headersKR.jsp" />
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
@@ -30,10 +31,6 @@
     <link rel="stylesheet" type="text/css" href="../css/services.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
 
-
-    <c:import url="../components/headersKR.jsp" />
-
-
 </head>
 <body>
     <!--<div class="gloabal_container">-->
@@ -46,7 +43,7 @@
             <div class ="services_top_wrap">
                 <p>Services</p>
                 <h1>추나요법</h1>
-                 <button onclick="window.location.href='/${language}/book'">예약하기</button>
+                <button onclick="window.location.href = '/${language}/book'">예약하기</button>
             </div>
         </div>
         <div class="services_main_section">
@@ -56,7 +53,7 @@
                         <strong>추나요법</strong>이 무엇일까요?    
                     </h2>
                     <p>
-                            추나요법은 한의사가 환자의 비틀어진 척추·관절을 밀고 당겨 신체의 틀어진 부분을 바로 잡고 통증을 개선하는 한방 치료법입니다.
+                        추나요법은 한의사가 환자의 비틀어진 척추·관절을 밀고 당겨 신체의 틀어진 부분을 바로 잡고 통증을 개선하는 한방 치료법입니다.
                     </p>
                 </div>
             </div>
@@ -201,16 +198,16 @@
                 </div>
             </div>
         </div>
-                            <!-- Services End -->
-                            </div>
+        <!-- Services End -->
+    </div>
 
 
-                            <!-- Footer Start -->
-                            <footer>
-                                <jsp:include page="../components/footerKR.jsp" />
-                            </footer>
+    <!-- Footer Start -->
+    <footer>
+        <jsp:include page="../components/footerKR.jsp" />
+    </footer>
 
-                            <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+    <!--<script src="js/bootstrap.bundle.min.js"></script>-->
 
-                            </body>
-                            </html>
+</body>
+</html>

@@ -11,6 +11,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
+        <c:import url="../components/headersKR.jsp" />
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
@@ -30,8 +31,6 @@
     <link rel="stylesheet" type="text/css" href="../css/services.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
 
-
-    <c:import url="../components/headersKR.jsp" />
 
 
 </head>

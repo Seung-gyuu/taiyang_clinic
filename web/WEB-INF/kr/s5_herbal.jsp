@@ -11,6 +11,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
+        <c:import url="../components/headersKR.jsp" />
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
@@ -31,9 +32,6 @@
     <link rel="stylesheet" type="text/css" href="../css/global.css">
 
 
-    <c:import url="../components/headersKR.jsp" />
-
-
 </head>
 <body>
     <!--<div class="gloabal_container">-->
@@ -46,7 +44,7 @@
             <div class ="services_top_wrap">
                 <p>Services</p>
                 <h1>괄사</h1>
-                <button onclick="window.location.href='/${language}/book'">예약하기</button>
+                <button onclick="window.location.href = '/${language}/book'">예약하기</button>
             </div>
         </div>
         <div class="services_main_section">
@@ -107,7 +105,7 @@
                             <i class="fa-regular fa-circle-check"></i>
                             <span>소화력 향상</span>
                         </li>
-                        
+
                     </ul>
                 </div>
 
@@ -199,16 +197,16 @@
                 </div>
             </div>
         </div>
-                            <!-- Services End -->
-                            </div>
+        <!-- Services End -->
+    </div>
 
 
-                            <!-- Footer Start -->
-                            <footer>
-                                <jsp:include page="../components/footerKR.jsp" />
-                            </footer>
+    <!-- Footer Start -->
+    <footer>
+        <jsp:include page="../components/footerKR.jsp" />
+    </footer>
 
-                            <!--<script src="js/bootstrap.bundle.min.js"></script>-->
+    <!--<script src="js/bootstrap.bundle.min.js"></script>-->
 
-                            </body>
-                            </html>
+</body>
+</html>

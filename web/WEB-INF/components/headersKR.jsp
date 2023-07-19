@@ -114,7 +114,7 @@
                             </c:if>
                             <c:if test="${loggedUser ne null}">
                                 <c:if test="${upcomingAppointments ne null}">
-                                    You have ${upcomingAppointments.size()} upcoming appointments!   KR<br>
+                                    You have ${upcomingAppointments.size()} upcoming appointments! <br>
                                 </c:if>
                                 <a class ="text-decoration-none text-body px-3" href ="/${language}/profile">
                                     Hello  ,  ${loggedUser.getFirstname()} ${loggedUser.getLastname()} 
@@ -162,10 +162,10 @@
                                             <span class="flag-icon">🇰🇷</span> 한국어</a></c:if>
                                     </div>
                                 </div>
-                                <a href="/${language}/home" class="nav-item nav-link active">Home</a>
-                            <a href="/${language}/aboutus" class="nav-item nav-link active">About us</a>
+                                <a href="/${language}/home" class="nav-item nav-link active">홈</a>
+                            <a href="/${language}/aboutus" class="nav-item nav-link active">소개</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Services</a>
+                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">서비스</a>
                                 <div class="dropdown-menu m-0">
                                     <a href="/${language}/service1" class="dropdown-item">침술</a>
                                     <a href="/${language}/service2" class="dropdown-item">뜸</a>
@@ -175,17 +175,17 @@
                                     <a href="/${language}/service6" class="dropdown-item">라이프스타일/식이요법 컨설팅</a>
                                 </div>
                             </div>
-                            <a href="/${language}/book" class="nav-item nav-link active">Book</a> 
-                            <a href="/${language}/contact" class="nav-item nav-link active">Contact  </a>
+                            <a href="/${language}/book" class="nav-item nav-link active">예약</a> 
+                            <a href="/${language}/contact" class="nav-item nav-link active">오시는 길</a>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/history" class="nav-item nav-link active">My Account  </a> 
+                                <a href="/${language}/history" class="nav-item nav-link active">내 계정</a> 
                             </c:if>
 
                             <c:if test="${loggedUser eq null}">
-                                <a href="/${language}/login" class="nav-item nav-link active">Login  </a>
+                                <a href="/${language}/login" class="nav-item nav-link active">로그인</a>
                             </c:if>
                             <c:if test="${loggedUser ne null}">
-                                <a href="/${language}/home?logout" class="nav-item nav-link active">Log out  </a> 
+                                <a href="/${language}/home?logout" class="nav-item nav-link active">로그아웃</a> 
                             </c:if>
                         </div>
                     </div>

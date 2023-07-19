@@ -62,8 +62,8 @@
                             <a class="text-light mb-2" href="/${language}/aboutus"><i class="fa fa-angle-right me-2"></i>About Us</a>
                             <a class="text-light mb-2" href="/${language}/service1"><i class="fa fa-angle-right me-2"></i>Our Services</a>
                             <a class="text-light mb-2" href="/${language}/book"><i class="fa fa-angle-right me-2"></i>Book an appointment</a>
-                            <a class="text-light" href="/${language}/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
-                            <a class="text-light" href="/downloadForm?formId=1&form=1&referer=${pageContext.request.requestURI}"><i class="fa fa-angle-right me-2"></i>Medical Form</a>
+                            <a class="text-light mb-2" href="/${language}/contact"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                            <a class="text-light mb-2" href="/downloadForm?formId=1&form=1&referer=${pageContext.request.requestURI}"><i class="fa fa-angle-right me-2"></i>Medical Form</a>
                             <a class="text-light" href="/downloadForm?formId=1&form=2&referer=${pageContext.request.requestURI}"><i class="fa fa-angle-right me-2"></i>Consent Form</a>
                         </div>
                     </div>
