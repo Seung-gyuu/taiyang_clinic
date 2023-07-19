@@ -37,9 +37,16 @@ public class GetLanguageCookie {
             }
         }
         else{
+            HttpSession session = req.getSession(true); // Create a new session
+                session.setAttribute("language", "en");
+                // Set the cookie to new language
+                Cookie languageCookie = new Cookie("language", "en");
+                languageCookie.setMaxAge(60 * 60 * 24 * 30); // Set the cookie to expire in 30 days
+                languageCookie.setPath("/");
+                resp.addCookie(languageCookie);
             return "en";
         }
-        if((!language.equals("kr") && !language.equals("en")) || language==null){
+        if((language==null || (!language.equals("kr") && !language.equals("en"))) ){
             HttpSession session = req.getSession(true); // Create a new session
                 session.setAttribute("language", "en");
                 // Set the cookie to new language
