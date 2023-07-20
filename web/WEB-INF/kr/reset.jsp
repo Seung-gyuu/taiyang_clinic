@@ -59,7 +59,7 @@
                                     <div class="card-header h3 text-white text-center" style="background-color: #094676">Forgot my password</div>
                                     <div class="card-body p-5">
                                         <p class="card-text py-2" style="font-size: 1.2rem;">
-                                            Change your password KOREAN SIDE
+                                            Change your password
                                         </p>
                                         <h4> Hello, ${user.getFirstname()} </h4>
 

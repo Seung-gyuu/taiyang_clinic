@@ -29,7 +29,6 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/ausers.css">
 
         <!--google fonts -->
 
@@ -701,41 +700,7 @@
             table.table td a:hover{
                 color:#2196F3;
             }
-            /*
-            .pagination{
-                float:right;
-                margin:0 0 5px;
-            }
-            
-            .pagination  li a{
-                border:none;
-                font-size:13px;
-                min-width:30px;
-                min-height:30px;
-                color:#999;
-                margin:0 2px;
-                line-height:30px;
-                border-radius:2px!important;
-                text-align:center;
-                padding:0 6px;
-            }
-            
-            .pagination  li a:hover{
-                color:#666;
-            }
-            
-            
-            .pagination li.disabled i{
-                color:#ccc;
-            
-            }
-            
-            .pagination li i{
-                font-size:16px;
-                padding-top:6px;
-            }*/
-
-
+ 
 
             table.table td  i{
                 font-size:19px;

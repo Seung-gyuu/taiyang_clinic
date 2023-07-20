@@ -33,8 +33,6 @@
         
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/vform.css">
-        <link rel="stylesheet" href="css/aform.css">
-        <!--        <script src="js/ausers.js"></script>-->
 
         <!--google fonts -->
 

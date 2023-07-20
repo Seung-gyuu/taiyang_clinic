@@ -82,28 +82,13 @@
             }
 
 
-            /*
-                        .book_all_container {
-                max-width: 1320px;
-                min-height: 70vh;
-                margin: 40px auto;
-            }*/
-
             .test {
-                /*                border: 1px solid black;*/
                 border-radius: 5px;
                 padding-bottom: 5px;
                 border-bottom:  1px solid black;
 
 
             }
-
-            /*            .test2 {
-                            border: 1px solid black;
-                             border-radius: 5px;
-                        }*/
-
-
 
             .fullCalendar{
                 width: 100%;
@@ -187,14 +172,11 @@
                 overflow-x: hidden;
                 position: relative;
                 border:none;
-                /*                width: 1225px;*/
                 white-space: nowrap;
-                /*                overflow-x: scroll;*/
             }
 
             .days .days-content {
                 width: 100%;
-                /*width: 1225px;*/
                 display: flex;
                 position: relative;
                 transition: transform 0.6s ease;
@@ -202,18 +184,15 @@
             }
             .days-content{
                 width: 100%;
-                /*width: 1225px;*/
             }
 
             .table_header{
                 padding-top: 20px;
-                /*                margin: 20px auto;*/
                 text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-family: sans-serif;
-                /*color: white;*/
             }
 
             .table_data.data_unavailable {
@@ -221,15 +200,10 @@
                 font-weight: bold;
                 padding: 15px;
                 text-align: center;
-                /*                width: 100%;*/
                 justify-content: center;
                 align-items: center;
 
             }
-
-            /*.table_header p {
-                margin: 0;
-            }*/
 
             .days .availableDay {
                 flex: 0 0 auto;
@@ -260,8 +234,6 @@
             }
 
             .unavailableDay{
-                /*background-color: #f5f5f5;*/
-                /*rgb(196, 196, 196, 0.4) 10px*/
                 background: repeating-linear-gradient(
                     135deg,
                     #f5f5f5,
@@ -273,21 +245,16 @@
                 border: 2px solid #fff;
             }
             .table_data {
-                /*                height: 30px;*/
-                /*                padding: 25px 15px;*/
                 padding-top: 15px;
-
                 border-radius: 5px;
                 font-size: 13px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                /*                background:#f5f5f5;*/
             }
             .days{
                 display: flex;
                 overflow: hidden;
-                /*                border: solid red 2px;*/
             }
             .data_available {
                 background-color: #5ea1ff;
@@ -305,26 +272,17 @@
             }
 
             .data_unavailable {
-                /*                background-color: lightgray;*/
                 color: #0B486B;
-
-                /*                border: 2px solid #fff;*/
                 height: 5px;
                 cursor: not-allowed;
-                /*                height: 10px;
-                                max-height: 50px;
-                                min-height: 50px;*/
             }
 
             .book_main_right {
                 flex: 1;
                 margin-top: 75px;
-                /*position: relative;*/
                 padding-left: 20px;
 
             }
-
-
 
             .able {
                 background-color: #0d6efd;
@@ -346,170 +304,7 @@
                     max-width: 1140px;
                 }
 
-                .days {
-                    /*                    max-width: 1040px;*/
-                }
-
-                /*        
-                    .table_header {
-                   display: block
-                }
-                
-                .table_header span {
-                    margin-right: 0;
-                }*/
-
-
             }
-
-            /*            @media screen and (max-width: 1200px) {
-            
-                            .table_data  {
-                                flex-direction: column;
-                            }
-                        }
-            
-                        @media screen and (max-width: 768px) {
-            
-                            .table_header {
-                                display: block
-                            }
-            
-                            .table_header span {
-                                margin-right: 0;
-                            }
-            
-            
-                            .data_available {
-                                height: 30px;
-                                padding: 25px 15px;
-                                padding-top: 35px;
-                                border-radius: 5px;
-                                font-size: 13px;
-                                display: flex;
-                                flex-direction: column;
-                                align-items: center;
-                                justify-content: center;
-                                background:#f5f5f5;
-                            }
-            
-            
-                        }
-            
-                        @media screen and (max-width: 576px) {
-                            .book_container {
-                                max-width: 540px;  
-                            }
-                        }
-            
-                        .popup-box {
-                            display: none; 
-                            position: fixed;
-                            z-index: 1021;
-                            padding-top: 100px;
-                            left: 0;
-                            top: 0;
-                            width: 100%;
-                            height: 100%; 
-                            overflow: auto; 
-                            background-color: rgb(0,0,0); 
-                            background-color: rgba(0,0,0,0.4); 
-            
-                        }
-            
-                        .popup-content {
-                            width: 570px;
-                            text-align: center;
-                            background-color: #fefefe;
-                            margin: auto;
-                            padding: 30px;
-                            border: 1px solid #888;
-                            position: absolute;
-                            float: left;
-                            left: 50%;
-                            top: 50%;
-                            transform: translate(-50%, -50%);
-                            border-radius: 5px;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                        }
-            
-                        .book_close {
-                            color: #aaaaaa;
-                            float: right;
-                            font-size: 28px;
-                            font-weight: bold;
-                            text-align: right;
-                        }
-            
-                        .book_close:hover,
-                        .book_close:focus {
-                            color: #000;
-                            text-decoration: none;
-                            cursor: pointer;
-                        }
-            
-                        .popupBtns {
-                            display: flex;
-                            align-items: center;
-                            justify-content: flex-end;
-                            justify-content: center;
-                        }
-            
-                        .popupBtns button {
-                            border: none;
-                            padding: 5px 0;
-                            width: 70px;
-                            border-radius: 10px;
-                            margin-left: 20px;
-                        }
-            
-                        .popupBtns input[type=button],
-                        .popupBtns input[type=submit]{
-                            border: none;
-                            padding: 5px 0;
-                            width: 70px;
-                            border-radius: 10px;
-                            margin-left: 15px;
-            
-                            margin-top: 15px;
-                        }
-            
-            
-                        .confirmBtn {
-                            background: #0b486b;
-                            color:#fff;
-                            font-size: 14px;
-                        }
-            
-                        .confirmBtn:hover {
-                                            border:2px solid #0b486b;
-                                            background: #fff;
-                                            color:#000;
-                            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-                        }
-            
-                        .cancelBtn:hover {
-                            box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
-                        }
-            
-                        #confirmBox form {
-                            margin-top: 15px;
-                        }
-            
-                        #confirmBox form input {
-                                            display: flex;
-                                            align-items: center;
-                            flex-direction: column;
-                        }
-            
-            
-                        .confirmService {
-                            font-size: 18px;
-                            font-weight: 600;
-                            margin-bottom: 15px;
-                        }*/
 
             table.table tr th,
             table.table tr td {
@@ -532,6 +327,7 @@
             table.table tr td:last-child {
                 border-right-width: 0; 
             }
+            
             body,html{
                 line-height:1.8;
                 font-family:'Poppins',sans-serif;
@@ -562,7 +358,6 @@
             a{
                 color:#333;
                 font-weight:400;
-
             }
 
 
@@ -951,124 +746,6 @@
             }
 
             /*---navbardesign -end-----*/
-
-
-
-            /*--table design start----*/ 
-
-            .table-wrapper {
-                background-color: #fff;
-                /*                 padding: 20px 25px; */
-                margin:6px 0px 40px 0px;
-                width: 100%;
-                overflow: auto;
-                border-radius: 3px;
-                box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-
-            }
-
-            .table-title{
-                background:#353b48;
-                color:#fff;
-                position:sticky;
-                top:0;
-                width:100%;
-                left:0;
-                padding:10px 30px;
-                border-radius:0px 0px 0 0;
-            }
-
-            .table-title h2{
-                margin:5px 0  0;
-                font-size:17px;
-            }
-
-            .table-title .btn-group{
-                float:right;
-            }
-            .table-title .btn{
-                float:right;
-                font-size:13px;
-                border:none;
-                min-width:50px;
-                border-radius:2px;
-                outline:none!important;
-                margin-left:10px;
-            }
-            .table-title .btn i{
-                float:left;
-                font-size:21px;
-                margin-right:5px;
-            }
-
-            .table-title .btn span{
-                float:left;
-                margin-top:2px;
-            }
-
-            table.table tr th, table.table tr td{
-                border-color:#999999;
-                font-weight: 400;
-            }
-
-            /*            table.table tr th:first-child{
-                            width:200px;
-                        }
-            
-                        table.table tr th:last-child{
-                            width:200px;
-                        }*/
-
-            table.table-stripped tbody tr:nth-of-type(odd){
-                background-color:#fcfcfc;
-            }
-
-            table.table-stripped.table-hover tbody tr:hover{
-                background-color:#f5f5f5;
-            }
-
-            table.table th i{
-                font-size:17px;
-                margin: 6px 5px;
-                cursor:pointer;
-            }
-
-            table.table td a{
-                font-weight:bold;
-                color:#566787;
-                display:inline-block;
-                text-decoration:none;
-                outline:none!important;
-            }
-            table.table td a:hover{
-                color:#2196F3;
-            }
-
-
-
-            table.table td  i{
-                font-size:19px;
-            }
-
-            table.table .avatar{
-                border-radius:50%;
-                vertical-align:middle;
-                margin-right:10px;
-            }
-
-
-
-            .hint-text{
-                float:left;
-                margin-top:10px;
-                font-size:13px;
-            }
-
-
-            /*--table design end----*/ 
-
-
-
 
             /*-------footer design start------*/
             footer{

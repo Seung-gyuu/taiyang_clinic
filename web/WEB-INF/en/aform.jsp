@@ -30,7 +30,6 @@
         <meta name="theme-color" content="#ffffff">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/aform.css">
-        <!--        <script src="js/ausers.js"></script>-->
 
         <!--google fonts -->
 
@@ -75,11 +74,7 @@
 
             }
 
-            /*            .borderless-button:hover {
-                            background-color: #0B486B;
-                            border-color: #0B486B;
-                            padding: 3px 7px;
-                        }*/
+     
             #popupBox {
                 width: 500px;
                 background-color: #f3f3f3;
@@ -136,7 +131,6 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 background-color: #496f53;
-                /*                padding: 11px;*/
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
                 border-radius: 3px;   
                 text-align:center;
@@ -147,7 +141,6 @@
 
 
             input[type="search"]{
-                /*                background-color:#f9f9f5;*/
                 background-color: #f3f3f3;
                 color:#fff;
                 padding-left:20px;
@@ -157,7 +150,6 @@
 
 
             .xp-searchbar .btn{
-                /*                background-color:#496f53;*/
                 background-color:#4a5263;
                 color:#fff;
                 font-weight:600;

@@ -43,7 +43,7 @@
                     <div class="row align-items-center justify-content-center min-vh-100">
                         <div class="col-md-9 col-lg-6 my-5">
                             <div class="text-center validate-page ">
-                                <h3 class="mb-3 text-secondary">Send Token  ( this is KR side)</h3>
+                                <h3 class="mb-3 text-secondary">Send Token</h3>
                                 <form method="post" action="sendvalidation">
                                     <p class="w-sm-80 mx-auto mb-4 text-black">Please enter an email to receive the token.</p>
                                     <div class="form-outline mb-4 d-flex align-items-center">
