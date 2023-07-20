@@ -48,6 +48,18 @@
 
         <style>
 
+            #modalOverlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+                display: none;
+                z-index: 9999; /* Make sure it's above other elements */
+            }
+
+
             .popup {
                 position: fixed;
                 top: 50%;
@@ -75,11 +87,11 @@
                 transition: background-color 0.3s ease;
                 font-size: 13px;
             }
-            
+
             h2 {
                 font-size: 20px; 
                 font-weight: 900;
-             
+
             }
 
 
@@ -266,6 +278,8 @@
 
 
 
+
+
         </style>
 
     </head>
@@ -392,7 +406,7 @@
                                         for (int month = startMonth; month < endMonth; month++) {
                                             String link = "/analytics?year=" + year + "&month=" + month;
                                             String monthName = monthNames[month - 1]; // Get the month name from the array
-                                %>
+%>
                                 <a href="<%= link%>" class="month-link"><%= monthName%> <%= year%></a>
                                 <%
                                         }
@@ -442,6 +456,8 @@
                                 <div id="popup">
 
                                 </div>
+                                <div id="modalOverlay"></div>
+
                             </div>
                         </div>
                     </div>
@@ -562,7 +578,8 @@
                 closeButton.textContent = 'Close';
                 closeButton.addEventListener('click', function () {
                     popup.textContent = ""; // Remove the popup when the close button is clicked
-
+                    var modalOverlay = document.getElementById('modalOverlay');
+                    modalOverlay.style.display = 'none';
                 });
 
 
@@ -638,8 +655,20 @@
                 popup.appendChild(closeButton);
                 // Add the popup to the document body
                 document.body.appendChild(popup);
+                var modalOverlay = document.getElementById('modalOverlay');
+                modalOverlay.style.display = 'block';
 
             }
+
+
+            document.getElementById('modalOverlay').addEventListener('click', function (event) {
+                var popup = document.getElementById("popup");
+                if (event.target === this) {
+                    popup.textContent = "";
+                    this.style.display = 'none'; // Hide the modal overlay
+                }
+            });
+
         </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
