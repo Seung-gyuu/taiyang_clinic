@@ -214,7 +214,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 ">
+                    <div class="col-lg-4 mx-auto ">
                         <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-ambulance text-black"></i>
@@ -227,7 +227,7 @@
                         </div>
                     </div>
             
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 mx-auto">
                         <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-microscope text-black"></i>
