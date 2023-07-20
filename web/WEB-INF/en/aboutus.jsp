@@ -39,7 +39,7 @@
     <div class ="sections">
         <div class ="containers">
             <div class="title">
-                <h2>About Us</h2>
+                <h2><strong>About Us</strong></h2>
             </div>
             <div class ="contents">
                 <div class ="article">
@@ -47,7 +47,7 @@
                       Sunny is a registered acupuncturist with 1000 hours of observation and clinical case experiences. She trained at Alberta College of Acupuncture and Traditional Chinese Medicine and received her acupuncture practitioner license after a successful first attempt at the The Alberta Acupuncture Registration Examinations (AARE) test. Her specialties are: gynecology acupuncture, Korean beauty acupuncture techniques, Facial Rejuvenation Acupuncture (FRA), Tui Na and moxibustion. Sunny actively attends educational conferences to keep up to date with the advances in acupuncture research and treatment. Being a fluent speaker of Korean, English and Japanese, she also offers her consultations and lifestyle/diet advice services to the Korean and Japanese community in Calgary.
 
                     </h4>
-                   <p>Sunny is a registered acupuncturist with 1000 hours of observation and clinical case experiences. She trained at Alberta College of Acupuncture and Traditional Chinese Medicine and received her acupuncture practitioner license after a successful first attempt at the The Alberta Acupuncture Registration Examinations (AARE) test. Her specialties are: gynecology acupuncture, Korean beauty acupuncture techniques, Facial Rejuvenation Acupuncture (FRA), Tui Na and moxibustion. Sunny actively attends educational conferences to keep up to date with the advances in acupuncture research and treatment. Being a fluent speaker of Korean, English and Japanese, she also offers her consultations and lifestyle/diet advice services to the Korean and Japanese community in Calgary.
+                   <p>​Sunny meets her patients where they are at, both physically and emotionally, bringing an attentive presence and problem-solving mentality into each of her treatments. She specializes in treating complex and chronic cases, including chronic and acute pain, complex illness and disease, dermatological disorders, emotional and hormonal dysregulation, and gynecological disorders. Using a combination of acupuncture and Chinese herbal medicine, she has seen patients through the worst of their chronic symptoms into manageable, hopeful and harmonious states of being.
 
                     </p>
                 </div>

@@ -263,7 +263,7 @@
                                     </li>
                                 </ul>
                                 <p class="mb-2">
-                                    <i class="fas fa-quote-left pe-2"></i>Both my wife and I have been using Sunny's services for a couple of years now. Acupuncture has been the only thing that gives either of us any long term relief from on going back pain. In one session she is able to accomplish what would take weeks of physical therapy and medication. I highly recommend that anyone with back pain give her a call. 
+                                    <i class="fas fa-quote-left pe-2"></i>She has relieved all of my neck pain from labour and nursing as well as helped to balance my hormones + relieve stress as I was not getting much sleep! Her sessions are extremely relaxing, therapeutic and I feel like a million bucks when I leave. The effects of her treatments are also long lasting and she has custom designed my treatments to meet my specific needs.
                                 </p>
                             </div>
                         </div>
@@ -324,7 +324,7 @@
                                     </li>
                                 </ul>
                                 <p class="mb-2">
-                                    <i class="fas fa-quote-left pe-2"></i>Both my wife and I have been using Sunny's services for a couple of years now. Acupuncture has been the only thing that gives either of us any long term relief from on going back pain. In one session she is able to accomplish what would take weeks of physical therapy and medication. I highly recommend that anyone with back pain give her a call. 
+                                    <i class="fas fa-quote-left pe-2"></i>I have suffered from a weak bladder ever since my son was born. After only 2 treatments with acupuncture, I have had no 'whoopsies', sneezed 3 times in a row without ramifications, and then jumped for joy (and was still dry)! I’m scared to get overexcited as I assumed that I would have this issue for the rest of my life, but I sure am hopeful!
                                 </p>
                             </div>
                         </div>
