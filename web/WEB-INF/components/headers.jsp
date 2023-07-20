@@ -204,8 +204,10 @@
                                     <a href="/${language}/service1" class="dropdown-item">Acupuncture</a>
                                     <a href="/${language}/service2" class="dropdown-item">Moxibustion</a>
                                     <a href="/${language}/service3" class="dropdown-item">TuiNa Massage</a>
-                                    <a href="/${language}/service4" class="dropdown-item">Korean beauty</a>
-                                    <a href="/${language}/service5" class="dropdown-item">Guasha massage and demo</a>
+                                    <a href="/${language}/service3" class="dropdown-item">Guasha Massage and demo</a>
+                                    <a href="/${language}/service4" class="dropdown-item">Cupping</a>
+                                    <a href="/${language}/service5" class="dropdown-item">Herbal Formula prescriptions  </a>
+                                    <a href="/${language}/service6" class="dropdown-item">Korean Beauty</a>
                                     <a href="/${language}/service6" class="dropdown-item">Lifestyle and Diet therapy</a>
                                 </div>
                             </div>
