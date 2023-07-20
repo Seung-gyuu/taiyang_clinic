@@ -48,6 +48,88 @@
 
         <style>
 
+            .popup {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width:55%; 
+                max-height: 60%; 
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                z-index: 9999;
+            }
+
+
+            .close-button {
+                float: right;/*
+                cursor: pointer;
+                background-color: #f1f1f1;
+                padding: 5px 5px;
+                border: 2px;
+*/                margin-top: 20px;
+                background-color: #0B486B;
+                color: #fff;
+                border: none;
+                padding: 5px 8px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: light;
+                transition: background-color 0.3s ease;
+                font-size: 13px;
+            }
+            
+            h2 {
+                font-size: 20px; 
+                font-weight: 900;
+             
+            }
+
+
+            .popup table {
+                width: 800px;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+
+            .popup tr {
+                border-bottom: 1px solid #f1f1f1;
+            }
+
+            .popup th, .popup td {
+                padding: 4px; 
+                font-size: 12px;
+            }
+
+
+            .popup th {
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }
+
+
+            .popup tr:nth-child(odd) {
+                background-color: #f9f9f9;
+            }
+
+
+            .popup::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .popup::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 0, 0, 0.2);
+                border-radius: 3px;
+            }
+
+            .popup::-webkit-scrollbar-track {
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 3px;
+            }
+
+
             .container {
                 display: flex;
             }
@@ -89,9 +171,6 @@
             }
 
             .service-table-container {
-                /*    width: 50%;  
-                    float: left;  
-                    margin-right: 20px;*/
                 flex: 1;
             }
 
@@ -125,12 +204,6 @@
                 font-size: 13px;
                 color: #212529;
             }
-
-            /*.time-table-container {
-                width: 50%;  
-                float: left;  
-            }*/
-
 
             .time-table {
                 margin-top: 20px;
@@ -932,7 +1005,6 @@
                                 <div id="popup">
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -1046,13 +1118,16 @@
                 popup.textContent = "";
                 popup.classList.add('popup');
 
+
                 // Create a close button
                 var closeButton = document.createElement('button');
                 closeButton.classList.add('close-button');
                 closeButton.textContent = 'Close';
                 closeButton.addEventListener('click', function () {
                     popup.textContent = ""; // Remove the popup when the close button is clicked
+
                 });
+
 
                 // Create a heading to display the day and month
                 var heading = document.createElement('h2');
@@ -1126,6 +1201,7 @@
                 popup.appendChild(closeButton);
                 // Add the popup to the document body
                 document.body.appendChild(popup);
+
             }
         </script>
 
