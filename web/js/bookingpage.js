@@ -48,12 +48,15 @@ function resetCalendar() {
 function goLeft() {
     if (week === 0)
         return;
+//    var daysContent = document.querySelector(".days-content");
     var daysContent = document.querySelector(".days-content");
 //    var shiftAmount = document.querySelector(".days-content .availableDay").offsetWidth;
 var shiftAmount = document.querySelector(".days-content").offsetWidth;
     week--;
+    console.log("week",week);
+    console.log("shiftAmount",shiftAmount);
 //    daysContent.style.transform = "translateX(-" + (week * shiftAmount * 7) + "px)";
- daysContent.style.transform = "translateX(-" + (week * shiftAmount) + "px)";
+ daysContent.style.transform = "translateX(-" + (week * shiftAmount ) + "px)";
     weekCounter.value = week;
 }
 

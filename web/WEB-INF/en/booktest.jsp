@@ -104,11 +104,8 @@
         <!-- will put this into a form so that when form submitted, it can reset the value
                                                                              of this and then JS can put the calendar back to where it was. >
         <!--Book Start-->
-        <div class="gloabal_container">
-            <!--<h1>BOOK AN APPOINTMENT</h1>-->
-            <!--<div class="bookAll">-->
-            <!--                <div class="calendarLeft">-->
-            <div class="global_top_section book_container">
+        <div class="gloabal_container book_container">
+                <div class="global_top_section book_top">
                 <div class="leftArrow">
                     <button onclick="goLeft()">
                         <!--&leftarrow;-->
@@ -116,6 +113,7 @@
                     </button>
                 </div>
                 <h1>BOOK AN APPOINTMENT</h1>
+                <!--<h1 class="smallH1">BOOK AN APPOINTMENT</h1>-->
                 <div class="rightArrow">
                     <button onclick="goRight()">
                         <!--&rightarrow;-->
@@ -184,8 +182,12 @@
                                                 </c:if>    
                                                 <c:if test="${time.getIsAvailable()==1}">
                                                     <div class="table_data data_available" data-value="${time.getTimeid()}" id="${time.getTimeid()}" onClick="getTime(this.getAttribute('data-value'))">
-                                                        <span class="availableTimeData"> ${time.getTruncatedStartTime()}&nbsp;</span> 
-                                                        <span class="availableTimeData"> - ${time.getTruncatedEndTime()}</span> 
+                                                        <span class="availableTimeData maxLengthTime"> ${time.getTruncatedStartTime()}&nbsp;</span> 
+                                                        <span class="availableTimeData maxLengthTime"> - ${time.getTruncatedEndTime()}</span> 
+                                                        
+                                                        <span class="availableTimeData minLengthTime"> ${time.getTruncatedStartTime().substring(0, time.getTruncatedStartTime().indexOf(":"))} ${time.getTruncatedStartTime().substring(time.getTruncatedStartTime().length() -2)}</span> 
+                                                        <span class="availableTimeData minLengthTime"> - </span>
+                                                        <span class="availableTimeData minLengthTime"> ${time.getTruncatedEndTime().substring(0, time.getTruncatedEndTime().indexOf(":"))} ${time.getTruncatedEndTime().substring(time.getTruncatedStartTime().length() -2)}</span> 
                                                     </div>
                                                 </c:if>
 

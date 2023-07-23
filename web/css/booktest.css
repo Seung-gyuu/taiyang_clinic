@@ -7,14 +7,24 @@
 
 
 .book_container {
-    margin: 0;
-    padding: 0;
+    /*    margin: 0 auto;
+        padding: 0;*/
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    
 }
-.book_container h1 {
+
+.book_top {
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.book_top h1 {
     font-weight: 600;
     font-family: 'Cinzel', serif;
     font-size: 35px;
@@ -30,18 +40,12 @@
 .fullCalendar{
     width: 100%;
     display: flex;
+    justify-content: center;
     overflow: hidden;
     margin: 20px auto;
 }
 
 .TimesLeft {
-}
-
-.global_top_section {
-    white-space: nowrap;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .leftArrow, .rightArrow {
@@ -54,7 +58,7 @@
     padding-left: 10%;
 }
 
-.global_top_section button {
+.book_top button {
     background-color: #212529;
     border: none;
     color: white;
@@ -71,6 +75,7 @@
     font-size: 15px;
     margin-top: -25px;
     padding-top: 10px;
+    white-space: nowrap;
 }
 
 .table_header span {
@@ -107,22 +112,24 @@
     overflow-x: hidden;
     position: relative;
     border:none;
-    width: 1225px;
+    /*width: 1225px;*/
     white-space: nowrap;
     /*overflow-x: scroll;*/
 }
 
 .days .days-content {
     width: 100%;
-     /*width: 1225px;*/
+    /*width: 1225px;*/
     display: flex;
     position: relative;
     transition: transform 0.6s ease;
     background-color: #fbfbfb;
+
+    /*    transform: translateX(-" + (week * shiftAmount ) + "px)*/
 }
 .days-content{
     width: 100%;
-     /*width: 1225px;*/
+    /*width: 1225px;*/
 }
 
 .table_header{
@@ -181,8 +188,8 @@
 }
 .table_data {
     height: 30px;
-    padding: 25px 15px;
-    padding-top: 35px;
+    padding: 35px 15px;
+    /*padding-top: 35px;*/
     border-radius: 5px;
     font-size: 13px;
     display: flex;
@@ -203,7 +210,7 @@
     height: 50px;
     max-height: 50px;
     min-height: 50px;
-    
+
 }
 
 .data_available:hover {
@@ -280,6 +287,10 @@
     color: #fff;
 }
 
+.minLengthTime {
+    display: none;
+}
+
 @media screen and (max-width: 1400px) {
     .book_container {
         max-width: 1140px;
@@ -288,16 +299,7 @@
     .days {
         max-width: 1040px;
     }
-    
-/*        
-    .table_header {
-   display: block
-}
 
-.table_header span {
-    margin-right: 0;
-}*/
-    
 
 }
 
@@ -305,19 +307,20 @@
     .book_container {
         max-width: 960px;  
     }
-.table_data  {
-    flex-direction: column;
-}
+    .table_data  {
+        flex-direction: column;
+    }
 }
 
 @media screen and (max-width: 992px) {
-    
+
     h1 {
         font-size: 18px;
     }
 
     .book_container {
         max-width: 720px;  
+        padding: 24px;
         /*height: 100vh;*/
     }
 
@@ -351,45 +354,75 @@
 
 @media screen and (max-width: 768px) {
     .book_container {
-        max-width: 720px;  
+        /*max-width: 720px;*/  
+        max-width: 540px; 
+        /*            padding: 24px;*/
     }
-    
+
     .table_header {
-   display: block
-}
+        display: block
+    }
 
-.table_header span {
-    margin-right: 0;
-}
+    .table_header span {
+        margin-right: 0;
+    }
 
-.leftArrow{
-    padding-right: 5%;
-}
-.rightArrow{
-    padding-left: 5%;
-}
+    .leftArrow{
+        padding-right: 5%;
+    }
+    .rightArrow{
+        padding-left: 5%;
+    }
 
+    .book_top h1 {
+        font-size: 24px;
+    }
 
-/*.data_available {
-    height: 30px;
-    padding: 25px 15px;
-    padding-top: 35px;
-    border-radius: 5px;
-    font-size: 13px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background:#f5f5f5;
-}*/
+    /*    .TimesLeft {
+            display: none;
+        }*/
+    .minLengthTime {
+        display: flex;
+    }
 
+    .maxLengthTime {
+        display: none;
+    }
 
 }
 
 @media screen and (max-width: 576px) {
-    .book_container {
-        max-width: 540px;  
+    .book_top {
+        /*max-width: 540px;*/  
+        /*padding: 24px;*/
+        white-space: normal;
+        text-align: center;
     }
+
+    .book_top button {
+        font-size: 12px;
+        padding: 10px 15px;
+    }
+
+    .table_header {
+        white-space: normal;
+    }
+
+    .table_header span {
+        display: none;
+    }
+
+    .TimesLeft {
+        display: none;
+    }
+/*
+    .minLengthTime {
+        display: flex;
+    }
+
+    .maxLengthTime {
+        display: none;
+    }*/
 }
 
 .popup-box {
@@ -473,7 +506,7 @@
     background: #0b486b;
     color:#fff;
     font-size: 14px;
-   cursor: pointer;
+    cursor: pointer;
 }
 
 .confirmBtn:hover {
