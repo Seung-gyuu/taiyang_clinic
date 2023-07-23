@@ -174,8 +174,8 @@
                                             </span>
                                             <p>${day.getMonthName().substring(0,3)} ${day.getDaynumber()}</p>
                                         </div>
-                                        <div class="table_time_data">
-                                            <div class="table_data"></div>
+                                        <div class="table_time_data minLength">
+                                            <div class="table_data "></div>
                                             <c:forEach items="${day.getAvailabletimeList()}" var="time">
                                                 <c:if test="${time.getIsAvailable()==2}">
                                                     <div class="table_data data_unavailable">Unavailable</div>
@@ -186,8 +186,8 @@
                                                         <span class="availableTimeData maxLengthTime"> - ${time.getTruncatedEndTime()}</span> 
                                                         
                                                         <span class="availableTimeData minLengthTime"> ${time.getTruncatedStartTime().substring(0, time.getTruncatedStartTime().indexOf(":"))} ${time.getTruncatedStartTime().substring(time.getTruncatedStartTime().length() -2)}</span> 
-                                                        <span class="availableTimeData minLengthTime"> - </span>
-                                                        <span class="availableTimeData minLengthTime"> ${time.getTruncatedEndTime().substring(0, time.getTruncatedEndTime().indexOf(":"))} ${time.getTruncatedEndTime().substring(time.getTruncatedStartTime().length() -2)}</span> 
+                                                        <span class="availableTimeData minLengthTime minTime"> - </span>
+                                                        <span class="availableTimeData minLengthTime"> ${time.getTruncatedEndTime().substring(0, time.getTruncatedEndTime().indexOf(":"))} ${time.getTruncatedEndTime().substring(time.getTruncatedEndTime().length() -2)}</span> 
                                                     </div>
                                                 </c:if>
 
