@@ -100,12 +100,7 @@ public class AppointmentService {
         tags.put("endTime", appt.getTimeid().getTruncatedEndTime());
         tags.put("service", appt.getServiceid().getServiceName());
 
-        if (language.equals("en")) {
             SendEmail.sendMail(appt.getUserid().getEmailAddress(), "Taiyang clinic- Appointment Confirmation", templatePath, tags);
-        }
-        if (language.equals("kr")) {
-            SendEmail.sendMail(appt.getUserid().getEmailAddress(), "태양한의원 - 예약확인", templatePath, tags);
-        }
 
         if (language.equals("en")) {
             return "Appointment Created!";

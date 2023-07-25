@@ -13,10 +13,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.mail.MessagingException;
-import models.User;
-import models.Validatetokens;
-import utilities.GenerateToken;
-import utilities.SendValidationEmail;
+import javax.servlet.http.HttpServletRequest;
+import models.*;
+import utilities.*;
 
 /**
  *
@@ -114,7 +113,7 @@ public class ValidateTokensService {
 
     }
 
-    public String sendToken(User user, String templatePath, String language) throws Exception {
+    public String sendToken(User user, String templatePath, String language, HttpServletRequest request) throws Exception {
         Validatetokens token = new Validatetokens();
         String tokenInsert = GenerateToken.generateToken();
 //        LocalDateTime expiryTime = LocalDateTime.now().plusDays(1);
@@ -126,17 +125,19 @@ public class ValidateTokensService {
         token.setExpiryDateTime(expiryDate);
         String recipientEmail = user.getEmailAddress();
         this.insert(token);
+        String baseUrl = "http://www.taiyangyyc.ca";
 
-        String validationLink = "validate?token=" + tokenInsert;
+        // Append the language segment if present (e.g., /en or /kr)
+        String languageSegment = language.equals("kr") ? "/kr" : "/en";
+        baseUrl += languageSegment;
+
+        String validationLink = baseUrl + "/validate?token=" + tokenInsert;
+
         HashMap<String, String> tags = new HashMap<>();
         tags.put("name", user.getFirstname());
         tags.put("action_url", validationLink);
         try {
-            if (language.equals("en")) {
-                SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
-            } else if (language.equals("kr")) {
-                SendEmail.sendMail(recipientEmail, "Taiyang Clinic- 계정 확인 이메일", templatePath, tags);
-            }
+            SendEmail.sendMail(recipientEmail, "Taiyang clinic- Account Validation Email", templatePath, tags);
 
             System.out.println("Validation email sent successfully!");
             if (language.equals("en")) {

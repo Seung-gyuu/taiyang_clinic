@@ -6,11 +6,9 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
-
-        <link rel="stylesheet" href="../fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
 
-                <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="../src/img/favicon/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="../src/img/favicon/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="../src/img/favicon/apple-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="76x76" href="../src/img/favicon/apple-icon-76x76.png">
@@ -40,27 +38,27 @@
     </head>
     <body>
 
-            <section class="p-0 mb-0" style="background-color: #ececec;">
-                <div class="container-fluid d-flex flex-column">
-                    <div class="row align-items-center justify-content-center min-vh-100">
-                        <div class="col-md-9 col-lg-6 my-5">
-                            <div class="text-center validate-page">
-                                <h3 class="mb-3 text-secondary">Validate Page</h3>
-                                <p> ${message} </p>
-                                <div>
-                                    <a href="/login?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Go To Login</a>
-                                    <a href="/home?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
+        <section class="p-0 mb-0" style="background-color: #ececec;">
+            <div class="container-fluid d-flex flex-column">
+                <div class="row align-items-center justify-content-center min-vh-100">
+                    <div class="col-md-9 col-lg-6 my-5">
+                        <div class="text-center validate-page">
+                            <h3 class="mb-3 text-secondary">Validate Page</h3>
+                            <p> ${message} </p>
+                            <div>
+                                <a href="/login?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Go To Login</a>
+                                <a href="/home?fromValidation=true" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Return To Home</a>
 
-                                    <c:if test="${resend ne null}">
-                                        <a href="/sendvalidation" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>
-                                    </c:if>
-                                </div>
+                                <c:if test="${resend ne null}">
+                                    <a href="/sendvalidation" class="btn btn-info btn-lg me-sm-2 mb-2 mb-sm-0">Resend Token</a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </body>
-    </html>
+            </div>
+        </section>
+    </body>
+</html>
 
 

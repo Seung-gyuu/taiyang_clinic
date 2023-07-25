@@ -133,14 +133,8 @@ public class BookServlets extends HttpServlet {
                 a.setTimeid(time);
                 a.setStatus("Confirmed");
                 a.setIsupcoming(1);
-                String templatePath = "";
-                if (language.equals("en")) {
-                    templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
-                }
-                if (language.equals("kr")) {
-                    templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmationKR.jsp");
-                }
-
+                String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentConfirmation.jsp");
+               
                 String message = apts.insert(a, templatePath, language);
                 session.setAttribute("message", message);
                 response.sendRedirect("/book");

@@ -113,12 +113,8 @@ public class HistoryServlets extends HttpServlet {
             if (appointmentId != null && !appointmentId.isEmpty()) {
                 try {
                     int id = Integer.parseInt(appointmentId);
-                    String templatePath = "";
-                    if (language.equals("kr")) {
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentCancellation.jsp");
-                    } else if (language.equals("en")) {
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentCancellationKR.jsp");
-                    }
+                    String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/appointmentCancellation.jsp");
+                  
 
                     String message = as.delete(as.get(id), templatePath);
                     if (message.equals("Appointment Deleted!")) {

@@ -127,7 +127,7 @@ public class RegisterServlet extends HttpServlet {
                     }
 
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u, templatePath, language);
+                    vts.sendToken(u, templatePath, language, request);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);

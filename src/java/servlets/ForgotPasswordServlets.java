@@ -34,22 +34,20 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         if (request.getParameter("translate") != null) {
             String language = request.getParameter("translate");
             //utility.setcookie(lan)
-            utilities.GetLanguageCookie.setLanguageCookie(request,response,language);
-            if(language.equals("kr")){
+            utilities.GetLanguageCookie.setLanguageCookie(request, response, language);
+            if (language.equals("kr")) {
                 response.sendRedirect("/kr/forgotpassword");
-            }
-            else{
+            } else {
                 response.sendRedirect("/en/forgotpassword");
             }
             return;
         }
-                String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
-        
-        
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request, response);
+
         if (language.equals("en")) {
             getServletContext().getRequestDispatcher("/WEB-INF/en/forgotpassword.jsp").forward(request, response);
         }
@@ -62,7 +60,7 @@ public class ForgotPasswordServlets extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String language = utilities.GetLanguageCookie.getLanguageCookie(request,response);
+        String language = utilities.GetLanguageCookie.getLanguageCookie(request, response);
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         UserService us = new UserService();
@@ -85,19 +83,14 @@ public class ForgotPasswordServlets extends HttpServlet {
                     User user = us.getByEmail(email);
                     String templatePath = "";
 
-                    if (language.equals("en")) {
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
-                    }
-                    if (language.equals("kr")) {
-                        templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPasswordKR.jsp");
-                    }
+                    templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/forgotPassword.jsp");
 
-                    pws.sendToken(user, templatePath, language);
+                    pws.sendToken(user, templatePath, language, request);
                     if (language.equals("en")) {
                         request.setAttribute("message", "We sent the reset link to your email! Check it ");
                     }
                     if (language.equals("kr")) {
-                        request.setAttribute("message", "귀하의 이메일로 재설정 링크를 보내드렸습니다! 확인해 봐");
+                        request.setAttribute("message", "귀하의 이메일로 재설정 링크를 보내드렸습니다! ");
                     }
 
                 }

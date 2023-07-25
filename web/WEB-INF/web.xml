@@ -432,36 +432,8 @@
         <url-pattern>/kr/validate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Admin1</servlet-name>
-        <url-pattern>/kr/admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Admin2</servlet-name>
-        <url-pattern>/kr/ausers</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Admin3</servlet-name>
-        <url-pattern>/kr/aavailability</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AboutUs</servlet-name>
         <url-pattern>/kr/aboutus</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Aform</servlet-name>
-        <url-pattern>/kr/aform</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Vform</servlet-name>
-        <url-pattern>/kr/vform</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewAppointment</servlet-name>
-        <url-pattern>/kr/viewappointment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Areport</servlet-name>
-        <url-pattern>/kr/areport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Service1</servlet-name>

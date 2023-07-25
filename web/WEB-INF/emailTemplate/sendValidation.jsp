@@ -444,7 +444,7 @@
                     <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
                             <td class="email-masthead">
-                                <a href="http://localhost:8084/home" class="f-fallback email-masthead_name">
+                                <a href="http://www.taiyangyyc.ca/en/home" class="f-fallback email-masthead_name">
                                     Taiyang Clinic
                                 </a>
                             </td>
@@ -468,7 +468,7 @@
                                                             <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                                                 <tr>
                                                                     <td align="center">
-                                                                        <a href="http://localhost:8084/{{action_url}}" class="f-fallback button button--green" target="_blank">Verify Email Address</a>
+                                                                        <a href="{{action_url}}" class="f-fallback button button--green" target="_blank">Verify Email Address</a>
                                                                     </td>
                                                                 </tr>
                                                             </table>

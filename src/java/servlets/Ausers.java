@@ -18,11 +18,6 @@ import services.*;
  */
 public class Ausers extends HttpServlet {
 
-    private final String DEACT_SUCCESS = "User deactivated successfully";
-    private final String DEACT_ERROR = "Unable to deactivate user";
-    private final String SEARCH_ERROR = "Unable to search for user. Please try again.";
-    private final String UPDATE_SUCCESS = "User updated successfully";
-    private final String ERROR = "Unable to process request";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,10 +29,6 @@ public class Ausers extends HttpServlet {
             request.setAttribute("message", "You have successfully logged out.");
             getServletContext().getRequestDispatcher("/WEB-INF/en/home.jsp").forward(request, response);
         }
-//        if (request.getParameter("cancel") != null) {
-//            session.removeAttribute("viewUser");
-//            response.sendRedirect("/ausers");
-//        }
         //get the user from the database
         UserService us = new UserService();
         RoleService rs = new RoleService();
@@ -105,7 +96,7 @@ public class Ausers extends HttpServlet {
 
                     String templatePath = getServletContext().getRealPath("/WEB-INF/emailTemplate/sendValidation.jsp");
                     ValidateTokensService vts = new ValidateTokensService();
-                    vts.sendToken(u, templatePath, "en");
+                    vts.sendToken(u, templatePath, "en", request);
                 } else {
 
                     request.setAttribute("firstName", firstname);
@@ -126,8 +117,6 @@ public class Ausers extends HttpServlet {
                 User viewUser = us.get(userId);
                 request.setAttribute("viewUser", viewUser);
 
-//            User viewUser = (User) session.getAttribute("viewUser");
-//            Role viewRole = (Role) session.getAttribute("viewRole");
                 String firstname = request.getParameter("firstName");
                 String lastname = request.getParameter("lastName");
                 String email = request.getParameter("email");

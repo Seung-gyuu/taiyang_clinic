@@ -18,7 +18,7 @@ public class CleanupScheduler implements ServletContextListener {
          System.out.println("Application startup: StartupListener initialized");
          ServletContext servletContext = event.getServletContext();
         //Get the absolute path to the "res" folder
-        String resFolderPath = servletContext.getRealPath("/WEB-INF/classes/res");
+        String resFolderPath = servletContext.getRealPath("/WEB-INF/res");
         AddForms addForms = new AddForms(resFolderPath);
         timer = new Timer();
         // Run the task every hour (adjust the interval as needed)

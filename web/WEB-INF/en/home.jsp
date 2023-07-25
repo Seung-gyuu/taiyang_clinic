@@ -6,6 +6,11 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tai Yang Clinic</title>
+        <meta property="og:title" content="Tai Yang Clinic" />
+        <meta property="og:description" content="Tai Yang can help you achieve health, balance, and the life you striving to live." />
+        <meta property="og:image" content="../src/img/ClinicLogo.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://www.taiyangyyc.ca" />
 
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
@@ -202,7 +207,7 @@
                             </a>
                         </div>
                     </div>
-                                <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="service-icon mb-4 mt-2">
                                 <i class="fa fa-2x fa-solid fa-heart text-black"></i>
@@ -226,7 +231,7 @@
                             </a>
                         </div>
                     </div>
-            
+
                     <div class="col-lg-4 mx-auto">
                         <div class="service-item bg-light rounded-circle d-flex flex-column align-items-center justify-content-center text-center">
                             <div class="service-icon mb-4 mt-2">
