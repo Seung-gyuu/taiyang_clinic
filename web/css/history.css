@@ -1,0 +1,141 @@
+.account_container {
+    display: flex;
+}
+
+.account_side {
+    flex: 1;
+    padding: 20px;
+}
+
+.account_main {
+    flex: 4;
+    padding: 20px 40px;
+    margin: 20px auto;
+}
+
+.history_title h4 i {
+    margin-right: 10px;
+    font-size: 18px;
+/*    display: flex;
+    align-items: center;*/
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 20px; 
+    /*   border: 1px solid #212529;*/
+}
+
+thead {
+    /*     border: 1px solid #212529;*/
+}
+
+tbody {
+}
+
+/*tr {
+}*/
+
+table thead tr th {
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+table tbody tr td{
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+.upcoming_head {
+    background: #c6deff;
+    /*color:#fff;*/
+}
+
+.cell_buttons {
+    /*                display: flex;
+                    align-items: center;
+                    justify-content: center;*/
+    width: 22%;
+    font-size: 14px;
+    /*margin: 0 auto;*/
+    text-align: center;
+}
+
+.cell_buttons button {
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.cell_buttons button:hover {
+    background: #2B89BE;
+    color: #fff;
+}
+
+/*.edit_btn {
+    background: #0D6EFD;
+    color: #fff;
+}
+
+.cancel_btn {
+    
+}*/
+
+.history_old {
+    margin-top: 40px;
+}
+
+.history_old_table {
+
+}
+
+.old_head {
+    background: #f5f5f5;
+    /*color:#fff;*/
+}
+
+.old_data {
+
+}
+
+.last_cell {
+    /*width: 200px;*/
+    /*                width: 15%;*/
+}
+
+@media screen and (max-width: 1200px) {
+    .account_main {
+        flex: 3;
+        padding-right: 0 ;
+    }
+    .user_info {
+        padding: 0 ;
+    }
+}
+
+@media screen and (max-width: 1075px) {
+    .account_main {
+        flex: 3;
+        padding: 0 20px;
+        /*padding: 0 20px;*/
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .account_container {
+        display: block;
+        /*margin: 0 auto;*/
+    }
+
+    .account_main {
+        padding: 0 40px;
+    }
+
+    .account_side {
+        margin-bottom: 20px;
+    }
+
+}

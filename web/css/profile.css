@@ -1,0 +1,246 @@
+
+.account_container {
+    display: flex;
+    /*width: 100%;*/
+}
+
+.account_side {
+    flex: 1;
+    padding: 20px;
+}
+
+.account_main {
+    flex: 4;
+
+    /*padding: 20px 40px;*/
+    /*margin: 20px auto;*/
+}
+
+.profile_title h2 {
+    font-size: 18px;
+}
+
+.user_info {
+    width: 80%;
+    /*margin: 0 auto;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+    /*padding: 0 40px;*/
+}
+
+.user_info_name { 
+    display: flex;
+    align-items: center;
+    /*justify-content:space-between;*/
+}
+
+.user_info_name h4 {
+    margin: 0;
+}
+
+.user_info_name i {
+    color:#84BD4D;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.user_info_notice {
+    margin: 0 15px;
+    padding-top: 5px;
+    /*padding-left: 28px;*/
+    color: gray;
+    font-size: 11px;
+}
+
+[data-initials]:before {
+    background: #099bdd;
+    color: white;
+    opacity: 1; 
+    content: attr(data-initials); 
+    display: inline-block; 
+    font-weight: bold; 
+    border-radius: 50%; 
+    vertical-align: middle; 
+    margin-right: 0.5em; 
+    width: 200px; 
+    height: 200px; 
+    line-height: 200px; 
+    text-align: center; 
+    font-size: 68px;
+}
+
+.user_info form {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    margin-bottom: 20px; 
+    /*justify-content: center;*/
+}
+
+.user_info form label {
+    /*margin-right: 10px;*/
+    /*font-size: 16px;*/
+    margin-bottom: 20px; 
+    width: 100%;
+}
+
+.user_info form label p {
+    font-size: 14px;
+    margin: 0; 
+    color: gray;
+
+}
+
+.user_info form label input {
+    padding: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    margin-top: 5px;
+    width:100%;
+}
+
+.fullnameField {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}
+
+/*.fnameField {
+    
+}*/
+
+#fnameInput {
+    width: 100%;
+    /*width: 300px;*/
+    /*margin-right: 10px;*/
+}
+
+#lnameInput {
+    width: 100%;
+    /*width: 300px;*/
+    /*margin-left: 10px;*/
+}
+
+.fullnameField label span input {
+    /*                width: 170px;*/
+    /*margin-right: 10px;*/
+    cursor: not-allowed;
+}
+
+.formBtns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.formBtns input {
+    border: none;
+    padding: 5px 0;
+    width: 70px;
+    border-radius: 10px;
+    /*margin-left: 15px;*/
+}
+
+.accountUpdateBtn {
+    background: #0b486b;
+    color:#fff;
+    font-size: 14px;
+}
+
+.accountUpdateBtn:hover {
+    /*                border:2px solid #0b486b;
+                    background: #fff;
+                    color:#000;*/
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.accountCancelBtn:hover {
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+/*@media screen and (max-width: 1400px) { 
+
+}*/
+
+@media screen and (max-width: 1200px) {
+    .account_main {
+        flex: 3;
+        padding: 0 40px;
+    }
+    .user_info {
+        padding: 0 ;
+    }
+}
+
+@media screen and (max-width: 1075px) {
+    .account_main {
+        flex: 3;
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .account_main {
+        flex: 2;
+        padding: 0 20px;
+    }
+
+    .user_info {
+        width: 100%;
+    }
+
+    .user_info_name { 
+        /*display: block;*/
+
+    }
+
+/*    .fullnameField {
+        display: block;
+
+        width: 100%;
+    }*/
+/*
+    #fnameInput {
+        width: 100%;
+        margin: 0;
+    }
+
+    #lnameInput {
+        width: 100%;
+        margin: 0;
+        margin-left: 10px;
+    }*/
+
+}
+
+
+@media screen and (max-width: 650px) {
+    .account_container {
+        display: block;
+        /*margin: 0 auto;*/
+    }
+
+    .account_side {
+        margin-bottom: 20px;
+    }
+
+/*    .fullnameField {
+        display: flex;
+        align-items: ceneter;
+    }*/
+
+/*    #fnameInput {
+        margin-right: 10px;
+    }*/
+}
