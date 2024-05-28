@@ -20,7 +20,7 @@ insert into user (firstname, lastname, email_address, phone_number, password, sa
 insert into user (firstname, lastname, email_address, phone_number, password, roleid, isactive) values('Bob','Banana','bob123@gmail.com','4031112345','password',1,1);
 -- password = password1
 
-INSERT INTO user (firstname, lastname, email_address, phone_number, password, salt, isvalid,  roleid, isactive) values('tai', 'yang', 'temptaiyang@gmail.com', '1234565644', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6', '/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=', '1', '1', '1');
+INSERT INTO user (firstname, lastname, email_address, phone_number, password, salt, isvalid,  roleid, isactive) values('gyu', 'park', 'new@gmail.com', '1234565644', '97a27ffe14eaeb0682e8b7a99f97f1ee34121a2220249cb35533d7d338173ac6', '/k5rGkAHAIyCNghCCfU3akK9j6wvoboqpF8XEIsGhKw=', '1', '1', '1');
 
 
 -- insert into medicalform(userid,pdfFile,timeAdded) VALUES(1,'res%2Fmedical.pdf',NOW());
@@ -412,5 +412,45 @@ insert into service values(8, 1,'Lifestyle / Diet Therapy consulting (English, K
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-19', 2024, 'Sunday', 19, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-20', 2024, 'Monday', 20, 'May');
         insert into day(fulldate,year, dayname, daynumber, month_name) values(DATE '2024-05-21', 2024, 'Tuesday', 21, 'May');
+insert into day(fulldate,year, dayname, daynumber, month_name) values
+(DATE '2024-05-22', 2024, 'Wednesday', 22, 'May'),
+(DATE '2024-05-23', 2024, 'Thursday', 23, 'May'),
+(DATE '2024-05-24', 2024, 'Friday', 24, 'May'),
+(DATE '2024-05-25', 2024, 'Saturday', 25, 'May'),
+(DATE '2024-05-26', 2024, 'Sunday', 26, 'May'),
+(DATE '2024-05-27', 2024, 'Monday', 27, 'May'),
+(DATE '2024-05-28', 2024, 'Tuesday', 28, 'May'),
+(DATE '2024-05-29', 2024, 'Wednesday', 29, 'May'),
+(DATE '2024-05-30', 2024, 'Thursday', 30, 'May'),
+(DATE '2024-05-31', 2024, 'Friday', 31, 'May'),
+(DATE '2024-06-01', 2024, 'Saturday', 1, 'June'),
+(DATE '2024-06-02', 2024, 'Sunday', 2, 'June'),
+(DATE '2024-06-03', 2024, 'Monday', 3, 'June'),
+(DATE '2024-06-04', 2024, 'Tuesday', 4, 'June'),
+(DATE '2024-06-05', 2024, 'Wednesday', 5, 'June'),
+(DATE '2024-06-06', 2024, 'Thursday', 6, 'June'),
+(DATE '2024-06-07', 2024, 'Friday', 7, 'June'),
+(DATE '2024-06-08', 2024, 'Saturday', 8, 'June'),
+(DATE '2024-06-09', 2024, 'Sunday', 9, 'June'),
+(DATE '2024-06-10', 2024, 'Monday', 10, 'June'),
+(DATE '2024-06-11', 2024, 'Tuesday', 11, 'June'),
+(DATE '2024-06-12', 2024, 'Wednesday', 12, 'June'),
+(DATE '2024-06-13', 2024, 'Thursday', 13, 'June'),
+(DATE '2024-06-14', 2024, 'Friday', 14, 'June'),
+(DATE '2024-06-15', 2024, 'Saturday', 15, 'June'),
+(DATE '2024-06-16', 2024, 'Sunday', 16, 'June'),
+(DATE '2024-06-17', 2024, 'Monday', 17, 'June'),
+(DATE '2024-06-18', 2024, 'Tuesday', 18, 'June'),
+(DATE '2024-06-19', 2024, 'Wednesday', 19, 'June'),
+(DATE '2024-06-20', 2024, 'Thursday', 20, 'June'),
+(DATE '2024-06-21', 2024, 'Friday', 21, 'June'),
+(DATE '2024-06-22', 2024, 'Saturday', 22, 'June'),
+(DATE '2024-06-23', 2024, 'Sunday', 23, 'June'),
+(DATE '2024-06-24', 2024, 'Monday', 24, 'June'),
+(DATE '2024-06-25', 2024, 'Tuesday', 25, 'June'),
+(DATE '2024-06-26', 2024, 'Wednesday', 26, 'June'),
+(DATE '2024-06-27', 2024, 'Thursday', 27, 'June'),
+(DATE '2024-06-28', 2024, 'Friday', 28, 'June'),
+(DATE '2024-06-29', 2024, 'Saturday', 29, 'June')
 
 
