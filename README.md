@@ -10,6 +10,7 @@ admin password: password1
 
 The Online Booking System for a Tai Yang clinic simplifies appointment scheduling, allowing clients to book their preferred time slots conveniently. It improves the user experience and enhances appointment management efficiency through an online interface.
 
+▶️ [Watch Demo Video on Google Drive] (https://drive.google.com/file/d/14flCLoh5tX7Vugg7fynRxickNrkR3_yP/view?usp=sharing)
 
 ## Authors
 
